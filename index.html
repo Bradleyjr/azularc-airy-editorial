@@ -1,0 +1,1461 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Azularc: Monolith Interaction Edition</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#1863DC",
+                        "primary-dark": "#07406B",
+                        "primary-light": "#2AA7DF",
+                        "background-light": "#EBEBEB",
+                        "background-dark": "#212121",
+                        "text-dark": "#212121",
+                        "text-light": "#EBEBEB",
+                        "muted": "#808285",
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                        sans: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0px",
+                        'lg': "4px",
+                    },
+                },
+            },
+        };
+    </script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .perspective-1000 { perspective: 1000px; }
+            .preserve-3d { transform-style: preserve-3d; }
+            .backface-hidden { backface-visibility: hidden; }
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }.slat-container {
+            display: flex;
+            width: 100%;
+            height: 700px;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .slat {
+            position: relative;
+            flex: 1;
+            height: 100%;
+            overflow: hidden;
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            transition: flex 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+        }
+        .slat:last-child {
+            border-right: none;
+        }
+        .slat:hover,
+        .slat.slat-active {
+            flex: 4;}
+        .slat-content {
+            position: absolute;
+            inset: 0;
+            padding: 2.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            z-index: 20;
+            pointer-events: none;
+            overflow: hidden;
+            opacity: 0;
+            transition: opacity 0.135s ease;
+        }
+        .slat:hover .slat-content,
+        .slat.slat-active .slat-content {
+            opacity: 1;
+            transition: opacity 0.01s ease 0.54s;
+        }
+        .slat-content h5 {
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 0.27s ease, transform 0.27s ease;
+        }
+        .slat-content h4 {
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 0.27s ease, transform 0.27s ease;
+        }
+        .slat-content p {
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 0.27s ease, transform 0.27s ease;
+        }
+        .slat:hover .slat-content h5,
+        .slat.slat-active .slat-content h5 {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.54s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.585s,
+                        transform 0.54s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.585s;
+        }
+        .slat:hover .slat-content h4,
+        .slat.slat-active .slat-content h4 {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.54s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.675s,
+                        transform 0.54s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.675s;
+        }
+        .slat:hover .slat-content p,
+        .slat.slat-active .slat-content p {
+            opacity: 0.6;
+            transform: translateY(0);
+            transition: opacity 0.54s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.765s,
+                        transform 0.54s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.765s;
+        }
+        .slat-label {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 2rem;
+            right: 2rem;
+            white-space: nowrap;
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-weight: 500;
+            opacity: 0.85;
+            transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: 25;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .slat:hover .slat-label,
+        .slat.slat-active .slat-label {
+            opacity: 0;
+        }
+        .slat-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.5;
+            transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .slat:hover .slat-img,
+        .slat.slat-active .slat-img {
+            opacity: 0.85;
+            transform: scale(1.03);
+        }
+        .shader-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.15;
+            mix-blend-mode: overlay;
+        }
+        .magnetic-wrap {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.1s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+        }
+        .ripple-btn::before {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border: 1px solid var(--primary);
+            border-radius: 50%;
+            animation: ripple 2s linear infinite;
+            opacity: 0;
+        }
+        @keyframes ripple {
+            0% { transform: scale(1); opacity: 0.5; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+        .progress-scrollbar {
+            height: 2px;
+            background: rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .progress-thumb {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            background: #1863DC;
+            width: 30%;
+            transition: width 0.3s ease;
+        }
+        .glass-calendar {
+            background: #111111;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #EBEBEB;
+        }
+        .cal-day {
+            width: 100%;
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        .cal-day:hover:not(.cal-disabled):not(.cal-selected) {
+            background: rgba(24, 99, 220, 0.15);
+            color: white;
+        }
+        .cal-day.cal-disabled {
+            opacity: 0.15;
+            cursor: default;
+        }
+        .cal-day.cal-today {
+            border: 1px solid rgba(24, 99, 220, 0.5);
+        }
+        .cal-day.cal-selected {
+            background: #1863DC;
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 0 20px rgba(24, 99, 220, 0.4);
+        }
+        .cal-day.cal-available::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: #2AA7DF;
+        }
+        .time-slot {
+            padding: 0.45rem 0.75rem;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 6px;
+            font-size: 0.65rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+        .time-slot:hover {
+            border-color: #1863DC;
+            background: rgba(24, 99, 220, 0.1);
+        }
+        .time-slot.slot-selected {
+            background: rgba(24, 99, 220, 0.15);
+            border-color: #1863DC;
+            color: #2AA7DF;
+            font-weight: 600;
+        }
+        @keyframes pulse-teal {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(24, 99, 220, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(24, 99, 220, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(24, 99, 220, 0); }
+        }
+        .pulse-indicator {
+            animation: pulse-teal 2s infinite;
+        }
+        /* Drag cursor for case studies */
+        .drag-cursor {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: #1863DC;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: white;
+            opacity: 0;
+            transform: scale(0.4);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+        .drag-cursor.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        /* Nav background on scroll */
+        nav {
+            transition: background-color 0.4s ease, backdrop-filter 0.4s ease;
+        }
+        nav.nav-scrolled {
+            background-color: rgba(235, 235, 235, 0.85);
+            backdrop-filter: blur(12px);
+            mix-blend-mode: normal !important;
+            color: #212121 !important;
+        }
+        nav.nav-scrolled a,
+        nav.nav-scrolled div {
+            color: #212121;
+        }
+        nav.nav-scrolled img {
+            filter: none;
+        }
+        nav.nav-scrolled .nav-links a:hover {
+            color: #1863DC;
+            opacity: 1;
+        }
+        /* Mega menu active state */
+        /* Mega menu active state */
+        .mega-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-dark dark:text-text-light font-sans selection:bg-primary selection:text-white">
+<div class="drag-cursor" id="drag-cursor">DRAG</div>
+<nav id="main-nav" class="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center mix-blend-difference text-white">
+<img src="azularcLogo.png" alt="Azul Arc" class="h-8 brightness-0 invert"/>
+<div class="hidden md:flex gap-6 text-sm uppercase tracking-widest font-medium items-center nav-links">
+<a class="hover:opacity-60 transition-opacity flex items-center gap-1 cursor-pointer nav-dd-trigger" data-dropdown="industries" href="#industries">Industries <span class="material-symbols-outlined text-sm">expand_more</span></a>
+<a class="hover:opacity-60 transition-opacity flex items-center gap-1 cursor-pointer nav-dd-trigger" data-dropdown="whatwedo" href="#capabilities">What We Do <span class="material-symbols-outlined text-sm">expand_more</span></a>
+<a class="hover:opacity-60 transition-opacity" href="#process">How We Work</a>
+<a class="hover:opacity-60 transition-opacity" href="#work">Work</a>
+<a class="hover:opacity-60 transition-opacity" href="#about">About</a>
+</div>
+<div class="hidden md:block w-28"></div>
+<button class="md:hidden">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</nav>
+<a href="#contact" id="nav-cta" class="nav-cta fixed top-[22px] right-8 z-50 hidden md:flex items-center gap-2 bg-primary text-white px-5 py-2 rounded-full text-xs uppercase tracking-widest font-medium hover:bg-primary-dark transition-colors">Book a Call</a>
+<!-- Mega menus (outside nav to avoid mix-blend-difference) -->
+<div id="mega-industries" class="mega-menu fixed top-0 left-0 w-full z-40 pt-[72px] opacity-0 invisible translate-y-[-8px] transition-all duration-300 ease-out pointer-events-none">
+<div class="mx-8 bg-text-dark backdrop-blur-xl rounded-xl pointer-events-auto overflow-hidden">
+<div class="flex">
+<div class="w-64 shrink-0 p-8 border-r border-white/10 flex flex-col justify-center">
+<span class="text-xs uppercase tracking-widest text-primary-light mb-2">Industries</span>
+<p class="text-sm text-white/40 leading-relaxed">Strategic verticals where we drive transformation.</p>
+</div>
+<div class="flex-1 p-4">
+<a href="#industries" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<span class="text-xs text-white/20 font-mono w-6">01</span>
+<div class="flex-1"><div class="text-[15px] font-medium text-white group-hover/item:text-primary-light transition-colors">Court Systems</div><div class="text-xs text-white/40 mt-1">GovTech & judicial modernization</div></div>
+<span class="material-symbols-outlined text-white/20 text-base group-hover/item:text-primary-light group-hover/item:translate-x-1 transition-all">arrow_forward</span>
+</a>
+<a href="#industries" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<span class="text-xs text-white/20 font-mono w-6">02</span>
+<div class="flex-1"><div class="text-[15px] font-medium text-white group-hover/item:text-primary-light transition-colors">Product Manufacturers</div><div class="text-xs text-white/40 mt-1">Sales tools & commercial platforms</div></div>
+<span class="material-symbols-outlined text-white/20 text-base group-hover/item:text-primary-light group-hover/item:translate-x-1 transition-all">arrow_forward</span>
+</a>
+<a href="#industries" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<span class="text-xs text-white/20 font-mono w-6">03</span>
+<div class="flex-1"><div class="text-[15px] font-medium text-white group-hover/item:text-primary-light transition-colors">Growth-Stage SMBs</div><div class="text-xs text-white/40 mt-1">Scaling operations & legacy replacement</div></div>
+<span class="material-symbols-outlined text-white/20 text-base group-hover/item:text-primary-light group-hover/item:translate-x-1 transition-all">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div id="mega-whatwedo" class="mega-menu fixed top-0 left-0 w-full z-40 pt-[72px] opacity-0 invisible translate-y-[-8px] transition-all duration-300 ease-out pointer-events-none">
+<div class="mx-8 bg-text-dark backdrop-blur-xl rounded-xl pointer-events-auto overflow-hidden">
+<div class="flex">
+<div class="w-64 shrink-0 p-8 border-r border-white/10 flex flex-col justify-center">
+<span class="text-xs uppercase tracking-widest text-primary-light mb-2">What We Do</span>
+<p class="text-sm text-white/40 leading-relaxed">End-to-end capabilities for mid-market scale.</p>
+</div>
+<div class="flex-1 p-4 grid grid-cols-2">
+<a href="#capabilities" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<span class="text-xs text-white/20 font-mono w-6">01</span>
+<div class="flex-1"><div class="text-[15px] font-medium text-white group-hover/item:text-primary-light transition-colors">Digital Product Strategy</div><div class="text-xs text-white/40 mt-1">Research-driven roadmaps</div></div>
+</a>
+<a href="#capabilities" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<span class="text-xs text-white/20 font-mono w-6">02</span>
+<div class="flex-1"><div class="text-[15px] font-medium text-white group-hover/item:text-primary-light transition-colors">Web Design & Development</div><div class="text-xs text-white/40 mt-1">Bespoke platforms for your workflow</div></div>
+</a>
+<a href="#capabilities" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<span class="text-xs text-white/20 font-mono w-6">03</span>
+<div class="flex-1"><div class="text-[15px] font-medium text-white group-hover/item:text-primary-light transition-colors">3D Visualisation</div><div class="text-xs text-white/40 mt-1">Immersive 3D experiences & renders</div></div>
+</a>
+<a href="#capabilities" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<span class="text-xs text-white/20 font-mono w-6">04</span>
+<div class="flex-1"><div class="text-[15px] font-medium text-white group-hover/item:text-primary-light transition-colors">Case Management Systems</div><div class="text-xs text-white/40 mt-1">End-to-end case tracking & automation</div></div>
+</a>
+</div>
+</div>
+</div>
+</div>
+<section class="relative min-h-screen pt-32 pb-20 px-8 lg:px-16 flex flex-col lg:flex-row items-start justify-between gap-12 overflow-hidden">
+<div class="shader-canvas bg-gradient-to-tr from-zinc-200/20 to-transparent dark:from-zinc-800/20 pointer-events-none absolute inset-0"></div>
+<div class="lg:w-2/3 min-w-0 mt-12 relative z-10">
+<h1 class="text-6xl md:text-8xl lg:text-[8vw] leading-[0.9] font-light tracking-tighter mb-12">
+            We build the software<br/>that runs your business.
+        </h1>
+<div class="flex flex-col md:flex-row gap-12 items-start md:items-center">
+<a class="group flex items-center gap-4 border-b border-text-dark dark:border-text-light pb-2 text-xl" href="#contact">
+                Book a Discovery Call
+                <span class="material-symbols-outlined group-hover:translate-x-2 transition-transform">arrow_forward</span>
+</a>
+<div class="max-w-md">
+<p class="text-lg opacity-70 mb-6">
+                    Empowering mid-market companies with high-performance operational architecture and mission-critical software solutions.
+                </p>
+<div class="flex gap-8">
+<div>
+<span class="block text-2xl font-medium text-primary">80%</span>
+<span class="text-xs uppercase tracking-widest opacity-50">Faster Processing</span>
+</div>
+<div>
+<span class="block text-2xl font-medium text-primary">99%</span>
+<span class="text-xs uppercase tracking-widest opacity-50">Client Satisfaction</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:w-1/3 shrink-0 w-full mt-20 lg:mt-0 relative z-10" id="hero-image-wrap">
+<img id="hero-img" alt="Team collaboration" class="w-full aspect-[3/4] object-cover block" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80"/>
+<canvas id="hero-dither-canvas" class="absolute inset-0 w-full h-full pointer-events-none" style="z-index:2;"></canvas>
+</div>
+</section>
+<section class="relative h-[200vh] px-8 lg:px-16" id="about">
+<div class="sticky top-0 h-screen flex items-center justify-center overflow-hidden" id="mission-sticky">
+<div class="z-10 text-center max-w-4xl px-4" id="mission-content" style="transition: opacity 0.1s ease, transform 0.1s ease;">
+<span class="text-primary uppercase tracking-widest text-sm mb-6 block">Our Mission</span>
+<h2 class="text-4xl md:text-5xl font-light leading-tight">
+                We are passionate about empowering mid-market companies to take control of their operations and achieve their growth goals.
+            </h2>
+</div>
+<div class="absolute inset-0 pointer-events-none opacity-40" id="parallax-bg">
+<img alt="Data Architecture" class="absolute top-[35%] left-[5%] w-48 aspect-square object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCe1gvaDfZYBjQyEWiG8w0NRrB3ZLSEhVcJszCaHePFYmbN4CV650a1RClnxKttAxdFIFkZV7CJ4xG9j4K6OKsnxL6ca1TXlNmofz62LhXbA8pPrje4KE2-3731BdhLpE-MIBMAmDcavq9Z-E350XgaCmYmyFBTQrc2J0CxWnw7B6_wq7JrWAr98qRgEaYkw2lr2-vtA4UL2RWBtKKieKAXTENEmR5RlIESxWPNaijCJfIw9Vcly6VJet-f7k6Sr3rRYcLK26nb4w"/>
+<img alt="Tech Operations" class="absolute bottom-[15%] left-[10%] w-64 aspect-video object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBimC1MHbHQIJOmas8Ta7DQKIY5JNlhU0rCf6EAQstkmkJtGIoLoeDstcYfQsHJX9r-M3_GyqCKX4kt0vTmfYI-t5F2mR9749X5BAM8_A6bmsBOZbZ1Iw6WPzL9nLPc6Wd3D6Vj_xOvQizOwMOFCGxmwVVf0xmD70KE-Egpaz-Z3LFCrCFdHIMPAK23U-g1uq33XstfcMdqCxBR-I5QNaBuaqyGfBxluLf4qfL188x7tapckrwjQkZwwF8cT50dvD8twQ2zHXm79n0"/>
+<img alt="Structural Systems" class="absolute top-[45%] right-[5%] w-56 aspect-[4/5] object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3S0KXErOAYhy9IiGJh6RV1xfCQ1nIIq672MwwXKkrKYwLJ4GevM1_Lla4bkbW7R2Y4C-SvJjGHBBUliJgoV1T_nydpc28ofOH2ffNUKjKvldHNoOqtDz22rllT1PQUqHryB_p_EqlhBvMSvMK4eELEeuo-qV7X-ePZ681r87GlU472HsFtJxH1m9KWpubGAIB73Wpb6owNT2dl8-Fz9IlC7sZzydTepIlOciwVI1GS8H-t-1rEqXzhmXU8fTzev5lsYUq55mH59Y"/>
+<img alt="UI Design Detail" class="absolute bottom-[20%] right-[12%] w-40 aspect-square object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHd745GIjYGnRqgTrpomwev_KnLAWeAh1fmv7pzlgwRj0kyMCz5vCB_PsN5nAVTO9z_JxylWZUGN7RuMwcS57xhx4Cq-QEcfmKt3uS4XHXayZbeVjqxqt9xJcrJjQKN6kTGMpR_rG9CqBOZftwXcmOaVZ8z9VP43MD8R20HVpznPeimUMjg0z9FllIJI_oQUQx0gKwLMiljCzsIUFHU2HWYukXtDr4q8Wir_E1QK3TWhZdWdPv3DTLVlJzh306fF4Dbblvgbo718Q"/>
+</div>
+</div>
+</section>
+<section class="py-32 px-8 lg:px-16 border-t border-black/10 dark:border-white/10" id="industries">
+<div class="mb-20">
+<h3 class="text-sm uppercase tracking-widest text-primary mb-4">Industries</h3>
+<h2 class="text-5xl font-light">Strategic segments</h2>
+</div>
+<div class="space-y-4">
+<div class="group border-b border-black/10 dark:border-white/10 pb-8 cursor-pointer overflow-hidden transition-all duration-500 hover:pb-12">
+<div class="flex justify-between items-end">
+<span class="text-lg opacity-40">01</span>
+<h4 class="text-4xl md:text-7xl font-light flex-grow ml-12 group-hover:text-primary transition-colors">Government &amp; Courts</h4>
+<span class="material-symbols-outlined text-4xl group-hover:rotate-45 transition-transform">add</span>
+</div>
+<div class="max-h-0 group-hover:max-h-[500px] transition-all duration-700 opacity-0 group-hover:opacity-100 flex flex-col md:flex-row gap-12 mt-12 relative">
+<div class="md:w-1/2">
+<p class="text-xl opacity-70 mb-12">Modernizing judicial workflows and public sector infrastructure with secure, scalable digital case management systems.</p>
+<div class="magnetic-wrap p-12">
+<button class="ripple-btn relative w-40 h-40 rounded-full border border-primary text-primary uppercase text-xs tracking-widest flex items-center justify-center bg-transparent hover:bg-primary hover:text-white transition-colors">
+                            Explore Segment
+                        </button>
+</div>
+</div>
+<div class="md:w-1/2 h-80 overflow-hidden rounded-lg">
+<div class="w-full h-full" style="background: linear-gradient(160deg, #0a0a0a 0%, #07406B 50%, #1863DC 100%)"></div>
+</div>
+</div>
+</div>
+<div class="group border-b border-black/10 dark:border-white/10 py-8 cursor-pointer overflow-hidden transition-all duration-500 hover:py-12">
+<div class="flex justify-between items-end">
+<span class="text-lg opacity-40">02</span>
+<h4 class="text-4xl md:text-7xl font-light flex-grow ml-12 group-hover:text-primary transition-colors">Manufacturing &amp; Distribution</h4>
+<span class="material-symbols-outlined text-4xl group-hover:rotate-45 transition-transform">add</span>
+</div>
+<div class="max-h-0 group-hover:max-h-[500px] transition-all duration-700 opacity-0 group-hover:opacity-100 flex flex-col md:flex-row gap-12 mt-12 relative">
+<div class="md:w-1/2">
+<p class="text-xl opacity-70 mb-12">Optimizing supply chains and shop floor operations through real-time data integration and automated inventory controls.</p>
+<div class="magnetic-wrap p-12">
+<button class="ripple-btn relative w-40 h-40 rounded-full border border-primary text-primary uppercase text-xs tracking-widest flex items-center justify-center bg-transparent hover:bg-primary hover:text-white transition-colors">
+                            Explore Segment
+                        </button>
+</div>
+</div>
+<div class="md:w-1/2 h-80 overflow-hidden rounded-lg">
+<div class="w-full h-full" style="background: linear-gradient(160deg, #0a0a0a 0%, #1863DC 50%, #2AA7DF 100%)"></div>
+</div>
+</div>
+</div>
+<div class="group border-b border-black/10 dark:border-white/10 pt-8 pb-8 cursor-pointer overflow-hidden transition-all duration-500 hover:pb-12">
+<div class="flex justify-between items-end">
+<span class="text-lg opacity-40">03</span>
+<h4 class="text-4xl md:text-7xl font-light flex-grow ml-12 group-hover:text-primary transition-colors">Growth-Stage Companies</h4>
+<span class="material-symbols-outlined text-4xl group-hover:rotate-45 transition-transform">add</span>
+</div>
+<div class="max-h-0 group-hover:max-h-[500px] transition-all duration-700 opacity-0 group-hover:opacity-100 flex flex-col md:flex-row gap-12 mt-12 relative">
+<div class="md:w-1/2">
+<p class="text-xl opacity-70 mb-12">Building the technical foundations that allow rapid-growth organizations to scale operations without increasing overhead.</p>
+<div class="magnetic-wrap p-12">
+<button class="ripple-btn relative w-40 h-40 rounded-full border border-primary text-primary uppercase text-xs tracking-widest flex items-center justify-center bg-transparent hover:bg-primary hover:text-white transition-colors">
+                            Explore Segment
+                        </button>
+</div>
+</div>
+<div class="md:w-1/2 h-80 overflow-hidden rounded-lg">
+<div class="w-full h-full" style="background: linear-gradient(160deg, #212121 0%, #1863DC 40%, #07406B 100%)"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-32 bg-zinc-950 text-white" id="capabilities">
+<div class="px-8 lg:px-16 mb-20">
+<h3 class="text-sm uppercase tracking-[0.3em] font-light text-primary mb-6">Capabilities</h3>
+<h2 class="text-6xl font-light tracking-tight">Our Technical Core</h2>
+</div>
+<div class="slat-container" id="slat-container">
+<div class="slat slat-active">
+<div class="slat-img" style="background: linear-gradient(160deg, #0a0a0a 0%, #07406B 50%, #1863DC 100%)"></div>
+<span class="slat-label">Custom Platforms</span>
+<div class="slat-content">
+<h5 class="text-xs uppercase tracking-[0.4em] text-white/80 mb-4 font-bold">01 — Platforms</h5>
+<h4 class="text-4xl font-light mb-6 tracking-tighter">Bespoke Enterprise Systems</h4>
+<p class="text-sm leading-relaxed font-light max-w-sm">Engineered from the ground up to support specific business logic and high-volume transaction processing with zero compromises.</p>
+</div>
+</div>
+<div class="slat">
+<div class="slat-img" style="background: linear-gradient(160deg, #0a0a0a 0%, #1863DC 50%, #2AA7DF 100%)"></div>
+<span class="slat-label">Data &amp; Analytics</span>
+<div class="slat-content">
+<h5 class="text-xs uppercase tracking-[0.4em] text-white/80 mb-4 font-bold">02 — Intelligence</h5>
+<h4 class="text-4xl font-light mb-6 tracking-tighter">Data Architecture</h4>
+<p class="text-sm leading-relaxed font-light max-w-sm">Complex data webs and pipelines that transform fragmented operational noise into high-fidelity executive intelligence.</p>
+</div>
+</div>
+<div class="slat">
+<div class="slat-img" style="background: linear-gradient(160deg, #0a0a0a 0%, #07406B 60%, #0a0a0a 100%)"></div>
+<span class="slat-label">System Integrations</span>
+<div class="slat-content">
+<h5 class="text-xs uppercase tracking-[0.4em] text-white/80 mb-4 font-bold">03 — Connectivity</h5>
+<h4 class="text-4xl font-light mb-6 tracking-tighter">Ecosystem Synergy</h4>
+<p class="text-sm leading-relaxed font-light max-w-sm">Seamless connectivity between disparate ERP, CRM, and shop-floor systems using robust modular middleware frames.</p>
+</div>
+</div>
+<div class="slat">
+<div class="slat-img" style="background: linear-gradient(160deg, #212121 0%, #1863DC 40%, #07406B 100%)"></div>
+<span class="slat-label">Legacy Modernization</span>
+<div class="slat-content">
+<h5 class="text-xs uppercase tracking-[0.4em] text-white/80 mb-4 font-bold">04 — Evolution</h5>
+<h4 class="text-4xl font-light mb-6 tracking-tighter">Core Transformation</h4>
+<p class="text-sm leading-relaxed font-light max-w-sm">Deconstructing and re-platforming aging monolithic architectures into resilient, future-ready microservices.</p>
+</div>
+</div>
+<div class="slat">
+<div class="slat-img" style="background: linear-gradient(160deg, #0a0a0a 0%, #2AA7DF 50%, #1863DC 100%)"></div>
+<span class="slat-label">Cloud Infrastructure</span>
+<div class="slat-content">
+<h5 class="text-xs uppercase tracking-[0.4em] text-white/80 mb-4 font-bold">05 — Scalability</h5>
+<h4 class="text-4xl font-light mb-6 tracking-tighter">Distributed Cloud</h4>
+<p class="text-sm leading-relaxed font-light max-w-sm">Architecting high-availability cloud environments that dynamically scale with your operational demand.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="py-32 px-8 lg:px-16 flex flex-col md:flex-row gap-20" id="process">
+<div class="md:w-1/2 sticky top-32 h-fit">
+<h3 class="text-sm uppercase tracking-widest text-primary mb-4">Our Process</h3>
+<h2 class="text-5xl font-light mb-8 leading-tight">Operational Architecture Lifecycle</h2>
+<p class="text-xl opacity-70 mb-12">A disciplined methodology designed to translate complex business needs into high-performing technical assets.</p>
+<div class="w-full h-px bg-black/10 dark:bg-white/10"></div>
+</div>
+<div class="md:w-1/2 space-y-24">
+<div class="group">
+<span class="text-sm tracking-widest text-primary">Weeks 1-2</span>
+<div class="flex items-baseline gap-4 mt-2">
+<span class="text-6xl font-light opacity-10 group-hover:opacity-100 transition-opacity">01</span>
+<h4 class="text-3xl font-medium">Discover</h4>
+</div>
+<p class="text-lg opacity-70 mt-4">Audit of current systems, bottleneck identification, and operational goal setting.</p>
+</div>
+<div class="group">
+<span class="text-sm tracking-widest text-primary">Weeks 3-4</span>
+<div class="flex items-baseline gap-4 mt-2">
+<span class="text-6xl font-light opacity-10 group-hover:opacity-100 transition-opacity">02</span>
+<h4 class="text-3xl font-medium">Blueprint</h4>
+</div>
+<p class="text-lg opacity-70 mt-4">Technical architectural design and documentation of the future-state ecosystem.</p>
+</div>
+<div class="group">
+<span class="text-sm tracking-widest text-primary">Weeks 5-16</span>
+<div class="flex items-baseline gap-4 mt-2">
+<span class="text-6xl font-light opacity-10 group-hover:opacity-100 transition-opacity">03</span>
+<h4 class="text-3xl font-medium">Design &amp; Build</h4>
+</div>
+<p class="text-lg opacity-70 mt-4">Agile development cycles with regular stakeholder reviews and iterative refinement.</p>
+</div>
+<div class="group">
+<span class="text-sm tracking-widest text-primary">Weeks 17-20</span>
+<div class="flex items-baseline gap-4 mt-2">
+<span class="text-6xl font-light opacity-10 group-hover:opacity-100 transition-opacity">04</span>
+<h4 class="text-3xl font-medium">Deploy</h4>
+</div>
+<p class="text-lg opacity-70 mt-4">System migration, user training, and seamless integration into live operations.</p>
+</div>
+<div class="group">
+<span class="text-sm tracking-widest text-primary">Ongoing</span>
+<div class="flex items-baseline gap-4 mt-2">
+<span class="text-6xl font-light opacity-10 group-hover:opacity-100 transition-opacity">05</span>
+<h4 class="text-3xl font-medium">Evolve</h4>
+</div>
+<p class="text-lg opacity-70 mt-4">Continuous monitoring, proactive maintenance, and feature enhancement for sustained growth.</p>
+</div>
+</div>
+</section>
+<section class="py-32 overflow-hidden bg-background-light dark:bg-background-dark border-t border-black/5 dark:border-white/5">
+<div class="px-8 lg:px-16 mb-20">
+<h3 class="text-sm uppercase tracking-widest text-primary mb-4">Case Studies</h3>
+<h2 class="text-5xl font-light">Operational impact</h2>
+</div>
+<div class="flex gap-1 px-8 lg:px-16 overflow-x-auto hide-scrollbar pb-20 group/studies cursor-none" id="case-studies-track">
+<div class="flex-shrink-0 w-[450px] group cursor-none transition-transform duration-500 group-hover:-translate-y-2">
+<div class="aspect-[16/10] overflow-hidden rounded-lg mb-6 shadow-lg group-hover:shadow-2xl transition-shadow duration-500">
+<div class="w-full h-full group-hover:scale-105 group-hover:brightness-125 transition-all duration-700" style="background: linear-gradient(160deg, #0a0a0a 0%, #07406B 50%, #1863DC 100%)"></div>
+</div>
+<h5 class="text-2xl font-light mb-1 group-hover:text-primary transition-colors duration-500">CaseHub</h5>
+<p class="text-sm uppercase tracking-widest opacity-40 group-hover:opacity-70 transition-opacity duration-500">45% Reduction in Filing Time</p>
+</div>
+<div class="flex-shrink-0 w-[450px] group cursor-none ml-8 transition-transform duration-500 group-hover:-translate-y-2">
+<div class="aspect-[16/10] overflow-hidden rounded-lg mb-6 shadow-lg group-hover:shadow-2xl transition-shadow duration-500">
+<div class="w-full h-full group-hover:scale-105 group-hover:brightness-125 transition-all duration-700" style="background: linear-gradient(160deg, #0a0a0a 0%, #1863DC 50%, #2AA7DF 100%)"></div>
+</div>
+<h5 class="text-2xl font-light mb-1 group-hover:text-primary transition-colors duration-500">Azul Arc Internal</h5>
+<p class="text-sm uppercase tracking-widest opacity-40 group-hover:opacity-70 transition-opacity duration-500">Zero-Downtime Migration</p>
+</div>
+<div class="flex-shrink-0 w-[450px] group cursor-none ml-8 transition-transform duration-500 group-hover:-translate-y-2">
+<div class="aspect-[16/10] overflow-hidden rounded-lg mb-6 shadow-lg group-hover:shadow-2xl transition-shadow duration-500">
+<div class="w-full h-full group-hover:scale-105 group-hover:brightness-125 transition-all duration-700" style="background: linear-gradient(160deg, #0a0a0a 0%, #07406B 60%, #0a0a0a 100%)"></div>
+</div>
+<h5 class="text-2xl font-light mb-1 group-hover:text-primary transition-colors duration-500">RenderLab</h5>
+<p class="text-sm uppercase tracking-widest opacity-40 group-hover:opacity-70 transition-opacity duration-500">300% Scaling Capacity</p>
+</div>
+<div class="flex-shrink-0 w-[450px] group cursor-none ml-8 transition-transform duration-500 group-hover:-translate-y-2">
+<div class="aspect-[16/10] overflow-hidden rounded-lg mb-6 shadow-lg group-hover:shadow-2xl transition-shadow duration-500">
+<div class="w-full h-full group-hover:scale-105 group-hover:brightness-125 transition-all duration-700" style="background: linear-gradient(160deg, #212121 0%, #2AA7DF 40%, #07406B 100%)"></div>
+</div>
+<h5 class="text-2xl font-light mb-1 group-hover:text-primary transition-colors duration-500">FlowOps</h5>
+<p class="text-sm uppercase tracking-widest opacity-40 group-hover:opacity-70 transition-opacity duration-500">20% Operational Cost Save</p>
+</div>
+</div>
+<div class="px-8 lg:px-16">
+<div class="progress-scrollbar w-full rounded-full">
+<div class="progress-thumb rounded-full"></div>
+</div>
+</div>
+</section>
+<section class="py-32 px-8 lg:px-16 flex flex-col lg:flex-row gap-20 items-center" id="contact">
+<div class="lg:w-1/2">
+<h2 class="text-6xl font-light mb-8">Ready to replace what's holding you back?</h2>
+<p class="text-xl opacity-70 mb-12">Book a Discovery Call with our senior architects to identify the gaps in your current technical stack.</p>
+<div class="space-y-6">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<span>Complimentary infrastructure audit</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<span>High-level architecture roadmap</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<span>Scaling feasibility assessment</span>
+</div>
+</div>
+</div>
+<div class="lg:w-5/12 w-full glass-calendar p-6 lg:p-8 shadow-2xl rounded-lg text-sm relative" id="calendar-widget">
+<!-- Header -->
+<div class="mb-5 flex justify-between items-center">
+<div>
+<h3 class="text-base font-light tracking-tight">Book a Discovery Call</h3>
+<p class="text-[10px] opacity-40 uppercase tracking-widest mt-1">Select a date &amp; time</p>
+</div>
+<div class="flex items-center gap-3 bg-white/5 px-4 py-2 rounded-full border border-white/10">
+<div class="w-2 h-2 rounded-full bg-primary pulse-indicator"></div>
+<span class="text-[10px] uppercase tracking-widest font-bold text-primary-light">Available</span>
+</div>
+</div>
+<!-- Month nav -->
+<div class="flex items-center justify-between mb-4">
+<button id="cal-prev" class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<span id="cal-month-label" class="text-sm font-medium uppercase tracking-widest"></span>
+<button id="cal-next" class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+<!-- Day headers -->
+<div class="grid grid-cols-7 gap-1 text-center mb-2">
+<div class="text-[10px] font-bold opacity-30 py-2">MON</div>
+<div class="text-[10px] font-bold opacity-30 py-2">TUE</div>
+<div class="text-[10px] font-bold opacity-30 py-2">WED</div>
+<div class="text-[10px] font-bold opacity-30 py-2">THU</div>
+<div class="text-[10px] font-bold opacity-30 py-2">FRI</div>
+<div class="text-[10px] font-bold opacity-30 py-2">SAT</div>
+<div class="text-[10px] font-bold opacity-30 py-2">SUN</div>
+</div>
+<!-- Calendar grid -->
+<div class="grid grid-cols-7 gap-1 mb-5" id="cal-grid"></div>
+<!-- Time slots -->
+<div id="cal-times-section" class="mb-5" style="display:none;">
+<p class="text-xs uppercase tracking-widest opacity-40 mb-4" id="cal-times-label">Available times</p>
+<div class="grid grid-cols-3 gap-2" id="cal-times-grid"></div>
+</div>
+<!-- Divider -->
+<div class="h-px bg-white/5 mb-4"></div>
+<!-- Summary -->
+<div id="cal-summary" class="mb-4 text-xs opacity-50 text-center" style="min-height:1.25rem;"></div>
+<!-- CTA -->
+<button id="cal-book-btn" class="w-full bg-primary text-white py-3 uppercase text-[10px] font-bold tracking-[0.2em] hover:bg-white hover:text-primary transition-all duration-300 rounded-lg opacity-40 pointer-events-none">
+Book Discovery Call
+</button>
+<canvas id="confetti-canvas" class="absolute inset-0 w-full h-full pointer-events-none rounded-lg" style="z-index:11;"></canvas>
+<!-- Confirmation overlay -->
+<div id="cal-confirm" class="absolute inset-0 rounded-lg flex flex-col items-center justify-center text-center p-8 opacity-0 pointer-events-none transition-all duration-500" style="background: #111111; z-index: 10;">
+<div class="w-14 h-14 rounded-full border-2 border-primary flex items-center justify-center mb-6" id="cal-check-circle">
+<span class="material-symbols-outlined text-primary text-2xl" id="cal-check-icon" style="opacity:0; transform:scale(0.5); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;">check</span>
+</div>
+<h4 class="text-lg font-light mb-2">You're booked.</h4>
+<p class="text-xs opacity-50 mb-1" id="cal-confirm-date"></p>
+<p class="text-xs opacity-50 mb-6" id="cal-confirm-time"></p>
+<p class="text-[10px] opacity-30 mb-8 max-w-[240px]">A confirmation email will be sent with a calendar invite and meeting details.</p>
+<button id="cal-confirm-close" class="border border-white/10 text-[10px] uppercase tracking-widest px-6 py-2.5 rounded-lg hover:bg-white/5 transition-colors">
+Back to Calendar
+</button>
+</div>
+</div>
+</section>
+<footer id="footer-section" class="relative pt-32 pb-16 px-8 lg:px-16 border-t border-black/5 dark:border-white/5" style="overflow: clip;">
+<canvas id="dither-canvas" class="absolute inset-0 w-full h-full pointer-events-none" style="opacity:0; transition: opacity 0.3s ease;"></canvas>
+<div class="footer-content relative z-10 flex flex-col lg:flex-row justify-between items-end mb-32">
+<div class="max-w-xl mb-12 lg:mb-0">
+<h2 class="text-7xl font-light mb-8">Let's build<br/>the engine.</h2>
+</div>
+<div class="magnetic-wrap p-8" id="footer-cta-wrap">
+<button id="footer-cta-btn" class="w-48 h-48 rounded-full border border-black/10 flex items-center justify-center text-sm uppercase tracking-widest transition-all duration-500 bg-transparent footer-text" style="transition: color 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);">
+                Get In Touch
+            </button>
+</div>
+</div>
+<div class="footer-grid relative z-10 grid grid-cols-2 md:grid-cols-4 gap-12 pt-16 border-t border-black/10" style="transition: border-color 0.6s ease;">
+<div>
+<h6 class="text-xs uppercase tracking-widest font-bold mb-6 footer-text" style="transition: color 0.6s ease;">What We Do</h6>
+<ul class="space-y-2 opacity-60 text-sm footer-text" style="transition: color 0.6s ease;">
+<li><a class="hover:text-primary" href="#capabilities">Digital Product Strategy</a></li>
+<li><a class="hover:text-primary" href="#capabilities">Web Design & Development</a></li>
+<li><a class="hover:text-primary" href="#capabilities">3D Visualisation</a></li>
+<li><a class="hover:text-primary" href="#capabilities">Case Management Systems</a></li>
+</ul>
+</div>
+<div>
+<h6 class="text-xs uppercase tracking-widest font-bold mb-6 footer-text" style="transition: color 0.6s ease;">Company</h6>
+<ul class="space-y-2 opacity-60 text-sm footer-text" style="transition: color 0.6s ease;">
+<li><a class="hover:text-primary" href="#about">About</a></li>
+<li><a class="hover:text-primary" href="#process">How We Work</a></li>
+<li><a class="hover:text-primary" href="#work">Work</a></li>
+<li><a class="hover:text-primary" href="#insights">Insights & Resources</a></li>
+<li><a class="hover:text-primary" href="#contact">Contact</a></li>
+</ul>
+</div>
+<div>
+<h6 class="text-xs uppercase tracking-widest font-bold mb-6 footer-text" style="transition: color 0.6s ease;">Connect</h6>
+<ul class="space-y-2 opacity-60 text-sm footer-text" style="transition: color 0.6s ease;">
+<li><a class="hover:text-primary" href="#">LinkedIn</a></li>
+<li><a class="hover:text-primary" href="#">Twitter</a></li>
+<li><a class="hover:text-primary" href="mailto:hello@azularc.com">Email</a></li>
+</ul>
+</div>
+<div class="flex flex-col justify-between">
+<div>
+<h6 class="text-xs uppercase tracking-widest font-bold mb-6 footer-text" style="transition: color 0.6s ease;">Insights</h6>
+<div class="flex border-b border-black/10 pb-2 footer-border" style="transition: border-color 0.6s ease;">
+<input class="bg-transparent border-none focus:ring-0 p-0 text-sm w-full footer-text" style="transition: color 0.6s ease;" placeholder="Email" type="email"/>
+<span class="material-symbols-outlined opacity-40 footer-text" style="transition: color 0.6s ease;">arrow_forward</span>
+</div>
+</div>
+<p class="text-xs opacity-30 mt-12 footer-text" style="transition: color 0.6s ease;">© 2025 Azul Arc. All rights reserved.</p>
+</div>
+</div>
+</footer>
+<script>
+    // Hero dither mask border
+    (function() {
+        const wrap = document.getElementById('hero-image-wrap');
+        const canvas = document.getElementById('hero-dither-canvas');
+        if (!wrap || !canvas) return;
+        const ctx = canvas.getContext('2d');
+
+        const bayer = [
+            [ 0, 8, 2,10],
+            [12, 4,14, 6],
+            [ 3,11, 1, 9],
+            [15, 7,13, 5]
+        ];
+
+        const ps = 4; // pixel size
+        const bg = 'rgb(235,235,235)';
+        const blue = 'rgba(24,99,220,0.3)';
+        let time = 0;
+        let cw = 0, ch = 0;
+
+        function sync() {
+            const r = wrap.getBoundingClientRect();
+            if (Math.round(r.width) !== cw || Math.round(r.height) !== ch) {
+                cw = Math.round(r.width);
+                ch = Math.round(r.height);
+                canvas.width = cw;
+                canvas.height = ch;
+            }
+        }
+
+        function draw() {
+            sync();
+            if (cw === 0 || ch === 0) { requestAnimationFrame(draw); return; }
+            time += 0.003;
+
+            ctx.clearRect(0, 0, cw, ch);
+
+            const edgeT = ch * 0.08;
+            const edgeB = ch * 0.15;
+            const edgeL = cw * 0.12;
+            const edgeR = cw * 0.25;
+
+            for (let x = 0; x < cw; x += ps) {
+                for (let y = 0; y < ch; y += ps) {
+                    let ef = 0;
+                    if (y < edgeT) ef = 1 - y / edgeT;
+                    if (y > ch - edgeB) ef = Math.max(ef, (y - (ch - edgeB)) / edgeB);
+                    if (x < edgeL) ef = Math.max(ef, 1 - x / edgeL);
+                    if (x > cw - edgeR) ef = Math.max(ef, (x - (cw - edgeR)) / edgeR);
+
+                    if (ef < 0.02) continue;
+
+                    // subtle shimmer only in edge zones
+                    ef = Math.min(ef + Math.sin(x * 0.02 + y * 0.015 + time * 2) * 0.04, 1);
+                    if (ef < 0.02) continue;
+
+                    const threshold = bayer[(y / ps | 0) % 4][(x / ps | 0) % 4] / 16;
+                    if (ef > threshold) {
+                        const isBlueTint = Math.sin(x * 0.03 + y * 0.02 + time) > 0.4 && ef < 0.5;
+                        ctx.fillStyle = isBlueTint ? blue : bg;
+                        ctx.fillRect(x, y, ps, ps);
+                    }
+                }
+            }
+            requestAnimationFrame(draw);
+        }
+
+        // Start after image loads so container has dimensions
+        const img = document.getElementById('hero-img');
+        function start() { sync(); draw(); }
+        if (img.complete && img.naturalWidth > 0) { start(); } else { img.onload = start; }
+    })();
+
+    // Calendar widget
+    (function() {
+        const grid = document.getElementById('cal-grid');
+        const monthLabel = document.getElementById('cal-month-label');
+        const prevBtn = document.getElementById('cal-prev');
+        const nextBtn = document.getElementById('cal-next');
+        const timesSection = document.getElementById('cal-times-section');
+        const timesGrid = document.getElementById('cal-times-grid');
+        const timesLabel = document.getElementById('cal-times-label');
+        const summary = document.getElementById('cal-summary');
+        const bookBtn = document.getElementById('cal-book-btn');
+
+        const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+        const today = new Date();
+        let viewMonth = today.getMonth();
+        let viewYear = today.getFullYear();
+        let selectedDate = null;
+        let selectedTime = null;
+
+        // Available days (random-ish pattern: Mon/Tue/Wed/Thu only, skip some)
+        function isAvailable(date) {
+            const dow = date.getDay(); // 0=Sun
+            if (dow === 0 || dow === 6) return false; // no weekends
+            const d = date.getDate();
+            if (date < today && date.toDateString() !== today.toDateString()) return false;
+            // Make ~60% of weekdays available
+            return (d * 7 + date.getMonth() * 13) % 5 !== 0;
+        }
+
+        const timeSlots = ['9:00 AM','9:30 AM','10:00 AM','10:30 AM','11:00 AM','1:00 PM','1:30 PM','2:00 PM','2:30 PM','3:00 PM','3:30 PM','4:00 PM'];
+
+        function getAvailableTimes(date) {
+            // Pseudo-random subset of times based on date
+            const d = date.getDate();
+            return timeSlots.filter((_, i) => (d * 3 + i * 7) % 4 !== 0);
+        }
+
+        function render() {
+            grid.innerHTML = '';
+            monthLabel.textContent = months[viewMonth] + ' ' + viewYear;
+
+            const firstDay = new Date(viewYear, viewMonth, 1);
+            let startDow = firstDay.getDay(); // 0=Sun
+            startDow = startDow === 0 ? 6 : startDow - 1; // convert to Mon=0
+
+            const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+            const daysInPrev = new Date(viewYear, viewMonth, 0).getDate();
+
+            // Previous month trailing days
+            for (let i = startDow - 1; i >= 0; i--) {
+                const el = document.createElement('div');
+                el.className = 'cal-day cal-disabled';
+                el.textContent = daysInPrev - i;
+                grid.appendChild(el);
+            }
+
+            // Current month days
+            for (let d = 1; d <= daysInMonth; d++) {
+                const date = new Date(viewYear, viewMonth, d);
+                const el = document.createElement('div');
+                el.className = 'cal-day';
+                el.textContent = d;
+
+                const isPast = date < today && date.toDateString() !== today.toDateString();
+                const avail = isAvailable(date);
+                const isToday = date.toDateString() === today.toDateString();
+                const isSelected = selectedDate && date.toDateString() === selectedDate.toDateString();
+
+                if (isPast) {
+                    el.classList.add('cal-disabled');
+                } else if (isSelected) {
+                    el.classList.add('cal-selected');
+                } else {
+                    if (isToday) el.classList.add('cal-today');
+                    if (avail) el.classList.add('cal-available');
+                    el.addEventListener('click', () => selectDate(date));
+                }
+
+                grid.appendChild(el);
+            }
+
+            // Next month leading days
+            const totalCells = grid.children.length;
+            const remaining = totalCells % 7 === 0 ? 0 : 7 - (totalCells % 7);
+            for (let i = 1; i <= remaining; i++) {
+                const el = document.createElement('div');
+                el.className = 'cal-day cal-disabled';
+                el.textContent = i;
+                grid.appendChild(el);
+            }
+        }
+
+        function selectDate(date) {
+            selectedDate = date;
+            selectedTime = null;
+            render();
+            showTimes(date);
+            updateSummary();
+        }
+
+        function showTimes(date) {
+            const times = getAvailableTimes(date);
+            timesGrid.innerHTML = '';
+            timesLabel.textContent = 'Available on ' + months[date.getMonth()] + ' ' + date.getDate();
+            times.forEach(t => {
+                const el = document.createElement('div');
+                el.className = 'time-slot';
+                el.textContent = t;
+                el.addEventListener('click', () => {
+                    selectedTime = t;
+                    timesGrid.querySelectorAll('.time-slot').forEach(s => s.classList.remove('slot-selected'));
+                    el.classList.add('slot-selected');
+                    updateSummary();
+                });
+                timesGrid.appendChild(el);
+            });
+            timesSection.style.display = 'block';
+        }
+
+        function updateSummary() {
+            if (selectedDate && selectedTime) {
+                const dayName = selectedDate.toLocaleDateString('en-US', { weekday: 'long' });
+                summary.textContent = dayName + ', ' + months[selectedDate.getMonth()] + ' ' + selectedDate.getDate() + ' at ' + selectedTime;
+                summary.style.opacity = '1';
+                bookBtn.style.opacity = '1';
+                bookBtn.style.pointerEvents = 'auto';
+            } else if (selectedDate) {
+                summary.textContent = 'Select a time slot';
+                summary.style.opacity = '0.5';
+                bookBtn.style.opacity = '0.4';
+                bookBtn.style.pointerEvents = 'none';
+            } else {
+                summary.textContent = '';
+                bookBtn.style.opacity = '0.4';
+                bookBtn.style.pointerEvents = 'none';
+            }
+        }
+
+        prevBtn.addEventListener('click', () => {
+            viewMonth--;
+            if (viewMonth < 0) { viewMonth = 11; viewYear--; }
+            render();
+        });
+        nextBtn.addEventListener('click', () => {
+            viewMonth++;
+            if (viewMonth > 11) { viewMonth = 0; viewYear++; }
+            render();
+        });
+
+        render();
+
+        // Confirmation flow
+        const confirmEl = document.getElementById('cal-confirm');
+        const confirmDate = document.getElementById('cal-confirm-date');
+        const confirmTime = document.getElementById('cal-confirm-time');
+        const confirmClose = document.getElementById('cal-confirm-close');
+        const checkIcon = document.getElementById('cal-check-icon');
+
+        // Dither confetti
+        const confettiCanvas = document.getElementById('confetti-canvas');
+        const cCtx = confettiCanvas.getContext('2d');
+        let confettiParticles = [];
+        let confettiAnim = null;
+
+        const confettiColors = ['#1863DC', '#2AA7DF', '#07406B', '#EBEBEB', '#808285'];
+
+        function spawnConfetti() {
+            const rect = confettiCanvas.parentElement.getBoundingClientRect();
+            const dpr = window.devicePixelRatio || 1;
+            confettiCanvas.width = rect.width * dpr;
+            confettiCanvas.height = rect.height * dpr;
+            cCtx.scale(dpr, dpr);
+            const w = rect.width;
+
+            confettiParticles = [];
+            for (let i = 0; i < 60; i++) {
+                confettiParticles.push({
+                    x: Math.random() * w,
+                    y: -Math.random() * 40,
+                    size: 3 + Math.random() * 4,
+                    speed: 0.4 + Math.random() * 0.8,
+                    drift: (Math.random() - 0.5) * 0.4,
+                    color: confettiColors[Math.floor(Math.random() * confettiColors.length)],
+                    opacity: 0.6 + Math.random() * 0.4,
+                    delay: Math.random() * 60,
+                    frame: 0
+                });
+            }
+
+            if (confettiAnim) cancelAnimationFrame(confettiAnim);
+            animateConfetti();
+        }
+
+        function animateConfetti() {
+            const rect = confettiCanvas.parentElement.getBoundingClientRect();
+            const w = rect.width;
+            const h = rect.height;
+            cCtx.clearRect(0, 0, w, h);
+
+            let alive = false;
+            confettiParticles.forEach(p => {
+                p.frame++;
+                if (p.frame < p.delay) { alive = true; return; }
+
+                p.y += p.speed;
+                p.x += p.drift;
+                p.opacity -= 0.003;
+
+                if (p.y < h && p.opacity > 0) {
+                    alive = true;
+                    cCtx.globalAlpha = p.opacity;
+                    cCtx.fillStyle = p.color;
+                    cCtx.fillRect(
+                        Math.round(p.x / p.size) * p.size,
+                        Math.round(p.y / p.size) * p.size,
+                        p.size, p.size
+                    );
+                }
+            });
+
+            cCtx.globalAlpha = 1;
+
+            if (alive) {
+                confettiAnim = requestAnimationFrame(animateConfetti);
+            } else {
+                cCtx.clearRect(0, 0, w, h);
+                confettiAnim = null;
+            }
+        }
+
+        bookBtn.addEventListener('click', () => {
+            if (!selectedDate || !selectedTime) return;
+            const dayName = selectedDate.toLocaleDateString('en-US', { weekday: 'long' });
+            confirmDate.textContent = dayName + ', ' + months[selectedDate.getMonth()] + ' ' + selectedDate.getDate() + ', ' + selectedDate.getFullYear();
+            confirmTime.textContent = selectedTime + ' — 30 min Discovery Call';
+            confirmEl.style.opacity = '1';
+            confirmEl.style.pointerEvents = 'auto';
+            setTimeout(() => {
+                checkIcon.style.opacity = '1';
+                checkIcon.style.transform = 'scale(1)';
+                spawnConfetti();
+            }, 50);
+        });
+
+        confirmClose.addEventListener('click', () => {
+            confirmEl.style.opacity = '0';
+            confirmEl.style.pointerEvents = 'none';
+            checkIcon.style.opacity = '0';
+            checkIcon.style.transform = 'scale(0.5)';
+            if (confettiAnim) { cancelAnimationFrame(confettiAnim); confettiAnim = null; }
+            cCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+            selectedDate = null;
+            selectedTime = null;
+            timesSection.style.display = 'none';
+            updateSummary();
+            render();
+        });
+    })();
+
+    // Nav scroll background
+    (function() {
+        const nav = document.getElementById('main-nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 80) {
+                nav.classList.add('nav-scrolled');
+            } else {
+                nav.classList.remove('nav-scrolled');
+            }
+        });
+    })();
+
+    // Mega menu dropdowns
+    (function() {
+        const triggers = document.querySelectorAll('.nav-dd-trigger');
+        const menus = document.querySelectorAll('.mega-menu');
+        let hideTimeout = null;
+
+        function showMenu(key) {
+            clearTimeout(hideTimeout);
+            menus.forEach(m => { if (m.id !== 'mega-' + key) m.classList.remove('active'); });
+            const menu = document.getElementById('mega-' + key);
+            if (menu) menu.classList.add('active');
+        }
+        function hideAll() {
+            hideTimeout = setTimeout(() => { menus.forEach(m => m.classList.remove('active')); }, 150);
+        }
+
+        triggers.forEach(trigger => {
+            trigger.addEventListener('mouseenter', (e) => {
+                e.preventDefault();
+                showMenu(trigger.dataset.dropdown);
+            });
+            trigger.addEventListener('mouseleave', hideAll);
+        });
+        menus.forEach(menu => {
+            menu.addEventListener('mouseenter', () => { clearTimeout(hideTimeout); });
+            menu.addEventListener('mouseleave', hideAll);
+        });
+    })();
+
+    // Drag cursor + drag-to-scroll for case studies
+    (function() {
+        const cursor = document.getElementById('drag-cursor');
+        const track = document.getElementById('case-studies-track');
+        if (!track || !cursor) return;
+
+        let isDragging = false;
+        let startX = 0;
+        let scrollStart = 0;
+
+        track.addEventListener('mouseenter', () => cursor.classList.add('visible'));
+        track.addEventListener('mouseleave', () => {
+            cursor.classList.remove('visible');
+            isDragging = false;
+        });
+
+        track.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX - 32 + 'px';
+            cursor.style.top = e.clientY - 32 + 'px';
+            if (isDragging) {
+                const dx = e.clientX - startX;
+                track.scrollLeft = scrollStart - dx;
+            }
+        });
+
+        track.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.clientX;
+            scrollStart = track.scrollLeft;
+            e.preventDefault();
+        });
+
+        window.addEventListener('mouseup', () => { isDragging = false; });
+    })();
+
+    // Slat active state management
+    (function() {
+        const container = document.getElementById('slat-container');
+        if (!container) return;
+        const slats = container.querySelectorAll('.slat');
+
+        slats.forEach(slat => {
+            slat.addEventListener('mouseenter', () => {
+                slats.forEach(s => s.classList.remove('slat-active'));
+            });
+        });
+
+        container.addEventListener('mouseleave', () => {
+            slats.forEach(s => s.classList.remove('slat-active'));
+            slats[0].classList.add('slat-active');
+        });
+    })();
+
+    // Magnetic Effect for typical buttons
+    document.querySelectorAll('.magnetic-wrap:not(#footer-cta-wrap)').forEach(wrap => {
+        const btn = wrap.querySelector('button');
+        wrap.addEventListener('mousemove', (e) => {
+            const rect = wrap.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+        });
+        wrap.addEventListener('mouseleave', () => {
+            btn.style.transform = `translate(0px, 0px)`;
+        });
+    });
+    // Refined High-Intensity Magnetic Effect for Footer CTA
+    const footerWrap = document.querySelector('#footer-cta-wrap');
+    if (footerWrap) {
+        const footerBtn = footerWrap.querySelector('button');
+        footerWrap.addEventListener('mousemove', (e) => {
+            const rect = footerWrap.getBoundingClientRect();
+            // Lower tracking radius (multiplier 0.15 instead of 0.3) for tighter feel
+            const x = (e.clientX - rect.left - rect.width / 2) * 0.15;
+            const y = (e.clientY - rect.top - rect.height / 2) * 0.15;
+            footerBtn.style.transform = `translate(${x}px, ${y}px)`;
+        });
+        footerWrap.addEventListener('mouseleave', () => {
+            footerBtn.style.transform = `translate(0px, 0px)`;
+        });
+    }
+    // Dither dark-mode expansion on footer CTA hover
+    (function() {
+        const canvas = document.getElementById('dither-canvas');
+        const ctx = canvas.getContext('2d');
+        const footer = document.getElementById('footer-section');
+        const btn = document.getElementById('footer-cta-btn');
+        const wrap = document.getElementById('footer-cta-wrap');
+        let animId = null;
+        let progress = 0;
+        let targetProgress = 0;
+        let isActive = false;
+
+        function resize() {
+            const dpr = window.devicePixelRatio || 1;
+            const rect = footer.getBoundingClientRect();
+            canvas.width = rect.width * dpr;
+            canvas.height = rect.height * dpr;
+            ctx.scale(dpr, dpr);
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        // Bayer 4x4 dither matrix
+        const bayer = [
+            [ 0, 8, 2,10],
+            [12, 4,14, 6],
+            [ 3,11, 1, 9],
+            [15, 7,13, 5]
+        ];
+
+        function drawDither(cx, cy, radius) {
+            const rect = footer.getBoundingClientRect();
+            const w = rect.width;
+            const h = rect.height;
+            const pixelSize = 4;
+
+            ctx.clearRect(0, 0, w, h);
+
+            for (let x = 0; x < w; x += pixelSize) {
+                for (let y = 0; y < h; y += pixelSize) {
+                    const dx = x - cx;
+                    const dy = y - cy;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    const nd = Math.min(dist / radius, 1.0);
+                    const fill = 1.0 - nd;
+
+                    const bx = (Math.floor(x / pixelSize)) % 4;
+                    const by = (Math.floor(y / pixelSize)) % 4;
+                    const threshold = bayer[by][bx] / 16;
+
+                    if (fill > threshold) {
+                        ctx.fillStyle = '#1863DC';
+                        ctx.fillRect(x, y, pixelSize, pixelSize);
+                    }
+                }
+            }
+        }
+
+        function getBtnCenter() {
+            const footerRect = footer.getBoundingClientRect();
+            const btnRect = btn.getBoundingClientRect();
+            return {
+                x: btnRect.left - footerRect.left + btnRect.width / 2,
+                y: btnRect.top - footerRect.top + btnRect.height / 2
+            };
+        }
+
+        function getMaxRadius() {
+            const rect = footer.getBoundingClientRect();
+            const c = getBtnCenter();
+            // Max distance from button center to any footer corner
+            return Math.max(
+                Math.sqrt(c.x * c.x + c.y * c.y),
+                Math.sqrt((rect.width - c.x) ** 2 + c.y ** 2),
+                Math.sqrt(c.x ** 2 + (rect.height - c.y) ** 2),
+                Math.sqrt((rect.width - c.x) ** 2 + (rect.height - c.y) ** 2)
+            ) * 1.15;
+        }
+
+        function setDarkMode(on) {
+            const texts = footer.querySelectorAll('.footer-text');
+            const grid = footer.querySelector('.footer-grid');
+            const borderEls = footer.querySelectorAll('.footer-border');
+            if (on) {
+                texts.forEach(el => el.style.color = '#EBEBEB');
+                btn.style.borderColor = 'rgba(235,235,235,0.2)';
+                btn.style.color = '#EBEBEB';
+                if (grid) grid.style.borderColor = 'rgba(235,235,235,0.1)';
+                borderEls.forEach(el => el.style.borderColor = 'rgba(235,235,235,0.2)');
+            } else {
+                texts.forEach(el => el.style.color = '');
+                btn.style.borderColor = '';
+                btn.style.color = '';
+                if (grid) grid.style.borderColor = '';
+                borderEls.forEach(el => el.style.borderColor = '');
+            }
+        }
+
+        function animate() {
+            const ease = 0.04;
+            progress += (targetProgress - progress) * ease;
+
+            // Snap when close enough
+            if (Math.abs(progress - targetProgress) < 0.002) {
+                progress = targetProgress;
+            }
+
+            if (progress > 0.001) {
+                canvas.style.opacity = '1';
+                const c = getBtnCenter();
+                const maxR = getMaxRadius();
+                drawDither(c.x, c.y, maxR * progress);
+                setDarkMode(progress > 0.3);
+            } else {
+                canvas.style.opacity = '0';
+                setDarkMode(false);
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
+
+            if (progress > 0.001 || targetProgress > 0) {
+                animId = requestAnimationFrame(animate);
+            } else {
+                animId = null;
+            }
+        }
+
+        function startAnim() {
+            targetProgress = 1;
+            isActive = true;
+            if (!animId) animId = requestAnimationFrame(animate);
+        }
+
+        function stopAnim() {
+            targetProgress = 0;
+            isActive = false;
+            if (!animId) animId = requestAnimationFrame(animate);
+        }
+
+        wrap.addEventListener('mouseenter', startAnim);
+        wrap.addEventListener('mouseleave', stopAnim);
+    })();
+
+    // Scroll progress for case studies
+    const container = document.querySelector('.group\\/studies');
+    const thumb = document.querySelector('.progress-thumb');
+    if (container && thumb) {
+        container.addEventListener('scroll', () => {
+            const scrollPercent = (container.scrollLeft / (container.scrollWidth - container.clientWidth)) * 100;
+            thumb.style.width = `calc(30% + ${scrollPercent * 0.7}%)`;
+        });
+    }
+    // Mission section parallax + scroll-driven fade
+    (function() {
+        const section = document.getElementById('about');
+        const content = document.getElementById('mission-content');
+        const parallaxBg = document.getElementById('parallax-bg');
+        const floaters = document.querySelectorAll('#parallax-bg img');
+        const targets = new Float64Array(floaters.length);
+        const current = new Float64Array(floaters.length);
+        const ease = 0.08;
+        let currentOpacity = 1;
+        let currentY = 0;
+        let targetOpacity = 1;
+        let targetY = 0;
+
+        floaters.forEach(f => { f.style.willChange = 'transform'; });
+        if (content) content.style.willChange = 'opacity, transform';
+
+        function tick() {
+            const scrolled = window.pageYOffset;
+
+            // Parallax images
+            floaters.forEach((floater, i) => {
+                const speed = (0.05 + (i * 0.02)) * 0.9;
+                targets[i] = scrolled * speed * -1;
+                current[i] += (targets[i] - current[i]) * ease;
+                floater.style.transform = `translate3d(0,${current[i]}px,0)`;
+            });
+
+            // Mission content fade based on scroll progress
+            if (section && content) {
+                const rect = section.getBoundingClientRect();
+                const sectionH = section.offsetHeight;
+                const scrollIntoSection = -rect.top;
+                const progress = Math.max(0, Math.min(1, scrollIntoSection / (sectionH - window.innerHeight)));
+
+                // Fade in during first 15%, full during middle, fade out during last 25%
+                if (progress < 0.15) {
+                    targetOpacity = progress / 0.15;
+                    targetY = (1 - progress / 0.15) * 30;
+                } else if (progress > 0.75) {
+                    targetOpacity = 1 - ((progress - 0.75) / 0.25);
+                    targetY = -((progress - 0.75) / 0.25) * 60;
+                } else {
+                    targetOpacity = 1;
+                    targetY = 0;
+                }
+
+                currentOpacity += (targetOpacity - currentOpacity) * 0.1;
+                currentY += (targetY - currentY) * 0.1;
+
+                content.style.opacity = Math.max(0, currentOpacity);
+                content.style.transform = `translate3d(0,${currentY}px,0)`;
+                if (parallaxBg) parallaxBg.style.opacity = Math.max(0, currentOpacity * 0.4);
+            }
+
+            requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+    })();
+</script>
+
+</body></html>

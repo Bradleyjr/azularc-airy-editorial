@@ -5,7 +5,7 @@
 <title>Case Management Systems — Azul Arc</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Inter:wght@100;200;300;400;500;600&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
 <script>
@@ -24,7 +24,7 @@
                     "muted": "#808285",
                 },
                 fontFamily: {
-                    display: ["Inter", "sans-serif"],
+                    display: ["Instrument Serif", "serif"],
                     sans: ["Inter", "sans-serif"],
                 },
                 borderRadius: {
@@ -134,6 +134,15 @@
     .cta-section.wipe-active .cta-wipe {
         border-color: rgba(255,255,255,0.4);
     }
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+        }
+        .reveal { opacity: 1; transform: none; }
+    }
     </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-text-dark dark:text-text-light font-sans selection:bg-primary selection:text-white">
@@ -222,7 +231,7 @@
     </div>
     <div class="relative z-10 px-8 lg:px-16 pb-24 pt-48 w-full">
         <span class="text-xs uppercase tracking-label text-primary-light mb-6 block">Service</span>
-        <h1 class="text-5xl md:text-7xl lg:text-8xl leading-none font-semibold tracking-tighter mb-10 max-w-5xl">
+        <h1 class="font-display text-5xl md:text-7xl lg:text-8xl leading-none tracking-tighter mb-10 max-w-5xl">
             Case Management<br/>Systems
         </h1>
         <div class="max-w-xl border-t border-white/15 pt-8">
@@ -238,7 +247,7 @@
     <div class="flex flex-col lg:flex-row gap-20 items-start">
         <div class="lg:w-5/12 reveal">
             <span class="text-xs uppercase tracking-label text-primary mb-4 block">The Problem</span>
-            <h2 class="text-4xl md:text-5xl font-light leading-tight">Legacy case systems weren't built for how courts work today.</h2>
+            <h2 class="font-display text-4xl md:text-5xl leading-tight">Legacy case systems weren't built for how courts work today.</h2>
         </div>
         <div class="lg:w-7/12 lg:pt-16">
             <div class="max-w-lg ml-auto">
@@ -260,7 +269,7 @@
 <section class="py-32 px-8 lg:px-16 bg-zinc-950 text-white">
     <div class="mb-20 reveal">
         <span class="text-xs uppercase tracking-label text-primary-light mb-4 block">Deliverables</span>
-        <h2 class="text-5xl font-light">What we build for you</h2>
+        <h2 class="font-display text-5xl">What we build for you</h2>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">
         <div class="group reveal">
@@ -301,7 +310,7 @@
     <div class="max-w-6xl mx-auto">
         <div class="mb-20 reveal">
             <span class="text-xs uppercase tracking-label text-primary mb-4 block">Process</span>
-            <h2 class="text-5xl font-light">From legacy to modern in four phases</h2>
+            <h2 class="font-display text-5xl">From legacy to modern in four phases</h2>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0">
             <div class="group relative p-10 border border-black/5 hover:border-primary/20 transition-colors">
@@ -348,7 +357,7 @@
 <section class="py-32 px-8 lg:px-16 border-t border-black/5">
     <div class="mb-16 reveal">
         <span class="text-xs uppercase tracking-label text-primary mb-4 block">Related Work</span>
-        <h2 class="text-5xl font-light">Case management in action</h2>
+        <h2 class="font-display text-5xl">Case management in action</h2>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
         <a href="../case-study.html" class="group block">
@@ -427,7 +436,7 @@
 <section class="py-32 px-8 lg:px-16 bg-zinc-950 text-white cta-section" id="cta-section">
     <div class="max-w-4xl mx-auto text-center reveal">
         <span class="text-xs uppercase tracking-label text-primary-light mb-6 block">Start a Project</span>
-        <h2 class="text-5xl md:text-6xl font-light mb-8 leading-tight">Your cases deserve a system<br/>built for how you actually work.</h2>
+        <h2 class="font-display text-5xl md:text-6xl mb-8 leading-tight">Your cases deserve a system<br/>built for how you actually work.</h2>
         <p class="text-lg text-white/50 mb-12 max-w-2xl mx-auto">30 minutes with our team. We'll assess your current systems, identify the biggest pain points, and outline what a modern case management platform would look like for your jurisdiction.</p>
         <a href="../contact.html" class="cta-wipe group inline-flex items-center gap-3 border border-white/20 px-8 py-5 text-sm uppercase tracking-cta font-medium" id="cta-btn">
             <span>Start With an Assessment</span>

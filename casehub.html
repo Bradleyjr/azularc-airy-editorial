@@ -5,7 +5,7 @@
 <title>CaseHub — Modern Case Management by Azul Arc</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Inter:wght@100;200;300;400;500;600&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
 <script>
@@ -24,7 +24,7 @@
                     "muted": "#808285",
                 },
                 fontFamily: {
-                    display: ["Inter", "sans-serif"],
+                    display: ["Instrument Serif", "serif"],
                     sans: ["Inter", "sans-serif"],
                 },
                 borderRadius: {
@@ -117,12 +117,6 @@
     .feature-tab.active h4 {
         color: #1863DC;
     }
-    .feature-panel {
-        display: none;
-    }
-    .feature-panel.active {
-        display: block;
-    }
 
     /* CTA section blue wipe */
     .cta-section {
@@ -158,10 +152,35 @@
         font-variant-numeric: tabular-nums;
     }
 
+    /* Feature panel crossfade */
+    .feature-panel {
+        opacity: 0;
+        transform: translateY(8px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        pointer-events: none;
+    }
+    .feature-panel.active {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+        display: flex;
+    }
+
     /* Testimonial slider */
     .testimonial-track {
         display: flex;
         transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    /* Accessibility: reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+        }
+        .reveal { opacity: 1; transform: none; }
     }
 </style>
 </head>
@@ -253,7 +272,7 @@
     <div class="relative z-10 px-8 lg:px-16 py-48 w-full">
         <div class="max-w-5xl">
             <span class="text-xs uppercase tracking-label text-primary-light mb-8 block reveal">Product</span>
-            <h1 class="text-5xl md:text-7xl lg:text-[5.5rem] leading-[0.95] font-semibold tracking-tighter mb-10 reveal reveal-delay-1">
+            <h1 class="font-display text-5xl md:text-7xl lg:text-[5.5rem] leading-[0.95] tracking-tighter mb-10 reveal reveal-delay-1">
                 Case management<br/>so intuitive, you won't<br/>need a manual.
             </h1>
             <div class="max-w-2xl reveal reveal-delay-2">
@@ -281,8 +300,8 @@
             <p class="text-sm uppercase tracking-wide-label text-muted">Transparent Audit Logs</p>
         </div>
         <div class="px-8 lg:px-16 py-16 reveal reveal-delay-2">
-            <span class="text-5xl md:text-6xl font-light text-primary stat-number block mb-3">Scales</span>
-            <p class="text-sm uppercase tracking-wide-label text-muted">From Departments to Statewide</p>
+            <span class="text-5xl md:text-6xl font-light text-primary stat-number block mb-3">12+</span>
+            <p class="text-sm uppercase tracking-wide-label text-muted">Counties Served Statewide</p>
         </div>
     </div>
 </section>
@@ -292,7 +311,7 @@
     <div class="flex flex-col lg:flex-row gap-20 items-start">
         <div class="lg:w-5/12 reveal">
             <span class="text-xs uppercase tracking-label text-primary mb-4 block">Why CaseHub</span>
-            <h2 class="text-4xl md:text-5xl font-light leading-tight">Built for the way courts actually work.</h2>
+            <h2 class="font-display text-4xl md:text-5xl leading-tight">Built for the way courts actually work.</h2>
         </div>
         <div class="lg:w-7/12 lg:pt-16">
             <div class="max-w-lg ml-auto">
@@ -314,7 +333,7 @@
 <section class="py-32 px-8 lg:px-16 bg-zinc-950 text-white" id="features">
     <div class="mb-20 reveal">
         <span class="text-xs uppercase tracking-label text-primary-light mb-4 block">Core Features</span>
-        <h2 class="text-5xl font-light">Everything you need,<br/>nothing you don't.</h2>
+        <h2 class="font-display text-5xl">Everything you need,<br/>nothing you don't.</h2>
     </div>
     <div class="flex flex-col lg:flex-row gap-16 lg:gap-24">
         <!-- Feature tabs -->
@@ -342,45 +361,137 @@
         </div>
         <!-- Feature visual -->
         <div class="lg:w-7/12 reveal">
-            <div class="aspect-[4/3] bg-white/[0.03] border border-white/[0.06] flex items-center justify-center relative overflow-hidden">
-                <!-- eFiling -->
-                <div class="feature-panel active absolute inset-0 flex items-center justify-center p-12" data-feature="efiling">
-                    <div class="text-center">
-                        <span class="material-symbols-outlined text-6xl text-primary-light/40 mb-6 block">description</span>
-                        <h3 class="text-2xl font-light mb-3">Transform Your Filing Experience</h3>
-                        <p class="text-sm text-white/40 max-w-md mx-auto">One secure system for submitting, receiving, and managing all electronic filings. No more paper backlogs.</p>
+            <div class="aspect-[4/3] bg-white/[0.03] border border-white/[0.06] relative overflow-hidden">
+                <!-- eFiling: stylized filing interface -->
+                <div class="feature-panel active absolute inset-0 flex flex-col p-8" data-feature="efiling">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-2 h-2 rounded-full bg-green-400"></div>
+                        <span class="text-[10px] uppercase tracking-widest text-white/30">eFiling Dashboard</span>
+                    </div>
+                    <div class="flex-1 flex flex-col gap-3">
+                        <div class="bg-white/[0.04] border border-white/[0.06] p-4 flex items-center gap-4">
+                            <div class="w-8 h-8 border border-primary/40 flex items-center justify-center"><span class="material-symbols-outlined text-sm text-primary-light">description</span></div>
+                            <div class="flex-1"><div class="h-2 bg-white/10 w-3/4 mb-2"></div><div class="h-1.5 bg-white/5 w-1/2"></div></div>
+                            <span class="text-[9px] uppercase tracking-widest text-green-400/80 bg-green-400/10 px-2 py-1">Filed</span>
+                        </div>
+                        <div class="bg-white/[0.04] border border-white/[0.06] p-4 flex items-center gap-4">
+                            <div class="w-8 h-8 border border-white/10 flex items-center justify-center"><span class="material-symbols-outlined text-sm text-white/30">description</span></div>
+                            <div class="flex-1"><div class="h-2 bg-white/10 w-2/3 mb-2"></div><div class="h-1.5 bg-white/5 w-2/5"></div></div>
+                            <span class="text-[9px] uppercase tracking-widest text-amber-400/80 bg-amber-400/10 px-2 py-1">Review</span>
+                        </div>
+                        <div class="bg-white/[0.04] border border-white/[0.06] p-4 flex items-center gap-4">
+                            <div class="w-8 h-8 border border-white/10 flex items-center justify-center"><span class="material-symbols-outlined text-sm text-white/30">description</span></div>
+                            <div class="flex-1"><div class="h-2 bg-white/10 w-4/5 mb-2"></div><div class="h-1.5 bg-white/5 w-1/3"></div></div>
+                            <span class="text-[9px] uppercase tracking-widest text-primary-light/80 bg-primary/20 px-2 py-1">Pending</span>
+                        </div>
+                        <div class="bg-white/[0.04] border border-white/[0.06] p-4 flex items-center gap-4 opacity-50">
+                            <div class="w-8 h-8 border border-white/10 flex items-center justify-center"><span class="material-symbols-outlined text-sm text-white/30">description</span></div>
+                            <div class="flex-1"><div class="h-2 bg-white/10 w-1/2 mb-2"></div><div class="h-1.5 bg-white/5 w-2/5"></div></div>
+                            <span class="text-[9px] uppercase tracking-widest text-white/30 bg-white/5 px-2 py-1">Draft</span>
+                        </div>
                     </div>
                 </div>
-                <!-- Access -->
-                <div class="feature-panel absolute inset-0 flex items-center justify-center p-12" data-feature="access">
-                    <div class="text-center">
-                        <span class="material-symbols-outlined text-6xl text-primary-light/40 mb-6 block">lock</span>
-                        <h3 class="text-2xl font-light mb-3">Enhanced Security & Efficiency</h3>
-                        <p class="text-sm text-white/40 max-w-md mx-auto">Granular permission controls ensure every user sees exactly what they need — nothing more, nothing less.</p>
+                <!-- Access: role permission matrix -->
+                <div class="feature-panel absolute inset-0 flex flex-col p-8" data-feature="access">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-2 h-2 rounded-full bg-primary-light"></div>
+                        <span class="text-[10px] uppercase tracking-widest text-white/30">Permissions Matrix</span>
+                    </div>
+                    <div class="flex-1">
+                        <div class="grid grid-cols-4 gap-px text-[9px] uppercase tracking-widest text-white/30 mb-3 pl-20">
+                            <span>View</span><span>Edit</span><span>File</span><span>Admin</span>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-3"><span class="w-16 text-[10px] text-white/50 text-right shrink-0">Judge</span><div class="flex-1 grid grid-cols-4 gap-px"><div class="h-8 bg-primary/30 border border-primary/20"></div><div class="h-8 bg-primary/30 border border-primary/20"></div><div class="h-8 bg-white/[0.03] border border-white/[0.06]"></div><div class="h-8 bg-primary/30 border border-primary/20"></div></div></div>
+                            <div class="flex items-center gap-3"><span class="w-16 text-[10px] text-white/50 text-right shrink-0">Clerk</span><div class="flex-1 grid grid-cols-4 gap-px"><div class="h-8 bg-primary/30 border border-primary/20"></div><div class="h-8 bg-primary/30 border border-primary/20"></div><div class="h-8 bg-primary/30 border border-primary/20"></div><div class="h-8 bg-white/[0.03] border border-white/[0.06]"></div></div></div>
+                            <div class="flex items-center gap-3"><span class="w-16 text-[10px] text-white/50 text-right shrink-0">Attorney</span><div class="flex-1 grid grid-cols-4 gap-px"><div class="h-8 bg-primary/30 border border-primary/20"></div><div class="h-8 bg-white/[0.03] border border-white/[0.06]"></div><div class="h-8 bg-primary/30 border border-primary/20"></div><div class="h-8 bg-white/[0.03] border border-white/[0.06]"></div></div></div>
+                            <div class="flex items-center gap-3"><span class="w-16 text-[10px] text-white/50 text-right shrink-0">Public</span><div class="flex-1 grid grid-cols-4 gap-px"><div class="h-8 bg-primary/15 border border-primary/10"></div><div class="h-8 bg-white/[0.03] border border-white/[0.06]"></div><div class="h-8 bg-white/[0.03] border border-white/[0.06]"></div><div class="h-8 bg-white/[0.03] border border-white/[0.06]"></div></div></div>
+                        </div>
                     </div>
                 </div>
-                <!-- Notifications -->
-                <div class="feature-panel absolute inset-0 flex items-center justify-center p-12" data-feature="notifications">
-                    <div class="text-center">
-                        <span class="material-symbols-outlined text-6xl text-primary-light/40 mb-6 block">notifications_active</span>
-                        <h3 class="text-2xl font-light mb-3">Stay Updated in Real Time</h3>
-                        <p class="text-sm text-white/40 max-w-md mx-auto">Hearing reminders, filing confirmations, deadline alerts. Everyone stays informed without checking manually.</p>
+                <!-- Notifications: alert feed -->
+                <div class="feature-panel absolute inset-0 flex flex-col p-8" data-feature="notifications">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-2 h-2 rounded-full bg-amber-400"></div>
+                        <span class="text-[10px] uppercase tracking-widest text-white/30">Notification Feed</span>
+                    </div>
+                    <div class="flex-1 flex flex-col gap-3">
+                        <div class="bg-primary/10 border border-primary/20 p-4 flex items-start gap-3">
+                            <span class="material-symbols-outlined text-base text-primary-light mt-0.5">event</span>
+                            <div><div class="text-xs text-white/70 mb-1">Hearing scheduled — Case #4821</div><div class="text-[10px] text-white/30">Tomorrow at 9:00 AM, Courtroom 3B</div></div>
+                        </div>
+                        <div class="bg-white/[0.04] border border-white/[0.06] p-4 flex items-start gap-3">
+                            <span class="material-symbols-outlined text-base text-green-400/60 mt-0.5">check_circle</span>
+                            <div><div class="text-xs text-white/70 mb-1">Filing accepted — Case #4819</div><div class="text-[10px] text-white/30">Motion to dismiss approved by Clerk</div></div>
+                        </div>
+                        <div class="bg-white/[0.04] border border-white/[0.06] p-4 flex items-start gap-3">
+                            <span class="material-symbols-outlined text-base text-amber-400/60 mt-0.5">schedule</span>
+                            <div><div class="text-xs text-white/70 mb-1">Deadline approaching — Case #4815</div><div class="text-[10px] text-white/30">Response due in 3 days</div></div>
+                        </div>
+                        <div class="bg-white/[0.04] border border-white/[0.06] p-4 flex items-start gap-3 opacity-50">
+                            <span class="material-symbols-outlined text-base text-white/30 mt-0.5">person_add</span>
+                            <div><div class="text-xs text-white/70 mb-1">New party added — Case #4812</div><div class="text-[10px] text-white/30">Respondent counsel registered</div></div>
+                        </div>
                     </div>
                 </div>
-                <!-- Audit -->
-                <div class="feature-panel absolute inset-0 flex items-center justify-center p-12" data-feature="audit">
-                    <div class="text-center">
-                        <span class="material-symbols-outlined text-6xl text-primary-light/40 mb-6 block">verified</span>
-                        <h3 class="text-2xl font-light mb-3">Full Transparency for Compliance</h3>
-                        <p class="text-sm text-white/40 max-w-md mx-auto">Every action tracked and logged. Audit-ready reports generated on demand for complete oversight and accountability.</p>
+                <!-- Audit: activity log -->
+                <div class="feature-panel absolute inset-0 flex flex-col p-8" data-feature="audit">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-2 h-2 rounded-full bg-green-400"></div>
+                        <span class="text-[10px] uppercase tracking-widest text-white/30">Audit Trail — Case #4821</span>
+                    </div>
+                    <div class="flex-1 flex flex-col">
+                        <div class="flex gap-4 pb-5">
+                            <div class="flex flex-col items-center"><div class="w-2 h-2 rounded-full bg-primary-light mt-1.5"></div><div class="flex-1 w-px bg-white/10 mt-1"></div></div>
+                            <div><div class="text-xs text-white/70 mb-0.5">Document filed</div><div class="text-[10px] text-white/30">J. Martinez — Mar 10, 2:41 PM</div></div>
+                        </div>
+                        <div class="flex gap-4 pb-5">
+                            <div class="flex flex-col items-center"><div class="w-2 h-2 rounded-full bg-primary-light/60 mt-1.5"></div><div class="flex-1 w-px bg-white/10 mt-1"></div></div>
+                            <div><div class="text-xs text-white/70 mb-0.5">Status changed to Under Review</div><div class="text-[10px] text-white/30">System — Mar 10, 2:41 PM</div></div>
+                        </div>
+                        <div class="flex gap-4 pb-5">
+                            <div class="flex flex-col items-center"><div class="w-2 h-2 rounded-full bg-primary-light/40 mt-1.5"></div><div class="flex-1 w-px bg-white/10 mt-1"></div></div>
+                            <div><div class="text-xs text-white/70 mb-0.5">Assigned to Judge Thompson</div><div class="text-[10px] text-white/30">K. Rivera — Mar 10, 3:15 PM</div></div>
+                        </div>
+                        <div class="flex gap-4 pb-5">
+                            <div class="flex flex-col items-center"><div class="w-2 h-2 rounded-full bg-primary-light/20 mt-1.5"></div><div class="flex-1 w-px bg-white/10 mt-1"></div></div>
+                            <div><div class="text-xs text-white/70 mb-0.5">Hearing date set</div><div class="text-[10px] text-white/30">Judge Thompson — Mar 11, 9:00 AM</div></div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex flex-col items-center"><div class="w-2 h-2 rounded-full bg-white/10 mt-1.5"></div></div>
+                            <div><div class="text-xs text-white/40 mb-0.5">Notification sent to all parties</div><div class="text-[10px] text-white/20">System — Mar 11, 9:01 AM</div></div>
+                        </div>
                     </div>
                 </div>
-                <!-- Multi-case -->
-                <div class="feature-panel absolute inset-0 flex items-center justify-center p-12" data-feature="multicase">
-                    <div class="text-center">
-                        <span class="material-symbols-outlined text-6xl text-primary-light/40 mb-6 block">account_tree</span>
-                        <h3 class="text-2xl font-light mb-3">Adaptable to Your Needs</h3>
-                        <p class="text-sm text-white/40 max-w-md mx-auto">Different case types, fee structures, and procedural rules — all managed within a single, configurable platform.</p>
+                <!-- Multi-case: tabbed interface -->
+                <div class="feature-panel absolute inset-0 flex flex-col p-8" data-feature="multicase">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-2 h-2 rounded-full bg-primary-light"></div>
+                        <span class="text-[10px] uppercase tracking-widest text-white/30">Case Types</span>
+                    </div>
+                    <div class="flex gap-px mb-6">
+                        <div class="bg-primary/20 border border-primary/30 px-4 py-2 text-[10px] uppercase tracking-widest text-primary-light">Civil</div>
+                        <div class="bg-white/[0.04] border border-white/[0.06] px-4 py-2 text-[10px] uppercase tracking-widest text-white/30">Criminal</div>
+                        <div class="bg-white/[0.04] border border-white/[0.06] px-4 py-2 text-[10px] uppercase tracking-widest text-white/30">Family</div>
+                        <div class="bg-white/[0.04] border border-white/[0.06] px-4 py-2 text-[10px] uppercase tracking-widest text-white/30">Tax</div>
+                    </div>
+                    <div class="flex-1 space-y-3">
+                        <div class="bg-white/[0.04] border border-white/[0.06] p-4 flex items-center justify-between">
+                            <div class="flex items-center gap-3"><span class="text-[10px] font-mono text-primary-light">#4821</span><div class="h-2 bg-white/10 w-32"></div></div>
+                            <span class="text-[9px] uppercase tracking-widest text-green-400/80">Active</span>
+                        </div>
+                        <div class="bg-white/[0.04] border border-white/[0.06] p-4 flex items-center justify-between">
+                            <div class="flex items-center gap-3"><span class="text-[10px] font-mono text-primary-light">#4819</span><div class="h-2 bg-white/10 w-24"></div></div>
+                            <span class="text-[9px] uppercase tracking-widest text-amber-400/80">Pending</span>
+                        </div>
+                        <div class="bg-white/[0.04] border border-white/[0.06] p-4 flex items-center justify-between">
+                            <div class="flex items-center gap-3"><span class="text-[10px] font-mono text-primary-light">#4815</span><div class="h-2 bg-white/10 w-28"></div></div>
+                            <span class="text-[9px] uppercase tracking-widest text-green-400/80">Active</span>
+                        </div>
+                        <div class="bg-white/[0.04] border border-white/[0.06] p-4 flex items-center justify-between opacity-50">
+                            <div class="flex items-center gap-3"><span class="text-[10px] font-mono text-white/30">#4801</span><div class="h-2 bg-white/10 w-20"></div></div>
+                            <span class="text-[9px] uppercase tracking-widest text-white/30">Closed</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -394,7 +505,7 @@
         <div class="flex flex-col lg:flex-row gap-20 items-center">
             <div class="lg:w-1/2 reveal">
                 <span class="text-xs uppercase tracking-label text-primary mb-4 block">Experience</span>
-                <h2 class="text-4xl md:text-5xl font-light leading-tight mb-8">Trusted by judicial systems nationwide.</h2>
+                <h2 class="font-display text-4xl md:text-5xl leading-tight mb-8">Trusted by judicial systems nationwide.</h2>
                 <p class="text-lg opacity-70 leading-relaxed mb-8">
                     Our proven track record demonstrates consistent success in state judicial court systems across the United States. With over 17 years of experience, our dedicated team excels in crafting custom software solutions for administrative court systems.
                 </p>
@@ -404,8 +515,17 @@
                 </a>
             </div>
             <div class="lg:w-1/2 reveal reveal-delay-1">
-                <div class="aspect-[4/3] bg-zinc-100 overflow-hidden">
-                    <div class="w-full h-full" style="background: linear-gradient(145deg, #07406B 0%, #1863DC 50%, #2AA7DF 100%); opacity: 0.9;"></div>
+                <div class="aspect-[4/3] bg-zinc-950 overflow-hidden relative p-10 flex flex-col justify-between">
+                    <div class="absolute inset-0 opacity-[0.04]" style="background-image: url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; stroke=&quot;%23fff&quot; stroke-width=&quot;0.5&quot;%3E%3Cpath d=&quot;M0 30h60M30 0v60&quot;/%3E%3C/g%3E%3C/svg%3E'); background-size: 60px 60px;"></div>
+                    <div class="relative z-10">
+                        <span class="text-[10px] uppercase tracking-widest text-white/30 block mb-6">By the Numbers</span>
+                        <div class="space-y-6">
+                            <div class="border-l-2 border-primary pl-4"><span class="text-3xl font-light text-white block">17+</span><span class="text-xs text-white/40">Years of experience</span></div>
+                            <div class="border-l-2 border-primary/60 pl-4"><span class="text-3xl font-light text-white block">200+</span><span class="text-xs text-white/40">Projects delivered</span></div>
+                            <div class="border-l-2 border-primary/30 pl-4"><span class="text-3xl font-light text-white block">12</span><span class="text-xs text-white/40">States served</span></div>
+                        </div>
+                    </div>
+                    <div class="relative z-10 text-[10px] text-white/20 uppercase tracking-widest">Azul Arc</div>
                 </div>
             </div>
         </div>
@@ -416,26 +536,38 @@
 <section class="py-32 px-8 lg:px-16 border-t border-black/5" id="who">
     <div class="mb-20 reveal">
         <span class="text-xs uppercase tracking-label text-primary mb-4 block">Who It's For</span>
-        <h2 class="text-5xl font-light">Built for the systems<br/>that serve the public.</h2>
+        <h2 class="font-display text-5xl">Built for the systems<br/>that serve the public.</h2>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
         <div class="group reveal">
-            <div class="aspect-[4/3] overflow-hidden mb-8 bg-zinc-100">
-                <div class="w-full h-full group-hover:scale-105 transition-transform duration-700" style="background: linear-gradient(160deg, #212121 0%, #07406B 50%, #1863DC 100%)"></div>
+            <div class="aspect-[4/3] overflow-hidden mb-8 bg-zinc-950 relative group-hover:scale-[1.02] transition-transform duration-700">
+                <div class="absolute inset-0 opacity-[0.04]" style="background-image: url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; stroke=&quot;%23fff&quot; stroke-width=&quot;0.5&quot;%3E%3Cpath d=&quot;M0 30h60M30 0v60&quot;/%3E%3C/g%3E%3C/svg%3E'); background-size: 60px 60px;"></div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[80px] text-primary/15">gavel</span>
+                </div>
+                <div class="absolute bottom-6 left-6 right-6"><span class="text-[10px] uppercase tracking-widest text-white/20">Courts & Tribunals</span></div>
             </div>
             <h3 class="text-2xl font-light mb-3 group-hover:text-primary transition-colors">Courts & Judicial Bodies</h3>
             <p class="text-sm opacity-50 leading-relaxed">Streamline processes with intuitive features. Enhanced collaboration and improved case management for judicial systems of any size.</p>
         </div>
         <div class="group reveal reveal-delay-1">
-            <div class="aspect-[4/3] overflow-hidden mb-8 bg-zinc-100">
-                <div class="w-full h-full group-hover:scale-105 transition-transform duration-700" style="background: linear-gradient(160deg, #1863DC 0%, #07406B 50%, #212121 100%)"></div>
+            <div class="aspect-[4/3] overflow-hidden mb-8 bg-zinc-950 relative group-hover:scale-[1.02] transition-transform duration-700">
+                <div class="absolute inset-0 opacity-[0.04]" style="background-image: url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; stroke=&quot;%23fff&quot; stroke-width=&quot;0.5&quot;%3E%3Cpath d=&quot;M0 30h60M30 0v60&quot;/%3E%3C/g%3E%3C/svg%3E'); background-size: 60px 60px;"></div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[80px] text-primary/15">hearing</span>
+                </div>
+                <div class="absolute bottom-6 left-6 right-6"><span class="text-[10px] uppercase tracking-widest text-white/20">Administrative Law</span></div>
             </div>
             <h3 class="text-2xl font-light mb-3 group-hover:text-primary transition-colors">Administrative Hearing Agencies</h3>
             <p class="text-sm opacity-50 leading-relaxed">Seamless communication tools that foster teamwork and efficiency across all levels of administrative hearing operations.</p>
         </div>
         <div class="group reveal reveal-delay-2">
-            <div class="aspect-[4/3] overflow-hidden mb-8 bg-zinc-100">
-                <div class="w-full h-full group-hover:scale-105 transition-transform duration-700" style="background: linear-gradient(160deg, #07406B 0%, #1863DC 40%, #2AA7DF 100%)"></div>
+            <div class="aspect-[4/3] overflow-hidden mb-8 bg-zinc-950 relative group-hover:scale-[1.02] transition-transform duration-700">
+                <div class="absolute inset-0 opacity-[0.04]" style="background-image: url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; stroke=&quot;%23fff&quot; stroke-width=&quot;0.5&quot;%3E%3Cpath d=&quot;M0 30h60M30 0v60&quot;/%3E%3C/g%3E%3C/svg%3E'); background-size: 60px 60px;"></div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[80px] text-primary/15">account_balance</span>
+                </div>
+                <div class="absolute bottom-6 left-6 right-6"><span class="text-[10px] uppercase tracking-widest text-white/20">Revenue & Tax</span></div>
             </div>
             <h3 class="text-2xl font-light mb-3 group-hover:text-primary transition-colors">Tax Agencies</h3>
             <p class="text-sm opacity-50 leading-relaxed">Transparent tracking capabilities ensure compliance and accountability with every case managed across your tax jurisdiction.</p>
@@ -448,25 +580,25 @@
     <div class="max-w-4xl mx-auto">
         <div class="mb-20 reveal">
             <span class="text-xs uppercase tracking-label text-primary mb-4 block">Testimonials</span>
-            <h2 class="text-5xl font-light">What our clients say.</h2>
+            <h2 class="font-display text-5xl">What our clients say.</h2>
         </div>
         <div class="space-y-16">
             <blockquote class="reveal">
-                <p class="text-2xl md:text-3xl font-light leading-relaxed mb-6">"CaseHub has been nothing short of transformational."</p>
+                <p class="font-display italic text-2xl md:text-3xl leading-relaxed mb-6">"CaseHub has been nothing short of transformational."</p>
                 <div class="flex items-center gap-4">
                     <div class="w-10 h-[1px] bg-primary"></div>
                     <span class="text-xs uppercase tracking-widest text-muted">State Court Administrator</span>
                 </div>
             </blockquote>
             <blockquote class="reveal">
-                <p class="text-2xl md:text-3xl font-light leading-relaxed mb-6">"They worked with us to build something better than we could have ever imagined."</p>
+                <p class="font-display italic text-2xl md:text-3xl leading-relaxed mb-6">"They worked with us to build something better than we could have ever imagined."</p>
                 <div class="flex items-center gap-4">
                     <div class="w-10 h-[1px] bg-primary"></div>
                     <span class="text-xs uppercase tracking-widest text-muted">Chief Administrative Law Judge</span>
                 </div>
             </blockquote>
             <blockquote class="reveal">
-                <p class="text-xl md:text-2xl font-light leading-relaxed mb-6">"We searched for nearly 10 years for a vendor to design software for our court. After several unsuccessful attempts with other vendors, we found Azul Arc, who's far exceeded our expectations."</p>
+                <p class="font-display italic text-xl md:text-2xl leading-relaxed mb-6">"We searched for nearly 10 years for a vendor to design software for our court. After several unsuccessful attempts with other vendors, we found Azul Arc, who's far exceeded our expectations."</p>
                 <div class="flex items-center gap-4">
                     <div class="w-10 h-[1px] bg-primary"></div>
                     <span class="text-xs uppercase tracking-widest text-muted">Court Clerk of Superior Court</span>
@@ -480,7 +612,7 @@
 <section class="py-32 px-8 lg:px-16 bg-zinc-950 text-white cta-section" id="cta-section">
     <div class="max-w-4xl mx-auto text-center reveal">
         <span class="text-xs uppercase tracking-label text-primary-light mb-6 block">Get Started</span>
-        <h2 class="text-5xl md:text-6xl font-light mb-8 leading-tight">See CaseHub in action.</h2>
+        <h2 class="font-display text-5xl md:text-6xl mb-8 leading-tight">See CaseHub in action.</h2>
         <p class="text-lg text-white/50 mb-12 max-w-2xl mx-auto">Schedule a personalized demo and discover how CaseHub can transform your case management. 30 minutes with our team — we'll walk through the platform and answer every question.</p>
         <a href="contact.html" class="cta-wipe group inline-flex items-center gap-3 border border-white/20 px-8 py-5 text-sm uppercase tracking-cta font-medium" id="cta-btn">
             <span>Request a Demo</span>

@@ -97,12 +97,14 @@
             opacity: 1;
             transition: opacity 0.01s ease 0.54s;
         }
-        .slat-content h5 {
+        .slat-content h5,
+        .slat-content p:first-child {
             opacity: 0;
             transform: translateY(12px);
             transition: opacity 0.27s ease, transform 0.27s ease;
         }
-        .slat-content h4 {
+        .slat-content h4,
+        .slat-content h3 {
             opacity: 0;
             transform: translateY(12px);
             transition: opacity 0.27s ease, transform 0.27s ease;
@@ -113,14 +115,18 @@
             transition: opacity 0.27s ease, transform 0.27s ease;
         }
         .slat:hover .slat-content h5,
-        .slat.slat-active .slat-content h5 {
+        .slat.slat-active .slat-content h5,
+        .slat:hover .slat-content p:first-child,
+        .slat.slat-active .slat-content p:first-child {
             opacity: 1;
             transform: translateY(0);
             transition: opacity 0.54s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.585s,
                         transform 0.54s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.585s;
         }
         .slat:hover .slat-content h4,
-        .slat.slat-active .slat-content h4 {
+        .slat.slat-active .slat-content h4,
+        .slat:hover .slat-content h3,
+        .slat.slat-active .slat-content h3 {
             opacity: 1;
             transform: translateY(0);
             transition: opacity 0.54s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.675s,
@@ -491,9 +497,9 @@
 <div class="md:w-1/2">
 <p class="text-xl opacity-70 mb-12">Courts still run on paper, fax machines, and software from 2004. We build the case management systems that finally bring them into this decade.</p>
 <div class="magnetic-wrap p-12">
-<button class="ripple-btn relative w-40 h-40 rounded-full border border-primary text-primary uppercase text-xs tracking-widest flex items-center justify-center bg-transparent hover:bg-primary hover:text-white transition-colors">
+<a href="industries/courts.html" class="ripple-btn relative w-40 h-40 rounded-full border border-primary text-primary uppercase text-xs tracking-widest flex items-center justify-center bg-transparent hover:bg-primary hover:text-white transition-colors">
                             See the Work
-                        </button>
+                        </a>
 </div>
 </div>
 <div class="md:w-1/2 h-80 overflow-hidden rounded-lg">
@@ -511,9 +517,9 @@
 <div class="md:w-1/2">
 <p class="text-xl opacity-70 mb-12">Your sales team can't see inventory. Your warehouse doesn't know what's been promised. We connect the floor to the front office so everyone's working from the same numbers.</p>
 <div class="magnetic-wrap p-12">
-<button class="ripple-btn relative w-40 h-40 rounded-full border border-primary text-primary uppercase text-xs tracking-widest flex items-center justify-center bg-transparent hover:bg-primary hover:text-white transition-colors">
+<a href="industries/manufacturing.html" class="ripple-btn relative w-40 h-40 rounded-full border border-primary text-primary uppercase text-xs tracking-widest flex items-center justify-center bg-transparent hover:bg-primary hover:text-white transition-colors">
                             See the Work
-                        </button>
+                        </a>
 </div>
 </div>
 <div class="md:w-1/2 h-80 overflow-hidden rounded-lg">
@@ -531,9 +537,9 @@
 <div class="md:w-1/2">
 <p class="text-xl opacity-70 mb-12">You've outgrown the tools that got you here. We build the systems that let you 3x without tripling your headcount.</p>
 <div class="magnetic-wrap p-12">
-<button class="ripple-btn relative w-40 h-40 rounded-full border border-primary text-primary uppercase text-xs tracking-widest flex items-center justify-center bg-transparent hover:bg-primary hover:text-white transition-colors">
+<a href="industries/growth-stage.html" class="ripple-btn relative w-40 h-40 rounded-full border border-primary text-primary uppercase text-xs tracking-widest flex items-center justify-center bg-transparent hover:bg-primary hover:text-white transition-colors">
                             See the Work
-                        </button>
+                        </a>
 </div>
 </div>
 <div class="md:w-1/2 h-80 overflow-hidden rounded-lg">
@@ -681,7 +687,7 @@
 <span class="text-xs uppercase tracking-wide-label text-zinc-900/50">Projects Delivered</span>
 </div>
 </div>
-<a href="#about" class="group inline-flex items-center gap-3 border border-zinc-900/25 px-7 py-4 text-sm uppercase tracking-cta font-medium hover:bg-zinc-900 hover:text-white transition-all duration-300">
+<a href="about.html" class="group inline-flex items-center gap-3 border border-zinc-900/25 px-7 py-4 text-sm uppercase tracking-cta font-medium hover:bg-zinc-900 hover:text-white transition-all duration-300">
                     See Who I'd Work With
                     <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
 </a>
@@ -727,7 +733,7 @@
 <h3 class="text-2xl font-light mb-1 group-hover:text-primary transition-colors duration-500">CaseHub</h3>
 <p class="text-sm opacity-50 mb-2">Replaced a paper-based court filing system across 12 counties.</p>
 <p class="text-sm uppercase tracking-widest opacity-40 group-hover:opacity-70 transition-opacity duration-500">45% Faster Filing Time</p>
-<a href="#" class="text-xs text-primary mt-2 inline-block opacity-0 group-hover:opacity-100 transition-opacity duration-500">Read the full story →</a>
+<a href="case-study.html" class="text-xs text-primary mt-2 inline-block opacity-0 group-hover:opacity-100 transition-opacity duration-500">Read the full story →</a>
 </div>
 <div class="flex-shrink-0 w-[450px] group cursor-none ml-8 transition-transform duration-500 group-hover:-translate-y-2">
 <div class="aspect-[16/10] overflow-hidden rounded-lg mb-6 shadow-lg group-hover:shadow-2xl transition-shadow duration-500">
@@ -736,7 +742,7 @@
 <h3 class="text-2xl font-light mb-1 group-hover:text-primary transition-colors duration-500">Azul Arc Internal</h3>
 <p class="text-sm opacity-50 mb-2">Migrated our own legacy stack to a modern cloud platform — without a single hour of downtime.</p>
 <p class="text-sm uppercase tracking-widest opacity-40 group-hover:opacity-70 transition-opacity duration-500">Zero-Downtime Migration</p>
-<a href="#" class="text-xs text-primary mt-2 inline-block opacity-0 group-hover:opacity-100 transition-opacity duration-500">Read the full story →</a>
+<a href="case-study.html" class="text-xs text-primary mt-2 inline-block opacity-0 group-hover:opacity-100 transition-opacity duration-500">Read the full story →</a>
 </div>
 <div class="flex-shrink-0 w-[450px] group cursor-none ml-8 transition-transform duration-500 group-hover:-translate-y-2">
 <div class="aspect-[16/10] overflow-hidden rounded-lg mb-6 shadow-lg group-hover:shadow-2xl transition-shadow duration-500">
@@ -745,7 +751,7 @@
 <h3 class="text-2xl font-light mb-1 group-hover:text-primary transition-colors duration-500">RenderLab</h3>
 <p class="text-sm opacity-50 mb-2">Built a 3D rendering pipeline that handles 3x the volume on the same infrastructure.</p>
 <p class="text-sm uppercase tracking-widest opacity-40 group-hover:opacity-70 transition-opacity duration-500">300% Scaling Capacity</p>
-<a href="#" class="text-xs text-primary mt-2 inline-block opacity-0 group-hover:opacity-100 transition-opacity duration-500">Read the full story →</a>
+<a href="case-study.html" class="text-xs text-primary mt-2 inline-block opacity-0 group-hover:opacity-100 transition-opacity duration-500">Read the full story →</a>
 </div>
 <div class="flex-shrink-0 w-[450px] group cursor-none ml-8 transition-transform duration-500 group-hover:-translate-y-2">
 <div class="aspect-[16/10] overflow-hidden rounded-lg mb-6 shadow-lg group-hover:shadow-2xl transition-shadow duration-500">
@@ -754,7 +760,7 @@
 <h3 class="text-2xl font-light mb-1 group-hover:text-primary transition-colors duration-500">FlowOps</h3>
 <p class="text-sm opacity-50 mb-2">Streamlined warehouse operations across 8 facilities, cutting manual processes and redundant workflows.</p>
 <p class="text-sm uppercase tracking-widest opacity-40 group-hover:opacity-70 transition-opacity duration-500">20% Operational Cost Save</p>
-<a href="#" class="text-xs text-primary mt-2 inline-block opacity-0 group-hover:opacity-100 transition-opacity duration-500">Read the full story →</a>
+<a href="case-study.html" class="text-xs text-primary mt-2 inline-block opacity-0 group-hover:opacity-100 transition-opacity duration-500">Read the full story →</a>
 </div>
 </div>
 <div class="px-8 lg:px-16">
@@ -848,8 +854,8 @@ Back to Calendar
 </main>
 <footer id="footer-section" class="relative pt-32 pb-16 px-8 lg:px-16 border-t border-black/5 dark:border-white/5" style="overflow: clip;">
 <canvas id="dither-canvas" class="absolute inset-0 w-full h-full pointer-events-none" style="opacity:0; transition: opacity 0.3s ease;"></canvas>
-<div class="footer-content relative z-10 flex flex-col lg:flex-row justify-between items-end mb-32">
-<div class="max-w-xl mb-12 lg:mb-0">
+<div class="footer-content relative z-10 flex flex-col items-center text-center mb-32">
+<div class="max-w-2xl mb-12">
 <h2 class="text-7xl font-light mb-6">Your next system<br/>starts here.</h2>
 <p class="text-lg opacity-60 mb-4">No pitch deck. No 6-week scoping process. Just a 30-minute conversation about what's possible.</p>
 <p class="text-sm opacity-40">Not sure you're ready? That's exactly what discovery calls are for.</p>
@@ -864,20 +870,20 @@ Back to Calendar
 <div>
 <h6 class="text-xs uppercase tracking-widest font-bold mb-6 footer-text" style="transition: color 0.6s ease;">What We Do</h6>
 <ul class="space-y-2 opacity-60 text-sm footer-text" style="transition: color 0.6s ease;">
-<li><a class="hover:text-primary" href="#capabilities">Custom Software</a></li>
-<li><a class="hover:text-primary" href="#capabilities">Web Design & Development</a></li>
-<li><a class="hover:text-primary" href="#capabilities">3D Visualization</a></li>
-<li><a class="hover:text-primary" href="#capabilities">Integrations & Data</a></li>
+<li><a class="hover:text-primary" href="services/digital-product-strategy.html">Custom Software</a></li>
+<li><a class="hover:text-primary" href="services/web-design-development.html">Web Design & Development</a></li>
+<li><a class="hover:text-primary" href="services/3d-visualization.html">3D Visualization</a></li>
+<li><a class="hover:text-primary" href="services/case-management.html">Integrations & Data</a></li>
 </ul>
 </div>
 <div>
 <h6 class="text-xs uppercase tracking-widest font-bold mb-6 footer-text" style="transition: color 0.6s ease;">Company</h6>
 <ul class="space-y-2 opacity-60 text-sm footer-text" style="transition: color 0.6s ease;">
-<li><a class="hover:text-primary" href="#about">About</a></li>
-<li><a class="hover:text-primary" href="#process">How We Work</a></li>
-<li><a class="hover:text-primary" href="#work">Work</a></li>
-<li><a class="hover:text-primary" href="#insights">Insights</a></li>
-<li><a class="hover:text-primary" href="#contact">Contact</a></li>
+<li><a class="hover:text-primary" href="about.html">About</a></li>
+<li><a class="hover:text-primary" href="how-we-work.html">How We Work</a></li>
+<li><a class="hover:text-primary" href="work.html">Work</a></li>
+<li><a class="hover:text-primary" href="insights.html">Insights</a></li>
+<li><a class="hover:text-primary" href="contact.html">Contact</a></li>
 </ul>
 </div>
 <div>

@@ -153,7 +153,7 @@
         }
         .cal-day {
             width: 100%;
-            aspect-ratio: 1;
+            aspect-ratio: 1.4;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -438,9 +438,9 @@ Send My Project Brief
 <span class="text-xs uppercase tracking-widest font-bold text-primary-light">Available This Week</span>
 </div>
 </div>
-<div class="lg:w-5/12 w-full glass-calendar p-6 lg:p-8 shadow-2xl rounded-lg text-sm relative" id="calendar-widget">
+<div class="lg:w-5/12 w-full glass-calendar p-5 lg:p-6 shadow-2xl rounded-lg text-sm relative" id="calendar-widget">
 <!-- Header -->
-<div class="mb-5 flex justify-between items-center">
+<div class="mb-3 flex justify-between items-center">
 <div>
 <h3 class="text-base font-light tracking-tight">Book a Discovery Call</h3>
 <p class="text-xs opacity-40 uppercase tracking-widest mt-1">Select a date &amp; time</p>
@@ -451,36 +451,36 @@ Send My Project Brief
 </div>
 </div>
 <!-- Month nav -->
-<div class="flex items-center justify-between mb-4">
-<button id="cal-prev" aria-label="Previous month" class="w-11 h-11 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 transition-colors">
+<div class="flex items-center justify-between mb-3">
+<button id="cal-prev" aria-label="Previous month" class="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 transition-colors">
 <span class="material-symbols-outlined text-sm" aria-hidden="true">chevron_left</span>
 </button>
 <span id="cal-month-label" class="text-sm font-medium uppercase tracking-widest"></span>
-<button id="cal-next" aria-label="Next month" class="w-11 h-11 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 transition-colors">
+<button id="cal-next" aria-label="Next month" class="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 transition-colors">
 <span class="material-symbols-outlined text-sm" aria-hidden="true">chevron_right</span>
 </button>
 </div>
 <!-- Day headers -->
-<div class="grid grid-cols-7 gap-1 text-center mb-2">
-<div class="text-xs font-bold opacity-30 py-2">MON</div>
-<div class="text-xs font-bold opacity-30 py-2">TUE</div>
-<div class="text-xs font-bold opacity-30 py-2">WED</div>
-<div class="text-xs font-bold opacity-30 py-2">THU</div>
-<div class="text-xs font-bold opacity-30 py-2">FRI</div>
-<div class="text-xs font-bold opacity-30 py-2">SAT</div>
-<div class="text-xs font-bold opacity-30 py-2">SUN</div>
+<div class="grid grid-cols-7 gap-1 text-center mb-1">
+<div class="text-xs font-bold opacity-30 py-1">MON</div>
+<div class="text-xs font-bold opacity-30 py-1">TUE</div>
+<div class="text-xs font-bold opacity-30 py-1">WED</div>
+<div class="text-xs font-bold opacity-30 py-1">THU</div>
+<div class="text-xs font-bold opacity-30 py-1">FRI</div>
+<div class="text-xs font-bold opacity-30 py-1">SAT</div>
+<div class="text-xs font-bold opacity-30 py-1">SUN</div>
 </div>
 <!-- Calendar grid -->
-<div class="grid grid-cols-7 gap-1 mb-5" id="cal-grid"></div>
+<div class="grid grid-cols-7 gap-1 mb-3" id="cal-grid"></div>
 <!-- Time slots -->
-<div id="cal-times-section" class="mb-5" style="display:none;">
+<div id="cal-times-section" class="mb-3" style="display:none;">
 <p class="text-xs uppercase tracking-widest opacity-40 mb-4" id="cal-times-label">Available times</p>
 <div class="grid grid-cols-3 gap-2" id="cal-times-grid"></div>
 </div>
 <!-- Divider -->
-<div class="h-px bg-white/5 mb-4"></div>
+<div class="h-px bg-white/5 mb-3"></div>
 <!-- Summary -->
-<div id="cal-summary" class="mb-4 text-xs opacity-50 text-center" style="min-height:1.25rem;"></div>
+<div id="cal-summary" class="mb-3 text-xs opacity-50 text-center" style="min-height:1.25rem;"></div>
 <!-- CTA -->
 <button id="cal-book-btn" class="w-full bg-primary text-white py-3 uppercase text-xs font-bold tracking-wide-label hover:bg-white hover:text-primary transition-all duration-300 rounded-lg opacity-40 pointer-events-none">
 Lock In My Free Consult
@@ -567,15 +567,8 @@ Back to Calendar
 
 <!-- Footer -->
 </main>
-<footer id="footer-section" class="relative pt-32 pb-16 px-8 lg:px-16 border-t border-black/5 dark:border-white/5" style="overflow: clip;">
-<div class="footer-content relative z-10 flex flex-col lg:flex-row justify-between items-end mb-32">
-<div class="max-w-xl mb-12 lg:mb-0">
-<h2 class="text-7xl font-light mb-6">Your next system<br/>starts here.</h2>
-<p class="text-lg opacity-60 mb-4">No pitch deck. No 6-week scoping process. Just a 30-minute conversation about what's possible.</p>
-<p class="text-sm opacity-40">Not sure you're ready? That's exactly what discovery calls are for.</p>
-</div>
-</div>
-<div class="footer-grid relative z-10 grid grid-cols-2 md:grid-cols-4 gap-12 pt-16 border-t border-black/10" style="transition: border-color 0.6s ease;">
+<footer id="footer-section" class="relative pt-16 pb-16 px-8 lg:px-16 border-t border-black/5 dark:border-white/5">
+<div class="footer-grid relative z-10 grid grid-cols-2 md:grid-cols-4 gap-12" style="transition: border-color 0.6s ease;">
 <div>
 <h6 class="text-xs uppercase tracking-widest font-bold mb-6 footer-text" style="transition: color 0.6s ease;">What We Do</h6>
 <ul class="space-y-2 opacity-60 text-sm footer-text" style="transition: color 0.6s ease;">

@@ -99,6 +99,41 @@
         .reveal-delay-2 { transition-delay: 0.2s; }
         .reveal-delay-3 { transition-delay: 0.3s; }
         .reveal-delay-4 { transition-delay: 0.4s; }
+    .magnetic-wrap {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.1s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+    }
+
+    /* CTA section blue wipe */
+    .cta-section {
+        position: relative;
+        overflow: hidden;
+    }
+    .cta-section::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: #1863DC;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 1s cubic-bezier(0.4, 0, 0.1, 1);
+        z-index: 0;
+    }
+    .cta-section.wipe-active::before {
+        transform: scaleX(1);
+    }
+    .cta-section > * {
+        position: relative;
+        z-index: 1;
+    }
+    .cta-wipe {
+        transition: border-color 0.5s cubic-bezier(0.4, 0, 0.1, 1);
+    }
+    .cta-section.wipe-active .cta-wipe {
+        border-color: rgba(255,255,255,0.4);
+    }
     </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-text-dark dark:text-text-light font-sans selection:bg-primary selection:text-white">
@@ -316,7 +351,7 @@
         <h2 class="text-5xl font-light">Case management in action</h2>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-        <div class="group">
+        <a href="../case-study.html" class="group block">
             <div class="aspect-[16/10] overflow-hidden mb-6">
                 <div class="w-full h-full group-hover:scale-105 transition-transform duration-700" style="background: linear-gradient(160deg, #212121 0%, #07406B 50%, #1863DC 100%)"></div>
             </div>
@@ -326,8 +361,8 @@
                 <span class="text-xs uppercase tracking-widest text-primary">12 Counties</span>
                 <span class="text-xs uppercase tracking-widest text-primary">45% Faster Filing</span>
             </div>
-        </div>
-        <div class="group">
+        </a>
+        <a href="../case-study.html" class="group block">
             <div class="aspect-[16/10] overflow-hidden mb-6">
                 <div class="w-full h-full group-hover:scale-105 transition-transform duration-700" style="background: linear-gradient(160deg, #212121 0%, #1863DC 40%, #07406B 100%)"></div>
             </div>
@@ -337,40 +372,30 @@
                 <span class="text-xs uppercase tracking-widest text-primary">3 Departments Unified</span>
                 <span class="text-xs uppercase tracking-widest text-primary">70% Less Walk-In Traffic</span>
             </div>
-        </div>
+        </a>
     </div>
 </section>
 
 <!-- CTA -->
-<section class="py-32 px-8 lg:px-16 bg-zinc-950 text-white">
+<section class="py-32 px-8 lg:px-16 bg-zinc-950 text-white cta-section" id="cta-section">
     <div class="max-w-4xl mx-auto text-center reveal">
         <span class="text-xs uppercase tracking-label text-primary-light mb-6 block">Start a Project</span>
         <h2 class="text-5xl md:text-6xl font-light mb-8 leading-tight">Your cases deserve a system<br/>built for how you actually work.</h2>
         <p class="text-lg text-white/50 mb-12 max-w-2xl mx-auto">30 minutes with our team. We'll assess your current systems, identify the biggest pain points, and outline what a modern case management platform would look like for your jurisdiction.</p>
-        <a href="../contact.html" class="group inline-flex items-center gap-3 border border-white/20 px-8 py-5 text-sm uppercase tracking-cta font-medium hover:bg-white hover:text-zinc-950 transition-all duration-300">
-            Start With an Assessment
-            <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
+        <a href="../contact.html" class="cta-wipe group inline-flex items-center gap-3 border border-white/20 px-8 py-5 text-sm uppercase tracking-cta font-medium" id="cta-btn">
+            <span>Start With an Assessment</span>
+            <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform duration-300" aria-hidden="true">arrow_forward</span>
         </a>
     </div>
 </section>
 
 <!-- Footer -->
 </main>
-<footer class="relative pt-32 pb-16 px-8 lg:px-16 border-t border-black/5 dark:border-white/5">
-<div class="footer-content relative z-10 flex flex-col lg:flex-row justify-between items-end mb-32">
-<div class="max-w-xl mb-12 lg:mb-0">
-<h2 class="text-7xl font-light mb-6">Your next system<br/>starts here.</h2>
-<p class="text-lg opacity-60 mb-4">No pitch deck. No 6-week scoping process. Just a 30-minute conversation about what's possible.</p>
-<p class="text-sm opacity-40">Not sure you're ready? That's exactly what discovery calls are for.</p>
-</div>
-<a href="../contact.html" class="w-48 h-48 rounded-full border border-black/10 flex items-center justify-center text-sm uppercase tracking-widest transition-all duration-500 bg-transparent hover:bg-primary hover:text-white hover:border-primary">
-    Start a Conversation
-</a>
-</div>
-<div class="footer-grid relative z-10 grid grid-cols-2 md:grid-cols-4 gap-12 pt-16 border-t border-black/10">
+<footer id="footer-section" class="relative pt-16 pb-16 px-8 lg:px-16 border-t border-black/5 dark:border-white/5" style="overflow: clip;">
+<div class="footer-grid relative z-10 grid grid-cols-2 md:grid-cols-4 gap-12 pt-16 border-t border-black/10" style="transition: border-color 0.6s ease;">
 <div>
-<h6 class="text-xs uppercase tracking-widest font-bold mb-6">What We Do</h6>
-<ul class="space-y-2 opacity-60 text-sm">
+<h6 class="footer-text text-xs uppercase tracking-widest font-bold mb-6" style="transition: color 0.6s ease;">What We Do</h6>
+<ul class="footer-text space-y-2 opacity-60 text-sm" style="transition: color 0.6s ease;">
 <li><a class="hover:text-primary" href="../services/digital-product-strategy.html">Digital Product Strategy</a></li>
 <li><a class="hover:text-primary" href="../services/web-design-development.html">Web Design & Development</a></li>
 <li><a class="hover:text-primary" href="../services/3d-visualization.html">3D Visualization</a></li>
@@ -378,8 +403,8 @@
 </ul>
 </div>
 <div>
-<h6 class="text-xs uppercase tracking-widest font-bold mb-6">Company</h6>
-<ul class="space-y-2 opacity-60 text-sm">
+<h6 class="footer-text text-xs uppercase tracking-widest font-bold mb-6" style="transition: color 0.6s ease;">Company</h6>
+<ul class="footer-text space-y-2 opacity-60 text-sm" style="transition: color 0.6s ease;">
 <li><a class="hover:text-primary" href="../about.html">About</a></li>
 <li><a class="hover:text-primary" href="../how-we-work.html">How We Work</a></li>
 <li><a class="hover:text-primary" href="../work.html">Work</a></li>
@@ -387,8 +412,8 @@
 </ul>
 </div>
 <div>
-<h6 class="text-xs uppercase tracking-widest font-bold mb-6">Connect</h6>
-<ul class="space-y-2 opacity-60 text-sm">
+<h6 class="footer-text text-xs uppercase tracking-widest font-bold mb-6" style="transition: color 0.6s ease;">Connect</h6>
+<ul class="footer-text space-y-2 opacity-60 text-sm" style="transition: color 0.6s ease;">
 <li><a class="hover:text-primary" href="#">LinkedIn</a></li>
 <li><a class="hover:text-primary" href="#">Twitter</a></li>
 <li><a class="hover:text-primary" href="mailto:hello@azularc.com">Email</a></li>
@@ -396,13 +421,13 @@
 </div>
 <div class="flex flex-col justify-between">
 <div>
-<h6 class="text-xs uppercase tracking-widest font-bold mb-6">Insights</h6>
-<div class="flex border-b border-black/10 pb-2">
-<input class="bg-transparent border-none focus:ring-0 p-0 text-sm w-full" placeholder="Email" type="email"/>
-<span class="material-symbols-outlined opacity-40" aria-hidden="true">arrow_forward</span>
+<h6 class="footer-text text-xs uppercase tracking-widest font-bold mb-6" style="transition: color 0.6s ease;">Insights</h6>
+<div class="footer-border flex border-b border-black/10 pb-2" style="transition: border-color 0.6s ease;">
+<input class="footer-text bg-transparent border-none focus:ring-0 p-0 text-sm w-full" style="transition: color 0.6s ease;" placeholder="Email" type="email"/>
+<span class="footer-text material-symbols-outlined opacity-40" style="transition: color 0.6s ease;" aria-hidden="true">arrow_forward</span>
 </div>
 </div>
-<p class="text-xs opacity-30 mt-12">&copy; 2026 Azul Arc. All rights reserved.</p>
+<p class="footer-text text-xs opacity-30 mt-12" style="transition: color 0.6s ease;">&copy; 2026 Azul Arc. All rights reserved.</p>
 </div>
 </div>
 </footer>
@@ -463,5 +488,16 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 revealEls.forEach(el => revealObserver.observe(el));
 </script>
+
+<script>
+// CTA section wipe on button hover
+const ctaBtn = document.getElementById('cta-btn');
+const ctaSection = document.getElementById('cta-section');
+if (ctaBtn && ctaSection) {
+    ctaBtn.addEventListener('mouseenter', () => ctaSection.classList.add('wipe-active'));
+    ctaBtn.addEventListener('mouseleave', () => ctaSection.classList.remove('wipe-active'));
+}
+</script>
+
 </body>
 </html>

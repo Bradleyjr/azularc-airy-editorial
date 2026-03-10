@@ -1270,7 +1270,8 @@ Back to Calendar
 
     // Magnetic Effect for typical buttons
     document.querySelectorAll('.magnetic-wrap:not(#footer-cta-wrap)').forEach(wrap => {
-        const btn = wrap.querySelector('button');
+        const btn = wrap.querySelector('button') || wrap.querySelector('a');
+        if (!btn) return;
         wrap.addEventListener('mousemove', (e) => {
             const rect = wrap.getBoundingClientRect();
             const x = e.clientX - rect.left - rect.width / 2;

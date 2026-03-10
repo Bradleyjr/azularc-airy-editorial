@@ -30,6 +30,21 @@
                     borderRadius: {
                         DEFAULT: "0px",
                         'lg': "4px",
+                        'xl': "12px",
+                    },
+                    letterSpacing: {
+                        'label': '0.3em',
+                        'cta': '0.15em',
+                        'wide-label': '0.2em',
+                        'extra': '0.4em',
+                    },
+                    fontSize: {
+                        'menu': '15px',
+                    },
+                    transitionDuration: {
+                        'fast': '150ms',
+                        'base': '300ms',
+                        'slow': '500ms',
                     },
                 },
             },
@@ -196,7 +211,7 @@
             transition: width 0.3s ease;
         }
         .glass-calendar {
-            background: #111111;
+            background: #212121;
             border: 1px solid rgba(255, 255, 255, 0.08);
             color: #EBEBEB;
         }
@@ -323,22 +338,23 @@
     </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-text-dark dark:text-text-light font-sans selection:bg-primary selection:text-white">
+<a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-white focus:text-text-dark focus:px-4 focus:py-2 focus:text-sm focus:font-medium">Skip to main content</a>
 <div class="drag-cursor" id="drag-cursor">DRAG</div>
 <nav id="main-nav" class="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center mix-blend-difference text-white">
 <img src="azularcLogo.png" alt="Azul Arc" class="h-8 brightness-0 invert"/>
 <div class="hidden md:flex gap-6 text-sm uppercase tracking-widest font-medium items-center nav-links">
-<a class="hover:opacity-60 transition-opacity flex items-center gap-1 cursor-pointer nav-dd-trigger" data-dropdown="industries" href="#industries">Industries <span class="material-symbols-outlined text-sm">expand_more</span></a>
-<a class="hover:opacity-60 transition-opacity flex items-center gap-1 cursor-pointer nav-dd-trigger" data-dropdown="whatwedo" href="#capabilities">What We Do <span class="material-symbols-outlined text-sm">expand_more</span></a>
-<a class="hover:opacity-60 transition-opacity" href="#process">How We Work</a>
-<a class="hover:opacity-60 transition-opacity" href="#work">Work</a>
-<a class="hover:opacity-60 transition-opacity" href="#about">About</a>
+<a class="hover:opacity-60 transition-opacity flex items-center gap-1 cursor-pointer nav-dd-trigger" data-dropdown="industries" href="#industries">Industries <span class="material-symbols-outlined text-sm" aria-hidden="true">expand_more</span></a>
+<a class="hover:opacity-60 transition-opacity flex items-center gap-1 cursor-pointer nav-dd-trigger" data-dropdown="whatwedo" href="#capabilities">What We Do <span class="material-symbols-outlined text-sm" aria-hidden="true">expand_more</span></a>
+<a class="hover:opacity-60 transition-opacity" href="how-we-work.html">How We Work</a>
+<a class="hover:opacity-60 transition-opacity" href="work.html">Work</a>
+<a class="hover:opacity-60 transition-opacity" href="about.html">About</a>
 </div>
 <div class="hidden md:block w-28"></div>
-<button class="md:hidden">
-<span class="material-symbols-outlined">menu</span>
+<button class="md:hidden" aria-label="Toggle navigation menu">
+<span class="material-symbols-outlined" aria-hidden="true">menu</span>
 </button>
 </nav>
-<a href="#contact" id="nav-cta" class="nav-cta fixed top-[22px] right-8 z-50 hidden md:flex items-center gap-2 bg-primary text-white px-5 py-2 rounded-full text-xs uppercase tracking-widest font-medium hover:bg-primary-dark transition-colors">Let's Talk</a>
+<a href="contact.html" id="nav-cta" class="nav-cta fixed top-[22px] right-8 z-50 hidden md:flex items-center gap-2 bg-primary text-white px-5 py-2 rounded-full text-xs uppercase tracking-widest font-medium hover:bg-primary-dark transition-colors">Let's Talk</a>
 <!-- Mega menus (outside nav to avoid mix-blend-difference) -->
 <div id="mega-industries" class="mega-menu fixed top-0 left-0 w-full z-40 pt-[72px] opacity-0 invisible translate-y-[-8px] transition-all duration-300 ease-out pointer-events-none">
 <div class="mx-8 bg-text-dark backdrop-blur-xl rounded-xl pointer-events-auto overflow-hidden">
@@ -348,20 +364,20 @@
 <p class="text-sm text-white/40 leading-relaxed">The industries where we do our best work.</p>
 </div>
 <div class="flex-1 p-4">
-<a href="#industries" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<a href="industries/courts.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
 <span class="text-xs text-white/20 font-mono w-6">01</span>
-<div class="flex-1"><div class="text-[15px] font-medium text-white group-hover/item:text-primary-light transition-colors">Court Systems</div><div class="text-xs text-white/40 mt-1">Courts, clerks & public agencies</div></div>
-<span class="material-symbols-outlined text-white/20 text-base group-hover/item:text-primary-light group-hover/item:translate-x-1 transition-all">arrow_forward</span>
+<div class="flex-1"><div class="text-menu font-medium text-white group-hover/item:text-primary-light transition-colors">Court Systems</div><div class="text-xs text-white/40 mt-1">Courts, clerks & public agencies</div></div>
+<span class="material-symbols-outlined text-white/20 text-base group-hover/item:text-primary-light group-hover/item:translate-x-1 transition-all" aria-hidden="true">arrow_forward</span>
 </a>
-<a href="#industries" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<a href="industries/manufacturing.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
 <span class="text-xs text-white/20 font-mono w-6">02</span>
-<div class="flex-1"><div class="text-[15px] font-medium text-white group-hover/item:text-primary-light transition-colors">Product Manufacturers</div><div class="text-xs text-white/40 mt-1">Sales tools & commercial platforms</div></div>
-<span class="material-symbols-outlined text-white/20 text-base group-hover/item:text-primary-light group-hover/item:translate-x-1 transition-all">arrow_forward</span>
+<div class="flex-1"><div class="text-menu font-medium text-white group-hover/item:text-primary-light transition-colors">Product Manufacturers</div><div class="text-xs text-white/40 mt-1">Sales tools & commercial platforms</div></div>
+<span class="material-symbols-outlined text-white/20 text-base group-hover/item:text-primary-light group-hover/item:translate-x-1 transition-all" aria-hidden="true">arrow_forward</span>
 </a>
-<a href="#industries" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<a href="industries/growth-stage.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
 <span class="text-xs text-white/20 font-mono w-6">03</span>
-<div class="flex-1"><div class="text-[15px] font-medium text-white group-hover/item:text-primary-light transition-colors">Growth-Stage SMBs</div><div class="text-xs text-white/40 mt-1">Scaling operations & legacy replacement</div></div>
-<span class="material-symbols-outlined text-white/20 text-base group-hover/item:text-primary-light group-hover/item:translate-x-1 transition-all">arrow_forward</span>
+<div class="flex-1"><div class="text-menu font-medium text-white group-hover/item:text-primary-light transition-colors">Growth-Stage SMBs</div><div class="text-xs text-white/40 mt-1">Scaling operations & legacy replacement</div></div>
+<span class="material-symbols-outlined text-white/20 text-base group-hover/item:text-primary-light group-hover/item:translate-x-1 transition-all" aria-hidden="true">arrow_forward</span>
 </a>
 </div>
 </div>
@@ -375,26 +391,27 @@
 <p class="text-sm text-white/40 leading-relaxed">From strategy to launch and beyond.</p>
 </div>
 <div class="flex-1 p-4 grid grid-cols-2">
-<a href="#capabilities" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<a href="services/digital-product-strategy.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
 <span class="text-xs text-white/20 font-mono w-6">01</span>
-<div class="flex-1"><div class="text-[15px] font-medium text-white group-hover/item:text-primary-light transition-colors">Digital Product Strategy</div><div class="text-xs text-white/40 mt-1">Figure out what to build first</div></div>
+<div class="flex-1"><div class="text-menu font-medium text-white group-hover/item:text-primary-light transition-colors">Digital Product Strategy</div><div class="text-xs text-white/40 mt-1">Figure out what to build first</div></div>
 </a>
-<a href="#capabilities" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<a href="services/web-design-development.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
 <span class="text-xs text-white/20 font-mono w-6">02</span>
-<div class="flex-1"><div class="text-[15px] font-medium text-white group-hover/item:text-primary-light transition-colors">Web Design & Development</div><div class="text-xs text-white/40 mt-1">Sites & apps that actually convert</div></div>
+<div class="flex-1"><div class="text-menu font-medium text-white group-hover/item:text-primary-light transition-colors">Web Design & Development</div><div class="text-xs text-white/40 mt-1">Sites & apps that actually convert</div></div>
 </a>
-<a href="#capabilities" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<a href="services/3d-visualization.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
 <span class="text-xs text-white/20 font-mono w-6">03</span>
-<div class="flex-1"><div class="text-[15px] font-medium text-white group-hover/item:text-primary-light transition-colors">3D Visualisation</div><div class="text-xs text-white/40 mt-1">Product visuals that sell themselves</div></div>
+<div class="flex-1"><div class="text-menu font-medium text-white group-hover/item:text-primary-light transition-colors">3D Visualisation</div><div class="text-xs text-white/40 mt-1">Product visuals that sell themselves</div></div>
 </a>
-<a href="#capabilities" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<a href="services/case-management.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
 <span class="text-xs text-white/20 font-mono w-6">04</span>
-<div class="flex-1"><div class="text-[15px] font-medium text-white group-hover/item:text-primary-light transition-colors">Case Management Systems</div><div class="text-xs text-white/40 mt-1">Track every case, automate the rest</div></div>
+<div class="flex-1"><div class="text-menu font-medium text-white group-hover/item:text-primary-light transition-colors">Case Management Systems</div><div class="text-xs text-white/40 mt-1">Track every case, automate the rest</div></div>
 </a>
 </div>
 </div>
 </div>
 </div>
+<main id="main-content">
 <section class="relative min-h-screen flex flex-col justify-end overflow-hidden bg-zinc-950 text-white">
 <div class="absolute inset-0 z-0">
 <img id="hero-img" alt="Team collaboration" class="w-full h-full object-cover opacity-30" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&q=80"/>
@@ -414,16 +431,16 @@
 <div class="flex gap-10">
 <div>
 <span class="block text-3xl font-semibold">20+</span>
-<span class="text-[10px] uppercase tracking-[0.2em] text-white/40">Years in Business</span>
+<span class="text-xs uppercase tracking-wide-label text-white/40">Years in Business</span>
 </div>
 <div>
 <span class="block text-3xl font-semibold">200+</span>
-<span class="text-[10px] uppercase tracking-[0.2em] text-white/40">Projects Shipped</span>
+<span class="text-xs uppercase tracking-wide-label text-white/40">Projects Shipped</span>
 </div>
 </div>
-<a class="group flex items-center gap-3 border border-white/20 px-7 py-4 text-sm uppercase tracking-[0.15em] font-medium hover:bg-white hover:text-zinc-950 transition-all duration-300" href="#contact">
+<a class="group flex items-center gap-3 border border-white/20 px-7 py-4 text-sm uppercase tracking-cta font-medium hover:bg-white hover:text-zinc-950 transition-all duration-300" href="#contact">
                     Talk About My Project
-                    <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                    <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
 </a>
 </div>
 </div>
@@ -431,7 +448,7 @@
 </section>
 <section class="py-10 px-8 lg:px-16 border-b border-black/5">
 <div class="flex flex-col md:flex-row items-center justify-between gap-8">
-<span class="text-xs uppercase tracking-[0.2em] opacity-30 shrink-0">Trusted by teams at</span>
+<span class="text-xs uppercase tracking-wide-label opacity-30 shrink-0">Trusted by teams at</span>
 <div class="flex items-center gap-12 opacity-20 flex-wrap justify-center">
 <span class="text-lg font-semibold tracking-tight">Georgia Courts</span>
 <span class="text-lg font-semibold tracking-tight">Meridian Mfg</span>
@@ -451,10 +468,10 @@
 <a href="#contact" class="inline-block text-sm text-primary border border-primary/30 px-6 py-3 rounded-full hover:bg-primary hover:text-white transition-all duration-300 uppercase tracking-widest">See what that looks like for you</a>
 </div>
 <div class="absolute inset-0 pointer-events-none opacity-40" id="parallax-bg">
-<img alt="Data Architecture" class="absolute top-[35%] left-[5%] w-48 aspect-square object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCe1gvaDfZYBjQyEWiG8w0NRrB3ZLSEhVcJszCaHePFYmbN4CV650a1RClnxKttAxdFIFkZV7CJ4xG9j4K6OKsnxL6ca1TXlNmofz62LhXbA8pPrje4KE2-3731BdhLpE-MIBMAmDcavq9Z-E350XgaCmYmyFBTQrc2J0CxWnw7B6_wq7JrWAr98qRgEaYkw2lr2-vtA4UL2RWBtKKieKAXTENEmR5RlIESxWPNaijCJfIw9Vcly6VJet-f7k6Sr3rRYcLK26nb4w"/>
-<img alt="Tech Operations" class="absolute bottom-[15%] left-[10%] w-64 aspect-video object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBimC1MHbHQIJOmas8Ta7DQKIY5JNlhU0rCf6EAQstkmkJtGIoLoeDstcYfQsHJX9r-M3_GyqCKX4kt0vTmfYI-t5F2mR9749X5BAM8_A6bmsBOZbZ1Iw6WPzL9nLPc6Wd3D6Vj_xOvQizOwMOFCGxmwVVf0xmD70KE-Egpaz-Z3LFCrCFdHIMPAK23U-g1uq33XstfcMdqCxBR-I5QNaBuaqyGfBxluLf4qfL188x7tapckrwjQkZwwF8cT50dvD8twQ2zHXm79n0"/>
-<img alt="Structural Systems" class="absolute top-[45%] right-[5%] w-56 aspect-[4/5] object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3S0KXErOAYhy9IiGJh6RV1xfCQ1nIIq672MwwXKkrKYwLJ4GevM1_Lla4bkbW7R2Y4C-SvJjGHBBUliJgoV1T_nydpc28ofOH2ffNUKjKvldHNoOqtDz22rllT1PQUqHryB_p_EqlhBvMSvMK4eELEeuo-qV7X-ePZ681r87GlU472HsFtJxH1m9KWpubGAIB73Wpb6owNT2dl8-Fz9IlC7sZzydTepIlOciwVI1GS8H-t-1rEqXzhmXU8fTzev5lsYUq55mH59Y"/>
-<img alt="UI Design Detail" class="absolute bottom-[20%] right-[12%] w-40 aspect-square object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHd745GIjYGnRqgTrpomwev_KnLAWeAh1fmv7pzlgwRj0kyMCz5vCB_PsN5nAVTO9z_JxylWZUGN7RuMwcS57xhx4Cq-QEcfmKt3uS4XHXayZbeVjqxqt9xJcrJjQKN6kTGMpR_rG9CqBOZftwXcmOaVZ8z9VP43MD8R20HVpznPeimUMjg0z9FllIJI_oQUQx0gKwLMiljCzsIUFHU2HWYukXtDr4q8Wir_E1QK3TWhZdWdPv3DTLVlJzh306fF4Dbblvgbo718Q"/>
+<img alt="Data Architecture" class="absolute top-[35%] left-[5%] w-48 aspect-square object-cover" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCe1gvaDfZYBjQyEWiG8w0NRrB3ZLSEhVcJszCaHePFYmbN4CV650a1RClnxKttAxdFIFkZV7CJ4xG9j4K6OKsnxL6ca1TXlNmofz62LhXbA8pPrje4KE2-3731BdhLpE-MIBMAmDcavq9Z-E350XgaCmYmyFBTQrc2J0CxWnw7B6_wq7JrWAr98qRgEaYkw2lr2-vtA4UL2RWBtKKieKAXTENEmR5RlIESxWPNaijCJfIw9Vcly6VJet-f7k6Sr3rRYcLK26nb4w"/>
+<img alt="Tech Operations" class="absolute bottom-[15%] left-[10%] w-64 aspect-video object-cover" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBimC1MHbHQIJOmas8Ta7DQKIY5JNlhU0rCf6EAQstkmkJtGIoLoeDstcYfQsHJX9r-M3_GyqCKX4kt0vTmfYI-t5F2mR9749X5BAM8_A6bmsBOZbZ1Iw6WPzL9nLPc6Wd3D6Vj_xOvQizOwMOFCGxmwVVf0xmD70KE-Egpaz-Z3LFCrCFdHIMPAK23U-g1uq33XstfcMdqCxBR-I5QNaBuaqyGfBxluLf4qfL188x7tapckrwjQkZwwF8cT50dvD8twQ2zHXm79n0"/>
+<img alt="Structural Systems" class="absolute top-[45%] right-[5%] w-56 aspect-[4/5] object-cover" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3S0KXErOAYhy9IiGJh6RV1xfCQ1nIIq672MwwXKkrKYwLJ4GevM1_Lla4bkbW7R2Y4C-SvJjGHBBUliJgoV1T_nydpc28ofOH2ffNUKjKvldHNoOqtDz22rllT1PQUqHryB_p_EqlhBvMSvMK4eELEeuo-qV7X-ePZ681r87GlU472HsFtJxH1m9KWpubGAIB73Wpb6owNT2dl8-Fz9IlC7sZzydTepIlOciwVI1GS8H-t-1rEqXzhmXU8fTzev5lsYUq55mH59Y"/>
+<img alt="UI Design Detail" class="absolute bottom-[20%] right-[12%] w-40 aspect-square object-cover" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHd745GIjYGnRqgTrpomwev_KnLAWeAh1fmv7pzlgwRj0kyMCz5vCB_PsN5nAVTO9z_JxylWZUGN7RuMwcS57xhx4Cq-QEcfmKt3uS4XHXayZbeVjqxqt9xJcrJjQKN6kTGMpR_rG9CqBOZftwXcmOaVZ8z9VP43MD8R20HVpznPeimUMjg0z9FllIJI_oQUQx0gKwLMiljCzsIUFHU2HWYukXtDr4q8Wir_E1QK3TWhZdWdPv3DTLVlJzh306fF4Dbblvgbo718Q"/>
 </div>
 </div>
 </section>
@@ -467,8 +484,8 @@
 <div class="group border-b border-black/10 dark:border-white/10 pb-8 cursor-pointer overflow-hidden transition-all duration-500 hover:pb-12">
 <div class="flex justify-between items-end">
 <span class="text-lg opacity-40">01</span>
-<h4 class="text-4xl md:text-7xl font-light flex-grow ml-12 group-hover:text-primary transition-colors">Government &amp; Courts</h4>
-<span class="material-symbols-outlined text-4xl group-hover:rotate-45 transition-transform">add</span>
+<h3 class="text-4xl md:text-7xl font-light flex-grow ml-12 group-hover:text-primary transition-colors">Government &amp; Courts</h3>
+<span class="material-symbols-outlined text-4xl group-hover:rotate-45 transition-transform" aria-hidden="true">add</span>
 </div>
 <div class="max-h-0 group-hover:max-h-[500px] transition-all duration-700 opacity-0 group-hover:opacity-100 flex flex-col md:flex-row gap-12 mt-12 relative">
 <div class="md:w-1/2">
@@ -480,15 +497,15 @@
 </div>
 </div>
 <div class="md:w-1/2 h-80 overflow-hidden rounded-lg">
-<div class="w-full h-full" style="background: linear-gradient(160deg, #0a0a0a 0%, #07406B 50%, #1863DC 100%)"></div>
+<div class="w-full h-full" style="background: linear-gradient(160deg, #212121 0%, #07406B 50%, #1863DC 100%)"></div>
 </div>
 </div>
 </div>
 <div class="group border-b border-black/10 dark:border-white/10 py-8 cursor-pointer overflow-hidden transition-all duration-500 hover:py-12">
 <div class="flex justify-between items-end">
 <span class="text-lg opacity-40">02</span>
-<h4 class="text-4xl md:text-7xl font-light flex-grow ml-12 group-hover:text-primary transition-colors">Manufacturing &amp; Distribution</h4>
-<span class="material-symbols-outlined text-4xl group-hover:rotate-45 transition-transform">add</span>
+<h3 class="text-4xl md:text-7xl font-light flex-grow ml-12 group-hover:text-primary transition-colors">Manufacturing &amp; Distribution</h3>
+<span class="material-symbols-outlined text-4xl group-hover:rotate-45 transition-transform" aria-hidden="true">add</span>
 </div>
 <div class="max-h-0 group-hover:max-h-[500px] transition-all duration-700 opacity-0 group-hover:opacity-100 flex flex-col md:flex-row gap-12 mt-12 relative">
 <div class="md:w-1/2">
@@ -500,15 +517,15 @@
 </div>
 </div>
 <div class="md:w-1/2 h-80 overflow-hidden rounded-lg">
-<div class="w-full h-full" style="background: linear-gradient(160deg, #0a0a0a 0%, #1863DC 50%, #2AA7DF 100%)"></div>
+<div class="w-full h-full" style="background: linear-gradient(160deg, #212121 0%, #1863DC 50%, #2AA7DF 100%)"></div>
 </div>
 </div>
 </div>
 <div class="group border-b border-black/10 dark:border-white/10 pt-8 pb-8 cursor-pointer overflow-hidden transition-all duration-500 hover:pb-12">
 <div class="flex justify-between items-end">
 <span class="text-lg opacity-40">03</span>
-<h4 class="text-4xl md:text-7xl font-light flex-grow ml-12 group-hover:text-primary transition-colors">Growth-Stage Companies</h4>
-<span class="material-symbols-outlined text-4xl group-hover:rotate-45 transition-transform">add</span>
+<h3 class="text-4xl md:text-7xl font-light flex-grow ml-12 group-hover:text-primary transition-colors">Growth-Stage Companies</h3>
+<span class="material-symbols-outlined text-4xl group-hover:rotate-45 transition-transform" aria-hidden="true">add</span>
 </div>
 <div class="max-h-0 group-hover:max-h-[500px] transition-all duration-700 opacity-0 group-hover:opacity-100 flex flex-col md:flex-row gap-12 mt-12 relative">
 <div class="md:w-1/2">
@@ -528,34 +545,34 @@
 </section>
 <section class="py-32 bg-zinc-950 text-white" id="capabilities">
 <div class="px-8 lg:px-16 mb-20">
-<h3 class="text-sm uppercase tracking-[0.3em] font-light text-primary mb-6">Capabilities</h3>
+<h3 class="text-sm uppercase tracking-label font-light text-primary mb-6">Capabilities</h3>
 <h2 class="text-6xl font-light tracking-tight">What we actually build</h2>
 </div>
 <div class="slat-container" id="slat-container">
 <div class="slat slat-active">
-<div class="slat-img" style="background: linear-gradient(160deg, #0a0a0a 0%, #07406B 50%, #1863DC 100%)"></div>
+<div class="slat-img" style="background: linear-gradient(160deg, #212121 0%, #07406B 50%, #1863DC 100%)"></div>
 <span class="slat-label">Custom Software</span>
 <div class="slat-content">
-<h5 class="text-xs uppercase tracking-[0.4em] text-white/80 mb-4 font-bold">01 — Platforms</h5>
-<h4 class="text-4xl font-light mb-6 tracking-tighter">Custom Software</h4>
+<p class="text-xs uppercase tracking-extra text-white/80 mb-4 font-bold">01 — Platforms</p>
+<h3 class="text-4xl font-light mb-6 tracking-tighter">Custom Software</h3>
 <p class="text-sm leading-relaxed font-light max-w-sm">Your business has specific problems. Off-the-shelf tools don't solve them. We build the system that actually fits how you operate.</p>
 </div>
 </div>
 <div class="slat">
-<div class="slat-img" style="background: linear-gradient(160deg, #0a0a0a 0%, #1863DC 50%, #2AA7DF 100%)"></div>
+<div class="slat-img" style="background: linear-gradient(160deg, #212121 0%, #1863DC 50%, #2AA7DF 100%)"></div>
 <span class="slat-label">Data</span>
 <div class="slat-content">
-<h5 class="text-xs uppercase tracking-[0.4em] text-white/80 mb-4 font-bold">02 — Data</h5>
-<h4 class="text-4xl font-light mb-6 tracking-tighter">Data That Makes Sense</h4>
+<p class="text-xs uppercase tracking-extra text-white/80 mb-4 font-bold">02 — Data</p>
+<h3 class="text-4xl font-light mb-6 tracking-tighter">Data That Makes Sense</h3>
 <p class="text-sm leading-relaxed font-light max-w-sm">Your data is scattered across five systems and three spreadsheets. We connect it, clean it, and give you answers you can actually act on.</p>
 </div>
 </div>
 <div class="slat">
-<div class="slat-img" style="background: linear-gradient(160deg, #0a0a0a 0%, #07406B 60%, #0a0a0a 100%)"></div>
+<div class="slat-img" style="background: linear-gradient(160deg, #212121 0%, #07406B 60%, #212121 100%)"></div>
 <span class="slat-label">Integrations</span>
 <div class="slat-content">
-<h5 class="text-xs uppercase tracking-[0.4em] text-white/80 mb-4 font-bold">03 — Integrations</h5>
-<h4 class="text-4xl font-light mb-6 tracking-tighter">Make Your Tools Talk</h4>
+<p class="text-xs uppercase tracking-extra text-white/80 mb-4 font-bold">03 — Integrations</p>
+<h3 class="text-4xl font-light mb-6 tracking-tighter">Make Your Tools Talk</h3>
 <p class="text-sm leading-relaxed font-light max-w-sm">Your ERP doesn't talk to your CRM. Your warehouse system ignores your sales data. We wire them together so nothing falls through the cracks.</p>
 </div>
 </div>
@@ -563,17 +580,17 @@
 <div class="slat-img" style="background: linear-gradient(160deg, #212121 0%, #1863DC 40%, #07406B 100%)"></div>
 <span class="slat-label">Modernization</span>
 <div class="slat-content">
-<h5 class="text-xs uppercase tracking-[0.4em] text-white/80 mb-4 font-bold">04 — Modernization</h5>
-<h4 class="text-4xl font-light mb-6 tracking-tighter">Kill the Legacy System</h4>
+<p class="text-xs uppercase tracking-extra text-white/80 mb-4 font-bold">04 — Modernization</p>
+<h3 class="text-4xl font-light mb-6 tracking-tighter">Kill the Legacy System</h3>
 <p class="text-sm leading-relaxed font-light max-w-sm">That 15-year-old system everyone's afraid to touch? We replace it piece by piece — no big-bang migration, no downtime, no drama.</p>
 </div>
 </div>
 <div class="slat">
-<div class="slat-img" style="background: linear-gradient(160deg, #0a0a0a 0%, #2AA7DF 50%, #1863DC 100%)"></div>
+<div class="slat-img" style="background: linear-gradient(160deg, #212121 0%, #2AA7DF 50%, #1863DC 100%)"></div>
 <span class="slat-label">Infrastructure</span>
 <div class="slat-content">
-<h5 class="text-xs uppercase tracking-[0.4em] text-white/80 mb-4 font-bold">05 — Infrastructure</h5>
-<h4 class="text-4xl font-light mb-6 tracking-tighter">Built to Handle Growth</h4>
+<p class="text-xs uppercase tracking-extra text-white/80 mb-4 font-bold">05 — Infrastructure</p>
+<h3 class="text-4xl font-light mb-6 tracking-tighter">Built to Handle Growth</h3>
 <p class="text-sm leading-relaxed font-light max-w-sm">When your business doubles, your systems shouldn't buckle. We set up cloud infrastructure that scales with you instead of against you.</p>
 </div>
 </div>
@@ -583,9 +600,9 @@
 <p class="text-xl font-light text-white/80 mb-1">Have a project like this?</p>
 <p class="text-sm text-white/40">Tell us what you're working with. We'll tell you what's possible.</p>
 </div>
-<a href="#contact" class="group inline-flex items-center gap-3 border border-white/20 px-7 py-4 text-sm uppercase tracking-[0.15em] text-white/80 hover:bg-white hover:text-zinc-950 transition-all duration-300">
+<a href="#contact" class="group inline-flex items-center gap-3 border border-white/20 px-7 py-4 text-sm uppercase tracking-cta text-white/80 hover:bg-white hover:text-zinc-950 transition-all duration-300">
             Let's Talk
-            <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform">arrow_forward</span>
+            <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
 </a>
 </div>
 </section>
@@ -601,7 +618,7 @@
 <span class="text-sm tracking-widest text-primary">Weeks 1-2</span>
 <div class="flex items-baseline gap-4 mt-2">
 <span class="text-6xl font-light opacity-10 group-hover:opacity-100 transition-opacity">01</span>
-<h4 class="text-3xl font-medium">Discover</h4>
+<h3 class="text-3xl font-medium">Discover</h3>
 </div>
 <p class="text-lg opacity-70 mt-4">We dig into what you're running today, find where it breaks, and figure out what matters most to fix first.</p>
 </div>
@@ -609,7 +626,7 @@
 <span class="text-sm tracking-widest text-primary">Weeks 3-4</span>
 <div class="flex items-baseline gap-4 mt-2">
 <span class="text-6xl font-light opacity-10 group-hover:opacity-100 transition-opacity">02</span>
-<h4 class="text-3xl font-medium">Blueprint</h4>
+<h3 class="text-3xl font-medium">Blueprint</h3>
 </div>
 <p class="text-lg opacity-70 mt-4">You get a clear plan — what we're building, how it connects, and exactly what it's going to cost.</p>
 </div>
@@ -617,7 +634,7 @@
 <span class="text-sm tracking-widest text-primary">Weeks 5-16</span>
 <div class="flex items-baseline gap-4 mt-2">
 <span class="text-6xl font-light opacity-10 group-hover:opacity-100 transition-opacity">03</span>
-<h4 class="text-3xl font-medium">Design &amp; Build</h4>
+<h3 class="text-3xl font-medium">Design &amp; Build</h3>
 </div>
 <p class="text-lg opacity-70 mt-4">We build in short cycles and show you working software every two weeks. No surprises at the end.</p>
 </div>
@@ -625,7 +642,7 @@
 <span class="text-sm tracking-widest text-primary">Weeks 17-20</span>
 <div class="flex items-baseline gap-4 mt-2">
 <span class="text-6xl font-light opacity-10 group-hover:opacity-100 transition-opacity">04</span>
-<h4 class="text-3xl font-medium">Deploy</h4>
+<h3 class="text-3xl font-medium">Deploy</h3>
 </div>
 <p class="text-lg opacity-70 mt-4">We migrate your data, train your team, and go live — with zero disruption to the work that's already happening.</p>
 </div>
@@ -633,14 +650,14 @@
 <span class="text-sm tracking-widest text-primary">Ongoing</span>
 <div class="flex items-baseline gap-4 mt-2">
 <span class="text-6xl font-light opacity-10 group-hover:opacity-100 transition-opacity">05</span>
-<h4 class="text-3xl font-medium">Evolve</h4>
+<h3 class="text-3xl font-medium">Evolve</h3>
 </div>
 <p class="text-lg opacity-70 mt-4">We stick around. Monitoring, maintaining, and adding features as your business changes — not just handing off code and disappearing.</p>
 </div>
 <div class="pt-16 mt-8 border-t border-black/10">
-<a href="#contact" class="group inline-flex items-center gap-3 text-primary hover:text-primary-dark text-sm uppercase tracking-[0.15em] font-medium transition-colors">
+<a href="#contact" class="group inline-flex items-center gap-3 text-primary hover:text-primary-dark text-sm uppercase tracking-cta font-medium transition-colors">
             Ready to start with discovery?
-            <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform">arrow_forward</span>
+            <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
 </a>
 </div>
 </div>
@@ -649,7 +666,7 @@
 <div class="max-w-7xl mx-auto">
 <div class="flex flex-col lg:flex-row gap-16 lg:gap-12 items-center">
 <div class="lg:w-1/2">
-<h3 class="text-sm uppercase tracking-[0.2em] text-zinc-900/60 mb-6">Who We Are</h3>
+<h3 class="text-sm uppercase tracking-wide-label text-zinc-900/60 mb-6">Who We Are</h3>
 <h2 class="text-4xl lg:text-[2.75rem] font-light leading-tight mb-8">Two decades of solving<br/>problems that matter.</h2>
 <p class="text-lg text-zinc-900/70 leading-relaxed mb-10">
                     We're an Atlanta-based product development and design company. For two decades, we've helped mid-market companies replace the systems holding them back with software that actually fits how they work. Our clients stay for years — because we treat their problems like our own.
@@ -657,30 +674,30 @@
 <div class="flex gap-10 mb-10 pb-10 border-b border-zinc-900/15">
 <div>
 <span class="block text-4xl font-semibold">20+</span>
-<span class="text-[10px] uppercase tracking-[0.2em] text-zinc-900/50">Years in Business</span>
+<span class="text-xs uppercase tracking-wide-label text-zinc-900/50">Years in Business</span>
 </div>
 <div>
 <span class="block text-4xl font-semibold">200+</span>
-<span class="text-[10px] uppercase tracking-[0.2em] text-zinc-900/50">Projects Delivered</span>
+<span class="text-xs uppercase tracking-wide-label text-zinc-900/50">Projects Delivered</span>
 </div>
 </div>
-<a href="#about" class="group inline-flex items-center gap-3 border border-zinc-900/25 px-7 py-4 text-sm uppercase tracking-[0.15em] font-medium hover:bg-zinc-900 hover:text-white transition-all duration-300">
+<a href="#about" class="group inline-flex items-center gap-3 border border-zinc-900/25 px-7 py-4 text-sm uppercase tracking-cta font-medium hover:bg-zinc-900 hover:text-white transition-all duration-300">
                     See Who I'd Work With
-                    <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                    <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
 </a>
 </div>
 <div class="lg:w-1/2 relative h-[500px] lg:h-[600px]" id="parallax-photos">
 <div class="absolute w-[55%] top-[5%] left-[5%] z-30 parallax-photo" data-speed="0.04">
-<img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&q=80" alt="Team collaboration" class="w-full aspect-[4/3] object-cover shadow-2xl"/>
+<img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&q=80" alt="Team collaboration" class="w-full aspect-[4/3] object-cover shadow-2xl" loading="lazy"/>
 </div>
 <div class="absolute w-[45%] top-[0%] right-[0%] z-20 parallax-photo" data-speed="0.02">
-<img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&q=80" alt="Design workshop" class="w-full aspect-[3/4] object-cover shadow-2xl"/>
+<img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&q=80" alt="Design workshop" class="w-full aspect-[3/4] object-cover shadow-2xl" loading="lazy"/>
 </div>
 <div class="absolute w-[40%] bottom-[0%] left-[15%] z-10 parallax-photo" data-speed="0.06">
-<img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&q=80" alt="Team meeting" class="w-full aspect-[4/3] object-cover shadow-2xl"/>
+<img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&q=80" alt="Team meeting" class="w-full aspect-[4/3] object-cover shadow-2xl" loading="lazy"/>
 </div>
 <div class="absolute w-[35%] bottom-[5%] right-[5%] z-40 parallax-photo" data-speed="0.03">
-<img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&q=80" alt="Office space" class="w-full aspect-square object-cover shadow-2xl"/>
+<img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&q=80" alt="Office space" class="w-full aspect-square object-cover shadow-2xl" loading="lazy"/>
 </div>
 </div>
 </div>
@@ -705,27 +722,27 @@
 <div class="flex gap-1 px-8 lg:px-16 overflow-x-auto hide-scrollbar pb-20 group/studies cursor-none" id="case-studies-track">
 <div class="flex-shrink-0 w-[450px] group cursor-none transition-transform duration-500 group-hover:-translate-y-2">
 <div class="aspect-[16/10] overflow-hidden rounded-lg mb-6 shadow-lg group-hover:shadow-2xl transition-shadow duration-500">
-<div class="w-full h-full group-hover:scale-105 group-hover:brightness-125 transition-all duration-700" style="background: linear-gradient(160deg, #0a0a0a 0%, #07406B 50%, #1863DC 100%)"></div>
+<div class="w-full h-full group-hover:scale-105 group-hover:brightness-125 transition-all duration-700" style="background: linear-gradient(160deg, #212121 0%, #07406B 50%, #1863DC 100%)"></div>
 </div>
-<h5 class="text-2xl font-light mb-1 group-hover:text-primary transition-colors duration-500">CaseHub</h5>
+<h3 class="text-2xl font-light mb-1 group-hover:text-primary transition-colors duration-500">CaseHub</h3>
 <p class="text-sm opacity-50 mb-2">Replaced a paper-based court filing system across 12 counties.</p>
 <p class="text-sm uppercase tracking-widest opacity-40 group-hover:opacity-70 transition-opacity duration-500">45% Faster Filing Time</p>
 <a href="#" class="text-xs text-primary mt-2 inline-block opacity-0 group-hover:opacity-100 transition-opacity duration-500">Read the full story →</a>
 </div>
 <div class="flex-shrink-0 w-[450px] group cursor-none ml-8 transition-transform duration-500 group-hover:-translate-y-2">
 <div class="aspect-[16/10] overflow-hidden rounded-lg mb-6 shadow-lg group-hover:shadow-2xl transition-shadow duration-500">
-<div class="w-full h-full group-hover:scale-105 group-hover:brightness-125 transition-all duration-700" style="background: linear-gradient(160deg, #0a0a0a 0%, #1863DC 50%, #2AA7DF 100%)"></div>
+<div class="w-full h-full group-hover:scale-105 group-hover:brightness-125 transition-all duration-700" style="background: linear-gradient(160deg, #212121 0%, #1863DC 50%, #2AA7DF 100%)"></div>
 </div>
-<h5 class="text-2xl font-light mb-1 group-hover:text-primary transition-colors duration-500">Azul Arc Internal</h5>
+<h3 class="text-2xl font-light mb-1 group-hover:text-primary transition-colors duration-500">Azul Arc Internal</h3>
 <p class="text-sm opacity-50 mb-2">Migrated our own legacy stack to a modern cloud platform — without a single hour of downtime.</p>
 <p class="text-sm uppercase tracking-widest opacity-40 group-hover:opacity-70 transition-opacity duration-500">Zero-Downtime Migration</p>
 <a href="#" class="text-xs text-primary mt-2 inline-block opacity-0 group-hover:opacity-100 transition-opacity duration-500">Read the full story →</a>
 </div>
 <div class="flex-shrink-0 w-[450px] group cursor-none ml-8 transition-transform duration-500 group-hover:-translate-y-2">
 <div class="aspect-[16/10] overflow-hidden rounded-lg mb-6 shadow-lg group-hover:shadow-2xl transition-shadow duration-500">
-<div class="w-full h-full group-hover:scale-105 group-hover:brightness-125 transition-all duration-700" style="background: linear-gradient(160deg, #0a0a0a 0%, #07406B 60%, #0a0a0a 100%)"></div>
+<div class="w-full h-full group-hover:scale-105 group-hover:brightness-125 transition-all duration-700" style="background: linear-gradient(160deg, #212121 0%, #07406B 60%, #212121 100%)"></div>
 </div>
-<h5 class="text-2xl font-light mb-1 group-hover:text-primary transition-colors duration-500">RenderLab</h5>
+<h3 class="text-2xl font-light mb-1 group-hover:text-primary transition-colors duration-500">RenderLab</h3>
 <p class="text-sm opacity-50 mb-2">Built a 3D rendering pipeline that handles 3x the volume on the same infrastructure.</p>
 <p class="text-sm uppercase tracking-widest opacity-40 group-hover:opacity-70 transition-opacity duration-500">300% Scaling Capacity</p>
 <a href="#" class="text-xs text-primary mt-2 inline-block opacity-0 group-hover:opacity-100 transition-opacity duration-500">Read the full story →</a>
@@ -734,7 +751,7 @@
 <div class="aspect-[16/10] overflow-hidden rounded-lg mb-6 shadow-lg group-hover:shadow-2xl transition-shadow duration-500">
 <div class="w-full h-full group-hover:scale-105 group-hover:brightness-125 transition-all duration-700" style="background: linear-gradient(160deg, #212121 0%, #2AA7DF 40%, #07406B 100%)"></div>
 </div>
-<h5 class="text-2xl font-light mb-1 group-hover:text-primary transition-colors duration-500">FlowOps</h5>
+<h3 class="text-2xl font-light mb-1 group-hover:text-primary transition-colors duration-500">FlowOps</h3>
 <p class="text-sm opacity-50 mb-2">Streamlined warehouse operations across 8 facilities, cutting manual processes and redundant workflows.</p>
 <p class="text-sm uppercase tracking-widest opacity-40 group-hover:opacity-70 transition-opacity duration-500">20% Operational Cost Save</p>
 <a href="#" class="text-xs text-primary mt-2 inline-block opacity-0 group-hover:opacity-100 transition-opacity duration-500">Read the full story →</a>
@@ -752,15 +769,15 @@
 <p class="text-xl opacity-70 mb-12">30 minutes with our team. We'll map out what's costing you time, what needs to go, and what we'd build instead.</p>
 <div class="space-y-6">
 <div class="flex items-center gap-4">
-<span class="material-symbols-outlined text-primary">check_circle</span>
+<span class="material-symbols-outlined text-primary" aria-hidden="true">check_circle</span>
 <span>We'll audit what you're running today — free</span>
 </div>
 <div class="flex items-center gap-4">
-<span class="material-symbols-outlined text-primary">check_circle</span>
+<span class="material-symbols-outlined text-primary" aria-hidden="true">check_circle</span>
 <span>You'll leave with a clear plan, not a pitch deck</span>
 </div>
 <div class="flex items-center gap-4">
-<span class="material-symbols-outlined text-primary">check_circle</span>
+<span class="material-symbols-outlined text-primary" aria-hidden="true">check_circle</span>
 <span>Honest take on what's worth fixing and what's not</span>
 </div>
 </div>
@@ -770,32 +787,32 @@
 <div class="mb-5 flex justify-between items-center">
 <div>
 <h3 class="text-base font-light tracking-tight">Book a Discovery Call</h3>
-<p class="text-[10px] opacity-40 uppercase tracking-widest mt-1">Select a date &amp; time</p>
+<p class="text-xs opacity-40 uppercase tracking-widest mt-1">Select a date &amp; time</p>
 </div>
 <div class="flex items-center gap-3 bg-white/5 px-4 py-2 rounded-full border border-white/10">
 <div class="w-2 h-2 rounded-full bg-primary pulse-indicator"></div>
-<span class="text-[10px] uppercase tracking-widest font-bold text-primary-light">Available</span>
+<span class="text-xs uppercase tracking-widest font-bold text-primary-light">Available</span>
 </div>
 </div>
 <!-- Month nav -->
 <div class="flex items-center justify-between mb-4">
-<button id="cal-prev" class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 transition-colors">
-<span class="material-symbols-outlined text-sm">chevron_left</span>
+<button id="cal-prev" aria-label="Previous month" class="w-11 h-11 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined text-sm" aria-hidden="true">chevron_left</span>
 </button>
 <span id="cal-month-label" class="text-sm font-medium uppercase tracking-widest"></span>
-<button id="cal-next" class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 transition-colors">
-<span class="material-symbols-outlined text-sm">chevron_right</span>
+<button id="cal-next" aria-label="Next month" class="w-11 h-11 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined text-sm" aria-hidden="true">chevron_right</span>
 </button>
 </div>
 <!-- Day headers -->
 <div class="grid grid-cols-7 gap-1 text-center mb-2">
-<div class="text-[10px] font-bold opacity-30 py-2">MON</div>
-<div class="text-[10px] font-bold opacity-30 py-2">TUE</div>
-<div class="text-[10px] font-bold opacity-30 py-2">WED</div>
-<div class="text-[10px] font-bold opacity-30 py-2">THU</div>
-<div class="text-[10px] font-bold opacity-30 py-2">FRI</div>
-<div class="text-[10px] font-bold opacity-30 py-2">SAT</div>
-<div class="text-[10px] font-bold opacity-30 py-2">SUN</div>
+<div class="text-xs font-bold opacity-30 py-2">MON</div>
+<div class="text-xs font-bold opacity-30 py-2">TUE</div>
+<div class="text-xs font-bold opacity-30 py-2">WED</div>
+<div class="text-xs font-bold opacity-30 py-2">THU</div>
+<div class="text-xs font-bold opacity-30 py-2">FRI</div>
+<div class="text-xs font-bold opacity-30 py-2">SAT</div>
+<div class="text-xs font-bold opacity-30 py-2">SUN</div>
 </div>
 <!-- Calendar grid -->
 <div class="grid grid-cols-7 gap-1 mb-5" id="cal-grid"></div>
@@ -809,25 +826,26 @@
 <!-- Summary -->
 <div id="cal-summary" class="mb-4 text-xs opacity-50 text-center" style="min-height:1.25rem;"></div>
 <!-- CTA -->
-<button id="cal-book-btn" class="w-full bg-primary text-white py-3 uppercase text-[10px] font-bold tracking-[0.2em] hover:bg-white hover:text-primary transition-all duration-300 rounded-lg opacity-40 pointer-events-none">
+<button id="cal-book-btn" class="w-full bg-primary text-white py-3 uppercase text-xs font-bold tracking-wide-label hover:bg-white hover:text-primary transition-all duration-300 rounded-lg opacity-40 pointer-events-none">
 Lock In My Free Consult
 </button>
 <canvas id="confetti-canvas" class="absolute inset-0 w-full h-full pointer-events-none rounded-lg" style="z-index:11;"></canvas>
 <!-- Confirmation overlay -->
-<div id="cal-confirm" class="absolute inset-0 rounded-lg flex flex-col items-center justify-center text-center p-8 opacity-0 pointer-events-none transition-all duration-500" style="background: #111111; z-index: 10;">
+<div id="cal-confirm" class="absolute inset-0 rounded-lg flex flex-col items-center justify-center text-center p-8 opacity-0 pointer-events-none transition-all duration-500" style="background: #212121; z-index: 10;">
 <div class="w-14 h-14 rounded-full border-2 border-primary flex items-center justify-center mb-6" id="cal-check-circle">
-<span class="material-symbols-outlined text-primary text-2xl" id="cal-check-icon" style="opacity:0; transform:scale(0.5); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;">check</span>
+<span class="material-symbols-outlined text-primary text-2xl" aria-hidden="true" id="cal-check-icon" style="opacity:0; transform:scale(0.5); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;">check</span>
 </div>
-<h4 class="text-lg font-light mb-2">You're booked.</h4>
+<h3 class="text-lg font-light mb-2">You're booked.</h3>
 <p class="text-xs opacity-50 mb-1" id="cal-confirm-date"></p>
 <p class="text-xs opacity-50 mb-6" id="cal-confirm-time"></p>
-<p class="text-[10px] opacity-30 mb-8 max-w-[240px]">A confirmation email will be sent with a calendar invite and meeting details.</p>
-<button id="cal-confirm-close" class="border border-white/10 text-[10px] uppercase tracking-widest px-6 py-2.5 rounded-lg hover:bg-white/5 transition-colors">
+<p class="text-xs opacity-30 mb-8 max-w-[240px]">A confirmation email will be sent with a calendar invite and meeting details.</p>
+<button id="cal-confirm-close" class="border border-white/10 text-xs uppercase tracking-widest px-6 py-2.5 rounded-lg hover:bg-white/5 transition-colors">
 Back to Calendar
 </button>
 </div>
 </div>
 </section>
+</main>
 <footer id="footer-section" class="relative pt-32 pb-16 px-8 lg:px-16 border-t border-black/5 dark:border-white/5" style="overflow: clip;">
 <canvas id="dither-canvas" class="absolute inset-0 w-full h-full pointer-events-none" style="opacity:0; transition: opacity 0.3s ease;"></canvas>
 <div class="footer-content relative z-10 flex flex-col lg:flex-row justify-between items-end mb-32">
@@ -875,7 +893,7 @@ Back to Calendar
 <h6 class="text-xs uppercase tracking-widest font-bold mb-6 footer-text" style="transition: color 0.6s ease;">Insights</h6>
 <div class="flex border-b border-black/10 pb-2 footer-border" style="transition: border-color 0.6s ease;">
 <input class="bg-transparent border-none focus:ring-0 p-0 text-sm w-full footer-text" style="transition: color 0.6s ease;" placeholder="Email" type="email"/>
-<span class="material-symbols-outlined opacity-40 footer-text" style="transition: color 0.6s ease;">arrow_forward</span>
+<span class="material-symbols-outlined opacity-40 footer-text" aria-hidden="true" style="transition: color 0.6s ease;">arrow_forward</span>
 </div>
 </div>
 <p class="text-xs opacity-30 mt-12 footer-text" style="transition: color 0.6s ease;">© 2026 Azul Arc. All rights reserved.</p>

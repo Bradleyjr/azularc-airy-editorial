@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Azul Arc — CaseHub Case Study</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#1863DC",
+                        "primary-dark": "#07406B",
+                        "primary-light": "#2AA7DF",
+                        "background-light": "#FFFFFF",
+                        "background-dark": "#212121",
+                        "text-dark": "#212121",
+                        "text-light": "#EBEBEB",
+                        "muted": "#808285",
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                        sans: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0px",
+                        'lg': "4px",
+                        'xl': "12px",
+                    },
+                    letterSpacing: {
+                        'label': '0.3em',
+                        'cta': '0.15em',
+                        'wide-label': '0.2em',
+                        'extra': '0.4em',
+                    },
+                    fontSize: {
+                        'menu': '15px',
+                    },
+                    transitionDuration: {
+                        'fast': '150ms',
+                        'base': '300ms',
+                        'slow': '500ms',
+                    },
+                },
+            },
+        };
+    </script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .perspective-1000 { perspective: 1000px; }
+            .preserve-3d { transform-style: preserve-3d; }
+            .backface-hidden { backface-visibility: hidden; }
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Nav background on scroll */
+        nav {
+            transition: background-color 0.4s ease, backdrop-filter 0.4s ease;
+        }
+        nav.nav-scrolled {
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            mix-blend-mode: normal !important;
+            color: #212121 !important;
+        }
+        nav.nav-scrolled a,
+        nav.nav-scrolled div {
+            color: #212121;
+        }
+        nav.nav-scrolled img {
+            filter: none;
+        }
+        nav.nav-scrolled .nav-links a:hover {
+            color: #1863DC;
+            opacity: 1;
+        }
+        .mega-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        /* Stat counter animation */
+        .stat-block {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .stat-block.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Phase step line */
+        .phase-line {
+            position: relative;
+        }
+        .phase-line::before {
+            content: '';
+            position: absolute;
+            left: 1.75rem;
+            top: 3.5rem;
+            bottom: -2rem;
+            width: 1px;
+            background: rgba(0,0,0,0.08);
+        }
+        .phase-line:last-child::before {
+            display: none;
+        }
+
+        /* Related card hover */
+        .related-card {
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .related-card:hover {
+            transform: translateY(-8px);
+        }
+        .related-card .card-gradient {
+            transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.7s ease;
+        }
+        .related-card:hover .card-gradient {
+            transform: scale(1.05);
+            filter: brightness(1.25);
+        }
+    
+        /* Scroll reveal animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-dark dark:text-text-light font-sans selection:bg-primary selection:text-white">
+<a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-white focus:text-text-dark focus:px-4 focus:py-2 focus:text-sm focus:font-medium">Skip to main content</a>
+
+<!-- Nav -->
+<nav id="main-nav" class="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center mix-blend-difference text-white">
+<a href="index.html"><img src="azularcLogo.png" alt="Azul Arc" class="h-8 brightness-0 invert"/></a>
+<div class="hidden md:flex gap-6 text-sm uppercase tracking-widest font-medium items-center nav-links">
+<a class="hover:opacity-60 transition-opacity flex items-center gap-1 cursor-pointer nav-dd-trigger" data-dropdown="industries" href="#industries">Industries <span class="material-symbols-outlined text-sm" aria-hidden="true">expand_more</span></a>
+<a class="hover:opacity-60 transition-opacity flex items-center gap-1 cursor-pointer nav-dd-trigger" data-dropdown="whatwedo" href="#capabilities">What We Do <span class="material-symbols-outlined text-sm" aria-hidden="true">expand_more</span></a>
+<a class="hover:opacity-60 transition-opacity" href="how-we-work.html">How We Work</a>
+<a class="hover:opacity-60 transition-opacity" href="work.html">Work</a>
+<a class="hover:opacity-60 transition-opacity" href="about.html">About</a>
+</div>
+<div class="hidden md:block w-28"></div>
+<button class="md:hidden" aria-label="Toggle navigation menu">
+<span class="material-symbols-outlined" aria-hidden="true">menu</span>
+</button>
+</nav>
+<a href="contact.html" id="nav-cta" class="nav-cta fixed top-[22px] right-8 z-50 hidden md:flex items-center gap-2 bg-primary text-white px-5 py-2 rounded-full text-xs uppercase tracking-widest font-medium hover:bg-primary-dark transition-colors">Let's Talk</a>
+
+<!-- Mega menus -->
+<div id="mega-industries" class="mega-menu fixed top-0 left-0 w-full z-40 pt-[72px] opacity-0 invisible translate-y-[-8px] transition-all duration-300 ease-out pointer-events-none">
+<div class="mx-8 bg-text-dark backdrop-blur-xl rounded-xl pointer-events-auto overflow-hidden">
+<div class="flex">
+<div class="w-64 shrink-0 p-8 border-r border-white/10 flex flex-col justify-center">
+<span class="text-xs uppercase tracking-widest text-primary-light mb-2">Industries</span>
+<p class="text-sm text-white/40 leading-relaxed">The industries where we do our best work.</p>
+</div>
+<div class="flex-1 p-4">
+<a href="industries/courts.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<span class="text-xs text-white/20 font-mono w-6">01</span>
+<div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">Court Systems</div><div class="text-xs text-white/40 mt-1">Courts, clerks & public agencies</div></div>
+<span class="material-symbols-outlined text-white/20 text-base group-hover/item:text-primary-light group-hover/item:translate-x-1 transition-all" aria-hidden="true">arrow_forward</span>
+</a>
+<a href="industries/manufacturing.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<span class="text-xs text-white/20 font-mono w-6">02</span>
+<div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">Product Manufacturers</div><div class="text-xs text-white/40 mt-1">Sales tools & commercial platforms</div></div>
+<span class="material-symbols-outlined text-white/20 text-base group-hover/item:text-primary-light group-hover/item:translate-x-1 transition-all" aria-hidden="true">arrow_forward</span>
+</a>
+<a href="industries/growth-stage.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<span class="text-xs text-white/20 font-mono w-6">03</span>
+<div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">Growth-Stage SMBs</div><div class="text-xs text-white/40 mt-1">Scaling operations & legacy replacement</div></div>
+<span class="material-symbols-outlined text-white/20 text-base group-hover/item:text-primary-light group-hover/item:translate-x-1 transition-all" aria-hidden="true">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div id="mega-whatwedo" class="mega-menu fixed top-0 left-0 w-full z-40 pt-[72px] opacity-0 invisible translate-y-[-8px] transition-all duration-300 ease-out pointer-events-none">
+<div class="mx-8 bg-text-dark backdrop-blur-xl rounded-xl pointer-events-auto overflow-hidden">
+<div class="flex">
+<div class="w-64 shrink-0 p-8 border-r border-white/10 flex flex-col justify-center">
+<span class="text-xs uppercase tracking-widest text-primary-light mb-2">What We Do</span>
+<p class="text-sm text-white/40 leading-relaxed">From strategy to launch and beyond.</p>
+</div>
+<div class="flex-1 p-4 grid grid-cols-2">
+<a href="services/digital-product-strategy.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<span class="text-xs text-white/20 font-mono w-6">01</span>
+<div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">Digital Product Strategy</div><div class="text-xs text-white/40 mt-1">Figure out what to build first</div></div>
+</a>
+<a href="services/web-design-development.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<span class="text-xs text-white/20 font-mono w-6">02</span>
+<div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">Web Design & Development</div><div class="text-xs text-white/40 mt-1">Sites & apps that actually convert</div></div>
+</a>
+<a href="services/3d-visualization.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<span class="text-xs text-white/20 font-mono w-6">03</span>
+<div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">3D Visualisation</div><div class="text-xs text-white/40 mt-1">Product visuals that sell themselves</div></div>
+</a>
+<a href="services/case-management.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<span class="text-xs text-white/20 font-mono w-6">04</span>
+<div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">Case Management Systems</div><div class="text-xs text-white/40 mt-1">Track every case, automate the rest</div></div>
+</a>
+</div>
+</div>
+</div>
+</div>
+
+<main id="main-content">
+<!-- Hero -->
+<section class="relative min-h-[70vh] flex flex-col justify-end overflow-hidden bg-zinc-950 text-white">
+    <div class="absolute inset-0 z-0">
+        <div class="w-full h-full" style="background: linear-gradient(160deg, #212121 0%, #07406B 50%, #1863DC 100%); opacity: 0.6;"></div>
+    </div>
+    <div class="relative z-10 px-8 lg:px-16 pb-20 pt-48">
+        <a href="work.html" class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-white/50 hover:text-white transition-colors mb-12">
+            <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_back</span>
+            All Case Studies
+        </a>
+        <div class="flex items-center gap-4 mb-6">
+            <span class="text-xs uppercase tracking-widest font-medium bg-white/10 backdrop-blur-sm px-4 py-1.5">Government & Courts</span>
+        </div>
+        <h1 class="text-5xl md:text-7xl lg:text-8xl font-light tracking-tighter leading-none mb-8">CaseHub</h1>
+        <p class="text-xl md:text-2xl text-white/60 font-light max-w-2xl">Replacing paper-based court filing across 12 counties with a unified digital platform.</p>
+    </div>
+</section>
+
+<!-- Overview Bar -->
+<section class="py-8 px-8 lg:px-16 border-b border-black/5 bg-zinc-50">
+    <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div>
+            <span class="text-xs uppercase tracking-widest text-muted block mb-1">Client</span>
+            <span class="text-sm font-medium">Georgia Courts</span>
+        </div>
+        <div>
+            <span class="text-xs uppercase tracking-widest text-muted block mb-1">Industry</span>
+            <span class="text-sm font-medium">Government</span>
+        </div>
+        <div>
+            <span class="text-xs uppercase tracking-widest text-muted block mb-1">Timeline</span>
+            <span class="text-sm font-medium">14 months</span>
+        </div>
+        <div>
+            <span class="text-xs uppercase tracking-widest text-muted block mb-1">Services</span>
+            <span class="text-sm font-medium">Case Management, UX, Data Migration</span>
+        </div>
+    </div>
+</section>
+
+<!-- The Challenge -->
+<section class="py-32 px-8 lg:px-16">
+    <div class="max-w-7xl mx-auto">
+        <div class="reveal mb-16">
+            <p class="text-sm uppercase tracking-widest text-primary mb-4">The Challenge</p>
+            <h2 class="text-5xl font-light">What we walked into</h2>
+        </div>
+        <div class="flex flex-col lg:flex-row gap-16 items-start">
+            <div class="lg:w-1/2 space-y-6">
+                <p class="text-xl text-muted leading-relaxed">Georgia's court system was running on paper. Not metaphorically -- literally. Fax machines handled case transfers between counties. Filing cabinets held the only copies of critical legal documents. The software they did use was built in 2004 and hadn't been meaningfully updated since.</p>
+                <p class="text-lg text-muted leading-relaxed">Twelve counties, each with their own filing procedures, their own workarounds, their own version of "how things get done." Compliance requirements were changing faster than any manual process could keep up with. Citizens waited weeks for updates on their cases -- because no one could find the paperwork.</p>
+                <p class="text-lg text-muted leading-relaxed">The clerks weren't the problem. They were doing heroic work inside a system that was designed for a different century. They needed tools that matched their dedication.</p>
+                <div class="pt-8 border-t border-black/5 space-y-4">
+                    <div class="flex items-start gap-4">
+                        <span class="material-symbols-outlined text-primary text-lg mt-0.5" aria-hidden="true">close</span>
+                        <span class="text-base">Paper-based filing across all 12 counties</span>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <span class="material-symbols-outlined text-primary text-lg mt-0.5" aria-hidden="true">close</span>
+                        <span class="text-base">Legacy software from 2004, no longer supported</span>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <span class="material-symbols-outlined text-primary text-lg mt-0.5" aria-hidden="true">close</span>
+                        <span class="text-base">Fax-dependent inter-county case transfers</span>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <span class="material-symbols-outlined text-primary text-lg mt-0.5" aria-hidden="true">close</span>
+                        <span class="text-base">Weeks-long wait times for citizen case updates</span>
+                    </div>
+                </div>
+            </div>
+            <div class="lg:w-1/2">
+                <div class="aspect-[4/3] overflow-hidden rounded-lg shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&q=80" alt="Courthouse interior" class="w-full h-full object-cover" loading="lazy"/>
+                </div>
+                <p class="text-xs text-muted mt-4 italic">Court clerks managed thousands of filings per week using processes unchanged since the early 2000s.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- The Approach -->
+<section class="py-32 px-8 lg:px-16 border-t border-black/5" style="background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);">
+    <div class="max-w-7xl mx-auto">
+        <div class="reveal mb-20">
+            <p class="text-sm uppercase tracking-widest text-primary mb-4">The Approach</p>
+            <h2 class="text-5xl font-light">How we got there</h2>
+        </div>
+        <div class="max-w-3xl space-y-16">
+
+            <!-- Phase 1 -->
+            <div class="phase-line flex gap-8">
+                <div class="shrink-0 w-14 h-14 rounded-full border-2 border-primary flex items-center justify-center">
+                    <span class="text-lg font-light text-primary">01</span>
+                </div>
+                <div class="pt-2">
+                    <span class="text-xs uppercase tracking-widest text-primary font-medium">Weeks 1-4</span>
+                    <h3 class="text-2xl font-medium mt-2 mb-4">Discovery & Audit</h3>
+                    <p class="text-lg text-muted leading-relaxed">We spent four weeks embedded in three counties, sitting with clerks, watching their workflows, and mapping every process -- from initial filing to case closure. We documented 47 distinct workflows and identified 23 that could be automated immediately.</p>
+                </div>
+            </div>
+
+            <!-- Phase 2 -->
+            <div class="phase-line flex gap-8">
+                <div class="shrink-0 w-14 h-14 rounded-full border-2 border-primary flex items-center justify-center">
+                    <span class="text-lg font-light text-primary">02</span>
+                </div>
+                <div class="pt-2">
+                    <span class="text-xs uppercase tracking-widest text-primary font-medium">Weeks 5-8</span>
+                    <h3 class="text-2xl font-medium mt-2 mb-4">System Architecture</h3>
+                    <p class="text-lg text-muted leading-relaxed">We designed a multi-tenant platform that could accommodate each county's specific needs while enforcing state-level compliance standards. The architecture had to handle massive document volumes, concurrent users across counties, and air-tight security for sensitive legal data.</p>
+                </div>
+            </div>
+
+            <!-- Phase 3 -->
+            <div class="phase-line flex gap-8">
+                <div class="shrink-0 w-14 h-14 rounded-full border-2 border-primary flex items-center justify-center">
+                    <span class="text-lg font-light text-primary">03</span>
+                </div>
+                <div class="pt-2">
+                    <span class="text-xs uppercase tracking-widest text-primary font-medium">Weeks 9-44</span>
+                    <h3 class="text-2xl font-medium mt-2 mb-4">Iterative Build</h3>
+                    <p class="text-lg text-muted leading-relaxed">We built in 2-week sprints, showing working software to county clerks every cycle. Their feedback shaped everything -- from the dashboard layout to the document upload flow. By month six, two pilot counties were running on the new system alongside the old one.</p>
+                </div>
+            </div>
+
+            <!-- Phase 4 -->
+            <div class="phase-line flex gap-8">
+                <div class="shrink-0 w-14 h-14 rounded-full border-2 border-primary flex items-center justify-center">
+                    <span class="text-lg font-light text-primary">04</span>
+                </div>
+                <div class="pt-2">
+                    <span class="text-xs uppercase tracking-widest text-primary font-medium">Weeks 45-60</span>
+                    <h3 class="text-2xl font-medium mt-2 mb-4">Phased Rollout</h3>
+                    <p class="text-lg text-muted leading-relaxed">We rolled out county-by-county, migrating data, training staff, and running parallel systems until each county was confident. No big-bang. No downtime. No one lost a single filing in the transition. The last county went live three weeks ahead of schedule.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- The Solution -->
+<section class="py-32 px-8 lg:px-16 border-t border-black/5">
+    <div class="max-w-7xl mx-auto">
+        <div class="reveal mb-20">
+            <p class="text-sm uppercase tracking-widest text-primary mb-4">The Solution</p>
+            <h2 class="text-5xl font-light">What we built</h2>
+        </div>
+
+        <!-- Screenshot Placeholder -->
+        <div class="reveal aspect-[16/9] rounded-lg overflow-hidden mb-20 shadow-2xl bg-zinc-950 relative">
+            <div class="absolute inset-0" style="background: linear-gradient(160deg, #212121 0%, #07406B 40%, #1863DC 80%, #2AA7DF 100%);"></div>
+            <div class="absolute inset-0 flex items-center justify-center">
+                <div class="text-center text-white">
+                    <span class="material-symbols-outlined text-6xl mb-4 opacity-30" aria-hidden="true">devices</span>
+                    <p class="text-sm uppercase tracking-widest opacity-40">CaseHub Platform Dashboard</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+            <div class="group">
+                <div class="w-12 h-12 rounded-full bg-primary/5 flex items-center justify-center mb-5 group-hover:bg-primary/10 transition-colors">
+                    <span class="material-symbols-outlined text-primary" aria-hidden="true">upload_file</span>
+                </div>
+                <h3 class="text-lg font-medium mb-3">Automated Filing</h3>
+                <p class="text-muted leading-relaxed">Digital filing with automated routing, validation, and confirmation. What used to take a clerk 20 minutes now takes 3.</p>
+            </div>
+            <div class="group">
+                <div class="w-12 h-12 rounded-full bg-primary/5 flex items-center justify-center mb-5 group-hover:bg-primary/10 transition-colors">
+                    <span class="material-symbols-outlined text-primary" aria-hidden="true">folder_managed</span>
+                </div>
+                <h3 class="text-lg font-medium mb-3">Document Management</h3>
+                <p class="text-muted leading-relaxed">Centralized, searchable document storage with version control, audit trails, and automated retention policies.</p>
+            </div>
+            <div class="group">
+                <div class="w-12 h-12 rounded-full bg-primary/5 flex items-center justify-center mb-5 group-hover:bg-primary/10 transition-colors">
+                    <span class="material-symbols-outlined text-primary" aria-hidden="true">public</span>
+                </div>
+                <h3 class="text-lg font-medium mb-3">Citizen Portal</h3>
+                <p class="text-muted leading-relaxed">Self-service portal where citizens can check case status, submit documents, and schedule hearings -- without calling the clerk's office.</p>
+            </div>
+            <div class="group">
+                <div class="w-12 h-12 rounded-full bg-primary/5 flex items-center justify-center mb-5 group-hover:bg-primary/10 transition-colors">
+                    <span class="material-symbols-outlined text-primary" aria-hidden="true">verified</span>
+                </div>
+                <h3 class="text-lg font-medium mb-3">Compliance Dashboard</h3>
+                <p class="text-muted leading-relaxed">Real-time compliance monitoring across all counties with automated alerts for approaching deadlines and policy changes.</p>
+            </div>
+            <div class="group">
+                <div class="w-12 h-12 rounded-full bg-primary/5 flex items-center justify-center mb-5 group-hover:bg-primary/10 transition-colors">
+                    <span class="material-symbols-outlined text-primary" aria-hidden="true">admin_panel_settings</span>
+                </div>
+                <h3 class="text-lg font-medium mb-3">Multi-County Admin</h3>
+                <p class="text-muted leading-relaxed">Unified administration across all 12 counties with county-specific configurations, permissions, and reporting.</p>
+            </div>
+            <div class="group">
+                <div class="w-12 h-12 rounded-full bg-primary/5 flex items-center justify-center mb-5 group-hover:bg-primary/10 transition-colors">
+                    <span class="material-symbols-outlined text-primary" aria-hidden="true">sync</span>
+                </div>
+                <h3 class="text-lg font-medium mb-3">Cross-County Sync</h3>
+                <p class="text-muted leading-relaxed">Instant case transfers between counties with automatic document syncing, eliminating fax machines entirely.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Results -->
+<section class="py-32 px-8 lg:px-16 bg-zinc-950 text-white">
+    <div class="max-w-7xl mx-auto">
+        <div class="reveal mb-20">
+            <p class="text-sm uppercase tracking-widest text-primary-light mb-4">The Results</p>
+            <h2 class="text-5xl font-light">Numbers that matter</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+            <div class="stat-block border-t border-white/10 pt-8" style="transition-delay: 0.1s;">
+                <span class="block text-5xl md:text-6xl font-light text-primary-light mb-4">45%</span>
+                <h3 class="text-lg font-medium mb-2">Faster Filing Time</h3>
+                <p class="text-sm text-white/40 leading-relaxed">Average filing time dropped from 22 minutes to 12 minutes per case, freeing clerks for higher-value work.</p>
+            </div>
+            <div class="stat-block border-t border-white/10 pt-8" style="transition-delay: 0.2s;">
+                <span class="block text-5xl md:text-6xl font-light text-primary-light mb-4">12</span>
+                <h3 class="text-lg font-medium mb-2">Counties Live</h3>
+                <p class="text-sm text-white/40 leading-relaxed">All 12 counties fully operational on a single unified platform, with zero data loss during migration.</p>
+            </div>
+            <div class="stat-block border-t border-white/10 pt-8" style="transition-delay: 0.3s;">
+                <span class="block text-5xl md:text-6xl font-light text-primary-light mb-4">99.9%</span>
+                <h3 class="text-lg font-medium mb-2">Uptime</h3>
+                <p class="text-sm text-white/40 leading-relaxed">Platform reliability that courts can depend on, with automated failover and real-time monitoring.</p>
+            </div>
+            <div class="stat-block border-t border-white/10 pt-8" style="transition-delay: 0.4s;">
+                <span class="block text-5xl md:text-6xl font-light text-primary-light mb-4">0</span>
+                <h3 class="text-lg font-medium mb-2">Paper Forms</h3>
+                <p class="text-sm text-white/40 leading-relaxed">Every form digitized. Every fax machine unplugged. Every filing cabinet is now a relic.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonial -->
+<section class="py-24 px-8 lg:px-16 border-t border-black/5">
+    <div class="max-w-4xl mx-auto text-center">
+        <span class="material-symbols-outlined text-primary text-4xl mb-8 block opacity-30" aria-hidden="true">format_quote</span>
+        <blockquote class="text-3xl md:text-4xl font-light leading-snug mb-10">
+            "We went from faxing case files between counties to having everything in one place. Our clerks can actually focus on people now, instead of paperwork. I wish we'd done this ten years ago."
+        </blockquote>
+        <div>
+            <span class="text-sm font-semibold">Sandra Mitchell</span>
+            <span class="text-sm text-muted ml-2">Chief Clerk, Fulton County Superior Court</span>
+        </div>
+    </div>
+</section>
+
+<!-- Related Case Studies -->
+<section class="py-32 px-8 lg:px-16 border-t border-black/5">
+    <div class="max-w-7xl mx-auto">
+        <div class="reveal flex justify-between items-end mb-16">
+            <div>
+                <p class="text-sm uppercase tracking-widest text-primary mb-4">More Work</p>
+                <h2 class="text-4xl font-light">Related case studies</h2>
+            </div>
+            <a href="work.html" class="group hidden md:inline-flex items-center gap-2 text-sm uppercase tracking-widest text-primary font-medium hover:text-primary-dark transition-colors">
+                View All
+                <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
+            </a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+            <!-- CourtSync -->
+            <a href="case-study.html" class="reveal reveal-delay-1 related-card block group">
+                <div class="aspect-[16/10] overflow-hidden rounded-lg mb-6 shadow-lg">
+                    <div class="card-gradient w-full h-full" style="background: linear-gradient(160deg, #212121 0%, #1863DC 40%, #07406B 100%)"></div>
+                </div>
+                <div class="flex items-center gap-3 mb-2">
+                    <span class="text-xs uppercase tracking-widest text-primary font-medium">Government & Courts</span>
+                </div>
+                <h3 class="text-2xl font-light mb-1 group-hover:text-primary transition-colors duration-300">CourtSync</h3>
+                <p class="text-sm text-muted mb-2">Automated 80% of routine filings with intelligent document processing.</p>
+                <p class="text-sm uppercase tracking-widest opacity-40">80% Automation Rate</p>
+            </a>
+
+            <!-- FlowOps -->
+            <a href="case-study.html" class="reveal reveal-delay-2 related-card block group">
+                <div class="aspect-[16/10] overflow-hidden rounded-lg mb-6 shadow-lg">
+                    <div class="card-gradient w-full h-full" style="background: linear-gradient(160deg, #212121 0%, #2AA7DF 40%, #07406B 100%)"></div>
+                </div>
+                <div class="flex items-center gap-3 mb-2">
+                    <span class="text-xs uppercase tracking-widest text-primary font-medium">Manufacturing</span>
+                </div>
+                <h3 class="text-2xl font-light mb-1 group-hover:text-primary transition-colors duration-300">FlowOps</h3>
+                <p class="text-sm text-muted mb-2">Streamlined warehouse operations across 8 facilities.</p>
+                <p class="text-sm uppercase tracking-widest opacity-40">20% Operational Cost Save</p>
+            </a>
+
+            <!-- Azul Arc Internal -->
+            <a href="case-study.html" class="reveal reveal-delay-3 related-card block group">
+                <div class="aspect-[16/10] overflow-hidden rounded-lg mb-6 shadow-lg">
+                    <div class="card-gradient w-full h-full" style="background: linear-gradient(160deg, #212121 0%, #1863DC 50%, #2AA7DF 100%)"></div>
+                </div>
+                <div class="flex items-center gap-3 mb-2">
+                    <span class="text-xs uppercase tracking-widest text-primary font-medium">Growth-Stage</span>
+                </div>
+                <h3 class="text-2xl font-light mb-1 group-hover:text-primary transition-colors duration-300">Azul Arc Internal</h3>
+                <p class="text-sm text-muted mb-2">Zero-downtime migration to modern cloud infrastructure.</p>
+                <p class="text-sm uppercase tracking-widest opacity-40">Zero-Downtime Migration</p>
+            </a>
+
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="py-32 px-8 lg:px-16 border-t border-black/5">
+    <div class="reveal max-w-4xl mx-auto text-center">
+        <h2 class="text-5xl md:text-6xl font-light mb-8">Have a similar challenge?</h2>
+        <p class="text-xl text-muted mb-12 max-w-2xl mx-auto">Whether it's legacy software, paper-based processes, or systems that don't talk to each other -- we've seen it before, and we know how to fix it.</p>
+        <a href="contact.html" class="group inline-flex items-center gap-3 border border-black/15 px-8 py-5 text-sm uppercase tracking-cta font-medium hover:bg-text-dark hover:text-white transition-all duration-300">
+            Talk About My Project
+            <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
+        </a>
+    </div>
+</section>
+
+<!-- Footer -->
+</main>
+<footer class="relative pt-32 pb-16 px-8 lg:px-16 border-t border-black/5 dark:border-white/5">
+<div class="footer-content relative z-10 flex flex-col lg:flex-row justify-between items-end mb-32">
+<div class="max-w-xl mb-12 lg:mb-0">
+<h2 class="text-7xl font-light mb-6">Your next system<br/>starts here.</h2>
+<p class="text-lg opacity-60 mb-4">No pitch deck. No 6-week scoping process. Just a 30-minute conversation about what's possible.</p>
+<p class="text-sm opacity-40">Not sure you're ready? That's exactly what discovery calls are for.</p>
+</div>
+<a href="contact.html" class="w-48 h-48 rounded-full border border-black/10 flex items-center justify-center text-sm uppercase tracking-widest hover:bg-text-dark hover:text-white hover:border-text-dark transition-all duration-500">
+    Start a Conversation
+</a>
+</div>
+<div class="footer-grid relative z-10 grid grid-cols-2 md:grid-cols-4 gap-12 pt-16 border-t border-black/10">
+<div>
+<h6 class="text-xs uppercase tracking-widest font-bold mb-6">What We Do</h6>
+<ul class="space-y-2 opacity-60 text-sm">
+<li><a class="hover:text-primary" href="services/digital-product-strategy.html">Custom Software</a></li>
+<li><a class="hover:text-primary" href="services/web-design-development.html">Web Design & Development</a></li>
+<li><a class="hover:text-primary" href="services/3d-visualization.html">3D Visualization</a></li>
+<li><a class="hover:text-primary" href="services/case-management.html">Integrations & Data</a></li>
+</ul>
+</div>
+<div>
+<h6 class="text-xs uppercase tracking-widest font-bold mb-6">Company</h6>
+<ul class="space-y-2 opacity-60 text-sm">
+<li><a class="hover:text-primary" href="about.html">About</a></li>
+<li><a class="hover:text-primary" href="how-we-work.html">How We Work</a></li>
+<li><a class="hover:text-primary" href="work.html">Work</a></li>
+<li><a class="hover:text-primary" href="contact.html">Contact</a></li>
+</ul>
+</div>
+<div>
+<h6 class="text-xs uppercase tracking-widest font-bold mb-6">Connect</h6>
+<ul class="space-y-2 opacity-60 text-sm">
+<li><a class="hover:text-primary" href="#">LinkedIn</a></li>
+<li><a class="hover:text-primary" href="#">Twitter</a></li>
+<li><a class="hover:text-primary" href="mailto:hello@azularc.com">Email</a></li>
+</ul>
+</div>
+<div class="flex flex-col justify-between">
+<div>
+<h6 class="text-xs uppercase tracking-widest font-bold mb-6">Insights</h6>
+<div class="flex border-b border-black/10 pb-2">
+<input class="bg-transparent border-none focus:ring-0 p-0 text-sm w-full" placeholder="Email" type="email"/>
+<span class="material-symbols-outlined opacity-40" aria-hidden="true">arrow_forward</span>
+</div>
+</div>
+<p class="text-xs opacity-30 mt-12">&copy; 2026 Azul Arc. All rights reserved.</p>
+</div>
+</div>
+</footer>
+
+<script>
+    // Nav scroll background
+    (function() {
+        const nav = document.getElementById('main-nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 80) {
+                nav.classList.add('nav-scrolled');
+            } else {
+                nav.classList.remove('nav-scrolled');
+            }
+        });
+    })();
+
+    // Mega menu dropdowns
+    (function() {
+        const triggers = document.querySelectorAll('.nav-dd-trigger');
+        const menus = document.querySelectorAll('.mega-menu');
+        let hideTimeout = null;
+
+        function showMenu(key) {
+            clearTimeout(hideTimeout);
+            menus.forEach(m => { if (m.id !== 'mega-' + key) m.classList.remove('active'); });
+            const menu = document.getElementById('mega-' + key);
+            if (menu) menu.classList.add('active');
+        }
+        function hideAll() {
+            hideTimeout = setTimeout(() => { menus.forEach(m => m.classList.remove('active')); }, 150);
+        }
+
+        triggers.forEach(trigger => {
+            trigger.addEventListener('mouseenter', (e) => {
+                e.preventDefault();
+                showMenu(trigger.dataset.dropdown);
+            });
+            trigger.addEventListener('mouseleave', hideAll);
+        });
+        menus.forEach(menu => {
+            menu.addEventListener('mouseenter', () => { clearTimeout(hideTimeout); });
+            menu.addEventListener('mouseleave', hideAll);
+        });
+    })();
+
+    // Scroll-triggered stat animations
+    (function() {
+        const stats = document.querySelectorAll('.stat-block');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.2 });
+
+        stats.forEach(stat => observer.observe(stat));
+    })();
+</script>
+
+
+<script>
+// Scroll reveal
+const revealEls = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+revealEls.forEach(el => revealObserver.observe(el));
+</script>
+</body></html>

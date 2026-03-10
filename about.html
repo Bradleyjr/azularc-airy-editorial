@@ -5,7 +5,7 @@
 <title>Azul Arc — About Us | Two Decades of Solving Problems That Matter</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Inter:wght@100;200;300;400;500;600&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
 <script>
@@ -24,7 +24,7 @@
                         "muted": "#808285",
                     },
                     fontFamily: {
-                        display: ["Inter", "sans-serif"],
+                        display: ["Instrument Serif", "serif"],
                         sans: ["Inter", "sans-serif"],
                     },
                     borderRadius: {
@@ -86,7 +86,7 @@
         }
         .value-card:hover .value-icon {
             color: #1863DC;
-            transform: scale(1.1);
+            transform: translateX(4px);
         }
         .value-icon {
             transition: all 0.4s ease;
@@ -99,6 +99,30 @@
         .team-card:hover img {
             transform: scale(1.05);
         }
+        .team-bio-overlay {
+            position: absolute;
+            inset: 0;
+            background: #1863DC;
+            transform: translateY(100%);
+            transition: transform 1s cubic-bezier(0.4, 0, 0.1, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .team-bio-overlay p {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.4s ease 0.25s, transform 0.4s ease 0.25s;
+        }
+        .team-card:hover .team-bio-overlay {
+            transform: translateY(0);
+        }
+        .team-card:hover .team-bio-overlay p {
+            opacity: 1;
+            transform: translateY(0);
+        }
         /* Scroll reveal */
         .reveal {
             opacity: 0;
@@ -109,6 +133,28 @@
             opacity: 1;
             transform: translateY(0);
         }
+        .magnetic-wrap {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.1s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+        }
+        @keyframes nudge-right {
+            0%, 100% { transform: translateX(0); opacity: 0.4; }
+            50% { transform: translateX(6px); opacity: 0.7; }
+        }
+        .cta-arrow {
+            animation: nudge-right 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+        }
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+        }
+        .reveal { opacity: 1; transform: none; }
+    }
     </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-text-dark dark:text-text-light font-sans selection:bg-primary selection:text-white">
@@ -192,11 +238,11 @@
 <!-- ===== HERO ===== -->
 <section class="relative min-h-screen flex flex-col justify-end overflow-hidden bg-zinc-950 text-white">
 <div class="absolute inset-0 z-0">
-<img alt="AzulArc team at work" class="w-full h-full object-cover opacity-25" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&q=80"/>
+<img alt="AzulArc team at work" class="w-full h-full object-cover opacity-25" src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80"/>
 <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/70 to-zinc-950/40"></div>
 </div>
 <div class="relative z-10 px-8 lg:px-16 pb-20 pt-48">
-<h1 class="text-5xl md:text-7xl lg:text-8xl leading-none font-semibold tracking-tighter mb-16">
+<h1 class="font-display text-5xl md:text-7xl lg:text-8xl leading-none tracking-tighter mb-16">
             Two decades of solving<br/>problems that matter.
         </h1>
 <div class="flex flex-col md:flex-row gap-16 items-start md:items-end justify-between border-t border-white/15 pt-10">
@@ -228,7 +274,7 @@
 <!-- Left: Editorial text -->
 <div class="lg:w-3/5 reveal">
 <p class="text-sm uppercase tracking-widest text-primary mb-6">Our Story</p>
-<h2 class="text-4xl md:text-5xl font-light leading-tight mb-10">We started because mid-market companies deserved better.</h2>
+<h2 class="font-display text-4xl md:text-5xl leading-tight mb-10">We started because mid-market companies deserved better.</h2>
 <div class="space-y-6 text-lg text-text-dark/70 leading-relaxed">
 <p>
                         In 2003, our founders saw a gap that nobody was filling. Enterprise software vendors built bloated, expensive platforms for Fortune 500 companies. Freelancers and small agencies built websites and basic apps. But mid-market companies -- the ones doing $10M to $500M in revenue, with real operational complexity -- had nowhere to turn for the kind of custom software that could actually transform how they worked.
@@ -278,7 +324,7 @@
 <div class="max-w-7xl mx-auto">
 <div class="mb-20 reveal">
 <p class="text-sm uppercase tracking-widest text-zinc-900/60 mb-4">What We Believe</p>
-<h2 class="text-5xl font-light text-zinc-900">The principles that<br/>guide every project.</h2>
+<h2 class="font-display text-5xl text-zinc-900">The principles that<br/>guide every project.</h2>
 </div>
 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
 <div class="value-card bg-white p-10 reveal">
@@ -311,85 +357,238 @@
 <div class="mb-20 flex flex-col md:flex-row justify-between items-start md:items-end gap-8 reveal">
 <div>
 <p class="text-sm uppercase tracking-widest text-primary mb-4">Our Team</p>
-<h2 class="text-5xl font-light">The people behind<br/>the platforms.</h2>
+<h2 class="font-display text-5xl">The people behind<br/>the platforms.</h2>
 </div>
-<p class="text-lg text-text-dark/60 max-w-md leading-relaxed">Headquartered in Atlanta, with collaborators across the country. Designers, engineers, and strategists who've been doing this for a while.</p>
+<p class="text-lg text-text-dark/60 max-w-md leading-relaxed">Headquartered in Atlanta, with collaborators across the globe. Designers, engineers, and strategists who've been doing this for a while.</p>
 </div>
-<div class="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
-<!-- Team Member 1 -->
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16" id="team-grid">
+<!-- Zahir Palanpur -->
 <div class="team-card group reveal">
-<div class="overflow-hidden mb-5 aspect-[3/4]">
-<img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80" alt="Marcus Chen" class="w-full h-full object-cover grayscale group-hover:grayscale-0" loading="lazy"/>
+<div class="relative overflow-hidden mb-5 aspect-[446/800]">
+<img src="team/headshot-1.jpg" alt="Zahir Palanpur" class="w-full h-full object-cover object-top group-hover:grayscale-0" loading="lazy"/>
+<div class="team-bio-overlay"><p class="text-white text-sm leading-relaxed">Founded Azul Arc in 2003. Two decades of helping mid-market companies replace the systems holding them back.</p></div>
 </div>
-<h3 class="text-lg font-medium">Marcus Chen</h3>
-<span class="text-sm text-muted">Founder & CEO</span>
+<h3 class="text-lg font-medium">Zahir Palanpur</h3>
+<span class="text-sm text-muted">CEO</span>
 </div>
-<!-- Team Member 2 -->
+<!-- Jayme Clemons -->
 <div class="team-card group reveal" style="transition-delay: 0.08s;">
-<div class="overflow-hidden mb-5 aspect-[3/4]">
-<img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80" alt="Sarah Okafor" class="w-full h-full object-cover grayscale group-hover:grayscale-0" loading="lazy"/>
+<div class="relative overflow-hidden mb-5 aspect-[446/800]">
+<img src="team/headshot-2.jpg" alt="Jayme Clemons" class="w-full h-full object-cover object-top group-hover:grayscale-0" loading="lazy"/>
+<div class="team-bio-overlay"><p class="text-white text-sm leading-relaxed">Keeps every project running on time and on budget. The operational backbone of everything we ship.</p></div>
 </div>
-<h3 class="text-lg font-medium">Sarah Okafor</h3>
-<span class="text-sm text-muted">VP of Engineering</span>
+<h3 class="text-lg font-medium">Jayme Clemons</h3>
+<span class="text-sm text-muted">Vice President, Operations</span>
 </div>
-<!-- Team Member 3 -->
+<!-- Adriana Palanpur -->
 <div class="team-card group reveal" style="transition-delay: 0.16s;">
-<div class="overflow-hidden mb-5 aspect-[3/4]">
-<img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80" alt="David Park" class="w-full h-full object-cover grayscale group-hover:grayscale-0" loading="lazy"/>
+<div class="relative overflow-hidden mb-5 aspect-[446/800]">
+<img src="team/headshot-3.jpg" alt="Adriana Palanpur" class="w-full h-full object-cover object-top group-hover:grayscale-0" loading="lazy"/>
+<div class="team-bio-overlay"><p class="text-white text-sm leading-relaxed">Leads our design practice with a focus on systems that are as intuitive as they are powerful.</p></div>
 </div>
-<h3 class="text-lg font-medium">David Park</h3>
-<span class="text-sm text-muted">Lead Architect</span>
+<h3 class="text-lg font-medium">Adriana Palanpur</h3>
+<span class="text-sm text-muted">VP, Design Services</span>
 </div>
-<!-- Team Member 4 -->
+<!-- Trevor Roberts -->
 <div class="team-card group reveal" style="transition-delay: 0.24s;">
-<div class="overflow-hidden mb-5 aspect-[3/4]">
-<img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80" alt="Rachel Torres" class="w-full h-full object-cover grayscale group-hover:grayscale-0" loading="lazy"/>
+<div class="relative overflow-hidden mb-5 aspect-[446/800]">
+<div class="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center"><span class="text-4xl font-light text-white/40">TR</span></div>
+<div class="team-bio-overlay"><p class="text-white text-sm leading-relaxed">Translates complex business requirements into interfaces people actually want to use.</p></div>
 </div>
-<h3 class="text-lg font-medium">Rachel Torres</h3>
-<span class="text-sm text-muted">Design Director</span>
+<h3 class="text-lg font-medium">Trevor Roberts</h3>
+<span class="text-sm text-muted">Director of Product Design</span>
 </div>
-<!-- Team Member 5 -->
+<!-- Karina Hange -->
 <div class="team-card group reveal">
-<div class="overflow-hidden mb-5 aspect-[3/4]">
-<img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" alt="James Whitfield" class="w-full h-full object-cover grayscale group-hover:grayscale-0" loading="lazy"/>
+<div class="relative overflow-hidden mb-5 aspect-[446/800]">
+<div class="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center"><span class="text-4xl font-light text-white/40">KH</span></div>
+<div class="team-bio-overlay"><p class="text-white text-sm leading-relaxed">Crafts pixel-perfect interfaces grounded in user research and design systems thinking.</p></div>
 </div>
-<h3 class="text-lg font-medium">James Whitfield</h3>
-<span class="text-sm text-muted">Senior Project Manager</span>
+<h3 class="text-lg font-medium">Karina Hange</h3>
+<span class="text-sm text-muted">UX/UI Designer</span>
 </div>
-<!-- Team Member 6 -->
+<!-- Bradley Young -->
 <div class="team-card group reveal" style="transition-delay: 0.08s;">
-<div class="overflow-hidden mb-5 aspect-[3/4]">
-<img src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=400&q=80" alt="Priya Sharma" class="w-full h-full object-cover grayscale group-hover:grayscale-0" loading="lazy"/>
+<div class="relative overflow-hidden mb-5 aspect-[446/800]">
+<div class="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center"><span class="text-4xl font-light text-white/40">BY</span></div>
+<div class="team-bio-overlay"><p class="text-white text-sm leading-relaxed">Bridges the gap between design vision and technical implementation across every project.</p></div>
 </div>
-<h3 class="text-lg font-medium">Priya Sharma</h3>
-<span class="text-sm text-muted">Full-Stack Developer</span>
+<h3 class="text-lg font-medium">Bradley Young</h3>
+<span class="text-sm text-muted">Digital Product Designer</span>
 </div>
-<!-- Team Member 7 -->
+<!-- Shir Avidan -->
 <div class="team-card group reveal" style="transition-delay: 0.16s;">
-<div class="overflow-hidden mb-5 aspect-[3/4]">
-<img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80" alt="Andre Williams" class="w-full h-full object-cover grayscale group-hover:grayscale-0" loading="lazy"/>
+<div class="relative overflow-hidden mb-5 aspect-[446/800]">
+<div class="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center"><span class="text-4xl font-light text-white/40">SA</span></div>
+<div class="team-bio-overlay"><p class="text-white text-sm leading-relaxed">Shapes product strategy and roadmaps that align business goals with user needs.</p></div>
 </div>
-<h3 class="text-lg font-medium">Andre Williams</h3>
-<span class="text-sm text-muted">DevOps Engineer</span>
+<h3 class="text-lg font-medium">Shir Avidan</h3>
+<span class="text-sm text-muted">Sr. Product Manager</span>
 </div>
-<!-- Team Member 8 -->
+<!-- Sarah Minella -->
 <div class="team-card group reveal" style="transition-delay: 0.24s;">
-<div class="overflow-hidden mb-5 aspect-[3/4]">
-<img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80" alt="Emily Nakamura" class="w-full h-full object-cover grayscale group-hover:grayscale-0" loading="lazy"/>
+<div class="relative overflow-hidden mb-5 aspect-[446/800]">
+<div class="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center"><span class="text-4xl font-light text-white/40">SM</span></div>
+<div class="team-bio-overlay"><p class="text-white text-sm leading-relaxed">Drives cross-functional teams to deliver complex features on aggressive timelines.</p></div>
 </div>
-<h3 class="text-lg font-medium">Emily Nakamura</h3>
-<span class="text-sm text-muted">UX Researcher</span>
+<h3 class="text-lg font-medium">Sarah Minella</h3>
+<span class="text-sm text-muted">Product Manager</span>
 </div>
+</div>
+<!-- Expanded team (hidden by default) -->
+<div id="team-expanded" class="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16 mt-16" style="display: none;">
+<!-- Corin Yaish -->
+<div class="team-card group">
+<div class="relative overflow-hidden mb-5 aspect-[446/800]">
+<div class="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center"><span class="text-4xl font-light text-white/40">CY</span></div>
+<div class="team-bio-overlay"><p class="text-white text-sm leading-relaxed">Specializes in discovery and requirements for court and government platforms.</p></div>
+</div>
+<h3 class="text-lg font-medium">Corin Yaish</h3>
+<span class="text-sm text-muted">Product Manager</span>
+</div>
+<!-- Apurva Ballal -->
+<div class="team-card group">
+<div class="relative overflow-hidden mb-5 aspect-[446/800]">
+<div class="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center"><span class="text-4xl font-light text-white/40">AB</span></div>
+<div class="team-bio-overlay"><p class="text-white text-sm leading-relaxed">Manages product lifecycles from concept through launch and iteration.</p></div>
+</div>
+<h3 class="text-lg font-medium">Apurva Ballal</h3>
+<span class="text-sm text-muted">Product Manager</span>
+</div>
+<!-- Vaishnavi Aswale -->
+<div class="team-card group">
+<div class="relative overflow-hidden mb-5 aspect-[446/800]">
+<div class="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center"><span class="text-4xl font-light text-white/40">VA</span></div>
+<div class="team-bio-overlay"><p class="text-white text-sm leading-relaxed">Builds robust, scalable applications across the entire technology stack.</p></div>
+</div>
+<h3 class="text-lg font-medium">Vaishnavi Aswale</h3>
+<span class="text-sm text-muted">Full Stack Developer</span>
+</div>
+<!-- Ally Nezar -->
+<div class="team-card group">
+<div class="relative overflow-hidden mb-5 aspect-[446/800]">
+<div class="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center"><span class="text-4xl font-light text-white/40">AN</span></div>
+<div class="team-bio-overlay"><p class="text-white text-sm leading-relaxed">Drives brand strategy and demand generation across all channels.</p></div>
+</div>
+<h3 class="text-lg font-medium">Ally Nezar</h3>
+<span class="text-sm text-muted">Marketing Director</span>
+</div>
+<!-- Todd Bone -->
+<div class="team-card group">
+<div class="relative overflow-hidden mb-5 aspect-[446/800]">
+<div class="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center"><span class="text-4xl font-light text-white/40">TB</span></div>
+<div class="team-bio-overlay"><p class="text-white text-sm leading-relaxed">Identifies and cultivates partnerships that fuel Azul Arc's growth.</p></div>
+</div>
+<h3 class="text-lg font-medium">Todd Bone</h3>
+<span class="text-sm text-muted">Business Development</span>
+</div>
+<!-- Heitor Roriz -->
+<div class="team-card group">
+<div class="relative overflow-hidden mb-5 aspect-[446/800]">
+<div class="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center"><span class="text-4xl font-light text-white/40">HR</span></div>
+<div class="team-bio-overlay"><p class="text-white text-sm leading-relaxed">Builds team capability through structured training and mentorship programs.</p></div>
+</div>
+<h3 class="text-lg font-medium">Heitor Roriz</h3>
+<span class="text-sm text-muted">Learning & Development Director</span>
+</div>
+<!-- Philipp Koller -->
+<div class="team-card group">
+<div class="relative overflow-hidden mb-5 aspect-[446/800]">
+<div class="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center"><span class="text-4xl font-light text-white/40">PK</span></div>
+<div class="team-bio-overlay"><p class="text-white text-sm leading-relaxed">Leads European operations and strategic client partnerships from Zurich.</p></div>
+</div>
+<h3 class="text-lg font-medium">Philipp Koller</h3>
+<span class="text-sm text-muted">Partner Director, Zurich</span>
+</div>
+<!-- Rohini Kukreja -->
+<div class="team-card group">
+<div class="relative overflow-hidden mb-5 aspect-[446/800]">
+<div class="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center"><span class="text-4xl font-light text-white/40">RK</span></div>
+<div class="team-bio-overlay"><p class="text-white text-sm leading-relaxed">Oversees financial operations and ensures fiscal health across all projects.</p></div>
+</div>
+<h3 class="text-lg font-medium">Rohini Kukreja</h3>
+<span class="text-sm text-muted">Controller</span>
+</div>
+<!-- Parvaiz Patel -->
+<div class="team-card group">
+<div class="relative overflow-hidden mb-5 aspect-[446/800]">
+<div class="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center"><span class="text-4xl font-light text-white/40">PP</span></div>
+<div class="team-bio-overlay"><p class="text-white text-sm leading-relaxed">Manages our India-based engineering and design teams across multiple time zones.</p></div>
+</div>
+<h3 class="text-lg font-medium">Parvaiz Patel</h3>
+<span class="text-sm text-muted">MD, India Operations</span>
+</div>
+<!-- Prithvi Shetty -->
+<div class="team-card group">
+<div class="relative overflow-hidden mb-5 aspect-[446/800]">
+<div class="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center"><span class="text-4xl font-light text-white/40">PS</span></div>
+<div class="team-bio-overlay"><p class="text-white text-sm leading-relaxed">Coordinates design output and maintains quality standards across projects.</p></div>
+</div>
+<h3 class="text-lg font-medium">Prithvi Shetty</h3>
+<span class="text-sm text-muted">Design Team Manager</span>
+</div>
+<!-- Zarrar Palekar -->
+<div class="team-card group">
+<div class="relative overflow-hidden mb-5 aspect-[446/800]">
+<div class="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center"><span class="text-4xl font-light text-white/40">ZP</span></div>
+<div class="team-bio-overlay"><p class="text-white text-sm leading-relaxed">Leads development squads delivering enterprise-grade software solutions.</p></div>
+</div>
+<h3 class="text-lg font-medium">Zarrar Palekar</h3>
+<span class="text-sm text-muted">Team Leader</span>
+</div>
+<!-- Faisal Shaikh -->
+<div class="team-card group">
+<div class="relative overflow-hidden mb-5 aspect-[446/800]">
+<div class="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center"><span class="text-4xl font-light text-white/40">FS</span></div>
+<div class="team-bio-overlay"><p class="text-white text-sm leading-relaxed">Drives engineering excellence and mentors junior developers on the team.</p></div>
+</div>
+<h3 class="text-lg font-medium">Faisal Shaikh</h3>
+<span class="text-sm text-muted">Team Leader</span>
+</div>
+<!-- Krupali Parmar -->
+<div class="team-card group">
+<div class="relative overflow-hidden mb-5 aspect-[446/800]">
+<div class="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center"><span class="text-4xl font-light text-white/40">KP</span></div>
+<div class="team-bio-overlay"><p class="text-white text-sm leading-relaxed">Cultivates company culture and manages talent acquisition globally.</p></div>
+</div>
+<h3 class="text-lg font-medium">Krupali Parmar</h3>
+<span class="text-sm text-muted">Sr. HR Executive</span>
+</div>
+<!-- Nikita Saldanha -->
+<div class="team-card group">
+<div class="relative overflow-hidden mb-5 aspect-[446/800]">
+<div class="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center"><span class="text-4xl font-light text-white/40">NS</span></div>
+<div class="team-bio-overlay"><p class="text-white text-sm leading-relaxed">Manages financial reporting and accounts receivable operations.</p></div>
+</div>
+<h3 class="text-lg font-medium">Nikita Saldanha</h3>
+<span class="text-sm text-muted">Accounting & AR Manager</span>
+</div>
+<!-- Megha Chauhan -->
+<div class="team-card group">
+<div class="relative overflow-hidden mb-5 aspect-[446/800]">
+<div class="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center"><span class="text-4xl font-light text-white/40">MC</span></div>
+<div class="team-bio-overlay"><p class="text-white text-sm leading-relaxed">Builds client relationships and identifies new business opportunities.</p></div>
+</div>
+<h3 class="text-lg font-medium">Megha Chauhan</h3>
+<span class="text-sm text-muted">Business Development Manager</span>
+</div>
+</div>
+<!-- Toggle button -->
+<div class="text-center mt-16">
+<button id="team-toggle" onclick="document.getElementById('team-expanded').style.display = document.getElementById('team-expanded').style.display === 'none' ? 'grid' : 'none'; this.querySelector('span:first-child').textContent = document.getElementById('team-expanded').style.display === 'none' ? 'Meet the full team' : 'Show less'; this.querySelector('.material-symbols-outlined').textContent = document.getElementById('team-expanded').style.display === 'none' ? 'expand_more' : 'expand_less';" class="group inline-flex items-center gap-3 border border-black/10 px-8 py-4 text-sm uppercase tracking-cta font-medium hover:bg-zinc-900 hover:text-white transition-all duration-300">
+<span>Meet the full team</span>
+<span class="material-symbols-outlined text-base group-hover:translate-y-0.5 transition-transform" aria-hidden="true">expand_more</span>
+</button>
 </div>
 </div>
 </section>
 
 <!-- ===== CLIENTS & RECOGNITION ===== -->
-<section class="py-24 px-8 lg:px-16 border-t border-black/5 border-b border-black/5">
+<section class="py-40 px-8 lg:px-16 border-t border-black/5 border-b border-black/5">
 <div class="max-w-7xl mx-auto">
 <div class="text-center mb-16 reveal">
 <p class="text-sm uppercase tracking-widest text-primary mb-4">Clients &amp; Recognition</p>
-<h2 class="text-4xl font-light">Trusted by teams building the future.</h2>
+<h2 class="font-display text-4xl">Trusted by teams building the future.</h2>
 </div>
 <div class="flex flex-wrap items-center justify-center gap-16 mb-16 reveal">
 <span class="text-2xl font-semibold tracking-tight opacity-20 hover:opacity-50 transition-opacity">Georgia Courts</span>
@@ -416,7 +615,7 @@
 </section>
 
 <!-- ===== TESTIMONIAL ===== -->
-<section class="py-20 px-8 lg:px-16">
+<section class="py-40 px-8 lg:px-16 bg-zinc-50">
 <div class="max-w-4xl mx-auto text-center reveal">
 <blockquote class="text-3xl md:text-4xl font-light leading-snug mb-8">
             "They didn't just build what we asked for -- they figured out what we actually needed. We've been working together for six years now."
@@ -428,35 +627,26 @@
 </div>
 </section>
 
-<!-- ===== CTA ===== -->
-<section class="py-32 px-8 lg:px-16 bg-zinc-950 text-white">
-<div class="max-w-4xl mx-auto text-center">
-<h2 class="text-5xl md:text-6xl font-light mb-8">Want to work with us?</h2>
-<p class="text-xl text-white/50 mb-12 max-w-2xl mx-auto">We'd love to hear what you're working on. Tell us about the problem, and we'll tell you honestly whether we're the right team to solve it.</p>
-<a href="contact.html" class="group inline-flex items-center gap-3 border border-white/20 px-10 py-5 text-sm uppercase tracking-cta font-medium hover:bg-white hover:text-zinc-950 transition-all duration-300">
-            Start a Conversation
-            <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
-</a>
-</div>
-</section>
-
 </main>
 <!-- ===== FOOTER ===== -->
-<footer class="relative pt-32 pb-16 px-8 lg:px-16 border-t border-black/5 dark:border-white/5">
-<div class="relative z-10 flex flex-col lg:flex-row justify-between items-end mb-32">
-<div class="max-w-xl mb-12 lg:mb-0">
-<h2 class="text-7xl font-light mb-6">Your next system<br/>starts here.</h2>
-<p class="text-lg opacity-60 mb-4">No pitch deck. No 6-week scoping process. Just a 30-minute conversation about what's possible.</p>
-<p class="text-sm opacity-40">Not sure you're ready? That's exactly what discovery calls are for.</p>
+<footer id="footer-section" class="relative pt-32 pb-16 px-8 lg:px-16 border-t border-black/5 dark:border-white/5" style="overflow: clip;">
+<canvas id="dither-canvas" class="absolute inset-0 w-full h-full pointer-events-none" style="opacity:0; transition: opacity 0.3s ease;"></canvas>
+<div class="footer-content relative z-10 flex flex-col items-center text-center mb-32">
+<div class="max-w-2xl mb-12">
+<h2 class="footer-text font-display text-7xl mb-6" style="transition: color 0.6s ease;">Your next system<br/>starts here.</h2>
+<p class="footer-text text-lg opacity-60 mb-4" style="transition: color 0.6s ease;">No pitch deck. No 6-week scoping process. Just a 30-minute conversation about what's possible.</p>
+<p class="footer-text text-sm opacity-40" style="transition: color 0.6s ease;">Not sure you're ready? That's exactly what discovery calls are for.</p>
 </div>
-<a href="contact.html" class="w-48 h-48 rounded-full border border-black/10 flex items-center justify-center text-sm uppercase tracking-widest hover:bg-primary hover:text-white hover:border-primary transition-all duration-500">
-            Start a Conversation
-</a>
+<div class="magnetic-wrap p-8" id="footer-cta-wrap">
+<button id="footer-cta-btn" class="w-48 h-48 rounded-full border border-black/10 flex items-center justify-center text-sm uppercase tracking-widest transition-all duration-500 bg-transparent footer-text" style="transition: color 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);" onclick="window.location.href='contact.html'">
+                Start a Conversation
+            </button>
 </div>
-<div class="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-12 pt-16 border-t border-black/10">
+</div>
+<div class="footer-grid relative z-10 grid grid-cols-2 md:grid-cols-4 gap-12 pt-16 border-t border-black/10" style="transition: border-color 0.6s ease;">
 <div>
-<h6 class="text-xs uppercase tracking-widest font-bold mb-6">What We Do</h6>
-<ul class="space-y-2 opacity-60 text-sm">
+<h6 class="footer-text text-xs uppercase tracking-widest font-bold mb-6" style="transition: color 0.6s ease;">What We Do</h6>
+<ul class="footer-text space-y-2 opacity-60 text-sm" style="transition: color 0.6s ease;">
 <li><a class="hover:text-primary" href="services/digital-product-strategy.html">Digital Product Strategy</a></li>
 <li><a class="hover:text-primary" href="services/web-design-development.html">Web Design & Development</a></li>
 <li><a class="hover:text-primary" href="services/3d-visualization.html">3D Visualization</a></li>
@@ -464,8 +654,8 @@
 </ul>
 </div>
 <div>
-<h6 class="text-xs uppercase tracking-widest font-bold mb-6">Company</h6>
-<ul class="space-y-2 opacity-60 text-sm">
+<h6 class="footer-text text-xs uppercase tracking-widest font-bold mb-6" style="transition: color 0.6s ease;">Company</h6>
+<ul class="footer-text space-y-2 opacity-60 text-sm" style="transition: color 0.6s ease;">
 <li><a class="hover:text-primary" href="about.html">About</a></li>
 <li><a class="hover:text-primary" href="how-we-work.html">How We Work</a></li>
 <li><a class="hover:text-primary" href="work.html">Work</a></li>
@@ -473,8 +663,8 @@
 </ul>
 </div>
 <div>
-<h6 class="text-xs uppercase tracking-widest font-bold mb-6">Connect</h6>
-<ul class="space-y-2 opacity-60 text-sm">
+<h6 class="footer-text text-xs uppercase tracking-widest font-bold mb-6" style="transition: color 0.6s ease;">Connect</h6>
+<ul class="footer-text space-y-2 opacity-60 text-sm" style="transition: color 0.6s ease;">
 <li><a class="hover:text-primary" href="#">LinkedIn</a></li>
 <li><a class="hover:text-primary" href="#">Twitter</a></li>
 <li><a class="hover:text-primary" href="mailto:hello@azularc.com">Email</a></li>
@@ -482,13 +672,13 @@
 </div>
 <div class="flex flex-col justify-between">
 <div>
-<h6 class="text-xs uppercase tracking-widest font-bold mb-6">Insights</h6>
-<div class="flex border-b border-black/10 pb-2">
-<input class="bg-transparent border-none focus:ring-0 p-0 text-sm w-full" placeholder="Email" type="email"/>
-<span class="material-symbols-outlined opacity-40" aria-hidden="true">arrow_forward</span>
+<h6 class="footer-text text-xs uppercase tracking-widest font-bold mb-6" style="transition: color 0.6s ease;">Insights</h6>
+<div class="footer-border flex border-b border-black/10 pb-2" style="transition: border-color 0.6s ease;">
+<input class="footer-text bg-transparent border-none focus:ring-0 p-0 text-sm w-full" style="transition: color 0.6s ease;" placeholder="Email" type="email"/>
+<span class="footer-text material-symbols-outlined opacity-40" style="transition: color 0.6s ease;" aria-hidden="true">arrow_forward</span>
 </div>
 </div>
-<p class="text-xs opacity-30 mt-12">&copy; 2026 Azul Arc. All rights reserved.</p>
+<p class="footer-text text-xs opacity-30 mt-12" style="transition: color 0.6s ease;">&copy; 2026 Azul Arc. All rights reserved.</p>
 </div>
 </div>
 </footer>
@@ -547,6 +737,147 @@
         }, { threshold: 0.1 });
         reveals.forEach(el => observer.observe(el));
     })();
+</script>
+<script>
+// Magnetic Effect for Footer CTA
+const footerWrap = document.querySelector('#footer-cta-wrap');
+if (footerWrap) {
+    const footerBtn = footerWrap.querySelector('button');
+    footerWrap.addEventListener('mousemove', (e) => {
+        const rect = footerWrap.getBoundingClientRect();
+        const x = (e.clientX - rect.left - rect.width / 2) * 0.15;
+        const y = (e.clientY - rect.top - rect.height / 2) * 0.15;
+        footerBtn.style.transform = `translate(${x}px, ${y}px)`;
+    });
+    footerWrap.addEventListener('mouseleave', () => {
+        footerBtn.style.transform = `translate(0px, 0px)`;
+    });
+}
+// Dither dark-mode expansion on footer CTA hover
+(function() {
+    const canvas = document.getElementById('dither-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const footer = document.getElementById('footer-section');
+    const btn = document.getElementById('footer-cta-btn');
+    const wrap = document.getElementById('footer-cta-wrap');
+    let animId = null;
+    let progress = 0;
+    let targetProgress = 0;
+
+    function resize() {
+        const dpr = window.devicePixelRatio || 1;
+        const rect = footer.getBoundingClientRect();
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+        ctx.scale(dpr, dpr);
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    const bayer = [
+        [ 0, 8, 2,10],
+        [12, 4,14, 6],
+        [ 3,11, 1, 9],
+        [15, 7,13, 5]
+    ];
+
+    function drawDither(cx, cy, radius) {
+        const rect = footer.getBoundingClientRect();
+        const w = rect.width;
+        const h = rect.height;
+        const pixelSize = 4;
+        ctx.clearRect(0, 0, w, h);
+        for (let x = 0; x < w; x += pixelSize) {
+            for (let y = 0; y < h; y += pixelSize) {
+                const dx = x - cx;
+                const dy = y - cy;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                const nd = Math.min(dist / radius, 1.0);
+                const fill = 1.0 - nd;
+                const bx = (Math.floor(x / pixelSize)) % 4;
+                const by = (Math.floor(y / pixelSize)) % 4;
+                const threshold = bayer[by][bx] / 16;
+                if (fill > threshold) {
+                    ctx.fillStyle = '#1863DC';
+                    ctx.fillRect(x, y, pixelSize, pixelSize);
+                }
+            }
+        }
+    }
+
+    function getBtnCenter() {
+        const footerRect = footer.getBoundingClientRect();
+        const wrapRect = wrap.getBoundingClientRect();
+        return {
+            x: wrapRect.left - footerRect.left + wrapRect.width / 2,
+            y: wrapRect.top - footerRect.top + wrapRect.height / 2
+        };
+    }
+
+    function getMaxRadius() {
+        const rect = footer.getBoundingClientRect();
+        const c = getBtnCenter();
+        return Math.max(
+            Math.sqrt(c.x * c.x + c.y * c.y),
+            Math.sqrt((rect.width - c.x) ** 2 + c.y ** 2),
+            Math.sqrt(c.x ** 2 + (rect.height - c.y) ** 2),
+            Math.sqrt((rect.width - c.x) ** 2 + (rect.height - c.y) ** 2)
+        ) * 1.15;
+    }
+
+    function setDarkMode(on) {
+        const texts = footer.querySelectorAll('.footer-text');
+        const grid = footer.querySelector('.footer-grid');
+        const borderEls = footer.querySelectorAll('.footer-border');
+        if (on) {
+            texts.forEach(el => el.style.color = '#EBEBEB');
+            btn.style.borderColor = 'rgba(235,235,235,0.2)';
+            btn.style.color = '#EBEBEB';
+            if (grid) grid.style.borderColor = 'rgba(235,235,235,0.1)';
+            borderEls.forEach(el => el.style.borderColor = 'rgba(235,235,235,0.2)');
+        } else {
+            texts.forEach(el => el.style.color = '');
+            btn.style.borderColor = '';
+            btn.style.color = '';
+            if (grid) grid.style.borderColor = '';
+            borderEls.forEach(el => el.style.borderColor = '');
+        }
+    }
+
+    function animate() {
+        const ease = 0.04;
+        progress += (targetProgress - progress) * ease;
+        if (Math.abs(progress - targetProgress) < 0.002) {
+            progress = targetProgress;
+        }
+        if (progress > 0.001) {
+            canvas.style.opacity = '1';
+            const c = getBtnCenter();
+            const maxR = getMaxRadius();
+            drawDither(c.x, c.y, maxR * progress);
+            setDarkMode(progress > 0.3);
+        } else {
+            canvas.style.opacity = '0';
+            setDarkMode(false);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+        if (progress > 0.001 || targetProgress > 0) {
+            animId = requestAnimationFrame(animate);
+        } else {
+            animId = null;
+        }
+    }
+
+    wrap.addEventListener('mouseenter', function() {
+        targetProgress = 1;
+        if (!animId) animId = requestAnimationFrame(animate);
+    });
+    wrap.addEventListener('mouseleave', function() {
+        targetProgress = 0;
+        if (!animId) animId = requestAnimationFrame(animate);
+    });
+})();
 </script>
 </body>
 </html>

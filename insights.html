@@ -5,7 +5,7 @@
 <title>Insights — Azul Arc</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Inter:wght@100;200;300;400;500;600&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
 <script>
@@ -24,7 +24,7 @@
                     "muted": "#808285",
                 },
                 fontFamily: {
-                    display: ["Inter", "sans-serif"],
+                    display: ["Instrument Serif", "serif"],
                     sans: ["Inter", "sans-serif"],
                 },
                 borderRadius: {
@@ -99,6 +99,50 @@
         .reveal-delay-2 { transition-delay: 0.2s; }
         .reveal-delay-3 { transition-delay: 0.3s; }
         .reveal-delay-4 { transition-delay: 0.4s; }
+        .magnetic-wrap {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.1s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+        }
+
+        /* CTA section blue wipe */
+        .cta-section {
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: #1863DC;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 1s cubic-bezier(0.4, 0, 0.1, 1);
+            z-index: 0;
+        }
+        .cta-section.wipe-active::before {
+            transform: scaleX(1);
+        }
+        .cta-section > * {
+            position: relative;
+            z-index: 1;
+        }
+        .cta-wipe {
+            transition: border-color 0.5s cubic-bezier(0.4, 0, 0.1, 1);
+        }
+        .cta-section.wipe-active .cta-wipe {
+            border-color: rgba(255,255,255,0.4);
+        }
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+        }
+        .reveal { opacity: 1; transform: none; }
+    }
     </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-text-dark dark:text-text-light font-sans selection:bg-primary selection:text-white">
@@ -183,7 +227,7 @@
 <section class="pt-48 pb-20 px-8 lg:px-16">
     <div class="max-w-4xl">
         <span class="text-xs uppercase tracking-label text-primary mb-6 block">Blog</span>
-        <h1 class="text-5xl md:text-7xl lg:text-8xl leading-none font-semibold tracking-tighter mb-10">
+        <h1 class="font-display text-5xl md:text-7xl lg:text-8xl leading-none tracking-tighter mb-10">
             Insights
         </h1>
         <p class="text-xl opacity-60 leading-relaxed font-light max-w-2xl">
@@ -204,7 +248,7 @@
                         <span class="text-xs text-white/40">15 min read</span>
                         <span class="text-xs text-white/40">February 2026</span>
                     </div>
-                    <h2 class="text-4xl md:text-5xl lg:text-6xl font-light leading-tight mb-6 max-w-3xl group-hover:text-primary-light transition-colors duration-300">The Real Cost of Running Legacy Software</h2>
+                    <h2 class="font-display text-4xl md:text-5xl lg:text-6xl leading-tight mb-6 max-w-3xl group-hover:text-primary-light transition-colors duration-300">The Real Cost of Running Legacy Software</h2>
                     <p class="text-lg text-white/60 max-w-2xl leading-relaxed">It's not just the maintenance fees. It's the opportunity cost, the workarounds, the talent you can't hire, and the features you can't ship. We break down the true cost of keeping legacy systems alive, and the math that makes replacement inevitable.</p>
                 </div>
             </div>
@@ -329,7 +373,7 @@
 <section class="py-20 px-8 lg:px-16 border-t border-black/5">
     <div class="mb-12 reveal">
         <p class="text-sm uppercase tracking-widest text-primary mb-4">What We Write About</p>
-        <h2 class="text-4xl font-light">Topics we cover</h2>
+        <h2 class="font-display text-4xl">Topics we cover</h2>
     </div>
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
         <div class="border border-black/5 p-6 hover:border-primary/20 transition-colors group cursor-pointer">
@@ -366,16 +410,16 @@
 </section>
 
 <!-- Newsletter CTA -->
-<section class="py-32 px-8 lg:px-16 bg-zinc-950 text-white">
+<section class="py-32 px-8 lg:px-16 bg-zinc-950 text-white cta-section" id="cta-section">
     <div class="max-w-3xl mx-auto text-center reveal">
         <span class="text-xs uppercase tracking-label text-primary-light mb-6 block">Newsletter</span>
-        <h2 class="text-5xl md:text-6xl font-light mb-6 leading-tight">Get our best thinking,<br/>delivered.</h2>
+        <h2 class="font-display text-5xl md:text-6xl mb-6 leading-tight">Get our best thinking,<br/>delivered.</h2>
         <p class="text-lg text-white/50 mb-12 max-w-xl mx-auto">Strategy frameworks, engineering insights, and honest lessons from real projects. No fluff. Roughly twice a month.</p>
         <div class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
             <input class="flex-1 bg-white/5 border border-white/10 px-6 py-4 text-sm text-white placeholder:text-white/30 focus:ring-1 focus:ring-primary focus:border-primary transition-colors" placeholder="Your email address" type="email"/>
-            <button class="group flex items-center justify-center gap-2 bg-primary text-white px-8 py-4 text-sm uppercase tracking-cta font-medium hover:bg-primary-dark transition-colors">
-                Subscribe
-                <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
+            <button class="cta-wipe group flex items-center justify-center gap-2 bg-primary text-white px-8 py-4 text-sm uppercase tracking-cta font-medium hover:bg-primary-dark transition-colors" id="cta-btn">
+                <span>Subscribe</span>
+                <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform duration-300" aria-hidden="true">arrow_forward</span>
             </button>
         </div>
         <p class="text-xs text-white/20 mt-6">No spam. Unsubscribe anytime. We respect your inbox.</p>
@@ -384,21 +428,11 @@
 
 <!-- Footer -->
 </main>
-<footer class="relative pt-32 pb-16 px-8 lg:px-16 border-t border-black/5 dark:border-white/5">
-<div class="relative z-10 flex flex-col lg:flex-row justify-between items-end mb-32">
-<div class="max-w-xl mb-12 lg:mb-0">
-<h2 class="text-7xl font-light mb-6">Your next system<br/>starts here.</h2>
-<p class="text-lg opacity-60 mb-4">No pitch deck. No 6-week scoping process. Just a 30-minute conversation about what's possible.</p>
-<p class="text-sm opacity-40">Not sure you're ready? That's exactly what discovery calls are for.</p>
-</div>
-<a href="contact.html" class="w-48 h-48 rounded-full border border-black/10 flex items-center justify-center text-sm uppercase tracking-widest transition-all duration-500 bg-transparent hover:bg-primary hover:text-white hover:border-primary">
-    Start a Conversation
-</a>
-</div>
-<div class="grid grid-cols-2 md:grid-cols-4 gap-12 pt-16 border-t border-black/10">
+<footer id="footer-section" class="relative pt-16 pb-16 px-8 lg:px-16 border-t border-black/5 dark:border-white/5" style="overflow: clip;">
+<div class="footer-grid relative z-10 grid grid-cols-2 md:grid-cols-4 gap-12 pt-16 border-t border-black/10" style="transition: border-color 0.6s ease;">
 <div>
-<h6 class="text-xs uppercase tracking-widest font-bold mb-6">What We Do</h6>
-<ul class="space-y-2 opacity-60 text-sm">
+<h6 class="footer-text text-xs uppercase tracking-widest font-bold mb-6" style="transition: color 0.6s ease;">What We Do</h6>
+<ul class="footer-text space-y-2 opacity-60 text-sm" style="transition: color 0.6s ease;">
 <li><a class="hover:text-primary" href="services/digital-product-strategy.html">Digital Product Strategy</a></li>
 <li><a class="hover:text-primary" href="services/web-design-development.html">Web Design & Development</a></li>
 <li><a class="hover:text-primary" href="services/3d-visualization.html">3D Visualization</a></li>
@@ -406,8 +440,8 @@
 </ul>
 </div>
 <div>
-<h6 class="text-xs uppercase tracking-widest font-bold mb-6">Company</h6>
-<ul class="space-y-2 opacity-60 text-sm">
+<h6 class="footer-text text-xs uppercase tracking-widest font-bold mb-6" style="transition: color 0.6s ease;">Company</h6>
+<ul class="footer-text space-y-2 opacity-60 text-sm" style="transition: color 0.6s ease;">
 <li><a class="hover:text-primary" href="about.html">About</a></li>
 <li><a class="hover:text-primary" href="how-we-work.html">How We Work</a></li>
 <li><a class="hover:text-primary" href="work.html">Work</a></li>
@@ -415,8 +449,8 @@
 </ul>
 </div>
 <div>
-<h6 class="text-xs uppercase tracking-widest font-bold mb-6">Connect</h6>
-<ul class="space-y-2 opacity-60 text-sm">
+<h6 class="footer-text text-xs uppercase tracking-widest font-bold mb-6" style="transition: color 0.6s ease;">Connect</h6>
+<ul class="footer-text space-y-2 opacity-60 text-sm" style="transition: color 0.6s ease;">
 <li><a class="hover:text-primary" href="#">LinkedIn</a></li>
 <li><a class="hover:text-primary" href="#">Twitter</a></li>
 <li><a class="hover:text-primary" href="mailto:hello@azularc.com">Email</a></li>
@@ -424,13 +458,13 @@
 </div>
 <div class="flex flex-col justify-between">
 <div>
-<h6 class="text-xs uppercase tracking-widest font-bold mb-6">Insights</h6>
-<div class="flex border-b border-black/10 pb-2">
-<input class="bg-transparent border-none focus:ring-0 p-0 text-sm w-full" placeholder="Email" type="email"/>
-<span class="material-symbols-outlined opacity-40" aria-hidden="true">arrow_forward</span>
+<h6 class="footer-text text-xs uppercase tracking-widest font-bold mb-6" style="transition: color 0.6s ease;">Insights</h6>
+<div class="footer-border flex border-b border-black/10 pb-2" style="transition: border-color 0.6s ease;">
+<input class="footer-text bg-transparent border-none focus:ring-0 p-0 text-sm w-full" style="transition: color 0.6s ease;" placeholder="Email" type="email"/>
+<span class="footer-text material-symbols-outlined opacity-40" style="transition: color 0.6s ease;" aria-hidden="true">arrow_forward</span>
 </div>
 </div>
-<p class="text-xs opacity-30 mt-12">&copy; 2026 Azul Arc. All rights reserved.</p>
+<p class="footer-text text-xs opacity-30 mt-12" style="transition: color 0.6s ease;">&copy; 2026 Azul Arc. All rights reserved.</p>
 </div>
 </div>
 </footer>
@@ -491,6 +525,16 @@ const revealObserver = new IntersectionObserver((entries) => {
     });
 }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 revealEls.forEach(el => revealObserver.observe(el));
+</script>
+
+<script>
+// CTA section wipe on button hover
+const ctaBtn = document.getElementById('cta-btn');
+const ctaSection = document.getElementById('cta-section');
+if (ctaBtn && ctaSection) {
+    ctaBtn.addEventListener('mouseenter', () => ctaSection.classList.add('wipe-active'));
+    ctaBtn.addEventListener('mouseleave', () => ctaSection.classList.remove('wipe-active'));
+}
 </script>
 </body>
 </html>

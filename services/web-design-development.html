@@ -5,7 +5,7 @@
 <title>Web Design & Development — Azul Arc</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Inter:wght@100;200;300;400;500;600&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
 <script>
@@ -24,7 +24,7 @@
                     "muted": "#808285",
                 },
                 fontFamily: {
-                    display: ["Inter", "sans-serif"],
+                    display: ["Instrument Serif", "serif"],
                     sans: ["Inter", "sans-serif"],
                 },
                 borderRadius: {
@@ -99,6 +99,50 @@
         .reveal-delay-2 { transition-delay: 0.2s; }
         .reveal-delay-3 { transition-delay: 0.3s; }
         .reveal-delay-4 { transition-delay: 0.4s; }
+    .magnetic-wrap {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.1s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+    }
+
+    /* CTA section blue wipe */
+    .cta-section {
+        position: relative;
+        overflow: hidden;
+    }
+    .cta-section::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: #1863DC;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 1s cubic-bezier(0.4, 0, 0.1, 1);
+        z-index: 0;
+    }
+    .cta-section.wipe-active::before {
+        transform: scaleX(1);
+    }
+    .cta-section > * {
+        position: relative;
+        z-index: 1;
+    }
+    .cta-wipe {
+        transition: border-color 0.5s cubic-bezier(0.4, 0, 0.1, 1);
+    }
+    .cta-section.wipe-active .cta-wipe {
+        border-color: rgba(255,255,255,0.4);
+    }
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+        }
+        .reveal { opacity: 1; transform: none; }
+    }
     </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-text-dark dark:text-text-light font-sans selection:bg-primary selection:text-white">
@@ -187,7 +231,7 @@
     </div>
     <div class="relative z-10 px-8 lg:px-16 pb-24 pt-48 w-full">
         <span class="text-xs uppercase tracking-label text-primary-light mb-6 block">Service</span>
-        <h1 class="text-5xl md:text-7xl lg:text-8xl leading-none font-semibold tracking-tighter mb-10 max-w-5xl">
+        <h1 class="font-display text-5xl md:text-7xl lg:text-8xl leading-none tracking-tighter mb-10 max-w-5xl">
             Web Design &<br/>Development
         </h1>
         <div class="max-w-xl border-t border-white/15 pt-8">
@@ -204,7 +248,7 @@
         <div class="flex flex-col lg:flex-row gap-16 items-start">
             <div class="lg:w-1/2 reveal">
                 <span class="text-xs uppercase tracking-label text-primary mb-4 block">Approach</span>
-                <h2 class="text-4xl md:text-5xl font-light leading-tight mb-8">Pretty websites are easy.<br/>Ones that actually work are not.</h2>
+                <h2 class="font-display text-4xl md:text-5xl leading-tight mb-8">Pretty websites are easy.<br/>Ones that actually work are not.</h2>
                 <p class="text-lg opacity-70 leading-relaxed mb-6">
                     The web is full of gorgeous sites that don't convert. They load slowly, confuse visitors, and bury the call to action under layers of parallax and animation. That's not what we build.
                 </p>
@@ -244,7 +288,7 @@
         <div class="mb-20 flex flex-col md:flex-row justify-between items-start md:items-end gap-8 reveal">
             <div>
                 <span class="text-xs uppercase tracking-label text-primary mb-4 block">Deliverables</span>
-                <h2 class="text-5xl font-light">What we deliver</h2>
+                <h2 class="font-display text-5xl">What we deliver</h2>
             </div>
             <p class="text-sm opacity-50 max-w-sm">Every project includes a custom tech stack selected for your specific needs, team capacity, and growth trajectory.</p>
         </div>
@@ -331,7 +375,7 @@
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-20">
         <div class="md:w-5/12 sticky top-32 h-fit reveal">
             <span class="text-xs uppercase tracking-label text-primary mb-4 block">Process</span>
-            <h2 class="text-5xl font-light mb-8 leading-tight">Design. Build.<br/>Ship. Optimize.</h2>
+            <h2 class="font-display text-5xl mb-8 leading-tight">Design. Build.<br/>Ship. Optimize.</h2>
             <p class="text-lg opacity-60">A lean, iterative process that gets working software in your hands fast and improves it continuously.</p>
         </div>
         <div class="md:w-7/12 space-y-20">
@@ -363,10 +407,10 @@
 <section class="py-32 px-8 lg:px-16 bg-zinc-950 text-white">
     <div class="mb-16 reveal">
         <span class="text-xs uppercase tracking-label text-primary-light mb-4 block">Related Work</span>
-        <h2 class="text-5xl font-light">Sites that ship results</h2>
+        <h2 class="font-display text-5xl">Sites that ship results</h2>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
-        <div class="group reveal">
+        <a href="../case-study.html" class="group reveal block">
             <div class="aspect-[16/10] overflow-hidden mb-8">
                 <div class="w-full h-full group-hover:scale-105 transition-transform duration-700" style="background: linear-gradient(160deg, #212121 0%, #1863DC 50%, #2AA7DF 100%)"></div>
             </div>
@@ -374,8 +418,8 @@
             <h3 class="text-3xl font-light mb-3 group-hover:text-primary-light transition-colors">Meridian Manufacturing</h3>
             <p class="text-sm text-white/50 mb-4">Rebuilt the corporate website and dealer portal with a headless CMS. Reduced page load time from 4.2s to 0.8s and increased qualified leads by 180%.</p>
             <span class="text-xs uppercase tracking-widest text-primary-light">180% More Leads</span>
-        </div>
-        <div class="group reveal reveal-delay-1">
+        </a>
+        <a href="../case-study.html" class="group reveal reveal-delay-1 block">
             <div class="aspect-[16/10] overflow-hidden mb-8">
                 <div class="w-full h-full group-hover:scale-105 transition-transform duration-700" style="background: linear-gradient(160deg, #212121 0%, #2AA7DF 40%, #07406B 100%)"></div>
             </div>
@@ -383,20 +427,20 @@
             <h3 class="text-3xl font-light mb-3 group-hover:text-primary-light transition-colors">Polaris Group</h3>
             <p class="text-sm text-white/50 mb-4">Designed and built a product marketing site with interactive demos and a self-serve onboarding flow. Conversion rate tripled within 90 days of launch.</p>
             <span class="text-xs uppercase tracking-widest text-primary-light">3x Conversion Rate</span>
-        </div>
+        </a>
     </div>
 </section>
 
 <!-- CTA -->
-<section class="py-32 px-8 lg:px-16">
+<section class="py-32 px-8 lg:px-16 cta-section" id="cta-section">
     <div class="max-w-5xl mx-auto flex flex-col lg:flex-row items-center gap-16 reveal">
         <div class="lg:w-1/2">
             <span class="text-xs uppercase tracking-label text-primary mb-6 block">Start a Project</span>
-            <h2 class="text-5xl font-light mb-8 leading-tight">Your website should be your best salesperson.</h2>
+            <h2 class="font-display text-5xl mb-8 leading-tight">Your website should be your best salesperson.</h2>
             <p class="text-lg opacity-60 mb-10">Let's talk about what your site should actually do for your business. We'll give you an honest assessment and a plan to get there.</p>
-            <a href="../contact.html" class="group inline-flex items-center gap-3 bg-primary text-white px-8 py-5 text-sm uppercase tracking-cta font-medium hover:bg-primary-dark transition-all duration-300">
-                Talk About My Site
-                <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
+            <a href="../contact.html" class="cta-wipe group inline-flex items-center gap-3 bg-primary text-white px-8 py-5 text-sm uppercase tracking-cta font-medium hover:bg-primary-dark" id="cta-btn">
+                <span>Talk About My Site</span>
+                <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform duration-300" aria-hidden="true">arrow_forward</span>
             </a>
         </div>
         <div class="lg:w-1/2">
@@ -409,21 +453,11 @@
 
 <!-- Footer -->
 </main>
-<footer class="relative pt-32 pb-16 px-8 lg:px-16 border-t border-black/5 dark:border-white/5">
-<div class="footer-content relative z-10 flex flex-col lg:flex-row justify-between items-end mb-32">
-<div class="max-w-xl mb-12 lg:mb-0">
-<h2 class="text-7xl font-light mb-6">Your next system<br/>starts here.</h2>
-<p class="text-lg opacity-60 mb-4">No pitch deck. No 6-week scoping process. Just a 30-minute conversation about what's possible.</p>
-<p class="text-sm opacity-40">Not sure you're ready? That's exactly what discovery calls are for.</p>
-</div>
-<a href="../contact.html" class="w-48 h-48 rounded-full border border-black/10 flex items-center justify-center text-sm uppercase tracking-widest transition-all duration-500 bg-transparent hover:bg-primary hover:text-white hover:border-primary">
-    Start a Conversation
-</a>
-</div>
-<div class="footer-grid relative z-10 grid grid-cols-2 md:grid-cols-4 gap-12 pt-16 border-t border-black/10">
+<footer id="footer-section" class="relative pt-16 pb-16 px-8 lg:px-16 border-t border-black/5 dark:border-white/5" style="overflow: clip;">
+<div class="footer-grid relative z-10 grid grid-cols-2 md:grid-cols-4 gap-12 pt-16 border-t border-black/10" style="transition: border-color 0.6s ease;">
 <div>
-<h6 class="text-xs uppercase tracking-widest font-bold mb-6">What We Do</h6>
-<ul class="space-y-2 opacity-60 text-sm">
+<h6 class="footer-text text-xs uppercase tracking-widest font-bold mb-6" style="transition: color 0.6s ease;">What We Do</h6>
+<ul class="footer-text space-y-2 opacity-60 text-sm" style="transition: color 0.6s ease;">
 <li><a class="hover:text-primary" href="../services/digital-product-strategy.html">Digital Product Strategy</a></li>
 <li><a class="hover:text-primary" href="../services/web-design-development.html">Web Design & Development</a></li>
 <li><a class="hover:text-primary" href="../services/3d-visualization.html">3D Visualization</a></li>
@@ -431,8 +465,8 @@
 </ul>
 </div>
 <div>
-<h6 class="text-xs uppercase tracking-widest font-bold mb-6">Company</h6>
-<ul class="space-y-2 opacity-60 text-sm">
+<h6 class="footer-text text-xs uppercase tracking-widest font-bold mb-6" style="transition: color 0.6s ease;">Company</h6>
+<ul class="footer-text space-y-2 opacity-60 text-sm" style="transition: color 0.6s ease;">
 <li><a class="hover:text-primary" href="../about.html">About</a></li>
 <li><a class="hover:text-primary" href="../how-we-work.html">How We Work</a></li>
 <li><a class="hover:text-primary" href="../work.html">Work</a></li>
@@ -440,8 +474,8 @@
 </ul>
 </div>
 <div>
-<h6 class="text-xs uppercase tracking-widest font-bold mb-6">Connect</h6>
-<ul class="space-y-2 opacity-60 text-sm">
+<h6 class="footer-text text-xs uppercase tracking-widest font-bold mb-6" style="transition: color 0.6s ease;">Connect</h6>
+<ul class="footer-text space-y-2 opacity-60 text-sm" style="transition: color 0.6s ease;">
 <li><a class="hover:text-primary" href="#">LinkedIn</a></li>
 <li><a class="hover:text-primary" href="#">Twitter</a></li>
 <li><a class="hover:text-primary" href="mailto:hello@azularc.com">Email</a></li>
@@ -449,13 +483,13 @@
 </div>
 <div class="flex flex-col justify-between">
 <div>
-<h6 class="text-xs uppercase tracking-widest font-bold mb-6">Insights</h6>
-<div class="flex border-b border-black/10 pb-2">
-<input class="bg-transparent border-none focus:ring-0 p-0 text-sm w-full" placeholder="Email" type="email"/>
-<span class="material-symbols-outlined opacity-40" aria-hidden="true">arrow_forward</span>
+<h6 class="footer-text text-xs uppercase tracking-widest font-bold mb-6" style="transition: color 0.6s ease;">Insights</h6>
+<div class="footer-border flex border-b border-black/10 pb-2" style="transition: border-color 0.6s ease;">
+<input class="footer-text bg-transparent border-none focus:ring-0 p-0 text-sm w-full" style="transition: color 0.6s ease;" placeholder="Email" type="email"/>
+<span class="footer-text material-symbols-outlined opacity-40" style="transition: color 0.6s ease;" aria-hidden="true">arrow_forward</span>
 </div>
 </div>
-<p class="text-xs opacity-30 mt-12">&copy; 2026 Azul Arc. All rights reserved.</p>
+<p class="footer-text text-xs opacity-30 mt-12" style="transition: color 0.6s ease;">&copy; 2026 Azul Arc. All rights reserved.</p>
 </div>
 </div>
 </footer>
@@ -516,5 +550,16 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 revealEls.forEach(el => revealObserver.observe(el));
 </script>
+
+<script>
+// CTA section wipe on button hover
+const ctaBtn = document.getElementById('cta-btn');
+const ctaSection = document.getElementById('cta-section');
+if (ctaBtn && ctaSection) {
+    ctaBtn.addEventListener('mouseenter', () => ctaSection.classList.add('wipe-active'));
+    ctaBtn.addEventListener('mouseleave', () => ctaSection.classList.remove('wipe-active'));
+}
+</script>
+
 </body>
 </html>

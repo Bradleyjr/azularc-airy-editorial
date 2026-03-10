@@ -5,7 +5,7 @@
 <title>CaseHub — Modern Case Management by Azul Arc</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Inter:wght@100;200;300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
 <script>
@@ -24,7 +24,7 @@
                     "muted": "#808285",
                 },
                 fontFamily: {
-                    display: ["Instrument Serif", "serif"],
+                    display: ["Inter", "sans-serif"],
                     sans: ["Inter", "sans-serif"],
                 },
                 borderRadius: {
@@ -145,6 +145,26 @@
     }
     .cta-section.wipe-active .cta-wipe {
         border-color: rgba(255,255,255,0.4);
+        background: #fff;
+        color: #1863DC;
+    }
+    .cta-section .cta-text {
+        transition: color 0.6s cubic-bezier(0.4, 0, 0.1, 1);
+    }
+    .cta-section.wipe-active .cta-text {
+        color: #fff;
+    }
+    .cta-section .cta-muted {
+        transition: opacity 0.6s cubic-bezier(0.4, 0, 0.1, 1), color 0.6s cubic-bezier(0.4, 0, 0.1, 1);
+    }
+    .cta-section.wipe-active .cta-muted {
+        color: rgba(255,255,255,0.7);
+    }
+    .cta-section .cta-label {
+        transition: color 0.6s cubic-bezier(0.4, 0, 0.1, 1);
+    }
+    .cta-section.wipe-active .cta-label {
+        color: rgba(255,255,255,0.6);
     }
 
     /* Stat counter animation */
@@ -272,7 +292,7 @@
     <div class="relative z-10 px-8 lg:px-16 py-48 w-full">
         <div class="max-w-5xl">
             <span class="text-xs uppercase tracking-label text-primary-light mb-8 block reveal">Product</span>
-            <h1 class="font-display text-5xl md:text-7xl lg:text-[5.5rem] leading-[0.95] tracking-tighter mb-10 reveal reveal-delay-1">
+            <h1 class="font-semibold text-5xl md:text-7xl lg:text-[5.5rem] leading-[0.95] tracking-tighter mb-10 reveal reveal-delay-1">
                 Case management<br/>so intuitive, you won't<br/>need a manual.
             </h1>
             <div class="max-w-2xl reveal reveal-delay-2">
@@ -311,7 +331,7 @@
     <div class="flex flex-col lg:flex-row gap-20 items-start">
         <div class="lg:w-5/12 reveal">
             <span class="text-xs uppercase tracking-label text-primary mb-4 block">Why CaseHub</span>
-            <h2 class="font-display text-4xl md:text-5xl leading-tight">Built for the way courts actually work.</h2>
+            <h2 class="font-light text-4xl md:text-5xl leading-tight">Built for the way courts actually work.</h2>
         </div>
         <div class="lg:w-7/12 lg:pt-16">
             <div class="max-w-lg ml-auto">
@@ -333,7 +353,7 @@
 <section class="py-32 px-8 lg:px-16 bg-zinc-950 text-white" id="features">
     <div class="mb-20 reveal">
         <span class="text-xs uppercase tracking-label text-primary-light mb-4 block">Core Features</span>
-        <h2 class="font-display text-5xl">Everything you need,<br/>nothing you don't.</h2>
+        <h2 class="font-light text-5xl">Everything you need,<br/>nothing you don't.</h2>
     </div>
     <div class="flex flex-col lg:flex-row gap-16 lg:gap-24">
         <!-- Feature tabs -->
@@ -505,7 +525,7 @@
         <div class="flex flex-col lg:flex-row gap-20 items-center">
             <div class="lg:w-1/2 reveal">
                 <span class="text-xs uppercase tracking-label text-primary mb-4 block">Experience</span>
-                <h2 class="font-display text-4xl md:text-5xl leading-tight mb-8">Trusted by judicial systems nationwide.</h2>
+                <h2 class="font-light text-4xl md:text-5xl leading-tight mb-8">Trusted by judicial systems nationwide.</h2>
                 <p class="text-lg opacity-70 leading-relaxed mb-8">
                     Our proven track record demonstrates consistent success in state judicial court systems across the United States. With over 17 years of experience, our dedicated team excels in crafting custom software solutions for administrative court systems.
                 </p>
@@ -536,7 +556,7 @@
 <section class="py-32 px-8 lg:px-16 border-t border-black/5" id="who">
     <div class="mb-20 reveal">
         <span class="text-xs uppercase tracking-label text-primary mb-4 block">Who It's For</span>
-        <h2 class="font-display text-5xl">Built for the systems<br/>that serve the public.</h2>
+        <h2 class="font-light text-5xl">Built for the systems<br/>that serve the public.</h2>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
         <div class="group reveal">
@@ -580,25 +600,25 @@
     <div class="max-w-4xl mx-auto">
         <div class="mb-20 reveal">
             <span class="text-xs uppercase tracking-label text-primary mb-4 block">Testimonials</span>
-            <h2 class="font-display text-5xl">What our clients say.</h2>
+            <h2 class="font-light text-5xl">What our clients say.</h2>
         </div>
         <div class="space-y-16">
             <blockquote class="reveal">
-                <p class="font-display italic text-2xl md:text-3xl leading-relaxed mb-6">"CaseHub has been nothing short of transformational."</p>
+                <p class="italic text-2xl md:text-3xl leading-relaxed mb-6">"CaseHub has been nothing short of transformational."</p>
                 <div class="flex items-center gap-4">
                     <div class="w-10 h-[1px] bg-primary"></div>
                     <span class="text-xs uppercase tracking-widest text-muted">State Court Administrator</span>
                 </div>
             </blockquote>
             <blockquote class="reveal">
-                <p class="font-display italic text-2xl md:text-3xl leading-relaxed mb-6">"They worked with us to build something better than we could have ever imagined."</p>
+                <p class="italic text-2xl md:text-3xl leading-relaxed mb-6">"They worked with us to build something better than we could have ever imagined."</p>
                 <div class="flex items-center gap-4">
                     <div class="w-10 h-[1px] bg-primary"></div>
                     <span class="text-xs uppercase tracking-widest text-muted">Chief Administrative Law Judge</span>
                 </div>
             </blockquote>
             <blockquote class="reveal">
-                <p class="font-display italic text-xl md:text-2xl leading-relaxed mb-6">"We searched for nearly 10 years for a vendor to design software for our court. After several unsuccessful attempts with other vendors, we found Azul Arc, who's far exceeded our expectations."</p>
+                <p class="italic text-xl md:text-2xl leading-relaxed mb-6">"We searched for nearly 10 years for a vendor to design software for our court. After several unsuccessful attempts with other vendors, we found Azul Arc, who's far exceeded our expectations."</p>
                 <div class="flex items-center gap-4">
                     <div class="w-10 h-[1px] bg-primary"></div>
                     <span class="text-xs uppercase tracking-widest text-muted">Court Clerk of Superior Court</span>
@@ -611,9 +631,9 @@
 <!-- CTA -->
 <section class="py-32 px-8 lg:px-16 bg-zinc-950 text-white cta-section" id="cta-section">
     <div class="max-w-4xl mx-auto text-center reveal">
-        <span class="text-xs uppercase tracking-label text-primary-light mb-6 block">Get Started</span>
-        <h2 class="font-display text-5xl md:text-6xl mb-8 leading-tight">See CaseHub in action.</h2>
-        <p class="text-lg text-white/50 mb-12 max-w-2xl mx-auto">Schedule a personalized demo and discover how CaseHub can transform your case management. 30 minutes with our team — we'll walk through the platform and answer every question.</p>
+        <span class="text-xs uppercase tracking-label text-primary-light mb-6 block cta-label">Get Started</span>
+        <h2 class="font-light text-5xl md:text-6xl mb-8 leading-tight cta-text">See CaseHub in action.</h2>
+        <p class="text-lg text-white/50 mb-12 max-w-2xl mx-auto cta-muted">Schedule a personalized demo and discover how CaseHub can transform your case management. 30 minutes with our team — we'll walk through the platform and answer every question.</p>
         <a href="contact.html" class="cta-wipe group inline-flex items-center gap-3 border border-white/20 px-8 py-5 text-sm uppercase tracking-cta font-medium" id="cta-btn">
             <span>Request a Demo</span>
             <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform duration-300" aria-hidden="true">arrow_forward</span>

@@ -5,7 +5,7 @@
 <title>Azul Arc — CaseHub Case Study</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Inter:wght@100;200;300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
 <script>
@@ -24,7 +24,7 @@
                         "muted": "#808285",
                     },
                     fontFamily: {
-                        display: ["Instrument Serif", "serif"],
+                        display: ["Inter", "sans-serif"],
                         sans: ["Inter", "sans-serif"],
                     },
                     borderRadius: {
@@ -209,6 +209,26 @@
         }
         .cta-section.wipe-active .cta-wipe {
             border-color: rgba(255,255,255,0.4);
+            background: #fff;
+            color: #1863DC;
+        }
+        .cta-section .cta-text {
+            transition: color 0.6s cubic-bezier(0.4, 0, 0.1, 1);
+        }
+        .cta-section.wipe-active .cta-text {
+            color: #fff;
+        }
+        .cta-section .cta-muted {
+            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.1, 1), color 0.6s cubic-bezier(0.4, 0, 0.1, 1);
+        }
+        .cta-section.wipe-active .cta-muted {
+            color: rgba(255,255,255,0.7);
+        }
+        .cta-section .cta-label {
+            transition: color 0.6s cubic-bezier(0.4, 0, 0.1, 1);
+        }
+        .cta-section.wipe-active .cta-label {
+            color: rgba(255,255,255,0.6);
         }
     @media (prefers-reduced-motion: reduce) {
         *, *::before, *::after {
@@ -312,7 +332,7 @@
         <div class="flex items-center gap-4 mb-6">
             <span class="text-xs uppercase tracking-widest font-medium bg-white/10 backdrop-blur-sm px-4 py-1.5">Government & Courts</span>
         </div>
-        <h1 class="font-display text-5xl md:text-7xl lg:text-8xl tracking-tighter leading-none mb-8">CaseHub</h1>
+        <h1 class="font-semibold text-5xl md:text-7xl lg:text-8xl tracking-tighter leading-none mb-8">CaseHub</h1>
         <p class="text-xl md:text-2xl text-white/60 font-light max-w-2xl">Replacing paper-based court filing across 12 counties with a unified digital platform.</p>
     </div>
 </section>
@@ -344,7 +364,7 @@
     <div class="max-w-7xl mx-auto">
         <div class="reveal mb-16">
             <p class="text-sm uppercase tracking-widest text-primary mb-4">The Challenge</p>
-            <h2 class="font-display text-5xl">What we walked into</h2>
+            <h2 class="font-light text-5xl">What we walked into</h2>
         </div>
         <div class="flex flex-col lg:flex-row gap-16 items-start">
             <div class="lg:w-1/2 space-y-6">
@@ -385,7 +405,7 @@
     <div class="max-w-7xl mx-auto">
         <div class="reveal mb-20">
             <p class="text-sm uppercase tracking-widest text-primary mb-4">The Approach</p>
-            <h2 class="font-display text-5xl">How we got there</h2>
+            <h2 class="font-light text-5xl">How we got there</h2>
         </div>
         <div class="max-w-3xl space-y-16">
 
@@ -446,7 +466,7 @@
     <div class="max-w-7xl mx-auto">
         <div class="reveal mb-20">
             <p class="text-sm uppercase tracking-widest text-primary mb-4">The Solution</p>
-            <h2 class="font-display text-5xl">What we built</h2>
+            <h2 class="font-light text-5xl">What we built</h2>
         </div>
 
         <!-- Screenshot Placeholder -->
@@ -512,7 +532,7 @@
     <div class="max-w-7xl mx-auto">
         <div class="reveal mb-20">
             <p class="text-sm uppercase tracking-widest text-primary-light mb-4">The Results</p>
-            <h2 class="font-display text-5xl">Numbers that matter</h2>
+            <h2 class="font-light text-5xl">Numbers that matter</h2>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
             <div class="stat-block border-t border-white/10 pt-8" style="transition-delay: 0.1s;">
@@ -559,7 +579,7 @@
         <div class="reveal flex justify-between items-end mb-16">
             <div>
                 <p class="text-sm uppercase tracking-widest text-primary mb-4">More Work</p>
-                <h2 class="font-display text-4xl">Related case studies</h2>
+                <h2 class="font-light text-4xl">Related case studies</h2>
             </div>
             <a href="work.html" class="group hidden md:inline-flex items-center gap-2 text-sm uppercase tracking-widest text-primary font-medium hover:text-primary-dark transition-colors">
                 View All
@@ -614,8 +634,8 @@
 <!-- CTA -->
 <section class="py-32 px-8 lg:px-16 border-t border-black/5 cta-section" id="cta-section">
     <div class="reveal max-w-4xl mx-auto text-center">
-        <h2 class="font-display text-5xl md:text-6xl mb-8">Have a similar challenge?</h2>
-        <p class="text-xl text-muted mb-12 max-w-2xl mx-auto">Whether it's legacy software, paper-based processes, or systems that don't talk to each other -- we've seen it before, and we know how to fix it.</p>
+        <h2 class="font-light text-5xl md:text-6xl mb-8 cta-text">Have a similar challenge?</h2>
+        <p class="text-xl text-muted mb-12 max-w-2xl mx-auto cta-muted">Whether it's legacy software, paper-based processes, or systems that don't talk to each other -- we've seen it before, and we know how to fix it.</p>
         <a href="contact.html" class="cta-wipe group inline-flex items-center gap-3 border border-black/15 px-8 py-5 text-sm uppercase tracking-cta font-medium" id="cta-btn">
             <span>Talk About My Project</span>
             <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform duration-300" aria-hidden="true">arrow_forward</span>

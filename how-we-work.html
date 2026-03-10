@@ -119,6 +119,23 @@
             transition: transform 0.1s cubic-bezier(0.17, 0.67, 0.83, 0.67);
         }
 
+        /* Phase stacking cards */
+        .phase-card {
+            position: sticky;
+            background: white;
+            box-shadow: 0 -8px 40px rgba(0,0,0,0.04);
+            transition: box-shadow 0.3s ease;
+        }
+        .phase-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: rgba(0,0,0,0.06);
+        }
+
         /* CTA section blue wipe */
         .cta-section {
             position: relative;
@@ -242,21 +259,23 @@
     </div>
 </section>
 
-<!-- Process Timeline -->
-<section class="py-32 px-8 lg:px-16">
-<div class="reveal mb-20">
+<!-- Process Timeline — Stacking Cards -->
+<section class="pt-32 pb-0 px-0">
+<!-- Sticky heading -->
+<div class="sticky top-0 z-40 bg-white px-8 lg:px-16 pt-16 pb-12" style="box-shadow: 0 8px 30px rgba(255,255,255,0.9);">
+<div class="reveal">
 <p class="text-sm uppercase tracking-widest text-primary mb-4">The Process</p>
 <h2 class="text-5xl font-light">Five phases. Zero guesswork.</h2>
 </div>
+</div>
 
 <!-- Phase 1: Discovery -->
-<div class="flex flex-col lg:flex-row gap-16 items-start mb-0 pb-20 border-b border-black/10">
+<div class="phase-card relative px-8 lg:px-16 py-16 min-h-[70vh] flex items-start" style="top: 10rem; z-index: 1;">
+<div class="flex flex-col lg:flex-row gap-16 items-start w-full">
 <div class="lg:w-4/12">
-<div class="sticky top-32">
 <span class="text-8xl font-light text-primary/10 block leading-none">01</span>
 <h3 class="text-3xl font-light mt-4 mb-2">Discovery</h3>
 <span class="text-xs uppercase tracking-wide-label text-primary">Weeks 1-2</span>
-</div>
 </div>
 <div class="lg:w-8/12">
 <p class="text-xl opacity-70 leading-relaxed mb-12">Before we write a line of code, we need to understand your world. Not just the technical landscape, but the people, the processes, and the pain.</p>
@@ -285,15 +304,15 @@
 </div>
 </div>
 </div>
+</div>
 
 <!-- Phase 2: Blueprint -->
-<div class="flex flex-col lg:flex-row gap-16 items-start mb-0 py-20 border-b border-black/10">
+<div class="phase-card relative px-8 lg:px-16 py-16 min-h-[70vh] flex items-start" style="top: 10rem; z-index: 2;">
+<div class="flex flex-col lg:flex-row gap-16 items-start w-full">
 <div class="lg:w-4/12">
-<div class="sticky top-32">
 <span class="text-8xl font-light text-primary/10 block leading-none">02</span>
 <h3 class="text-3xl font-light mt-4 mb-2">Blueprint</h3>
 <span class="text-xs uppercase tracking-wide-label text-primary">Weeks 3-4</span>
-</div>
 </div>
 <div class="lg:w-8/12">
 <p class="text-xl opacity-70 leading-relaxed mb-12">Discovery findings become a concrete plan. Architecture decisions, scope definitions, and a timeline you can actually hold us to.</p>
@@ -322,15 +341,15 @@
 </div>
 </div>
 </div>
+</div>
 
 <!-- Phase 3: Design & Build -->
-<div class="flex flex-col lg:flex-row gap-16 items-start mb-0 py-20 border-b border-black/10">
+<div class="phase-card relative px-8 lg:px-16 py-16 min-h-[70vh] flex items-start" style="top: 10rem; z-index: 3;">
+<div class="flex flex-col lg:flex-row gap-16 items-start w-full">
 <div class="lg:w-4/12">
-<div class="sticky top-32">
 <span class="text-8xl font-light text-primary/10 block leading-none">03</span>
 <h3 class="text-3xl font-light mt-4 mb-2">Design & Build</h3>
 <span class="text-xs uppercase tracking-wide-label text-primary">Weeks 5-16</span>
-</div>
 </div>
 <div class="lg:w-8/12">
 <p class="text-xl opacity-70 leading-relaxed mb-12">This is where it gets real. Two-week sprints, working software at every milestone, and a feedback loop that keeps the product aligned with your actual needs.</p>
@@ -359,15 +378,15 @@
 </div>
 </div>
 </div>
+</div>
 
 <!-- Phase 4: Deploy -->
-<div class="flex flex-col lg:flex-row gap-16 items-start mb-0 py-20 border-b border-black/10">
+<div class="phase-card relative px-8 lg:px-16 py-16 min-h-[70vh] flex items-start" style="top: 10rem; z-index: 4;">
+<div class="flex flex-col lg:flex-row gap-16 items-start w-full">
 <div class="lg:w-4/12">
-<div class="sticky top-32">
 <span class="text-8xl font-light text-primary/10 block leading-none">04</span>
 <h3 class="text-3xl font-light mt-4 mb-2">Deploy</h3>
 <span class="text-xs uppercase tracking-wide-label text-primary">Weeks 17-20</span>
-</div>
 </div>
 <div class="lg:w-8/12">
 <p class="text-xl opacity-70 leading-relaxed mb-12">Launch is not the finish line. It's the most critical phase. We handle migration, training, and rollout with the same rigor we bring to development.</p>
@@ -396,15 +415,15 @@
 </div>
 </div>
 </div>
+</div>
 
 <!-- Phase 5: Evolve -->
-<div class="flex flex-col lg:flex-row gap-16 items-start mb-0 pt-20">
+<div class="phase-card relative px-8 lg:px-16 py-16 min-h-[70vh] flex items-start" style="top: 10rem; z-index: 5;">
+<div class="flex flex-col lg:flex-row gap-16 items-start w-full">
 <div class="lg:w-4/12">
-<div class="sticky top-32">
 <span class="text-8xl font-light text-primary/10 block leading-none">05</span>
 <h3 class="text-3xl font-light mt-4 mb-2">Evolve</h3>
 <span class="text-xs uppercase tracking-wide-label text-primary">Ongoing</span>
-</div>
 </div>
 <div class="lg:w-8/12">
 <p class="text-xl opacity-70 leading-relaxed mb-12">Software is never "done." We stay on to monitor performance, fix issues, and build the features you'll need as your business evolves.</p>
@@ -429,6 +448,7 @@
 </div>
 <h4 class="text-lg font-medium mb-3">Feature Additions</h4>
 <p class="text-sm opacity-60 leading-relaxed">New capabilities informed by real usage data. We track how your team uses the system and prioritize enhancements based on actual behavior, not hypothetical requirements.</p>
+</div>
 </div>
 </div>
 </div>

@@ -84,6 +84,30 @@
         color: #1863DC;
         opacity: 1;
     }
+        /* Active nav indicator */
+        .nav-links a {
+            position: relative;
+        }
+        .nav-links a.nav-active {
+            opacity: 1 !important;
+        }
+        .nav-links a.nav-active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: currentColor;
+        }
+        nav.nav-scrolled .nav-links a.nav-active {
+            color: #1863DC !important;
+        }
+        nav.nav-scrolled .nav-links a.nav-active::after {
+            background: #1863DC;
+        }
 
         /* Scroll reveal animations */
         .reveal {
@@ -245,7 +269,7 @@
 
 <main id="main-content">
 <!-- Article Hero -->
-<section class="relative min-h-[60vh] flex items-end overflow-hidden text-white" style="background: linear-gradient(135deg, #212121 0%, #1863DC 100%)">
+<section class="relative min-h-[70vh] flex items-end overflow-hidden text-white" style="background: linear-gradient(135deg, #212121 0%, #1863DC 100%)">
     <div class="absolute inset-0 bg-black/20"></div>
     <div class="relative z-10 px-8 lg:px-16 pb-20 pt-48 w-full">
         <div class="max-w-3xl mx-auto">
@@ -432,14 +456,23 @@
         <span class="text-xs uppercase tracking-label text-primary-light mb-6 block cta-label">Newsletter</span>
         <h2 class="font-light text-5xl md:text-6xl mb-6 leading-tight cta-text">Get our best thinking,<br/>delivered.</h2>
         <p class="text-lg text-white/50 mb-12 max-w-xl mx-auto cta-muted">Strategy frameworks, engineering insights, and honest lessons from real projects. No fluff. Roughly twice a month.</p>
-        <div class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-            <input class="flex-1 bg-white/5 border border-white/10 px-6 py-4 text-sm text-white placeholder:text-white/30 focus:ring-1 focus:ring-primary focus:border-primary transition-colors" placeholder="Your email address" type="email"/>
-            <button class="cta-wipe group flex items-center justify-center gap-2 bg-primary text-white px-8 py-4 text-sm uppercase tracking-cta font-medium hover:bg-primary-dark transition-colors" id="cta-btn">
-                <span>Subscribe</span>
-                <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform duration-300" aria-hidden="true">arrow_forward</span>
+        <form class="newsletter-form flex flex-col sm:flex-row gap-4 max-w-md mx-auto" id="newsletter-form" novalidate>
+            <input class="newsletter-input flex-1 bg-white/5 border border-white/10 px-6 py-4 text-sm text-white placeholder:text-white/30 focus:ring-1 focus:ring-primary focus:border-primary transition-colors" placeholder="Your email address" type="email" required id="newsletter-email"/>
+            <button type="submit" class="cta-wipe group flex items-center justify-center gap-2 bg-primary text-white px-8 py-4 text-sm uppercase tracking-cta font-medium hover:bg-primary-dark transition-colors" id="cta-btn">
+                <span class="newsletter-btn-text">Subscribe</span>
+                <svg class="newsletter-btn-spinner hidden animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform duration-300 newsletter-btn-arrow" aria-hidden="true">arrow_forward</span>
             </button>
+        </form>
+        <div class="newsletter-success hidden max-w-md mx-auto mt-6 transition-opacity duration-500">
+            <div class="flex items-center justify-center gap-3">
+                <span class="material-symbols-outlined text-2xl text-emerald-400">check_circle</span>
+                <span class="text-lg font-medium text-white">You're in. Welcome aboard.</span>
+            </div>
+            <p class="text-sm text-white/40 mt-2">Check your inbox for a confirmation email.</p>
         </div>
-        <p class="text-xs text-white/20 mt-6">No spam. Unsubscribe anytime. We respect your inbox.</p>
+        <p class="newsletter-error hidden text-sm text-red-400 mt-3 max-w-md mx-auto">Please enter a valid email address.</p>
+        <p class="newsletter-fine-print text-xs text-white/20 mt-6">No spam. Unsubscribe anytime. We respect your inbox.</p>
     </div>
 </section>
 
@@ -552,6 +585,68 @@ if (ctaBtn && ctaSection) {
     ctaBtn.addEventListener('mouseenter', () => ctaSection.classList.add('wipe-active'));
     ctaBtn.addEventListener('mouseleave', () => ctaSection.classList.remove('wipe-active'));
 }
+
+// Active nav indicator
+(function() {
+    var p = location.pathname, page = p.split('/').pop() || 'index.html',
+        dir = p.split('/').slice(-2, -1)[0] || '';
+    document.querySelectorAll('.nav-links > a').forEach(function(a) {
+        var dd = a.dataset.dropdown,
+            hp = (a.getAttribute('href') || '').split('/').pop();
+        if (
+            (dd === 'industries' && dir === 'industries') ||
+            (dd === 'whatwedo' && (dir === 'services' || page === 'casehub.html')) ||
+            (hp === 'how-we-work.html' && page === 'how-we-work.html') ||
+            (hp === 'work.html' && (page === 'work.html' || page === 'case-study.html')) ||
+            (hp === 'insights.html' && (page === 'insights.html' || dir === 'insights')) ||
+            (hp === 'about.html' && page === 'about.html')
+        ) a.classList.add('nav-active');
+    });
+})();
+
+// Newsletter form handling
+(function() {
+    var form = document.getElementById('newsletter-form');
+    if (!form) return;
+    var input = document.getElementById('newsletter-email');
+    var btn = form.querySelector('button[type="submit"]');
+    var btnText = btn.querySelector('.newsletter-btn-text');
+    var spinner = btn.querySelector('.newsletter-btn-spinner');
+    var arrow = btn.querySelector('.newsletter-btn-arrow');
+    var success = document.querySelector('.newsletter-success');
+    var error = document.querySelector('.newsletter-error');
+    var fine = document.querySelector('.newsletter-fine-print');
+
+    input.addEventListener('input', function() {
+        error.classList.add('hidden');
+        input.classList.remove('border-red-400');
+    });
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        error.classList.add('hidden');
+        input.classList.remove('border-red-400');
+
+        if (!input.value || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
+            error.classList.remove('hidden');
+            input.classList.add('border-red-400');
+            input.focus();
+            return;
+        }
+
+        btnText.textContent = 'Sending\u2026';
+        spinner.classList.remove('hidden');
+        arrow.classList.add('hidden');
+        btn.disabled = true;
+        btn.classList.add('opacity-70', 'cursor-not-allowed');
+
+        setTimeout(function() {
+            form.classList.add('hidden');
+            fine.classList.add('hidden');
+            success.classList.remove('hidden');
+        }, 1200);
+    });
+})();
 </script>
 
 </body>

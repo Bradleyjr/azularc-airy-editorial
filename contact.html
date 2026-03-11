@@ -80,6 +80,30 @@
             color: #1863DC;
             opacity: 1;
         }
+        /* Active nav indicator */
+        .nav-links a {
+            position: relative;
+        }
+        .nav-links a.nav-active {
+            opacity: 1 !important;
+        }
+        .nav-links a.nav-active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: currentColor;
+        }
+        nav.nav-scrolled .nav-links a.nav-active {
+            color: #1863DC !important;
+        }
+        nav.nav-scrolled .nav-links a.nav-active::after {
+            background: #1863DC;
+        }
         /* Mega menu active state */
         .mega-menu.active {
             opacity: 1;
@@ -905,6 +929,24 @@ const revealObserver = new IntersectionObserver((entries) => {
     });
 }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 revealEls.forEach(el => revealObserver.observe(el));
+
+// Active nav indicator
+(function() {
+    var p = location.pathname, page = p.split('/').pop() || 'index.html',
+        dir = p.split('/').slice(-2, -1)[0] || '';
+    document.querySelectorAll('.nav-links > a').forEach(function(a) {
+        var dd = a.dataset.dropdown,
+            hp = (a.getAttribute('href') || '').split('/').pop();
+        if (
+            (dd === 'industries' && dir === 'industries') ||
+            (dd === 'whatwedo' && (dir === 'services' || page === 'casehub.html')) ||
+            (hp === 'how-we-work.html' && page === 'how-we-work.html') ||
+            (hp === 'work.html' && (page === 'work.html' || page === 'case-study.html')) ||
+            (hp === 'insights.html' && (page === 'insights.html' || dir === 'insights')) ||
+            (hp === 'about.html' && page === 'about.html')
+        ) a.classList.add('nav-active');
+    });
+})();
 </script>
 </body>
 </html>

@@ -209,10 +209,43 @@
         display: flex;
     }
 
-    /* Testimonial slider */
-    .testimonial-track {
+    /* Testimonial marquee */
+    .marquee-container {
+        overflow: hidden;
+        -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+        mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    }
+    .marquee-track {
         display: flex;
-        transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        gap: 2rem;
+        width: max-content;
+        animation: marquee-scroll 40s linear infinite;
+    }
+    .marquee-track.reverse {
+        animation: marquee-scroll-reverse 45s linear infinite;
+    }
+    .marquee-track:hover {
+        animation-play-state: paused;
+    }
+    .marquee-card {
+        flex-shrink: 0;
+        width: 480px;
+        padding: 2.5rem;
+        border: 1px solid rgba(0,0,0,0.06);
+        background: white;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .marquee-card:hover {
+        border-color: rgba(24,99,220,0.2);
+        box-shadow: 0 8px 32px rgba(24,99,220,0.06);
+    }
+    @keyframes marquee-scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+    @keyframes marquee-scroll-reverse {
+        0% { transform: translateX(-50%); }
+        100% { transform: translateX(0); }
     }
 
     /* Accessibility: reduced motion */
@@ -579,74 +612,240 @@
 
 <!-- Who It's For -->
 <section class="py-32 px-8 lg:px-16 border-t border-black/5" id="who">
-    <div class="mb-20 reveal">
-        <span class="text-xs uppercase tracking-label text-primary mb-4 block">Who It's For</span>
-        <h2 class="font-light text-5xl">Built for the systems<br/>that serve the public.</h2>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-        <div class="group reveal">
-            <div class="aspect-[4/3] overflow-hidden mb-8 bg-zinc-950 relative group-hover:scale-[1.02] transition-transform duration-700">
-                <div class="absolute inset-0 opacity-[0.04]" style="background-image: url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; stroke=&quot;%23fff&quot; stroke-width=&quot;0.5&quot;%3E%3Cpath d=&quot;M0 30h60M30 0v60&quot;/%3E%3C/g%3E%3C/svg%3E'); background-size: 60px 60px;"></div>
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <span class="material-symbols-outlined text-[80px] text-primary/15">gavel</span>
-                </div>
-                <div class="absolute bottom-6 left-6 right-6"><span class="text-[10px] uppercase tracking-widest text-white/20">Courts & Tribunals</span></div>
-            </div>
-            <h3 class="text-2xl font-light mb-3 group-hover:text-primary transition-colors">Courts & Judicial Bodies</h3>
-            <p class="text-sm opacity-50 leading-relaxed">Streamline processes with intuitive features. Enhanced collaboration and improved case management for judicial systems of any size.</p>
+    <div class="flex flex-col lg:flex-row gap-20">
+        <div class="lg:w-5/12 lg:sticky lg:top-32 lg:self-start reveal">
+            <span class="text-xs uppercase tracking-label text-primary mb-4 block">Who It's For</span>
+            <h2 class="font-light text-5xl mb-6">Built for the systems<br/>that serve the public.</h2>
+            <p class="text-muted leading-relaxed">CaseHub is purpose-built for government agencies that manage caseloads, hearings, and public records at scale.</p>
         </div>
-        <div class="group reveal reveal-delay-1">
-            <div class="aspect-[4/3] overflow-hidden mb-8 bg-zinc-950 relative group-hover:scale-[1.02] transition-transform duration-700">
-                <div class="absolute inset-0 opacity-[0.04]" style="background-image: url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; stroke=&quot;%23fff&quot; stroke-width=&quot;0.5&quot;%3E%3Cpath d=&quot;M0 30h60M30 0v60&quot;/%3E%3C/g%3E%3C/svg%3E'); background-size: 60px 60px;"></div>
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <span class="material-symbols-outlined text-[80px] text-primary/15">hearing</span>
+        <div class="lg:w-7/12 space-y-0">
+            <div class="flex gap-8 py-10 border-b border-black/10 reveal">
+                <div class="w-14 h-14 shrink-0 border border-black/10 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-2xl text-primary" aria-hidden="true">gavel</span>
                 </div>
-                <div class="absolute bottom-6 left-6 right-6"><span class="text-[10px] uppercase tracking-widest text-white/20">Administrative Law</span></div>
-            </div>
-            <h3 class="text-2xl font-light mb-3 group-hover:text-primary transition-colors">Administrative Hearing Agencies</h3>
-            <p class="text-sm opacity-50 leading-relaxed">Seamless communication tools that foster teamwork and efficiency across all levels of administrative hearing operations.</p>
-        </div>
-        <div class="group reveal reveal-delay-2">
-            <div class="aspect-[4/3] overflow-hidden mb-8 bg-zinc-950 relative group-hover:scale-[1.02] transition-transform duration-700">
-                <div class="absolute inset-0 opacity-[0.04]" style="background-image: url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; stroke=&quot;%23fff&quot; stroke-width=&quot;0.5&quot;%3E%3Cpath d=&quot;M0 30h60M30 0v60&quot;/%3E%3C/g%3E%3C/svg%3E'); background-size: 60px 60px;"></div>
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <span class="material-symbols-outlined text-[80px] text-primary/15">account_balance</span>
+                <div>
+                    <h3 class="text-xl font-medium mb-2">Courts & Judicial Bodies</h3>
+                    <p class="text-sm text-muted leading-relaxed mb-3">State, county, and municipal courts managing high-volume dockets. From initial filing through disposition, CaseHub handles the full lifecycle with built-in compliance for state reporting mandates.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-[10px] uppercase tracking-widest text-primary/60 bg-primary/5 px-2 py-1">Case filing</span>
+                        <span class="text-[10px] uppercase tracking-widest text-primary/60 bg-primary/5 px-2 py-1">Scheduling</span>
+                        <span class="text-[10px] uppercase tracking-widest text-primary/60 bg-primary/5 px-2 py-1">E-warrants</span>
+                        <span class="text-[10px] uppercase tracking-widest text-primary/60 bg-primary/5 px-2 py-1">Public portal</span>
+                    </div>
                 </div>
-                <div class="absolute bottom-6 left-6 right-6"><span class="text-[10px] uppercase tracking-widest text-white/20">Revenue & Tax</span></div>
             </div>
-            <h3 class="text-2xl font-light mb-3 group-hover:text-primary transition-colors">Tax Agencies</h3>
-            <p class="text-sm opacity-50 leading-relaxed">Transparent tracking capabilities ensure compliance and accountability with every case managed across your tax jurisdiction.</p>
+            <div class="flex gap-8 py-10 border-b border-black/10 reveal">
+                <div class="w-14 h-14 shrink-0 border border-black/10 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-2xl text-primary" aria-hidden="true">hearing</span>
+                </div>
+                <div>
+                    <h3 class="text-xl font-medium mb-2">Administrative Hearing Agencies</h3>
+                    <p class="text-sm text-muted leading-relaxed mb-3">ALJ offices, licensing boards, and regulatory bodies that conduct formal hearings. Manage evidence submission, witness scheduling, and decision tracking with full audit trails.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-[10px] uppercase tracking-widest text-primary/60 bg-primary/5 px-2 py-1">Hearing mgmt</span>
+                        <span class="text-[10px] uppercase tracking-widest text-primary/60 bg-primary/5 px-2 py-1">Evidence</span>
+                        <span class="text-[10px] uppercase tracking-widest text-primary/60 bg-primary/5 px-2 py-1">Decisions</span>
+                        <span class="text-[10px] uppercase tracking-widest text-primary/60 bg-primary/5 px-2 py-1">Compliance</span>
+                    </div>
+                </div>
+            </div>
+            <div class="flex gap-8 py-10 reveal">
+                <div class="w-14 h-14 shrink-0 border border-black/10 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-2xl text-primary" aria-hidden="true">account_balance</span>
+                </div>
+                <div>
+                    <h3 class="text-xl font-medium mb-2">Tax & Revenue Agencies</h3>
+                    <p class="text-sm text-muted leading-relaxed mb-3">State tax tribunals and revenue departments that process disputes, appeals, and collections. Track every case from protest through resolution with transparent status updates for all parties.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-[10px] uppercase tracking-widest text-primary/60 bg-primary/5 px-2 py-1">Dispute mgmt</span>
+                        <span class="text-[10px] uppercase tracking-widest text-primary/60 bg-primary/5 px-2 py-1">Appeals</span>
+                        <span class="text-[10px] uppercase tracking-widest text-primary/60 bg-primary/5 px-2 py-1">Collections</span>
+                        <span class="text-[10px] uppercase tracking-widest text-primary/60 bg-primary/5 px-2 py-1">Reporting</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
 <!-- Testimonials -->
-<section class="py-32 px-8 lg:px-16 bg-zinc-50">
-    <div class="max-w-4xl mx-auto">
-        <div class="mb-20 reveal">
-            <span class="text-xs uppercase tracking-label text-primary mb-4 block">Testimonials</span>
-            <h2 class="font-light text-5xl">What our clients say.</h2>
+<section class="py-32 bg-zinc-50 overflow-hidden">
+    <div class="px-8 lg:px-16 mb-16 reveal">
+        <span class="text-xs uppercase tracking-label text-primary mb-4 block">Testimonials</span>
+        <h2 class="font-light text-5xl">What our clients say.</h2>
+    </div>
+
+    <!-- Row 1 — scrolls left -->
+    <div class="marquee-container mb-8">
+        <div class="marquee-track" aria-label="Client testimonials, row 1">
+            <!-- Set A -->
+            <blockquote class="marquee-card">
+                <p class="text-lg leading-relaxed mb-6">"CaseHub has been nothing short of transformational. We went from paper-based processes to a fully digital workflow in under six months."</p>
+                <div class="flex items-center gap-4">
+                    <div class="w-8 h-[1px] bg-primary"></div>
+                    <div>
+                        <span class="text-xs uppercase tracking-widest text-zinc-900 font-medium block">State Court Administrator</span>
+                        <span class="text-[11px] text-muted">Multi-county Judicial District</span>
+                    </div>
+                </div>
+            </blockquote>
+            <blockquote class="marquee-card">
+                <p class="text-lg leading-relaxed mb-6">"The migration was seamless. Our staff didn't miss a single day of work, and the new system is light-years ahead of what we had."</p>
+                <div class="flex items-center gap-4">
+                    <div class="w-8 h-[1px] bg-primary"></div>
+                    <div>
+                        <span class="text-xs uppercase tracking-widest text-zinc-900 font-medium block">IT Director</span>
+                        <span class="text-[11px] text-muted">State Revenue Department</span>
+                    </div>
+                </div>
+            </blockquote>
+            <blockquote class="marquee-card">
+                <p class="text-lg leading-relaxed mb-6">"We searched for nearly 10 years for a vendor to design software for our court. After several unsuccessful attempts, we found Azul Arc, who's far exceeded our expectations."</p>
+                <div class="flex items-center gap-4">
+                    <div class="w-8 h-[1px] bg-primary"></div>
+                    <div>
+                        <span class="text-xs uppercase tracking-widest text-zinc-900 font-medium block">Court Clerk</span>
+                        <span class="text-[11px] text-muted">Superior Court of Georgia</span>
+                    </div>
+                </div>
+            </blockquote>
+            <blockquote class="marquee-card">
+                <p class="text-lg leading-relaxed mb-6">"Azul Arc didn't just build us software — they understood our workflow and designed around it. That's rare in this space."</p>
+                <div class="flex items-center gap-4">
+                    <div class="w-8 h-[1px] bg-primary"></div>
+                    <div>
+                        <span class="text-xs uppercase tracking-widest text-zinc-900 font-medium block">Deputy Commissioner</span>
+                        <span class="text-[11px] text-muted">State Tax Tribunal</span>
+                    </div>
+                </div>
+            </blockquote>
+            <!-- Set B (duplicate for seamless loop) -->
+            <blockquote class="marquee-card" aria-hidden="true">
+                <p class="text-lg leading-relaxed mb-6">"CaseHub has been nothing short of transformational. We went from paper-based processes to a fully digital workflow in under six months."</p>
+                <div class="flex items-center gap-4">
+                    <div class="w-8 h-[1px] bg-primary"></div>
+                    <div>
+                        <span class="text-xs uppercase tracking-widest text-zinc-900 font-medium block">State Court Administrator</span>
+                        <span class="text-[11px] text-muted">Multi-county Judicial District</span>
+                    </div>
+                </div>
+            </blockquote>
+            <blockquote class="marquee-card" aria-hidden="true">
+                <p class="text-lg leading-relaxed mb-6">"The migration was seamless. Our staff didn't miss a single day of work, and the new system is light-years ahead of what we had."</p>
+                <div class="flex items-center gap-4">
+                    <div class="w-8 h-[1px] bg-primary"></div>
+                    <div>
+                        <span class="text-xs uppercase tracking-widest text-zinc-900 font-medium block">IT Director</span>
+                        <span class="text-[11px] text-muted">State Revenue Department</span>
+                    </div>
+                </div>
+            </blockquote>
+            <blockquote class="marquee-card" aria-hidden="true">
+                <p class="text-lg leading-relaxed mb-6">"We searched for nearly 10 years for a vendor to design software for our court. After several unsuccessful attempts, we found Azul Arc, who's far exceeded our expectations."</p>
+                <div class="flex items-center gap-4">
+                    <div class="w-8 h-[1px] bg-primary"></div>
+                    <div>
+                        <span class="text-xs uppercase tracking-widest text-zinc-900 font-medium block">Court Clerk</span>
+                        <span class="text-[11px] text-muted">Superior Court of Georgia</span>
+                    </div>
+                </div>
+            </blockquote>
+            <blockquote class="marquee-card" aria-hidden="true">
+                <p class="text-lg leading-relaxed mb-6">"Azul Arc didn't just build us software — they understood our workflow and designed around it. That's rare in this space."</p>
+                <div class="flex items-center gap-4">
+                    <div class="w-8 h-[1px] bg-primary"></div>
+                    <div>
+                        <span class="text-xs uppercase tracking-widest text-zinc-900 font-medium block">Deputy Commissioner</span>
+                        <span class="text-[11px] text-muted">State Tax Tribunal</span>
+                    </div>
+                </div>
+            </blockquote>
         </div>
-        <div class="space-y-16">
-            <blockquote class="reveal">
-                <p class="italic text-2xl md:text-3xl leading-relaxed mb-6">"CaseHub has been nothing short of transformational."</p>
+    </div>
+
+    <!-- Row 2 — scrolls right (reverse) -->
+    <div class="marquee-container">
+        <div class="marquee-track reverse" aria-label="Client testimonials, row 2">
+            <!-- Set A -->
+            <blockquote class="marquee-card">
+                <p class="text-lg leading-relaxed mb-6">"They worked with us to build something better than we could have ever imagined. Our judges actually enjoy using the system."</p>
                 <div class="flex items-center gap-4">
-                    <div class="w-10 h-[1px] bg-primary"></div>
-                    <span class="text-xs uppercase tracking-widest text-muted">State Court Administrator</span>
+                    <div class="w-8 h-[1px] bg-primary"></div>
+                    <div>
+                        <span class="text-xs uppercase tracking-widest text-zinc-900 font-medium block">Chief Administrative Law Judge</span>
+                        <span class="text-[11px] text-muted">Office of Administrative Hearings</span>
+                    </div>
                 </div>
             </blockquote>
-            <blockquote class="reveal">
-                <p class="italic text-2xl md:text-3xl leading-relaxed mb-6">"They worked with us to build something better than we could have ever imagined."</p>
+            <blockquote class="marquee-card">
+                <p class="text-lg leading-relaxed mb-6">"Case disposition times dropped 40% in the first year. The ROI speaks for itself."</p>
                 <div class="flex items-center gap-4">
-                    <div class="w-10 h-[1px] bg-primary"></div>
-                    <span class="text-xs uppercase tracking-widest text-muted">Chief Administrative Law Judge</span>
+                    <div class="w-8 h-[1px] bg-primary"></div>
+                    <div>
+                        <span class="text-xs uppercase tracking-widest text-zinc-900 font-medium block">Court Operations Manager</span>
+                        <span class="text-[11px] text-muted">Municipal Court System</span>
+                    </div>
                 </div>
             </blockquote>
-            <blockquote class="reveal">
-                <p class="italic text-xl md:text-2xl leading-relaxed mb-6">"We searched for nearly 10 years for a vendor to design software for our court. After several unsuccessful attempts with other vendors, we found Azul Arc, who's far exceeded our expectations."</p>
+            <blockquote class="marquee-card">
+                <p class="text-lg leading-relaxed mb-6">"Other vendors talked about modernization. Azul Arc actually delivered it — on time and on budget."</p>
                 <div class="flex items-center gap-4">
-                    <div class="w-10 h-[1px] bg-primary"></div>
-                    <span class="text-xs uppercase tracking-widest text-muted">Court Clerk of Superior Court</span>
+                    <div class="w-8 h-[1px] bg-primary"></div>
+                    <div>
+                        <span class="text-xs uppercase tracking-widest text-zinc-900 font-medium block">Chief Information Officer</span>
+                        <span class="text-[11px] text-muted">County Government</span>
+                    </div>
+                </div>
+            </blockquote>
+            <blockquote class="marquee-card">
+                <p class="text-lg leading-relaxed mb-6">"The public-facing portal changed everything. Citizens can now check case status without calling us. Phone volume dropped 60%."</p>
+                <div class="flex items-center gap-4">
+                    <div class="w-8 h-[1px] bg-primary"></div>
+                    <div>
+                        <span class="text-xs uppercase tracking-widest text-zinc-900 font-medium block">Clerk of Courts</span>
+                        <span class="text-[11px] text-muted">District Court</span>
+                    </div>
+                </div>
+            </blockquote>
+            <!-- Set B (duplicate for seamless loop) -->
+            <blockquote class="marquee-card" aria-hidden="true">
+                <p class="text-lg leading-relaxed mb-6">"They worked with us to build something better than we could have ever imagined. Our judges actually enjoy using the system."</p>
+                <div class="flex items-center gap-4">
+                    <div class="w-8 h-[1px] bg-primary"></div>
+                    <div>
+                        <span class="text-xs uppercase tracking-widest text-zinc-900 font-medium block">Chief Administrative Law Judge</span>
+                        <span class="text-[11px] text-muted">Office of Administrative Hearings</span>
+                    </div>
+                </div>
+            </blockquote>
+            <blockquote class="marquee-card" aria-hidden="true">
+                <p class="text-lg leading-relaxed mb-6">"Case disposition times dropped 40% in the first year. The ROI speaks for itself."</p>
+                <div class="flex items-center gap-4">
+                    <div class="w-8 h-[1px] bg-primary"></div>
+                    <div>
+                        <span class="text-xs uppercase tracking-widest text-zinc-900 font-medium block">Court Operations Manager</span>
+                        <span class="text-[11px] text-muted">Municipal Court System</span>
+                    </div>
+                </div>
+            </blockquote>
+            <blockquote class="marquee-card" aria-hidden="true">
+                <p class="text-lg leading-relaxed mb-6">"Other vendors talked about modernization. Azul Arc actually delivered it — on time and on budget."</p>
+                <div class="flex items-center gap-4">
+                    <div class="w-8 h-[1px] bg-primary"></div>
+                    <div>
+                        <span class="text-xs uppercase tracking-widest text-zinc-900 font-medium block">Chief Information Officer</span>
+                        <span class="text-[11px] text-muted">County Government</span>
+                    </div>
+                </div>
+            </blockquote>
+            <blockquote class="marquee-card" aria-hidden="true">
+                <p class="text-lg leading-relaxed mb-6">"The public-facing portal changed everything. Citizens can now check case status without calling us. Phone volume dropped 60%."</p>
+                <div class="flex items-center gap-4">
+                    <div class="w-8 h-[1px] bg-primary"></div>
+                    <div>
+                        <span class="text-xs uppercase tracking-widest text-zinc-900 font-medium block">Clerk of Courts</span>
+                        <span class="text-[11px] text-muted">District Court</span>
+                    </div>
                 </div>
             </blockquote>
         </div>

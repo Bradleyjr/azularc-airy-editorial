@@ -81,28 +81,25 @@
             opacity: 1;
         }
         /* Active nav indicator */
-        .nav-links a {
-            position: relative;
+        .nav-links a:not(.nav-active) {
+            opacity: 0.5 !important;
         }
         .nav-links a.nav-active {
             opacity: 1 !important;
         }
-        .nav-links a.nav-active::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 4px;
-            height: 4px;
-            border-radius: 50%;
-            background: currentColor;
+        .nav-links a:not(.nav-active):hover {
+            opacity: 0.85 !important;
+        }
+        nav.nav-scrolled .nav-links a:not(.nav-active) {
+            opacity: 0.5 !important;
+        }
+        nav.nav-scrolled .nav-links a:not(.nav-active):hover {
+            opacity: 1 !important;
+            color: #1863DC;
         }
         nav.nav-scrolled .nav-links a.nav-active {
             color: #1863DC !important;
-        }
-        nav.nav-scrolled .nav-links a.nav-active::after {
-            background: #1863DC;
+            opacity: 1 !important;
         }
         .mega-menu.active {
             opacity: 1;
@@ -276,6 +273,8 @@
 </button>
 </nav>
 <a href="contact.html" id="nav-cta" class="nav-cta fixed top-[22px] right-8 z-50 hidden md:flex items-center gap-2 bg-primary text-white px-5 py-2 rounded-full text-xs uppercase tracking-widest font-medium hover:bg-primary-dark transition-colors">Let's Talk</a>
+<div id="nav-indicator" class="fixed z-[51] pointer-events-none transition-all duration-300" style="display:none"><div class="w-[5px] h-[5px] rounded-full" style="background:#1863DC"></div></div>
+
 
 <!-- Mega menus -->
 <div id="mega-industries" class="mega-menu fixed top-0 left-0 w-full z-40 pt-[72px] opacity-0 invisible translate-y-[-8px] transition-all duration-300 ease-out pointer-events-none">
@@ -658,6 +657,8 @@ if (ctaBtn && ctaSection) {
 (function() {
     var p = location.pathname, page = p.split('/').pop() || 'index.html',
         dir = p.split('/').slice(-2, -1)[0] || '';
+    var indicator = document.getElementById('nav-indicator');
+    var activeLink = null;
     document.querySelectorAll('.nav-links > a').forEach(function(a) {
         var dd = a.dataset.dropdown,
             hp = (a.getAttribute('href') || '').split('/').pop();
@@ -668,8 +669,18 @@ if (ctaBtn && ctaSection) {
             (hp === 'work.html' && (page === 'work.html' || page === 'case-study.html')) ||
             (hp === 'insights.html' && (page === 'insights.html' || dir === 'insights')) ||
             (hp === 'about.html' && page === 'about.html')
-        ) a.classList.add('nav-active');
+        ) { a.classList.add('nav-active'); activeLink = a; }
     });
+    if (activeLink && indicator) {
+        function pos() {
+            var r = activeLink.getBoundingClientRect();
+            indicator.style.display = 'block';
+            indicator.style.left = (r.left + r.width / 2 - 2.5) + 'px';
+            indicator.style.top = (r.bottom + 6) + 'px';
+        }
+        pos();
+        window.addEventListener('resize', pos);
+    }
 })();
 </script>
 </body></html>

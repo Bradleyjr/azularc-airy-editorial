@@ -64,42 +64,44 @@
             transition: background-color 0.4s ease, backdrop-filter 0.4s ease;
         }
         nav.nav-scrolled {
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(12px);
-            mix-blend-mode: normal !important;
             color: #212121 !important;
         }
         nav.nav-scrolled a,
         nav.nav-scrolled div {
             color: #212121;
         }
-        nav.nav-scrolled img {
-            filter: none;
-        }
         nav.nav-scrolled .nav-links a:hover {
             color: #1863DC;
             opacity: 1;
         }
         /* Active nav indicator */
+        .nav-links a {
+            position: relative;
+            transition: opacity 0.3s, color 0.3s;
+        }
         .nav-links a:not(.nav-active) {
-            opacity: 0.5 !important;
+            opacity: 0.5;
         }
-        .nav-links a.nav-active {
-            opacity: 1 !important;
-        }
-        .nav-links a:not(.nav-active):hover {
-            opacity: 0.85 !important;
-        }
-        nav.nav-scrolled .nav-links a:not(.nav-active) {
-            opacity: 0.5 !important;
-        }
-        nav.nav-scrolled .nav-links a:not(.nav-active):hover {
+        .nav-links a:hover {
             opacity: 1 !important;
             color: #1863DC;
         }
-        nav.nav-scrolled .nav-links a.nav-active {
-            color: #1863DC !important;
-            opacity: 1 !important;
+        .nav-links a.nav-active {
+            opacity: 1;
+            color: #1863DC;
+        }
+        .nav-links a.nav-active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #1863DC;
         }
         /* Mega menu active state */
         .mega-menu.active {
@@ -266,8 +268,8 @@
 <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-white focus:text-text-dark focus:px-4 focus:py-2 focus:text-sm focus:font-medium">Skip to main content</a>
 
 <!-- Navigation -->
-<nav id="main-nav" class="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center mix-blend-difference text-white">
-<a href="index.html"><img src="azularcLogo.png" alt="Azul Arc" class="h-8 brightness-0 invert"/></a>
+<nav id="main-nav" class="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center bg-white/80 backdrop-blur-md text-zinc-900 transition-all duration-300">
+<a href="index.html"><img src="azularcLogo.png" alt="Azul Arc" class="h-8"/></a>
 <div class="hidden md:flex gap-6 text-sm uppercase tracking-widest font-medium items-center nav-links">
 <a class="hover:opacity-60 transition-opacity flex items-center gap-1 cursor-pointer nav-dd-trigger" data-dropdown="industries" href="#">Industries <span class="material-symbols-outlined text-sm" aria-hidden="true">expand_more</span></a>
 <a class="hover:opacity-60 transition-opacity flex items-center gap-1 cursor-pointer nav-dd-trigger" data-dropdown="whatwedo" href="#">What We Do <span class="material-symbols-outlined text-sm" aria-hidden="true">expand_more</span></a>
@@ -282,7 +284,6 @@
 </button>
 </nav>
 <a href="contact.html" id="nav-cta" class="nav-cta fixed top-[22px] right-8 z-50 hidden md:flex items-center gap-2 bg-primary text-white px-5 py-2 rounded-full text-xs uppercase tracking-widest font-medium hover:bg-primary-dark transition-colors">Let's Talk</a>
-<div id="nav-indicator" class="fixed z-[51] pointer-events-none transition-all duration-300" style="display:none"><div class="w-[5px] h-[5px] rounded-full" style="background:#1863DC"></div></div>
 
 
 <!-- Mega menus -->
@@ -933,8 +934,6 @@ revealEls.forEach(el => revealObserver.observe(el));
 (function() {
     var p = location.pathname, page = p.split('/').pop() || 'index.html',
         dir = p.split('/').slice(-2, -1)[0] || '';
-    var indicator = document.getElementById('nav-indicator');
-    var activeLink = null;
     document.querySelectorAll('.nav-links > a').forEach(function(a) {
         var dd = a.dataset.dropdown,
             hp = (a.getAttribute('href') || '').split('/').pop();
@@ -945,18 +944,8 @@ revealEls.forEach(el => revealObserver.observe(el));
             (hp === 'work.html' && (page === 'work.html' || page === 'case-study.html')) ||
             (hp === 'insights.html' && (page === 'insights.html' || dir === 'insights')) ||
             (hp === 'about.html' && page === 'about.html')
-        ) { a.classList.add('nav-active'); activeLink = a; }
+        ) a.classList.add('nav-active');
     });
-    if (activeLink && indicator) {
-        function pos() {
-            var r = activeLink.getBoundingClientRect();
-            indicator.style.display = 'block';
-            indicator.style.left = (r.left + r.width / 2 - 2.5) + 'px';
-            indicator.style.top = (r.bottom + 6) + 'px';
-        }
-        pos();
-        window.addEventListener('resize', pos);
-    }
 })();
 </script>
 </body>

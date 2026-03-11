@@ -5,7 +5,7 @@
 <title>How We Work — Azul Arc</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Inter:wght@100;200;300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
 <script>
@@ -24,7 +24,7 @@
                     "muted": "#808285",
                 },
                 fontFamily: {
-                    display: ["Instrument Serif", "serif"],
+                    display: ["Inter", "sans-serif"],
                     sans: ["Inter", "sans-serif"],
                 },
                 borderRadius: {
@@ -163,6 +163,26 @@
         }
         .cta-section.wipe-active .cta-wipe {
             border-color: rgba(255,255,255,0.4);
+            background: #fff;
+            color: #1863DC;
+        }
+        .cta-section .cta-text {
+            transition: color 0.6s cubic-bezier(0.4, 0, 0.1, 1);
+        }
+        .cta-section.wipe-active .cta-text {
+            color: #fff;
+        }
+        .cta-section .cta-muted {
+            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.1, 1), color 0.6s cubic-bezier(0.4, 0, 0.1, 1);
+        }
+        .cta-section.wipe-active .cta-muted {
+            color: rgba(255,255,255,0.7);
+        }
+        .cta-section .cta-label {
+            transition: color 0.6s cubic-bezier(0.4, 0, 0.1, 1);
+        }
+        .cta-section.wipe-active .cta-label {
+            color: rgba(255,255,255,0.6);
         }
     @media (prefers-reduced-motion: reduce) {
         *, *::before, *::after {
@@ -257,7 +277,7 @@
 <section class="relative min-h-[85vh] flex items-end overflow-hidden bg-white">
     <div class="relative z-10 px-8 lg:px-16 pb-24 pt-48 w-full">
         <span class="text-xs uppercase tracking-label text-primary mb-6 block">Our Process</span>
-        <h1 class="font-display text-5xl md:text-7xl lg:text-8xl leading-none tracking-tighter mb-10 max-w-4xl">
+        <h1 class="font-semibold text-5xl md:text-7xl lg:text-8xl leading-none tracking-tighter mb-10 max-w-4xl">
             No black boxes.
         </h1>
         <div class="max-w-xl border-t border-black/10 pt-8">
@@ -274,7 +294,7 @@
 <div class="sticky top-0 z-40 bg-white px-8 lg:px-16 pt-16 pb-12" style="box-shadow: 0 8px 30px rgba(255,255,255,0.9);">
 <div class="reveal">
 <p class="text-sm uppercase tracking-widest text-primary mb-4">The Process</p>
-<h2 class="font-display text-5xl">Five phases. Zero guesswork.</h2>
+<h2 class="font-light text-5xl">Five phases. Zero guesswork.</h2>
 </div>
 </div>
 
@@ -468,7 +488,7 @@
 <section class="py-32 px-8 lg:px-16 bg-zinc-950 text-white">
 <div class="reveal mb-20">
 <p class="text-sm uppercase tracking-label font-light text-primary mb-6">Why It Works</p>
-<h2 class="font-display text-5xl tracking-tight">What makes our<br/>process different.</h2>
+<h2 class="font-light text-5xl tracking-tight">What makes our<br/>process different.</h2>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
 <div class="group border-t border-white/10 pt-10 reveal">
@@ -500,7 +520,7 @@
 <div class="max-w-4xl mx-auto">
 <div class="reveal mb-20">
 <p class="text-sm uppercase tracking-widest text-primary mb-4">FAQ</p>
-<h2 class="font-display text-5xl">Common questions</h2>
+<h2 class="font-light text-5xl">Common questions</h2>
 </div>
 <div class="space-y-0">
 <div class="faq-item border-t border-black/10">
@@ -555,9 +575,9 @@
 <!-- CTA -->
 <section class="py-32 px-8 lg:px-16 bg-zinc-950 text-white cta-section" id="cta-section">
 <div class="reveal max-w-4xl mx-auto text-center">
-<span class="text-xs uppercase tracking-label text-primary-light mb-6 block">Get Started</span>
-<h2 class="font-display text-5xl md:text-6xl mb-8 leading-tight">Ready to start<br/>with discovery?</h2>
-<p class="text-lg text-white/50 mb-12 max-w-2xl mx-auto">A 30-minute conversation about your project. No sales pitch. We'll talk about your challenges, your goals, and whether we're the right fit. If we're not, we'll tell you.</p>
+<span class="text-xs uppercase tracking-label text-primary-light mb-6 block cta-label">Get Started</span>
+<h2 class="font-light text-5xl md:text-6xl mb-8 leading-tight cta-text">Ready to start<br/>with discovery?</h2>
+<p class="text-lg text-white/50 mb-12 max-w-2xl mx-auto cta-muted">A 30-minute conversation about your project. No sales pitch. We'll talk about your challenges, your goals, and whether we're the right fit. If we're not, we'll tell you.</p>
 <a href="contact.html" class="cta-wipe group inline-flex items-center gap-3 border border-white/20 px-10 py-5 text-sm uppercase tracking-cta font-medium" id="cta-btn">
     <span>Start a Conversation</span>
     <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform duration-300" aria-hidden="true">arrow_forward</span>

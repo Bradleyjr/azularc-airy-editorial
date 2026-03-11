@@ -5,7 +5,7 @@
 <title>Digital Product Strategy — Azul Arc</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Inter:wght@100;200;300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
 <script>
@@ -24,7 +24,7 @@
                     "muted": "#808285",
                 },
                 fontFamily: {
-                    display: ["Instrument Serif", "serif"],
+                    display: ["Inter", "sans-serif"],
                     sans: ["Inter", "sans-serif"],
                 },
                 borderRadius: {
@@ -128,6 +128,26 @@
         }
         .cta-section.wipe-active .cta-wipe {
             border-color: rgba(255,255,255,0.4);
+            background: #fff;
+            color: #1863DC;
+        }
+        .cta-section .cta-text {
+            transition: color 0.6s cubic-bezier(0.4, 0, 0.1, 1);
+        }
+        .cta-section.wipe-active .cta-text {
+            color: #fff;
+        }
+        .cta-section .cta-muted {
+            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.1, 1), color 0.6s cubic-bezier(0.4, 0, 0.1, 1);
+        }
+        .cta-section.wipe-active .cta-muted {
+            color: rgba(255,255,255,0.7);
+        }
+        .cta-section .cta-label {
+            transition: color 0.6s cubic-bezier(0.4, 0, 0.1, 1);
+        }
+        .cta-section.wipe-active .cta-label {
+            color: rgba(255,255,255,0.6);
         }
         .reveal-delay-4 { transition-delay: 0.4s; }
     .magnetic-wrap {
@@ -233,7 +253,7 @@
     </div>
     <div class="relative z-10 px-8 lg:px-16 pb-24 pt-48 w-full">
         <span class="text-xs uppercase tracking-label text-primary-light mb-6 block">Service</span>
-        <h1 class="font-display text-5xl md:text-7xl lg:text-8xl leading-none tracking-tighter mb-10 max-w-5xl">
+        <h1 class="font-semibold text-5xl md:text-7xl lg:text-8xl leading-none tracking-tighter mb-10 max-w-5xl">
             Digital Product<br/>Strategy
         </h1>
         <div class="max-w-xl border-t border-white/15 pt-8">
@@ -249,7 +269,7 @@
     <div class="flex flex-col lg:flex-row gap-20 items-start">
         <div class="lg:w-5/12 reveal">
             <span class="text-xs uppercase tracking-label text-primary mb-4 block">The Problem</span>
-            <h2 class="font-display text-4xl md:text-5xl leading-tight">Most software projects fail before development even starts.</h2>
+            <h2 class="font-light text-4xl md:text-5xl leading-tight">Most software projects fail before development even starts.</h2>
         </div>
         <div class="lg:w-7/12 lg:pt-16">
             <div class="max-w-lg ml-auto">
@@ -271,7 +291,7 @@
 <section class="py-32 px-8 lg:px-16 bg-zinc-950 text-white">
     <div class="mb-20 reveal">
         <span class="text-xs uppercase tracking-label text-primary-light mb-4 block">Deliverables</span>
-        <h2 class="font-display text-5xl">What you walk away with</h2>
+        <h2 class="font-light text-5xl">What you walk away with</h2>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">
         <div class="group reveal">
@@ -312,7 +332,7 @@
     <div class="max-w-6xl mx-auto">
         <div class="mb-20 reveal">
             <span class="text-xs uppercase tracking-label text-primary mb-4 block">Process</span>
-            <h2 class="font-display text-5xl">From ambiguity to clarity in four steps</h2>
+            <h2 class="font-light text-5xl">From ambiguity to clarity in four steps</h2>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0">
             <div class="group relative p-10 border border-black/5 hover:border-primary/20 transition-colors">
@@ -359,7 +379,7 @@
 <section class="py-32 px-8 lg:px-16 border-t border-black/5">
     <div class="mb-16 reveal">
         <span class="text-xs uppercase tracking-label text-primary mb-4 block">Related Work</span>
-        <h2 class="font-display text-5xl">Strategy in action</h2>
+        <h2 class="font-light text-5xl">Strategy in action</h2>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
         <a href="../case-study.html" class="group block">
@@ -384,9 +404,9 @@
 <!-- CTA -->
 <section class="cta-section py-32 px-8 lg:px-16 bg-zinc-950 text-white" id="cta-section">
     <div class="max-w-4xl mx-auto text-center reveal">
-        <span class="text-xs uppercase tracking-label text-primary-light mb-6 block">Start a Project</span>
-        <h2 class="font-display text-5xl md:text-6xl mb-8 leading-tight">Know exactly what to build<br/>before you spend a dollar building it.</h2>
-        <p class="text-lg text-white/50 mb-12 max-w-2xl mx-auto">Our strategy engagements run 4-6 weeks and give you a complete product roadmap, technical plan, and budget. No commitment to build with us required.</p>
+        <span class="text-xs uppercase tracking-label text-primary-light mb-6 block cta-label">Start a Project</span>
+        <h2 class="font-light text-5xl md:text-6xl mb-8 leading-tight cta-text">Know exactly what to build<br/>before you spend a dollar building it.</h2>
+        <p class="text-lg text-white/50 mb-12 max-w-2xl mx-auto cta-muted">Our strategy engagements run 4-6 weeks and give you a complete product roadmap, technical plan, and budget. No commitment to build with us required.</p>
         <a href="../contact.html" class="cta-wipe group inline-flex items-center gap-3 border border-white/20 px-8 py-5 text-sm uppercase tracking-cta font-medium" id="cta-btn">
             <span>Start With Strategy</span>
             <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform duration-300" aria-hidden="true">arrow_forward</span>

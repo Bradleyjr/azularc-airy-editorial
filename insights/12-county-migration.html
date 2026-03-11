@@ -2,7 +2,7 @@
 <html class="scroll-smooth" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Growth-Stage SMBs — Azul Arc</title>
+<title>How We Migrated 12 Counties Without Downtime — Azul Arc</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&amp;display=swap" rel="stylesheet"/>
@@ -85,20 +85,20 @@
         opacity: 1;
     }
 
-        /* Scroll reveal animations */
-        .reveal {
-            opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .reveal-delay-1 { transition-delay: 0.1s; }
-        .reveal-delay-2 { transition-delay: 0.2s; }
-        .reveal-delay-3 { transition-delay: 0.3s; }
-        .reveal-delay-4 { transition-delay: 0.4s; }
+    /* Scroll reveal animations */
+    .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
     .magnetic-wrap {
         display: inline-flex;
         align-items: center;
@@ -163,7 +163,7 @@
         }
         .reveal { opacity: 1; transform: none; }
     }
-    </style>
+</style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-text-dark dark:text-text-light font-sans selection:bg-primary selection:text-white">
 <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-white focus:text-text-dark focus:px-4 focus:py-2 focus:text-sm focus:font-medium">Skip to main content</a>
@@ -244,210 +244,169 @@
 </div>
 
 <main id="main-content">
-<!-- Hero -->
-<section class="relative min-h-[85vh] flex flex-col justify-end overflow-hidden bg-zinc-950 text-white">
-<div class="absolute inset-0 z-0">
-<img alt="Growing business team" class="w-full h-full object-cover opacity-30" src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1600&q=80"/>
-<div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/70 to-zinc-950/40"></div>
-</div>
-<div class="relative z-10 px-8 lg:px-16 pb-20 pt-48">
-<span class="text-xs uppercase tracking-label text-primary-light mb-6 block">Growth-Stage SMBs</span>
-<h1 class="font-semibold text-5xl md:text-7xl lg:text-8xl leading-none tracking-tighter mb-16">
-    You've outgrown the tools<br/>that got you here.
-</h1>
-<div class="flex flex-col md:flex-row gap-16 items-start md:items-end justify-between border-t border-white/15 pt-10">
-<div class="max-w-lg">
-<p class="text-lg text-white/60 leading-relaxed">
-    The spreadsheets, the duct-taped integrations, the off-the-shelf tools you've bent into shapes they were never meant to hold. They worked at 20 employees. They're breaking at 200. We build the custom platforms that let growth-stage companies scale without the chaos.
-</p>
-</div>
-<div class="flex items-center gap-12">
-<div class="flex gap-10">
-<div>
-<span class="block text-3xl font-semibold">50+</span>
-<span class="text-xs uppercase tracking-wide-label text-white/40">SMBs Scaled</span>
-</div>
-<div>
-<span class="block text-3xl font-semibold">3x</span>
-<span class="text-xs uppercase tracking-wide-label text-white/40">Avg. Efficiency Gain</span>
-</div>
-</div>
-<a class="group flex items-center gap-3 border border-white/20 px-7 py-4 text-sm uppercase tracking-cta font-medium hover:bg-white hover:text-zinc-950 transition-all duration-300" href="../contact.html">
-    Talk About My Project
-    <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
-</a>
-</div>
-</div>
-</div>
+<!-- Article Hero -->
+<section class="relative min-h-[70vh] flex items-end overflow-hidden text-white" style="background: linear-gradient(135deg, #1863DC 0%, #07406B 100%)">
+    <div class="absolute inset-0 bg-black/20"></div>
+    <div class="relative z-10 px-8 lg:px-16 pb-20 pt-48 w-full max-w-4xl">
+        <div class="flex items-center gap-4 mb-8">
+            <span class="text-xs uppercase tracking-wide-label text-white/80 border border-white/30 px-3 py-1">Case Study</span>
+            <span class="text-xs text-white/50">12 min read</span>
+            <span class="text-xs text-white/50">November 2025</span>
+        </div>
+        <h1 class="font-semibold text-4xl md:text-6xl lg:text-7xl leading-none tracking-tighter mb-8">
+            How We Migrated 12 Counties Without Downtime
+        </h1>
+        <p class="text-xl text-white/60 leading-relaxed font-light max-w-2xl">
+            Migrating a court system that handles thousands of cases daily to a new platform without a single minute of downtime. The strategy, the tooling, and the lessons that apply to any large-scale migration.
+        </p>
+    </div>
 </section>
 
-<!-- Pain Points -->
-<section class="py-32 px-8 lg:px-16">
-<div class="mb-20 reveal">
-<span class="text-xs uppercase tracking-label text-primary mb-4 block">The Problem</span>
-<h2 class="font-light text-5xl">The growing pains nobody talks about</h2>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-black/10">
-<div class="bg-background-light p-10 group hover:bg-zinc-50 transition-colors">
-<span class="text-6xl font-light text-primary/10 group-hover:text-primary/30 transition-colors mb-6 block">01</span>
-<h3 class="text-xl font-medium mb-4">Spreadsheets Everywhere</h3>
-<p class="text-base text-muted leading-relaxed">Your company runs on spreadsheets that only one person understands. When that person is out, everything stops. Critical business logic lives in cell formulas, not in systems designed to scale.</p>
-</div>
-<div class="bg-background-light p-10 group hover:bg-zinc-50 transition-colors">
-<span class="text-6xl font-light text-primary/10 group-hover:text-primary/30 transition-colors mb-6 block">02</span>
-<h3 class="text-xl font-medium mb-4">Off-the-Shelf Tools Breaking</h3>
-<p class="text-base text-muted leading-relaxed">You've maxed out every SaaS plan. You're paying for five tools that each do 20% of what you need. The integrations between them are held together with Zapier and hope.</p>
-</div>
-<div class="bg-background-light p-10 group hover:bg-zinc-50 transition-colors">
-<span class="text-6xl font-light text-primary/10 group-hover:text-primary/30 transition-colors mb-6 block">03</span>
-<h3 class="text-xl font-medium mb-4">Manual Processes That Don't Scale</h3>
-<p class="text-base text-muted leading-relaxed">What took one person an hour at 50 customers now takes a team of three all day at 500. You're hiring to manage process, not to create value. The workarounds have workarounds.</p>
-</div>
-<div class="bg-background-light p-10 group hover:bg-zinc-50 transition-colors">
-<span class="text-6xl font-light text-primary/10 group-hover:text-primary/30 transition-colors mb-6 block">04</span>
-<h3 class="text-xl font-medium mb-4">Data Silos</h3>
-<p class="text-base text-muted leading-relaxed">Sales data lives in one system, operations in another, finance in a third. Getting a complete picture of your business requires someone to manually pull reports from five different tools and combine them in yet another spreadsheet.</p>
-</div>
-</div>
+<!-- Article Body -->
+<article class="py-20 px-8 lg:px-16">
+    <div class="max-w-3xl mx-auto">
+
+        <p class="text-lg leading-relaxed mb-8 opacity-80">
+            In early 2024, we were staring at a spreadsheet with twelve county names, each running a different version of the same aging case management system. Some were on-premise. Two had been "customized" by local IT shops to the point where they barely resembled the original product. All of them needed to move to CaseHub, our modern case management platform, without losing a single filing or missing a single court date.
+        </p>
+        <p class="text-lg leading-relaxed mb-8 opacity-80">
+            The constraint was non-negotiable: zero downtime. Courts don't get to close for maintenance. When a judge needs a case file at 9:00 AM Monday, the system has to be there. When an attorney files a motion at 11:47 PM on a Friday, it has to go through. There's no "we'll be back shortly" banner in the justice system.
+        </p>
+        <p class="text-lg leading-relaxed mb-12 opacity-80">
+            This is the story of how we pulled it off, and what we learned along the way that applies to any organization facing a large-scale platform migration.
+        </p>
+
+        <h2 class="text-3xl font-light mb-6 tracking-tight">The Parallel Running Strategy</h2>
+        <p class="text-lg leading-relaxed mb-8 opacity-80">
+            The instinct with migrations is to pick a cutover date, flip the switch, and pray. We've seen that approach fail too many times. Instead, we ran both systems simultaneously for every county. The legacy system remained the system of record while CaseHub operated alongside it, receiving the same data in real time.
+        </p>
+        <p class="text-lg leading-relaxed mb-8 opacity-80">
+            We built a synchronization layer that captured every transaction in the legacy system and replayed it in CaseHub. New filings, case updates, hearing schedules, fee payments -- everything was mirrored. This gave us two things: a CaseHub instance that was always current with real production data, and a way to verify that CaseHub handled every transaction correctly before we trusted it as primary.
+        </p>
+        <p class="text-lg leading-relaxed mb-12 opacity-80">
+            The parallel period lasted four weeks per county. During that time, clerks and staff could access both systems. They started using CaseHub for read-only lookups first, then gradually for data entry on non-critical workflows. By the time we designated CaseHub as the system of record, the staff had already been using it daily for weeks. The "cutover" was more like turning off the old system than turning on the new one.
+        </p>
+
+        <h2 class="text-3xl font-light mb-6 tracking-tight">Phased Rollout: Small Counties First</h2>
+        <p class="text-lg leading-relaxed mb-8 opacity-80">
+            We didn't roll out to all twelve counties at once. We started with the three smallest -- counties processing fewer than 200 cases per week. This was deliberate. Smaller volume meant faster validation cycles, shorter parallel running periods, and lower stakes if something went sideways.
+        </p>
+        <p class="text-lg leading-relaxed mb-8 opacity-80">
+            Those first three counties surfaced issues we hadn't anticipated. One county had a custom fee schedule with 47 exception rules that existed nowhere in their documentation -- only in the heads of two senior clerks. Another had case numbering conventions that collided with a different county's format. A third had been using a free-text field to store structured data about juvenile cases, which meant we needed a custom parser to extract and properly categorize 11 years of case records.
+        </p>
+        <p class="text-lg leading-relaxed mb-12 opacity-80">
+            Every one of those issues would have been catastrophic at scale. Finding them in a 150-case-per-week county meant we could fix them in days. Finding them in the 2,000-case-per-week county would have meant weeks of remediation under pressure.
+        </p>
+
+        <h2 class="text-3xl font-light mb-6 tracking-tight">Data Validation at Every Layer</h2>
+        <p class="text-lg leading-relaxed mb-8 opacity-80">
+            Migration projects fail most often on data integrity. The code works, the UI looks right, but somewhere in the move, 3% of records got corrupted or lost a field value. In a court system, that 3% represents real cases with real consequences. A missing hearing date means a missed appearance. A corrupted defendant record means the wrong person gets a bench warrant.
+        </p>
+        <p class="text-lg leading-relaxed mb-8 opacity-80">
+            We built a three-tier validation system. The first tier ran during synchronization: every record written to CaseHub was immediately read back and compared field-by-field against the source. The second tier ran nightly: a batch process compared aggregate counts and checksums between systems. Total cases by type, total fees collected, total hearings scheduled -- if any number diverged by even one, it triggered an alert.
+        </p>
+        <p class="text-lg leading-relaxed mb-12 opacity-80">
+            The third tier was human. We hired temporary staff -- mostly paralegal students -- to manually spot-check 5% of migrated records each week. They pulled random cases from both systems side by side and verified that every field, every document attachment, every hearing note matched. This caught edge cases that automated validation missed: formatting differences that were technically correct but would confuse clerks, date timezone issues that shifted hearings by a day in the display layer, and document attachments that migrated successfully but rendered differently in the new viewer.
+        </p>
+
+        <h2 class="text-3xl font-light mb-6 tracking-tight">The Tooling That Made It Possible</h2>
+        <p class="text-lg leading-relaxed mb-8 opacity-80">
+            We built three internal tools specifically for this migration. The first was a migration dashboard that showed real-time sync status for every county: records processed, records pending, validation errors, and a health score that aggregated everything into a single number. When that number dropped below 99.7%, someone got paged.
+        </p>
+        <p class="text-lg leading-relaxed mb-8 opacity-80">
+            The second tool was a conflict resolver. When the sync layer encountered a record it couldn't automatically migrate -- because of a data type mismatch, a missing reference, or a business rule violation in the new system -- it queued the record for manual review. A clerk-facing interface showed the original record, the attempted migration, and the specific issue. The clerk could fix it, approve it with a note, or escalate it. At peak, we were processing about 40 conflict records per day across all twelve counties. By the end, it was fewer than two.
+        </p>
+        <p class="text-lg leading-relaxed mb-12 opacity-80">
+            The third tool was a rollback system. For every county, we maintained the ability to revert to the legacy system within 15 minutes. Not "restore from backup" -- a live, kept-current legacy instance that could become primary again with a DNS change and a configuration flip. We never had to use it. But the fact that we could meant the decision to go live in each county wasn't a leap of faith. It was a calculated step with a safety net.
+        </p>
+
+        <h2 class="text-3xl font-light mb-6 tracking-tight">Lessons That Apply Beyond Court Systems</h2>
+        <p class="text-lg leading-relaxed mb-8 opacity-80">
+            This was a court system migration, but the principles hold for any organization replacing a critical system. First: parallel running eliminates the "big bang" risk. Yes, it costs more in infrastructure and engineering time. But it converts a single high-risk moment into a gradual, observable transition. The ROI on that reduced risk is enormous.
+        </p>
+        <p class="text-lg leading-relaxed mb-8 opacity-80">
+            Second: start small and sequence by complexity, not by politics. The natural impulse is to migrate the most important stakeholder first. Resist it. Migrate the simplest environment first, learn from it, and bring those lessons to the complex ones. Your biggest county -- or your biggest department, or your highest-revenue division -- gets the benefit of every fix you made along the way.
+        </p>
+        <p class="text-lg leading-relaxed mb-8 opacity-80">
+            Third: invest in validation tooling early. Every hour spent building automated comparison tools saves ten hours of manual verification and a hundred hours of post-migration fire drills. Data integrity isn't something you check at the end. It's something you monitor continuously from day one.
+        </p>
+        <p class="text-lg leading-relaxed mb-12 opacity-80">
+            Finally: build the rollback before you build the migration. Knowing you can go back changes the entire psychology of the project. Teams make better decisions when they're not afraid. Stakeholders approve go-live dates more readily when they know it's reversible. And if something genuinely goes wrong -- not a minor data issue, but a systemic failure -- you have fifteen minutes to normal instead of fifteen days.
+        </p>
+
+        <p class="text-lg leading-relaxed mb-8 opacity-80">
+            Twelve counties. 87,000 active cases migrated. 340,000 historical records transferred. Four months from first county go-live to last county go-live. Zero downtime. Zero data loss.
+        </p>
+        <p class="text-lg leading-relaxed opacity-80">
+            Not because we got lucky. Because we planned for every way it could go wrong, and built the systems to catch problems before they became crises.
+        </p>
+    </div>
+</article>
+
+<!-- Author -->
+<section class="px-8 lg:px-16 pb-20">
+    <div class="max-w-3xl mx-auto border-t border-black/10 pt-10">
+        <div class="flex items-center gap-6">
+            <div class="w-14 h-14 bg-primary/10 flex items-center justify-center">
+                <span class="material-symbols-outlined text-primary text-2xl" aria-hidden="true">group</span>
+            </div>
+            <div>
+                <p class="text-sm font-medium mb-1">Written by Azul Arc Team</p>
+                <p class="text-sm opacity-50">Lessons from two decades of building software that matters.</p>
+            </div>
+        </div>
+    </div>
 </section>
 
-<!-- Solutions -->
-<section class="py-32 px-8 lg:px-16 bg-zinc-950 text-white">
-<div class="mb-20 reveal">
-<span class="text-xs uppercase tracking-label text-primary mb-6 block">What We Build</span>
-<h2 class="font-light text-5xl tracking-tight">The systems that let<br/>you grow without breaking.</h2>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-<div class="group reveal">
-<div class="w-16 h-16 border border-white/10 flex items-center justify-center mb-8 group-hover:border-primary group-hover:bg-primary/10 transition-all duration-300">
-<span class="material-symbols-outlined text-2xl text-white/40 group-hover:text-primary transition-colors" aria-hidden="true">dashboard_customize</span>
-</div>
-<h3 class="text-2xl font-light mb-4 tracking-tight">Custom Platforms</h3>
-<p class="text-base text-white/50 leading-relaxed mb-6">Purpose-built software that does exactly what your business needs, not what a SaaS company thinks all businesses need. Built around your workflows, your data model, and your growth trajectory. No feature bloat, no per-seat pricing that punishes you for hiring.</p>
-<ul class="space-y-3 text-sm text-white/40">
-<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm" aria-hidden="true">check</span> Workflow-specific design</li>
-<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm" aria-hidden="true">check</span> Scalable architecture</li>
-<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm" aria-hidden="true">check</span> No per-seat licensing</li>
-</ul>
-</div>
-<div class="group reveal reveal-delay-1">
-<div class="w-16 h-16 border border-white/10 flex items-center justify-center mb-8 group-hover:border-primary group-hover:bg-primary/10 transition-all duration-300">
-<span class="material-symbols-outlined text-2xl text-white/40 group-hover:text-primary transition-colors" aria-hidden="true">autorenew</span>
-</div>
-<h3 class="text-2xl font-light mb-4 tracking-tight">Process Automation</h3>
-<p class="text-base text-white/50 leading-relaxed mb-6">We identify the repetitive tasks that eat your team's time and build automation that handles them. Order processing, client onboarding, reporting, invoicing. The work that used to take a team all day happens in minutes, without errors.</p>
-<ul class="space-y-3 text-sm text-white/40">
-<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm" aria-hidden="true">check</span> Workflow automation</li>
-<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm" aria-hidden="true">check</span> Automated reporting</li>
-<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm" aria-hidden="true">check</span> Client onboarding flows</li>
-</ul>
-</div>
-<div class="group reveal reveal-delay-2">
-<div class="w-16 h-16 border border-white/10 flex items-center justify-center mb-8 group-hover:border-primary group-hover:bg-primary/10 transition-all duration-300">
-<span class="material-symbols-outlined text-2xl text-white/40 group-hover:text-primary transition-colors" aria-hidden="true">dataset_linked</span>
-</div>
-<h3 class="text-2xl font-light mb-4 tracking-tight">Data Unification & Infrastructure</h3>
-<p class="text-base text-white/50 leading-relaxed mb-6">One source of truth for your entire business. We consolidate your scattered data into a unified platform with real-time dashboards, clean APIs, and an architecture that scales as you grow from 200 to 2,000 employees.</p>
-<ul class="space-y-3 text-sm text-white/40">
-<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm" aria-hidden="true">check</span> Unified data layer</li>
-<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm" aria-hidden="true">check</span> Real-time analytics</li>
-<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm" aria-hidden="true">check</span> Cloud-native scalability</li>
-</ul>
-</div>
-</div>
-</section>
-
-<!-- The Growth-Stage Playbook -->
-<section class="py-32 px-8 lg:px-16">
-<div class="mb-20 reveal">
-<span class="text-xs uppercase tracking-label text-primary mb-4 block">Our Approach</span>
-<h2 class="font-light text-5xl">The growth-stage playbook</h2>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-16">
-<div class="border-t border-black/10 pt-8">
-<span class="text-xs uppercase tracking-wide-label text-primary mb-4 block">Phase 1</span>
-<h3 class="text-2xl font-light mb-4">Untangle</h3>
-<p class="text-base text-muted leading-relaxed">We audit every system, spreadsheet, and manual process your company runs on. We map the data flows, identify the bottlenecks, and quantify exactly how much time and money your current setup is costing you. No assumptions. Just evidence.</p>
-</div>
-<div class="border-t border-black/10 pt-8">
-<span class="text-xs uppercase tracking-wide-label text-primary mb-4 block">Phase 2</span>
-<h3 class="text-2xl font-light mb-4">Prioritize</h3>
-<p class="text-base text-muted leading-relaxed">Not everything needs to be fixed at once. We rank every pain point by business impact and build a phased roadmap that starts delivering value in the first sprint. Quick wins first, then systematic improvements that compound over time.</p>
-</div>
-<div class="border-t border-black/10 pt-8">
-<span class="text-xs uppercase tracking-wide-label text-primary mb-4 block">Phase 3</span>
-<h3 class="text-2xl font-light mb-4">Build & Replace</h3>
-<p class="text-base text-muted leading-relaxed">We build your custom platform in 2-week sprints with working demos at every milestone. Old systems get replaced incrementally. Your team never has to survive a "big bang" switchover. Every deployment is planned, tested, and reversible.</p>
-</div>
-<div class="border-t border-black/10 pt-8">
-<span class="text-xs uppercase tracking-wide-label text-primary mb-4 block">Phase 4</span>
-<h3 class="text-2xl font-light mb-4">Scale</h3>
-<p class="text-base text-muted leading-relaxed">After launch, we stay on to monitor, optimize, and evolve the system as your business grows. New features get added based on real usage data. The platform grows with you instead of becoming the next thing you outgrow.</p>
-</div>
-</div>
-</section>
-
-<!-- Case Study Preview -->
-<section class="py-32 px-8 lg:px-16 bg-zinc-50">
-<div class="mb-16 reveal">
-<span class="text-xs uppercase tracking-label text-primary mb-4 block">Case Study</span>
-<h2 class="font-light text-5xl">Polaris Group</h2>
-</div>
-<div class="flex flex-col lg:flex-row gap-16 items-center">
-<div class="lg:w-1/2">
-<div class="aspect-[16/10] overflow-hidden rounded-lg shadow-2xl">
-<div class="w-full h-full" style="background: linear-gradient(160deg, #212121 0%, #1863DC 40%, #2AA7DF 100%)"></div>
-</div>
-</div>
-<div class="lg:w-1/2">
-<span class="text-xs uppercase tracking-wide-label text-muted mb-6 block">Growth-Stage / Operations</span>
-<h3 class="text-3xl font-light mb-6 leading-snug">From 12 disconnected tools to one platform that scales.</h3>
-<p class="text-lg text-muted leading-relaxed mb-10">Polaris Group hit $15M in revenue and realized their operational infrastructure was built for a $3M company. Client data lived in three CRMs. Project tracking happened in spreadsheets. Billing was a two-week manual process every month. We consolidated everything into a single operations platform that cut their administrative overhead by 60% and gave leadership real-time visibility into every project, client, and dollar.</p>
-<div class="flex gap-12 mb-10 pb-10 border-b border-black/10">
-<div>
-<span class="block text-4xl font-semibold text-primary">60%</span>
-<span class="text-xs uppercase tracking-wide-label text-muted">Less Admin Overhead</span>
-</div>
-<div>
-<span class="block text-4xl font-semibold text-primary">12</span>
-<span class="text-xs uppercase tracking-wide-label text-muted">Tools Consolidated</span>
-</div>
-<div>
-<span class="block text-4xl font-semibold text-primary">2 wks</span>
-<span class="text-xs uppercase tracking-wide-label text-muted">to 2 Hours (Billing)</span>
-</div>
-</div>
-<a href="../case-study.html" class="group inline-flex items-center gap-3 text-primary hover:text-primary-dark text-sm uppercase tracking-cta font-medium transition-colors">
-    Read the full story
-    <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
-</a>
-</div>
-</div>
-</section>
-
-<!-- Testimonial -->
+<!-- Related Articles -->
 <section class="py-20 px-8 lg:px-16 border-t border-black/5">
-<div class="max-w-4xl mx-auto text-center reveal">
-<blockquote class="text-3xl md:text-4xl font-light leading-snug mb-8">
-    "We were hiring people to manage process, not to create value. Azul Arc built us a platform that eliminated 80% of our manual work. Now we're scaling to $30M with the same operations team we had at $10M."
-</blockquote>
-<div>
-<span class="text-sm font-semibold">Rachel Kim</span>
-<span class="text-sm opacity-40 ml-2">VP of Operations, Polaris Group</span>
-</div>
-</div>
+    <div class="mb-12 reveal">
+        <span class="text-xs uppercase tracking-label text-primary mb-4 block">Keep Reading</span>
+        <h2 class="font-light text-4xl">Related articles</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
+        <a href="case-management-2026.html" class="group reveal">
+            <div class="aspect-[16/10] overflow-hidden mb-6">
+                <div class="w-full h-full group-hover:scale-105 transition-transform duration-700" style="background: linear-gradient(135deg, #212121 0%, #1863DC 100%)"></div>
+            </div>
+            <div class="flex items-center gap-4 mb-4">
+                <span class="text-xs uppercase tracking-wide-label text-primary">Industry</span>
+                <span class="text-xs text-muted">6 min read</span>
+            </div>
+            <h3 class="text-2xl font-light mb-3 group-hover:text-primary transition-colors leading-snug">Case Management in 2026: What Courts Need Now</h3>
+            <p class="text-sm opacity-50 leading-relaxed mb-4">State mandates are tightening. Public expectations are rising. And most court systems are still running software built before smartphones existed.</p>
+            <span class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-primary font-medium opacity-0 group-hover:opacity-100 transition-opacity">Read article <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span></span>
+        </a>
+        <a href="200-projects-scope.html" class="group reveal reveal-delay-1">
+            <div class="aspect-[16/10] overflow-hidden mb-6">
+                <div class="w-full h-full group-hover:scale-105 transition-transform duration-700" style="background: linear-gradient(135deg, #212121 0%, #07406B 50%, #1863DC 100%)"></div>
+            </div>
+            <div class="flex items-center gap-4 mb-4">
+                <span class="text-xs uppercase tracking-wide-label text-primary">Process</span>
+                <span class="text-xs text-muted">10 min read</span>
+            </div>
+            <h3 class="text-2xl font-light mb-3 group-hover:text-primary transition-colors leading-snug">What 200 Projects Taught Us About Scope</h3>
+            <p class="text-sm opacity-50 leading-relaxed mb-4">Scope creep isn't the enemy. Unclear scope is. After two decades and 200+ projects, here's what we've learned about defining and managing project scope.</p>
+            <span class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-primary font-medium opacity-0 group-hover:opacity-100 transition-opacity">Read article <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span></span>
+        </a>
+    </div>
 </section>
 
-<!-- CTA -->
+<!-- Newsletter CTA -->
 <section class="py-32 px-8 lg:px-16 bg-zinc-950 text-white cta-section" id="cta-section">
-<div class="max-w-4xl mx-auto text-center reveal">
-<h2 class="font-light text-6xl mb-8 cta-text">Ready to scale<br/>without the chaos?</h2>
-<p class="text-xl text-white/50 mb-12 max-w-2xl mx-auto cta-muted">30 minutes with our team. We'll map out what's holding you back, what needs to change, and what the right system looks like for your next stage of growth.</p>
-<a href="../contact.html" class="cta-wipe group inline-flex items-center gap-3 border border-white/20 px-10 py-5 text-sm uppercase tracking-cta font-medium" id="cta-btn">
-    <span>Start a Project</span>
-    <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform duration-300" aria-hidden="true">arrow_forward</span>
-</a>
-</div>
+    <div class="max-w-3xl mx-auto text-center reveal">
+        <span class="text-xs uppercase tracking-label text-primary-light mb-6 block cta-label">Newsletter</span>
+        <h2 class="font-light text-5xl md:text-6xl mb-6 leading-tight cta-text">Get our best thinking,<br/>delivered.</h2>
+        <p class="text-lg text-white/50 mb-12 max-w-xl mx-auto cta-muted">Strategy frameworks, engineering insights, and honest lessons from real projects. No fluff. Roughly twice a month.</p>
+        <div class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+            <input class="flex-1 bg-white/5 border border-white/10 px-6 py-4 text-sm text-white placeholder:text-white/30 focus:ring-1 focus:ring-primary focus:border-primary transition-colors" placeholder="Your email address" type="email"/>
+            <button class="cta-wipe group flex items-center justify-center gap-2 bg-primary text-white px-8 py-4 text-sm uppercase tracking-cta font-medium hover:bg-primary-dark transition-colors" id="cta-btn">
+                <span>Subscribe</span>
+                <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform duration-300" aria-hidden="true">arrow_forward</span>
+            </button>
+        </div>
+        <p class="text-xs text-white/20 mt-6">No spam. Unsubscribe anytime. We respect your inbox.</p>
+    </div>
 </section>
 
 <!-- Footer -->
@@ -536,7 +495,6 @@
     });
 })();
 </script>
-
 
 <script>
 // Scroll reveal

@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Build vs. Buy Decision Framework — Azul Arc</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+<script>
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    primary: "#1863DC",
+                    "primary-dark": "#07406B",
+                    "primary-light": "#2AA7DF",
+                    "background-light": "#FFFFFF",
+                    "background-dark": "#212121",
+                    "text-dark": "#212121",
+                    "text-light": "#EBEBEB",
+                    "muted": "#808285",
+                },
+                fontFamily: {
+                    display: ["Inter", "sans-serif"],
+                    sans: ["Inter", "sans-serif"],
+                },
+                borderRadius: {
+                    DEFAULT: "0px",
+                    'lg': "4px",
+                    'xl': "12px",
+                },
+                letterSpacing: {
+                    'label': '0.3em',
+                    'cta': '0.15em',
+                    'wide-label': '0.2em',
+                    'extra': '0.4em',
+                },
+                fontSize: {
+                    'menu': '15px',
+                },
+                transitionDuration: {
+                    'fast': '150ms',
+                    'base': '300ms',
+                    'slow': '500ms',
+                },
+            },
+        },
+    };
+</script>
+<style type="text/tailwindcss">
+    @layer utilities {
+        .perspective-1000 { perspective: 1000px; }
+        .preserve-3d { transform-style: preserve-3d; }
+        .backface-hidden { backface-visibility: hidden; }
+    }
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .mega-menu.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+    nav {
+        transition: background-color 0.4s ease, backdrop-filter 0.4s ease;
+    }
+    nav.nav-scrolled {
+        background-color: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(12px);
+        color: #212121 !important;
+    }
+    nav.nav-scrolled a,
+    nav.nav-scrolled div {
+        color: #212121;
+    }
+    nav.nav-scrolled .nav-links a:hover {
+        color: #1863DC;
+        opacity: 1;
+    }
+        /* Active nav indicator */
+        .nav-links a {
+            position: relative;
+            transition: opacity 0.3s, color 0.3s;
+        }
+        .nav-links a:not(.nav-active) {
+            opacity: 0.5;
+        }
+        .nav-links a:hover {
+            opacity: 1 !important;
+            color: #1863DC;
+        }
+        .nav-links a.nav-active {
+            opacity: 1;
+            color: #1863DC;
+        }
+        .nav-links a.nav-active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #1863DC;
+        }
+
+        /* Scroll reveal animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+    .magnetic-wrap {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.1s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+    }
+
+    /* CTA section blue wipe */
+    .cta-section {
+        position: relative;
+        overflow: hidden;
+    }
+    .cta-section::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: #1863DC;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 1s cubic-bezier(0.4, 0, 0.1, 1);
+        z-index: 0;
+    }
+    .cta-section.wipe-active::before {
+        transform: scaleX(1);
+    }
+    .cta-section > * {
+        position: relative;
+        z-index: 1;
+    }
+    .cta-wipe {
+        transition: border-color 0.5s cubic-bezier(0.4, 0, 0.1, 1);
+    }
+    .cta-section.wipe-active .cta-wipe {
+        border-color: rgba(255,255,255,0.4);
+        background: #fff;
+        color: #1863DC;
+    }
+    .cta-section .cta-text {
+        transition: color 0.6s cubic-bezier(0.4, 0, 0.1, 1);
+    }
+    .cta-section.wipe-active .cta-text {
+        color: #fff;
+    }
+    .cta-section .cta-muted {
+        transition: opacity 0.6s cubic-bezier(0.4, 0, 0.1, 1), color 0.6s cubic-bezier(0.4, 0, 0.1, 1);
+    }
+    .cta-section.wipe-active .cta-muted {
+        color: rgba(255,255,255,0.7);
+    }
+    .cta-section .cta-label {
+        transition: color 0.6s cubic-bezier(0.4, 0, 0.1, 1);
+    }
+    .cta-section.wipe-active .cta-label {
+        color: rgba(255,255,255,0.6);
+    }
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+        }
+        .reveal { opacity: 1; transform: none; }
+    }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-dark dark:text-text-light font-sans selection:bg-primary selection:text-white">
+<a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-white focus:text-text-dark focus:px-4 focus:py-2 focus:text-sm focus:font-medium">Skip to main content</a>
+
+<!-- Navigation -->
+<nav id="main-nav" class="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center bg-white/80 backdrop-blur-md text-zinc-900 transition-all duration-300">
+<a href="../index.html"><img src="../azularcLogo.png" alt="Azul Arc" class="h-8"/></a>
+<div class="hidden md:flex gap-6 text-sm uppercase tracking-widest font-medium items-center nav-links">
+<a class="hover:opacity-60 transition-opacity flex items-center gap-1 cursor-pointer nav-dd-trigger" data-dropdown="industries" href="#industries">Industries <span class="material-symbols-outlined text-sm" aria-hidden="true">expand_more</span></a>
+<a class="hover:opacity-60 transition-opacity flex items-center gap-1 cursor-pointer nav-dd-trigger" data-dropdown="whatwedo" href="#capabilities">What We Do <span class="material-symbols-outlined text-sm" aria-hidden="true">expand_more</span></a>
+<a class="hover:opacity-60 transition-opacity" href="../how-we-work.html">How We Work</a>
+<a class="hover:opacity-60 transition-opacity" href="../work.html">Work</a>
+<a class="hover:opacity-60 transition-opacity" href="../insights.html">Insights</a>
+<a class="hover:opacity-60 transition-opacity" href="../about.html">About</a>
+</div>
+<div class="hidden md:block w-28"></div>
+<button class="md:hidden" aria-label="Toggle navigation menu">
+<span class="material-symbols-outlined" aria-hidden="true">menu</span>
+</button>
+</nav>
+<a href="../contact.html" id="nav-cta" class="nav-cta fixed top-[22px] right-8 z-50 hidden md:flex items-center gap-2 bg-primary text-white px-5 py-2 rounded-full text-xs uppercase tracking-widest font-medium hover:bg-primary-dark transition-colors">Let's Talk</a>
+
+
+<!-- Mega menus -->
+<div id="mega-industries" class="mega-menu fixed top-0 left-0 w-full z-40 pt-[72px] opacity-0 invisible translate-y-[-8px] transition-all duration-300 ease-out pointer-events-none">
+<div class="mx-8 bg-text-dark backdrop-blur-xl rounded-xl pointer-events-auto overflow-hidden">
+<div class="flex">
+<div class="w-64 shrink-0 p-8 border-r border-white/10 flex flex-col justify-center">
+<span class="text-xs uppercase tracking-widest text-primary-light mb-2">Industries</span>
+<p class="text-sm text-white/40 leading-relaxed">The industries where we do our best work.</p>
+</div>
+<div class="flex-1 p-4">
+<a href="../industries/courts.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<span class="text-xs text-white/20 font-mono w-6">01</span>
+<div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">Court Systems</div><div class="text-xs text-white/40 mt-1">Courts, clerks & public agencies</div></div>
+<span class="material-symbols-outlined text-white/20 text-base group-hover/item:text-primary-light group-hover/item:translate-x-1 transition-all" aria-hidden="true">arrow_forward</span>
+</a>
+<a href="../industries/manufacturing.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<span class="text-xs text-white/20 font-mono w-6">02</span>
+<div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">Product Manufacturers</div><div class="text-xs text-white/40 mt-1">Sales tools & commercial platforms</div></div>
+<span class="material-symbols-outlined text-white/20 text-base group-hover/item:text-primary-light group-hover/item:translate-x-1 transition-all" aria-hidden="true">arrow_forward</span>
+</a>
+<a href="../industries/growth-stage.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<span class="text-xs text-white/20 font-mono w-6">03</span>
+<div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">Growth-Stage SMBs</div><div class="text-xs text-white/40 mt-1">Scaling operations & legacy replacement</div></div>
+<span class="material-symbols-outlined text-white/20 text-base group-hover/item:text-primary-light group-hover/item:translate-x-1 transition-all" aria-hidden="true">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div id="mega-whatwedo" class="mega-menu fixed top-0 left-0 w-full z-40 pt-[72px] opacity-0 invisible translate-y-[-8px] transition-all duration-300 ease-out pointer-events-none">
+<div class="mx-8 bg-text-dark backdrop-blur-xl rounded-xl pointer-events-auto overflow-hidden">
+<div class="flex">
+<div class="w-64 shrink-0 p-8 border-r border-white/10 flex flex-col justify-center">
+<span class="text-xs uppercase tracking-widest text-primary-light mb-2">What We Do</span>
+<p class="text-sm text-white/40 leading-relaxed">From strategy to launch and beyond.</p>
+</div>
+<div class="flex-1 p-4 grid grid-cols-2">
+<a href="../services/digital-product-strategy.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<span class="text-xs text-white/20 font-mono w-6">01</span>
+<div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">Digital Product Strategy</div><div class="text-xs text-white/40 mt-1">Figure out what to build first</div></div>
+</a>
+<a href="../services/web-design-development.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<span class="text-xs text-white/20 font-mono w-6">02</span>
+<div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">Web Design & Development</div><div class="text-xs text-white/40 mt-1">Sites & apps that actually convert</div></div>
+</a>
+<a href="../services/3d-visualization.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<span class="text-xs text-white/20 font-mono w-6">03</span>
+<div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">3D Visualisation</div><div class="text-xs text-white/40 mt-1">Product visuals that sell themselves</div></div>
+</a>
+<a href="../services/case-management.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<span class="text-xs text-white/20 font-mono w-6">04</span>
+<div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">Case Management Systems</div><div class="text-xs text-white/40 mt-1">Track every case, automate the rest</div></div>
+</a>
+</div>
+</div>
+</div>
+</div>
+
+<main id="main-content">
+<!-- Article Hero -->
+<section class="relative min-h-[70vh] flex items-end overflow-hidden text-white" style="background: linear-gradient(135deg, #07406B 0%, #2AA7DF 100%)">
+    <div class="absolute inset-0 bg-black/20"></div>
+    <div class="relative z-10 px-8 lg:px-16 pb-20 pt-48 w-full">
+        <div class="max-w-3xl mx-auto">
+            <div class="flex items-center gap-4 mb-6">
+                <span class="text-xs uppercase tracking-wide-label text-primary-light border border-primary-light/30 px-3 py-1">Engineering</span>
+                <span class="text-xs text-white/40">12 min read</span>
+                <span class="text-xs text-white/40">December 2025</span>
+            </div>
+            <h1 class="font-semibold text-4xl md:text-5xl lg:text-6xl leading-tight tracking-tighter mb-8">
+                The Build vs. Buy Decision Framework
+            </h1>
+            <p class="text-lg text-white/60 leading-relaxed font-light max-w-2xl">
+                After 200+ projects, we've developed a practical framework for when to build custom software and when to buy off-the-shelf. The answer isn't always "build."
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Article Body -->
+<section class="py-20 px-8 lg:px-16">
+    <div class="max-w-3xl mx-auto">
+
+        <p class="text-lg leading-relaxed opacity-80 mb-8 reveal">
+            We're a custom software shop. We make our living building things from scratch. So you might expect our answer to "build or buy?" to always be "build." It isn't. In fact, one of the most valuable things we do for clients is tell them when they shouldn't hire us -- when an off-the-shelf product will solve their problem faster, cheaper, and better than anything we could build.
+        </p>
+
+        <p class="text-lg leading-relaxed opacity-80 mb-8 reveal">
+            But we've also seen the opposite mistake far more often: companies buying packaged software that forces them to reshape their operations around someone else's assumptions. They spend two years implementing, another year customizing, and end up with a system that does 70% of what they need and none of what makes them different. Then they call us.
+        </p>
+
+        <p class="text-lg leading-relaxed opacity-80 mb-12 reveal">
+            After 200+ engagements across courts, manufacturers, and growth-stage companies, we've distilled the build vs. buy decision into five criteria that consistently predict the right answer. Not every time -- nothing works every time -- but reliably enough that we use this framework at the start of every project.
+        </p>
+
+        <h2 class="text-3xl font-light mb-6 reveal">Criterion 1: How Unique Is Your Workflow?</h2>
+
+        <p class="text-lg leading-relaxed opacity-80 mb-8 reveal">
+            This is the single most important factor, and the one most teams get wrong. The question isn't "is our business unique?" -- every business thinks it's unique. The question is: "are the workflows this software needs to support meaningfully different from standard industry practice?"
+        </p>
+
+        <p class="text-lg leading-relaxed opacity-80 mb-8 reveal">
+            If you're running accounts payable, your workflow isn't unique. Every AP department does roughly the same thing: receive invoices, match them to POs, approve, pay. Buy QuickBooks or NetSuite or whatever fits your scale. If you're a court clerk processing eFiling, your workflow is governed by your jurisdiction's specific rules, case types, and procedural requirements -- and those differ meaningfully from the next county over. That's a build.
+        </p>
+
+        <p class="text-lg leading-relaxed opacity-80 mb-12 reveal">
+            The test we use: Can you configure an off-the-shelf product to match your workflow in under 40 hours? If yes, buy. If the configuration effort starts approaching the build effort, you're paying twice -- once for the license and once for the customization -- and you'll keep paying for every upgrade that breaks your customizations.
+        </p>
+
+        <h2 class="text-3xl font-light mb-6 reveal">Criterion 2: Is This a Competitive Advantage?</h2>
+
+        <p class="text-lg leading-relaxed opacity-80 mb-8 reveal">
+            Some software is infrastructure. Email, CRM, project management -- these are table stakes. Nobody wins market share because they have a better internal project management tool. Buy the best available option and move on.
+        </p>
+
+        <p class="text-lg leading-relaxed opacity-80 mb-8 reveal">
+            But some software is the product, or it directly enables the product. If you're a manufacturer and your 3D product configurator is what lets dealers close sales in the showroom, that's competitive advantage. If you're a court system and your citizen portal is what reduces walk-in traffic by 70%, that's a differentiator. You don't want your competitive advantage running on the same platform your competitors can license next quarter.
+        </p>
+
+        <p class="text-lg leading-relaxed opacity-80 mb-12 reveal">
+            We've had this conversation dozens of times with growth-stage companies. They'll say, "Our operations are our moat." Then they'll try to run those operations on Salesforce with custom objects and Apex triggers. If your operations are genuinely your moat, the software that runs them should be purpose-built to protect that advantage, not rented from a vendor who's also selling to your competitors.
+        </p>
+
+        <h2 class="text-3xl font-light mb-6 reveal">Criterion 3: What Are the Integration Requirements?</h2>
+
+        <p class="text-lg leading-relaxed opacity-80 mb-8 reveal">
+            Every packaged software vendor will tell you their product "integrates with everything." What they mean is: it has an API. Having an API and having a reliable, real-time integration that handles edge cases, error recovery, and data consistency across systems are very different things.
+        </p>
+
+        <p class="text-lg leading-relaxed opacity-80 mb-8 reveal">
+            If the software you're evaluating needs to exchange data with one or two other systems in relatively simple ways -- syncing contacts between your CRM and email tool, for example -- buy. The integrations are solved problems and there are probably Zapier templates for them.
+        </p>
+
+        <p class="text-lg leading-relaxed opacity-80 mb-12 reveal">
+            If the software needs to be the hub of a complex data ecosystem -- pulling from multiple upstream systems, transforming data, pushing to multiple downstream consumers, handling real-time events -- you're going to hit the limits of packaged integration tools fast. We've seen companies spend more on middleware, iPaaS subscriptions, and integration consultants than they would have spent building a custom system that handles the data flows natively. At a certain integration complexity threshold, custom software isn't the expensive option. It's the only option that actually works.
+        </p>
+
+        <h2 class="text-3xl font-light mb-6 reveal">Criterion 4: Total Cost of Ownership</h2>
+
+        <p class="text-lg leading-relaxed opacity-80 mb-8 reveal">
+            This is where the math gets interesting, and where most buy decisions go wrong. Companies compare the upfront cost of a custom build against the annual license fee of a packaged product and conclude that buying is cheaper. That comparison ignores about 60% of the actual costs.
+        </p>
+
+        <p class="text-lg leading-relaxed opacity-80 mb-8 reveal">
+            For a packaged product, total cost includes: license fees (which increase annually), implementation consulting, customization and configuration, training, per-seat costs as you grow, integration development and maintenance, the productivity cost of workflows that don't quite fit, and the opportunity cost of features the vendor won't build. Add those up over five years and the number is often three to five times the initial license quote.
+        </p>
+
+        <p class="text-lg leading-relaxed opacity-80 mb-8 reveal">
+            For a custom build, total cost includes: development, infrastructure, ongoing maintenance, and future feature development. The upfront number is higher. The five-year number is often lower. And critically, the trajectory is different: packaged software costs tend to increase every year as vendors raise prices and you add seats. Custom software maintenance costs tend to decrease after the first year as the system stabilizes.
+        </p>
+
+        <blockquote class="border-l-2 border-primary pl-8 my-12 reveal">
+            <p class="text-xl font-light leading-relaxed opacity-70">
+                "The most expensive software decision isn't building something you should have bought. It's buying something that almost works and spending the next five years trying to close the gap."
+            </p>
+        </blockquote>
+
+        <h2 class="text-3xl font-light mb-6 reveal">Criterion 5: Maintenance and Evolution</h2>
+
+        <p class="text-lg leading-relaxed opacity-80 mb-8 reveal">
+            This is the criterion that tips the scales most often, and it's the one teams think about least. Software isn't a one-time purchase. It's a living system that needs to evolve as your business evolves. The question is: who controls that evolution?
+        </p>
+
+        <p class="text-lg leading-relaxed opacity-80 mb-8 reveal">
+            With a packaged product, the vendor controls the roadmap. You can request features, vote on them, even pay for priority development. But ultimately, the vendor is building for their entire customer base, not for you. If your needs diverge from the mainstream -- and in our experience, they always do eventually -- you're either waiting for the vendor to catch up or building workarounds yourself.
+        </p>
+
+        <p class="text-lg leading-relaxed opacity-80 mb-12 reveal">
+            With a custom build, you control the roadmap. Every dollar of development budget goes toward your priorities. The tradeoff is that you need a plan for ongoing maintenance: security patches, infrastructure updates, dependency management. This isn't free, but it's predictable, and it's yours to control. We typically budget 15-20% of the original build cost annually for maintenance and incremental improvements. Most of our clients find that's less than their annual vendor price increases were.
+        </p>
+
+        <h2 class="text-3xl font-light mb-6 reveal">The Decision Matrix</h2>
+
+        <p class="text-lg leading-relaxed opacity-80 mb-8 reveal">
+            Here's the simplified version we use in initial conversations. Score each criterion from 1 to 5, where 1 strongly favors buying and 5 strongly favors building:
+        </p>
+
+        <div class="my-10 reveal">
+            <div class="border border-black/10 divide-y divide-black/10">
+                <div class="grid grid-cols-3 gap-4 p-5 bg-zinc-950 text-white">
+                    <span class="text-xs uppercase tracking-widest font-medium">Criterion</span>
+                    <span class="text-xs uppercase tracking-widest font-medium">Buy Signal (1-2)</span>
+                    <span class="text-xs uppercase tracking-widest font-medium">Build Signal (4-5)</span>
+                </div>
+                <div class="grid grid-cols-3 gap-4 p-5">
+                    <span class="text-sm font-medium">Workflow Uniqueness</span>
+                    <span class="text-sm opacity-60">Standard industry process</span>
+                    <span class="text-sm opacity-60">Jurisdiction or domain-specific rules</span>
+                </div>
+                <div class="grid grid-cols-3 gap-4 p-5 bg-black/[0.02]">
+                    <span class="text-sm font-medium">Competitive Advantage</span>
+                    <span class="text-sm opacity-60">Internal operations / table stakes</span>
+                    <span class="text-sm opacity-60">Core differentiator or revenue driver</span>
+                </div>
+                <div class="grid grid-cols-3 gap-4 p-5">
+                    <span class="text-sm font-medium">Integration Complexity</span>
+                    <span class="text-sm opacity-60">1-2 simple data syncs</span>
+                    <span class="text-sm opacity-60">Hub of a multi-system ecosystem</span>
+                </div>
+                <div class="grid grid-cols-3 gap-4 p-5 bg-black/[0.02]">
+                    <span class="text-sm font-medium">5-Year TCO</span>
+                    <span class="text-sm opacity-60">License + config < custom build</span>
+                    <span class="text-sm opacity-60">License + customization > custom build</span>
+                </div>
+                <div class="grid grid-cols-3 gap-4 p-5">
+                    <span class="text-sm font-medium">Evolution Control</span>
+                    <span class="text-sm opacity-60">Vendor roadmap aligns with your needs</span>
+                    <span class="text-sm opacity-60">Needs will diverge from mainstream</span>
+                </div>
+            </div>
+            <p class="text-sm opacity-50 mt-4">Total score 5-12: Strong buy signal. 13-17: Depends on context. 18-25: Strong build signal.</p>
+        </div>
+
+        <p class="text-lg leading-relaxed opacity-80 mb-8 reveal">
+            The framework isn't meant to give you a definitive answer from a spreadsheet. It's meant to structure the conversation so you're evaluating the right factors instead of defaulting to whichever option feels less risky in the moment.
+        </p>
+
+        <p class="text-lg leading-relaxed opacity-80 mb-8 reveal">
+            In our experience, most companies that score in the 13-17 range end up building -- but building something smaller than they initially planned. They buy for the commodity workflows and build for the parts that make them different. That hybrid approach works well when it's intentional. It's a disaster when it happens accidentally, which is what happens when you buy a big platform and then build customizations on top of it.
+        </p>
+
+        <p class="text-lg leading-relaxed opacity-80 mb-12 reveal">
+            The best decision is the one you make deliberately, with clear criteria, before you've sat through six vendor demos and started anchoring on a specific product. Run the framework first. Then go shopping -- or go building -- with confidence that you're solving the right problem the right way.
+        </p>
+
+        <!-- Author -->
+        <div class="border-t border-black/10 pt-10 mt-16 reveal">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-primary/10 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-primary" aria-hidden="true">group</span>
+                </div>
+                <div>
+                    <p class="text-sm font-medium">Written by Azul Arc Team</p>
+                    <p class="text-xs opacity-50">Insights from two decades of building software for courts, manufacturers, and growth-stage companies.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Related Articles -->
+<section class="py-20 px-8 lg:px-16 border-t border-black/5">
+    <div class="mb-12 reveal">
+        <span class="text-xs uppercase tracking-label text-primary mb-4 block">Keep Reading</span>
+        <h2 class="font-light text-4xl">Related articles</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
+        <!-- Related 1 -->
+        <a href="legacy-cost.html" class="group reveal">
+            <div class="aspect-[16/10] overflow-hidden mb-6">
+                <div class="w-full h-full group-hover:scale-105 transition-transform duration-700" style="background: linear-gradient(160deg, #212121 0%, #07406B 40%, #1863DC 80%, #2AA7DF 100%)"></div>
+            </div>
+            <div class="flex items-center gap-4 mb-4">
+                <span class="text-xs uppercase tracking-wide-label text-primary">Strategy</span>
+                <span class="text-xs text-muted">15 min read</span>
+            </div>
+            <h3 class="text-2xl font-light mb-3 group-hover:text-primary transition-colors leading-snug">The Real Cost of Running Legacy Software</h3>
+            <p class="text-sm opacity-50 leading-relaxed mb-4">It's not just the maintenance fees. It's the opportunity cost, the workarounds, the talent you can't hire, and the features you can't ship. We break down the true cost of keeping legacy systems alive.</p>
+            <span class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-primary font-medium opacity-0 group-hover:opacity-100 transition-opacity">Read article <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span></span>
+        </a>
+
+        <!-- Related 2 -->
+        <a href="mid-market-software-gap.html" class="group reveal reveal-delay-1">
+            <div class="aspect-[16/10] overflow-hidden mb-6">
+                <div class="w-full h-full group-hover:scale-105 transition-transform duration-700" style="background: linear-gradient(135deg, #212121 0%, #07406B 100%)"></div>
+            </div>
+            <div class="flex items-center gap-4 mb-4">
+                <span class="text-xs uppercase tracking-wide-label text-primary">Strategy</span>
+                <span class="text-xs text-muted">8 min read</span>
+            </div>
+            <h3 class="text-2xl font-light mb-3 group-hover:text-primary transition-colors leading-snug">Why Mid-Market Companies Get Stuck on Bad Software</h3>
+            <p class="text-sm opacity-50 leading-relaxed mb-4">Too big for off-the-shelf, too small for enterprise vendors. The mid-market software gap is real, and it's costing companies millions in productivity. Here's how to escape it.</p>
+            <span class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-primary font-medium opacity-0 group-hover:opacity-100 transition-opacity">Read article <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span></span>
+        </a>
+    </div>
+</section>
+
+<!-- Newsletter CTA -->
+<section class="py-32 px-8 lg:px-16 bg-zinc-950 text-white cta-section" id="cta-section">
+    <div class="max-w-3xl mx-auto text-center reveal">
+        <span class="text-xs uppercase tracking-label text-primary-light mb-6 block cta-label">Newsletter</span>
+        <h2 class="font-light text-5xl md:text-6xl mb-6 leading-tight cta-text">Get our best thinking,<br/>delivered.</h2>
+        <p class="text-lg text-white/50 mb-12 max-w-xl mx-auto cta-muted">Strategy frameworks, engineering insights, and honest lessons from real projects. No fluff. Roughly twice a month.</p>
+        <form class="newsletter-form flex flex-col sm:flex-row gap-4 max-w-md mx-auto" id="newsletter-form" novalidate>
+            <input class="newsletter-input flex-1 bg-white/5 border border-white/10 px-6 py-4 text-sm text-white placeholder:text-white/30 focus:ring-1 focus:ring-primary focus:border-primary transition-colors" placeholder="Your email address" type="email" required id="newsletter-email"/>
+            <button type="submit" class="cta-wipe group flex items-center justify-center gap-2 bg-primary text-white px-8 py-4 text-sm uppercase tracking-cta font-medium hover:bg-primary-dark transition-colors" id="cta-btn">
+                <span class="newsletter-btn-text">Subscribe</span>
+                <svg class="newsletter-btn-spinner hidden animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform duration-300 newsletter-btn-arrow" aria-hidden="true">arrow_forward</span>
+            </button>
+        </form>
+        <div class="newsletter-success hidden max-w-md mx-auto mt-6 transition-opacity duration-500">
+            <div class="flex items-center justify-center gap-3">
+                <span class="material-symbols-outlined text-2xl text-emerald-400">check_circle</span>
+                <span class="text-lg font-medium text-white">You're in. Welcome aboard.</span>
+            </div>
+            <p class="text-sm text-white/40 mt-2">Check your inbox for a confirmation email.</p>
+        </div>
+        <p class="newsletter-error hidden text-sm text-red-400 mt-3 max-w-md mx-auto">Please enter a valid email address.</p>
+        <p class="newsletter-fine-print text-xs text-white/20 mt-6">No spam. Unsubscribe anytime. We respect your inbox.</p>
+    </div>
+</section>
+
+<!-- Footer -->
+</main>
+<footer id="footer-section" class="relative pt-16 pb-16 px-8 lg:px-16 border-t border-black/5 dark:border-white/5" style="overflow: clip;">
+<div class="footer-grid relative z-10 grid grid-cols-2 md:grid-cols-4 gap-12 pt-16 border-t border-black/10" style="transition: border-color 0.6s ease;">
+<div>
+<h6 class="footer-text text-xs uppercase tracking-widest font-bold mb-6" style="transition: color 0.6s ease;">What We Do</h6>
+<ul class="footer-text space-y-2 opacity-60 text-sm" style="transition: color 0.6s ease;">
+<li><a class="hover:text-primary" href="../services/digital-product-strategy.html">Digital Product Strategy</a></li>
+<li><a class="hover:text-primary" href="../services/web-design-development.html">Web Design & Development</a></li>
+<li><a class="hover:text-primary" href="../services/3d-visualization.html">3D Visualization</a></li>
+<li><a class="hover:text-primary" href="../services/case-management.html">Case Management</a></li>
+</ul>
+</div>
+<div>
+<h6 class="footer-text text-xs uppercase tracking-widest font-bold mb-6" style="transition: color 0.6s ease;">Company</h6>
+<ul class="footer-text space-y-2 opacity-60 text-sm" style="transition: color 0.6s ease;">
+<li><a class="hover:text-primary" href="../about.html">About</a></li>
+<li><a class="hover:text-primary" href="../how-we-work.html">How We Work</a></li>
+<li><a class="hover:text-primary" href="../work.html">Work</a></li>
+<li><a class="hover:text-primary" href="../insights.html">Insights</a></li>
+<li><a class="hover:text-primary" href="../contact.html">Contact</a></li>
+</ul>
+</div>
+<div>
+<h6 class="footer-text text-xs uppercase tracking-widest font-bold mb-6" style="transition: color 0.6s ease;">Connect</h6>
+<ul class="footer-text space-y-2 opacity-60 text-sm" style="transition: color 0.6s ease;">
+<li><a class="hover:text-primary" href="https://www.linkedin.com/company/azularc/" target="_blank" rel="noopener">LinkedIn</a></li>
+<li><a class="hover:text-primary" href="https://x.com/azularc" target="_blank" rel="noopener">Twitter</a></li>
+<li><a class="hover:text-primary" href="mailto:hello@azularc.com">Email</a></li>
+</ul>
+</div>
+<div class="flex flex-col justify-between">
+<div>
+<h6 class="footer-text text-xs uppercase tracking-widest font-bold mb-6" style="transition: color 0.6s ease;">Insights</h6>
+<div class="footer-border flex border-b border-black/10 pb-2" style="transition: border-color 0.6s ease;">
+<input class="footer-text bg-transparent border-none focus:ring-0 p-0 text-sm w-full" style="transition: color 0.6s ease;" placeholder="Email" type="email"/>
+<span class="footer-text material-symbols-outlined opacity-40" style="transition: color 0.6s ease;" aria-hidden="true">arrow_forward</span>
+</div>
+</div>
+<p class="footer-text text-xs opacity-30 mt-12" style="transition: color 0.6s ease;">&copy; 2026 Azul Arc. All rights reserved.</p>
+</div>
+</div>
+</footer>
+
+<script>
+// Nav scroll background
+(function() {
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 80) {
+            nav.classList.add('nav-scrolled');
+        } else {
+            nav.classList.remove('nav-scrolled');
+        }
+    });
+})();
+
+// Mega menu dropdowns
+(function() {
+    const triggers = document.querySelectorAll('.nav-dd-trigger');
+    const menus = document.querySelectorAll('.mega-menu');
+    let hideTimeout = null;
+
+    function showMenu(key) {
+        clearTimeout(hideTimeout);
+        menus.forEach(m => { if (m.id !== 'mega-' + key) m.classList.remove('active'); });
+        const menu = document.getElementById('mega-' + key);
+        if (menu) menu.classList.add('active');
+    }
+    function hideAll() {
+        hideTimeout = setTimeout(() => { menus.forEach(m => m.classList.remove('active')); }, 150);
+    }
+
+    triggers.forEach(trigger => {
+        trigger.addEventListener('mouseenter', (e) => {
+            e.preventDefault();
+            showMenu(trigger.dataset.dropdown);
+        });
+        trigger.addEventListener('mouseleave', hideAll);
+    });
+    menus.forEach(menu => {
+        menu.addEventListener('mouseenter', () => { clearTimeout(hideTimeout); });
+        menu.addEventListener('mouseleave', hideAll);
+    });
+})();
+</script>
+
+<script>
+// Scroll reveal
+const revealEls = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+revealEls.forEach(el => revealObserver.observe(el));
+</script>
+
+<script>
+// CTA section wipe on button hover
+const ctaBtn = document.getElementById('cta-btn');
+const ctaSection = document.getElementById('cta-section');
+if (ctaBtn && ctaSection) {
+    ctaBtn.addEventListener('mouseenter', () => ctaSection.classList.add('wipe-active'));
+    ctaBtn.addEventListener('mouseleave', () => ctaSection.classList.remove('wipe-active'));
+}
+
+// Active nav indicator
+(function() {
+    var p = location.pathname, page = p.split('/').pop() || 'index.html',
+        dir = p.split('/').slice(-2, -1)[0] || '';
+    document.querySelectorAll('.nav-links > a').forEach(function(a) {
+        var dd = a.dataset.dropdown,
+            hp = (a.getAttribute('href') || '').split('/').pop();
+        if (
+            (dd === 'industries' && dir === 'industries') ||
+            (dd === 'whatwedo' && (dir === 'services' || page === 'casehub.html')) ||
+            (hp === 'how-we-work.html' && page === 'how-we-work.html') ||
+            (hp === 'work.html' && (page === 'work.html' || page === 'case-study.html')) ||
+            (hp === 'insights.html' && (page === 'insights.html' || dir === 'insights')) ||
+            (hp === 'about.html' && page === 'about.html')
+        ) a.classList.add('nav-active');
+    });
+})();
+
+// Newsletter form handling
+(function() {
+    var form = document.getElementById('newsletter-form');
+    if (!form) return;
+    var input = document.getElementById('newsletter-email');
+    var btn = form.querySelector('button[type="submit"]');
+    var btnText = btn.querySelector('.newsletter-btn-text');
+    var spinner = btn.querySelector('.newsletter-btn-spinner');
+    var arrow = btn.querySelector('.newsletter-btn-arrow');
+    var success = document.querySelector('.newsletter-success');
+    var error = document.querySelector('.newsletter-error');
+    var fine = document.querySelector('.newsletter-fine-print');
+
+    input.addEventListener('input', function() {
+        error.classList.add('hidden');
+        input.classList.remove('border-red-400');
+    });
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        error.classList.add('hidden');
+        input.classList.remove('border-red-400');
+
+        if (!input.value || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
+            error.classList.remove('hidden');
+            input.classList.add('border-red-400');
+            input.focus();
+            return;
+        }
+
+        btnText.textContent = 'Sending\u2026';
+        spinner.classList.remove('hidden');
+        arrow.classList.add('hidden');
+        btn.disabled = true;
+        btn.classList.add('opacity-70', 'cursor-not-allowed');
+
+        setTimeout(function() {
+            form.classList.add('hidden');
+            fine.classList.add('hidden');
+            success.classList.remove('hidden');
+        }, 1200);
+    });
+})();
+</script>
+
+</body>
+</html>

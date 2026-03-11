@@ -68,22 +68,45 @@
         transition: background-color 0.4s ease, backdrop-filter 0.4s ease;
     }
     nav.nav-scrolled {
-        background-color: rgba(255, 255, 255, 0.9);
+        background-color: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(12px);
-        mix-blend-mode: normal !important;
         color: #212121 !important;
     }
     nav.nav-scrolled a,
     nav.nav-scrolled div {
         color: #212121;
     }
-    nav.nav-scrolled img {
-        filter: none;
-    }
     nav.nav-scrolled .nav-links a:hover {
         color: #1863DC;
         opacity: 1;
     }
+        /* Active nav indicator */
+        .nav-links a {
+            position: relative;
+            transition: opacity 0.3s, color 0.3s;
+        }
+        .nav-links a:not(.nav-active) {
+            opacity: 0.5;
+        }
+        .nav-links a:hover {
+            opacity: 1 !important;
+            color: #1863DC;
+        }
+        .nav-links a.nav-active {
+            opacity: 1;
+            color: #1863DC;
+        }
+        .nav-links a.nav-active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #1863DC;
+        }
 
         /* Scroll reveal animations */
         .reveal {
@@ -169,13 +192,14 @@
 <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-white focus:text-text-dark focus:px-4 focus:py-2 focus:text-sm focus:font-medium">Skip to main content</a>
 
 <!-- Navigation -->
-<nav id="main-nav" class="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center mix-blend-difference text-white">
-<a href="../index.html"><img src="../azularcLogo.png" alt="Azul Arc" class="h-8 brightness-0 invert"/></a>
+<nav id="main-nav" class="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center bg-white/80 backdrop-blur-md text-zinc-900 transition-all duration-300">
+<a href="../index.html"><img src="../azularcLogo.png" alt="Azul Arc" class="h-8"/></a>
 <div class="hidden md:flex gap-6 text-sm uppercase tracking-widest font-medium items-center nav-links">
 <a class="hover:opacity-60 transition-opacity flex items-center gap-1 cursor-pointer nav-dd-trigger" data-dropdown="industries" href="#industries">Industries <span class="material-symbols-outlined text-sm" aria-hidden="true">expand_more</span></a>
 <a class="hover:opacity-60 transition-opacity flex items-center gap-1 cursor-pointer nav-dd-trigger" data-dropdown="whatwedo" href="#capabilities">What We Do <span class="material-symbols-outlined text-sm" aria-hidden="true">expand_more</span></a>
 <a class="hover:opacity-60 transition-opacity" href="../how-we-work.html">How We Work</a>
 <a class="hover:opacity-60 transition-opacity" href="../work.html">Work</a>
+<a class="hover:opacity-60 transition-opacity" href="../insights.html">Insights</a>
 <a class="hover:opacity-60 transition-opacity" href="../about.html">About</a>
 </div>
 <div class="hidden md:block w-28"></div>
@@ -184,6 +208,7 @@
 </button>
 </nav>
 <a href="../contact.html" id="nav-cta" class="nav-cta fixed top-[22px] right-8 z-50 hidden md:flex items-center gap-2 bg-primary text-white px-5 py-2 rounded-full text-xs uppercase tracking-widest font-medium hover:bg-primary-dark transition-colors">Let's Talk</a>
+
 
 <!-- Mega menus -->
 <div id="mega-industries" class="mega-menu fixed top-0 left-0 w-full z-40 pt-[72px] opacity-0 invisible translate-y-[-8px] transition-all duration-300 ease-out pointer-events-none">
@@ -244,7 +269,7 @@
 
 <main id="main-content">
 <!-- Hero -->
-<section class="relative min-h-screen flex flex-col justify-end overflow-hidden bg-zinc-950 text-white">
+<section class="relative min-h-[85vh] flex flex-col justify-end overflow-hidden bg-zinc-950 text-white">
 <div class="absolute inset-0 z-0">
 <img alt="Manufacturing facility" class="w-full h-full object-cover opacity-30" src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1600&q=80"/>
 <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/70 to-zinc-950/40"></div>
@@ -283,29 +308,29 @@
 <!-- Pain Points -->
 <section class="py-32 px-8 lg:px-16">
 <div class="mb-20 reveal">
-<p class="text-sm uppercase tracking-widest text-primary mb-4">The Problem</p>
+<span class="text-xs uppercase tracking-label text-primary mb-4 block">The Problem</span>
 <h2 class="font-light text-5xl">What's slowing manufacturers down</h2>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-black/10">
 <div class="bg-background-light p-10 group hover:bg-zinc-50 transition-colors">
 <span class="text-6xl font-light text-primary/10 group-hover:text-primary/30 transition-colors mb-6 block">01</span>
 <h3 class="text-xl font-medium mb-4">Disconnected ERP & CRM</h3>
-<p class="text-base opacity-60 leading-relaxed">Your ERP talks to nobody. Your CRM has its own version of the truth. Sales promises delivery dates the warehouse has never heard of, and finance reconciles it all in a spreadsheet at month-end.</p>
+<p class="text-base text-muted leading-relaxed">Your ERP talks to nobody. Your CRM has its own version of the truth. Sales promises delivery dates the warehouse has never heard of, and finance reconciles it all in a spreadsheet at month-end.</p>
 </div>
 <div class="bg-background-light p-10 group hover:bg-zinc-50 transition-colors">
 <span class="text-6xl font-light text-primary/10 group-hover:text-primary/30 transition-colors mb-6 block">02</span>
 <h3 class="text-xl font-medium mb-4">Manual Order Entry</h3>
-<p class="text-base opacity-60 leading-relaxed">Orders come in by phone, email, fax, and portal. Someone re-keys every single one. Errors compound, shipments go wrong, and your best people spend their days doing data entry instead of solving problems.</p>
+<p class="text-base text-muted leading-relaxed">Orders come in by phone, email, fax, and portal. Someone re-keys every single one. Errors compound, shipments go wrong, and your best people spend their days doing data entry instead of solving problems.</p>
 </div>
 <div class="bg-background-light p-10 group hover:bg-zinc-50 transition-colors">
 <span class="text-6xl font-light text-primary/10 group-hover:text-primary/30 transition-colors mb-6 block">03</span>
 <h3 class="text-xl font-medium mb-4">No Real-Time Inventory</h3>
-<p class="text-base opacity-60 leading-relaxed">You find out something is out of stock after you've already promised it. Cycle counts take days. Nobody trusts the numbers in the system, so they walk the floor to check manually.</p>
+<p class="text-base text-muted leading-relaxed">You find out something is out of stock after you've already promised it. Cycle counts take days. Nobody trusts the numbers in the system, so they walk the floor to check manually.</p>
 </div>
 <div class="bg-background-light p-10 group hover:bg-zinc-50 transition-colors">
 <span class="text-6xl font-light text-primary/10 group-hover:text-primary/30 transition-colors mb-6 block">04</span>
 <h3 class="text-xl font-medium mb-4">Spreadsheet-Driven Reporting</h3>
-<p class="text-base opacity-60 leading-relaxed">Your leadership team makes million-dollar decisions based on spreadsheets that took someone three days to compile. By the time the report is done, the data is already stale.</p>
+<p class="text-base text-muted leading-relaxed">Your leadership team makes million-dollar decisions based on spreadsheets that took someone three days to compile. By the time the report is done, the data is already stale.</p>
 </div>
 </div>
 </section>
@@ -313,7 +338,7 @@
 <!-- Solutions -->
 <section class="py-32 px-8 lg:px-16 bg-zinc-950 text-white">
 <div class="mb-20 reveal">
-<p class="text-sm uppercase tracking-label font-light text-primary mb-6">What We Build</p>
+<span class="text-xs uppercase tracking-label text-primary mb-6 block">What We Build</span>
 <h2 class="font-light text-5xl tracking-tight">Systems that connect<br/>the floor to the front office.</h2>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -359,7 +384,7 @@
 <!-- Case Study Preview -->
 <section class="py-32 px-8 lg:px-16">
 <div class="mb-16 reveal">
-<p class="text-sm uppercase tracking-widest text-primary mb-4">Case Study</p>
+<span class="text-xs uppercase tracking-label text-primary mb-4 block">Case Study</span>
 <h2 class="font-light text-5xl">FlowOps</h2>
 </div>
 <div class="flex flex-col lg:flex-row gap-16 items-center">
@@ -371,7 +396,7 @@
 <div class="lg:w-1/2">
 <span class="text-xs uppercase tracking-wide-label text-muted mb-6 block">Manufacturing / Operations</span>
 <h3 class="text-3xl font-light mb-6 leading-snug">Streamlined operations across 8 facilities and cut costs by 20%.</h3>
-<p class="text-lg opacity-60 leading-relaxed mb-10">FlowOps was running eight facilities on five different systems. Inventory counts took a week. Order status required three phone calls. We built a unified operations platform that connected every facility, automated order routing, and gave leadership real-time visibility into every metric that matters. Within six months, operational costs dropped 20% and order accuracy hit 99.4%.</p>
+<p class="text-lg text-muted leading-relaxed mb-10">FlowOps was running eight facilities on five different systems. Inventory counts took a week. Order status required three phone calls. We built a unified operations platform that connected every facility, automated order routing, and gave leadership real-time visibility into every metric that matters. Within six months, operational costs dropped 20% and order accuracy hit 99.4%.</p>
 <div class="flex gap-12 mb-10 pb-10 border-b border-black/10">
 <div>
 <span class="block text-4xl font-semibold text-primary">20%</span>
@@ -400,7 +425,7 @@
 <div class="lg:w-1/2 order-2 lg:order-1">
 <span class="text-xs uppercase tracking-wide-label text-muted mb-6 block">Manufacturing / Digital Transformation</span>
 <h3 class="text-3xl font-light mb-6 leading-snug">Meridian Manufacturing: from spreadsheets to a single source of truth.</h3>
-<p class="text-lg opacity-60 leading-relaxed mb-10">Meridian's sales team was quoting prices from a spreadsheet that was updated monthly. Their warehouse was running on whiteboards and walkie-talkies. We led a 6-week strategy engagement that identified $2.4M in operational waste, then built a phased modernization roadmap that started delivering value in sprint one.</p>
+<p class="text-lg text-muted leading-relaxed mb-10">Meridian's sales team was quoting prices from a spreadsheet that was updated monthly. Their warehouse was running on whiteboards and walkie-talkies. We led a 6-week strategy engagement that identified $2.4M in operational waste, then built a phased modernization roadmap that started delivering value in sprint one.</p>
 <div class="flex gap-12 mb-10 pb-10 border-b border-black/10">
 <div>
 <span class="block text-4xl font-semibold text-primary">$2.4M</span>
@@ -468,14 +493,15 @@
 <li><a class="hover:text-primary" href="../about.html">About</a></li>
 <li><a class="hover:text-primary" href="../how-we-work.html">How We Work</a></li>
 <li><a class="hover:text-primary" href="../work.html">Work</a></li>
+<li><a class="hover:text-primary" href="../insights.html">Insights</a></li>
 <li><a class="hover:text-primary" href="../contact.html">Contact</a></li>
 </ul>
 </div>
 <div>
 <h6 class="footer-text text-xs uppercase tracking-widest font-bold mb-6" style="transition: color 0.6s ease;">Connect</h6>
 <ul class="footer-text space-y-2 opacity-60 text-sm" style="transition: color 0.6s ease;">
-<li><a class="hover:text-primary" href="#">LinkedIn</a></li>
-<li><a class="hover:text-primary" href="#">Twitter</a></li>
+<li><a class="hover:text-primary" href="https://www.linkedin.com/company/azularc/" target="_blank" rel="noopener">LinkedIn</a></li>
+<li><a class="hover:text-primary" href="https://x.com/azularc" target="_blank" rel="noopener">Twitter</a></li>
 <li><a class="hover:text-primary" href="mailto:hello@azularc.com">Email</a></li>
 </ul>
 </div>
@@ -558,6 +584,24 @@ if (ctaBtn && ctaSection) {
     ctaBtn.addEventListener('mouseenter', () => ctaSection.classList.add('wipe-active'));
     ctaBtn.addEventListener('mouseleave', () => ctaSection.classList.remove('wipe-active'));
 }
+
+// Active nav indicator
+(function() {
+    var p = location.pathname, page = p.split('/').pop() || 'index.html',
+        dir = p.split('/').slice(-2, -1)[0] || '';
+    document.querySelectorAll('.nav-links > a').forEach(function(a) {
+        var dd = a.dataset.dropdown,
+            hp = (a.getAttribute('href') || '').split('/').pop();
+        if (
+            (dd === 'industries' && dir === 'industries') ||
+            (dd === 'whatwedo' && (dir === 'services' || page === 'casehub.html')) ||
+            (hp === 'how-we-work.html' && page === 'how-we-work.html') ||
+            (hp === 'work.html' && (page === 'work.html' || page === 'case-study.html')) ||
+            (hp === 'insights.html' && (page === 'insights.html' || dir === 'insights')) ||
+            (hp === 'about.html' && page === 'about.html')
+        ) a.classList.add('nav-active');
+    });
+})();
 </script>
 
 </body>

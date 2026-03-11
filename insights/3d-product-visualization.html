@@ -2,7 +2,7 @@
 <html class="scroll-smooth" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>3D Visualization — Azul Arc</title>
+<title>3D Product Visualization: Beyond the Wow Factor — Azul Arc</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&amp;display=swap" rel="stylesheet"/>
@@ -108,20 +108,20 @@
             background: #1863DC;
         }
 
-        /* Scroll reveal animations */
-        .reveal {
-            opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .reveal-delay-1 { transition-delay: 0.1s; }
-        .reveal-delay-2 { transition-delay: 0.2s; }
-        .reveal-delay-3 { transition-delay: 0.3s; }
-        .reveal-delay-4 { transition-delay: 0.4s; }
+    /* Scroll reveal animations */
+    .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
     .magnetic-wrap {
         display: inline-flex;
         align-items: center;
@@ -186,7 +186,7 @@
         }
         .reveal { opacity: 1; transform: none; }
     }
-    </style>
+</style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-text-dark dark:text-text-light font-sans selection:bg-primary selection:text-white">
 <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-white focus:text-text-dark focus:px-4 focus:py-2 focus:text-sm focus:font-medium">Skip to main content</a>
@@ -268,176 +268,154 @@
 </div>
 
 <main id="main-content">
-<!-- Hero -->
-<section class="relative min-h-[85vh] flex items-end overflow-hidden bg-zinc-950 text-white">
-    <div class="absolute inset-0 z-0">
-        <img alt="3D visualization render" class="w-full h-full object-cover opacity-20" src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=1600&q=80"/>
-        <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/60 to-zinc-950/30"></div>
-    </div>
-    <div class="relative z-10 px-8 lg:px-16 pb-24 pt-48 w-full">
-        <span class="text-xs uppercase tracking-label text-primary-light mb-6 block">Service</span>
-        <h1 class="font-semibold text-5xl md:text-7xl lg:text-8xl leading-none tracking-tighter mb-10 max-w-5xl">
-            3D<br/>Visualization
+<!-- Article Hero -->
+<section class="relative min-h-[70vh] flex items-end overflow-hidden text-white" style="background: linear-gradient(135deg, #212121 0%, #2AA7DF 80%, #1863DC 100%)">
+    <div class="absolute inset-0 bg-black/20"></div>
+    <div class="relative z-10 px-8 lg:px-16 pb-20 pt-48 w-full max-w-4xl">
+        <div class="flex items-center gap-4 mb-8">
+            <span class="text-xs uppercase tracking-wide-label text-white/80 border border-white/30 px-3 py-1">Product</span>
+            <span class="text-xs text-white/50">7 min read</span>
+            <span class="text-xs text-white/50">October 2025</span>
+        </div>
+        <h1 class="font-semibold text-4xl md:text-6xl lg:text-7xl leading-none tracking-tighter mb-8">
+            3D Product Visualization: Beyond the Wow Factor
         </h1>
-        <div class="max-w-xl border-t border-white/15 pt-8">
-            <p class="text-xl text-white/60 leading-relaxed font-light">
-                Let customers see, spin, and configure your products in photorealistic 3D before they buy. Our vStudio platform turns static catalogs into interactive experiences that close deals faster.
-            </p>
-        </div>
+        <p class="text-xl text-white/60 leading-relaxed font-light max-w-2xl">
+            Interactive 3D isn't just eye candy. For manufacturers, it's a sales tool that reduces sample costs by 40% and closes deals faster. The business case for 3D product visualization.
+        </p>
     </div>
 </section>
 
-<!-- Overview -->
-<section class="py-32 px-8 lg:px-16">
-    <div class="max-w-7xl mx-auto">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-            <div class="lg:col-span-5">
-                <div class="aspect-[3/4] overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=80" alt="Product visualization" class="w-full h-full object-cover" loading="lazy"/>
-                </div>
-            </div>
-            <div class="lg:col-span-7 lg:pl-8 reveal">
-                <span class="text-xs uppercase tracking-label text-primary mb-6 block">The vStudio Platform</span>
-                <h2 class="font-light text-4xl md:text-5xl leading-tight mb-8">Your products deserve<br/>better than a photo gallery.</h2>
-                <p class="text-lg opacity-70 leading-relaxed mb-8">
-                    Static images can't show every angle, every configuration, or every finish option. Customers are left guessing, and guessing leads to returns, support tickets, and lost sales.
-                </p>
-                <p class="text-lg opacity-70 leading-relaxed mb-8">
-                    vStudio is our interactive 3D visualization platform built specifically for product manufacturers. It lets your customers explore your products in photorealistic detail, configure options in real time, and see exactly what they're getting before they commit to a purchase.
-                </p>
-                <p class="text-lg opacity-70 leading-relaxed">
-                    From furniture to industrial equipment, from architectural fixtures to consumer goods, vStudio handles complex product lines with thousands of configuration options and renders them instantly in the browser.
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
+<!-- Article Body -->
+<article class="py-20 px-8 lg:px-16">
+    <div class="max-w-3xl mx-auto">
 
-<!-- Key Deliverables -->
-<section class="py-32 px-8 lg:px-16 bg-zinc-950 text-white">
-    <div class="max-w-7xl mx-auto">
-        <div class="mb-20 max-w-2xl reveal">
-            <span class="text-xs uppercase tracking-label text-primary-light mb-4 block">Deliverables</span>
-            <h2 class="font-light text-5xl mb-6">What vStudio includes</h2>
-            <p class="text-sm text-white/40 leading-relaxed">Each implementation is tailored to your product catalog, brand guidelines, and sales workflow.</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/10">
-            <div class="group bg-zinc-950 p-12 hover:bg-white/5 transition-colors">
-                <span class="material-symbols-outlined text-3xl text-primary-light/40 group-hover:text-primary-light transition-colors mb-6 block" aria-hidden="true">3d_rotation</span>
-                <h3 class="text-xl font-medium mb-4">Interactive Product Configurators</h3>
-                <p class="text-sm text-white/50 leading-relaxed">Real-time 3D configurators that let customers change colors, materials, sizes, and components. Every option renders instantly with photorealistic quality.</p>
-            </div>
-            <div class="group bg-zinc-950 p-12 hover:bg-white/5 transition-colors">
-                <span class="material-symbols-outlined text-3xl text-primary-light/40 group-hover:text-primary-light transition-colors mb-6 block" aria-hidden="true">storefront</span>
-                <h3 class="text-xl font-medium mb-4">Virtual Showrooms</h3>
-                <p class="text-sm text-white/50 leading-relaxed">Immersive digital spaces where customers can browse your entire product line. Navigate rooms, inspect details, and compare options in context.</p>
-            </div>
-            <div class="group bg-zinc-950 p-12 hover:bg-white/5 transition-colors">
-                <span class="material-symbols-outlined text-3xl text-primary-light/40 group-hover:text-primary-light transition-colors mb-6 block" aria-hidden="true">view_in_ar</span>
-                <h3 class="text-xl font-medium mb-4">AR/VR Experiences</h3>
-                <p class="text-sm text-white/50 leading-relaxed">Place products in real environments with augmented reality, or create fully immersive VR walkthroughs. Works on mobile, desktop, and headsets.</p>
-            </div>
-            <div class="group bg-zinc-950 p-12 hover:bg-white/5 transition-colors">
-                <span class="material-symbols-outlined text-3xl text-primary-light/40 group-hover:text-primary-light transition-colors mb-6 block" aria-hidden="true">slideshow</span>
-                <h3 class="text-xl font-medium mb-4">Interactive Demos & Sales Tools</h3>
-                <p class="text-sm text-white/50 leading-relaxed">Equip your sales team with tools that close deals. Interactive presentations, shareable 3D links, and embeddable configurators for your e-commerce platform.</p>
-            </div>
-            <div class="group bg-zinc-950 p-12 hover:bg-white/5 transition-colors">
-                <span class="material-symbols-outlined text-3xl text-primary-light/40 group-hover:text-primary-light transition-colors mb-6 block" aria-hidden="true">photo_camera</span>
-                <h3 class="text-xl font-medium mb-4">Photorealistic Rendering</h3>
-                <p class="text-sm text-white/50 leading-relaxed">Generate unlimited product images from your 3D models. Every angle, every configuration, every lifestyle shot — without a photographer or a studio.</p>
-            </div>
-            <div class="group bg-zinc-950 p-12 hover:bg-white/5 transition-colors">
-                <span class="material-symbols-outlined text-3xl text-primary-light/40 group-hover:text-primary-light transition-colors mb-6 block" aria-hidden="true">integration_instructions</span>
-                <h3 class="text-xl font-medium mb-4">Platform Integration</h3>
-                <p class="text-sm text-white/50 leading-relaxed">Embed configurators into Shopify, WooCommerce, or your custom e-commerce platform. Integrate with CPQ systems, ERP, and your existing product data.</p>
-            </div>
-        </div>
-    </div>
-</section>
+        <p class="text-lg leading-relaxed mb-8 opacity-80">
+            Every time we show a manufacturer an interactive 3D product viewer for the first time, the reaction is the same. They spin the product around, zoom in on a detail, change a color, and say something like "that's really cool." Then they ask the only question that matters: "But will it actually help us sell more?"
+        </p>
+        <p class="text-lg leading-relaxed mb-12 opacity-80">
+            The answer, after building 3D visualization tools for manufacturers across flooring, furniture, building materials, and industrial components, is an unambiguous yes. But not for the reasons most people assume. The value of 3D isn't the wow factor. It's the friction it removes from the buying process.
+        </p>
 
-<!-- Process -->
-<section class="py-32 px-8 lg:px-16">
-    <div class="max-w-7xl mx-auto">
-        <div class="mb-24 text-center max-w-2xl mx-auto reveal">
-            <span class="text-xs uppercase tracking-label text-primary mb-4 block">Process</span>
-            <h2 class="font-light text-5xl mb-6">From CAD files to live configurator</h2>
-            <p class="text-sm opacity-50">We handle the entire pipeline so you don't have to become a 3D expert.</p>
-        </div>
-        <div class="relative">
-            <!-- Connecting line -->
-            <div class="hidden lg:block absolute top-1/2 left-0 right-0 h-px bg-black/10 -translate-y-1/2"></div>
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-16">
-                <div class="relative bg-white p-10 border border-black/5 reveal">
-                    <div class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold mb-8">01</div>
-                    <h3 class="text-xl font-semibold mb-4">Model & Optimize</h3>
-                    <p class="text-sm text-muted leading-relaxed mb-4">We take your CAD files, product specs, or physical samples and build optimized 3D models. Every material, finish, and texture is matched to your real products.</p>
-                    <span class="text-xs uppercase tracking-widest text-primary">Weeks 1-3</span>
-                </div>
-                <div class="relative bg-white p-10 border border-black/5 reveal reveal-delay-1">
-                    <div class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold mb-8">02</div>
-                    <h3 class="text-xl font-semibold mb-4">Configure & Test</h3>
-                    <p class="text-sm text-muted leading-relaxed mb-4">We build the configuration logic, set up all product options, and optimize for real-time performance. Your team tests every combination before launch.</p>
-                    <span class="text-xs uppercase tracking-widest text-primary">Weeks 4-6</span>
-                </div>
-                <div class="relative bg-white p-10 border border-black/5 reveal reveal-delay-2">
-                    <div class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold mb-8">03</div>
-                    <h3 class="text-xl font-semibold mb-4">Deploy & Integrate</h3>
-                    <p class="text-sm text-muted leading-relaxed mb-4">We embed the configurator on your site, connect it to your product database, and train your team. Then we monitor performance and iterate.</p>
-                    <span class="text-xs uppercase tracking-widest text-primary">Weeks 7-8</span>
-                </div>
+        <h2 class="text-3xl font-light mb-6 tracking-tight">The Sample Problem</h2>
+        <p class="text-lg leading-relaxed mb-8 opacity-80">
+            If you manufacture a physical product with configurable options -- colors, materials, sizes, finishes -- you have a sample problem. A flooring manufacturer with 200 SKUs across 8 colorways ships 1,600 physical samples to distributors and showrooms. Each sample costs $3 to $15 to produce and ship. When a new collection launches, the entire sample program refreshes. When a colorway gets discontinued, thousands of outdated samples sit in showrooms misleading buyers.
+        </p>
+        <p class="text-lg leading-relaxed mb-8 opacity-80">
+            One of our clients was spending $1.2 million annually on sample production and distribution. After we built a 3D product configurator that let buyers see any product in any colorway, in any room setting, on any device, their sample orders dropped 40% in the first year. Not because buyers stopped wanting to see the product -- they just didn't need a physical sample to get through the first three rounds of selection. The physical sample became a confirmation step, not a discovery tool.
+        </p>
+        <p class="text-lg leading-relaxed mb-12 opacity-80">
+            That's $480,000 in direct savings. But the bigger number was the 22% increase in spec-to-order conversion. When architects and designers can see every option instantly instead of waiting two weeks for samples to arrive, fewer of them move on to a competitor's product while they're waiting.
+        </p>
+
+        <h2 class="text-3xl font-light mb-6 tracking-tight">Configurators That Close Deals</h2>
+        <p class="text-lg leading-relaxed mb-8 opacity-80">
+            A product configurator isn't a gallery of pretty renders. It's a sales tool that lets a buyer build their exact specification in real time. The distinction matters. A gallery shows what the manufacturer wants to show. A configurator lets the buyer explore what they actually want to buy.
+        </p>
+        <p class="text-lg leading-relaxed mb-8 opacity-80">
+            The most effective configurators we've built share three characteristics. First, they're fast. Sub-second material swaps and real-time lighting updates. If changing a finish color takes two seconds to render, buyers won't explore the full range. They'll pick from the first three options and move on. Second, they show the product in context. A cabinet door swatch on a white background doesn't sell kitchens. A full kitchen scene with the buyer's selected cabinetry, countertop, and hardware does. Third, they connect directly to the quote process. The buyer configures their product, clicks a button, and a quote request with exact specifications lands in the sales team's inbox. No re-entering specs. No lost-in-translation moments.
+        </p>
+        <p class="text-lg leading-relaxed mb-12 opacity-80">
+            We've seen configurators cut the average sales cycle from first inquiry to purchase order by 30%. The reason is simple: every round trip of "can you show me this in oak instead of walnut?" that used to take days now takes a click. Compress the back-and-forth and you compress the timeline.
+        </p>
+
+        <h2 class="text-3xl font-light mb-6 tracking-tight">AR, VR, and the Field Sales Advantage</h2>
+        <p class="text-lg leading-relaxed mb-8 opacity-80">
+            The natural extension of web-based 3D is putting products into the real world through augmented reality, or into immersive environments through VR. These aren't futuristic concepts anymore. They're practical sales tools that field reps use daily.
+        </p>
+        <p class="text-lg leading-relaxed mb-8 opacity-80">
+            For a building materials manufacturer, AR means a sales rep can walk into an architect's office, point a tablet at the floor, and show their product installed in that actual space. No samples to carry. No "imagine this in your project" hand-waving. The architect sees the product at scale, in their environment, with accurate color and texture. We've watched architects pull up a colleague mid-meeting to show them the AR view. That's the kind of engagement a sample chip in a binder never generates.
+        </p>
+        <p class="text-lg leading-relaxed mb-12 opacity-80">
+            VR takes it further for high-value products. A commercial furniture manufacturer we work with uses VR showrooms to let corporate buyers walk through fully furnished office layouts without flying to a physical showroom. A single VR headset replaced $200,000 in annual travel and showroom costs, and their close rate on VR-presented deals is 18% higher than traditional presentations. When a buyer can sit in the chair, stand at the desk, and feel the scale of a space, they buy with more confidence and fewer revision cycles.
+        </p>
+
+        <h2 class="text-3xl font-light mb-6 tracking-tight">The ROI Framework</h2>
+        <p class="text-lg leading-relaxed mb-8 opacity-80">
+            When we scope a 3D visualization project, we build the business case around four measurable outcomes. Sample cost reduction is the most immediate -- typically 25-40% within the first year. Sales cycle compression follows -- fewer round trips between buyer and seller means faster closes, usually a 15-30% improvement. Conversion rate improvement is the most valuable -- when buyers can see and configure exactly what they want, more of them buy, and we consistently see 10-25% lifts. Finally, support cost reduction -- fewer "what does this look like in..." calls, fewer returns due to mismatched expectations, fewer costly resampling cycles.
+        </p>
+        <p class="text-lg leading-relaxed mb-8 opacity-80">
+            For a mid-size manufacturer doing $50 million in revenue, these numbers typically add up to $1.5 to $3 million in annual value against a build cost of $150,000 to $400,000. The payback period is measured in months, not years.
+        </p>
+        <p class="text-lg leading-relaxed mb-12 opacity-80">
+            The manufacturers who get the most out of 3D visualization are the ones who treat it as infrastructure, not a marketing campaign. They integrate the configurator into their quoting system. They train their sales team to use AR in every presentation. They update 3D models when new products launch, not six months later. The technology is impressive. But the value comes from embedding it into how the company actually sells.
+        </p>
+
+    </div>
+</article>
+
+<!-- Author -->
+<section class="px-8 lg:px-16 pb-20">
+    <div class="max-w-3xl mx-auto border-t border-black/10 pt-10">
+        <div class="flex items-center gap-6">
+            <div class="w-14 h-14 bg-primary/10 flex items-center justify-center">
+                <span class="material-symbols-outlined text-primary text-2xl" aria-hidden="true">group</span>
+            </div>
+            <div>
+                <p class="text-sm font-medium mb-1">Written by Azul Arc Team</p>
+                <p class="text-sm opacity-50">Lessons from two decades of building software that matters.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Related Work -->
-<section class="py-32 px-8 lg:px-16 border-t border-black/5">
-    <div class="max-w-7xl mx-auto">
-        <div class="mb-16 reveal">
-            <span class="text-xs uppercase tracking-label text-primary mb-4 block">Related Work</span>
-            <h2 class="font-light text-5xl">Products, visualized</h2>
-        </div>
-        <div class="flex flex-col md:flex-row gap-8">
-            <a href="../case-study.html" class="group md:w-7/12 block">
-                <div class="aspect-[16/9] overflow-hidden mb-8">
-                    <div class="w-full h-full group-hover:scale-105 transition-transform duration-700" style="background: linear-gradient(160deg, #212121 0%, #07406B 60%, #212121 100%)"></div>
-                </div>
-                <h3 class="text-3xl font-light mb-3 group-hover:text-primary transition-colors">RenderLab</h3>
-                <p class="text-sm opacity-50 mb-3">Built a 3D product configurator for a commercial furniture manufacturer with 12,000+ SKU combinations. Customers configure and order directly from the visualization.</p>
-                <span class="text-xs uppercase tracking-widest text-primary">300% Scaling Capacity</span>
-            </a>
-            <a href="../case-study.html" class="group md:w-5/12 block">
-                <div class="aspect-[16/9] overflow-hidden mb-8">
-                    <div class="w-full h-full group-hover:scale-105 transition-transform duration-700" style="background: linear-gradient(160deg, #212121 0%, #2AA7DF 50%, #1863DC 100%)"></div>
-                </div>
-                <h3 class="text-3xl font-light mb-3 group-hover:text-primary transition-colors">Meridian Manufacturing</h3>
-                <p class="text-sm opacity-50 mb-3">Deployed AR visualization for industrial equipment, allowing field reps to show products at scale in customer facilities via iPad.</p>
-                <span class="text-xs uppercase tracking-widest text-primary">62% Faster Sales Cycle</span>
-            </a>
-        </div>
+<!-- Related Articles -->
+<section class="py-20 px-8 lg:px-16 border-t border-black/5">
+    <div class="mb-12 reveal">
+        <span class="text-xs uppercase tracking-label text-primary mb-4 block">Keep Reading</span>
+        <h2 class="font-light text-4xl">Related articles</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
+        <a href="build-vs-buy.html" class="group reveal">
+            <div class="aspect-[16/10] overflow-hidden mb-6">
+                <div class="w-full h-full group-hover:scale-105 transition-transform duration-700" style="background: linear-gradient(135deg, #07406B 0%, #2AA7DF 100%)"></div>
+            </div>
+            <div class="flex items-center gap-4 mb-4">
+                <span class="text-xs uppercase tracking-wide-label text-primary">Engineering</span>
+                <span class="text-xs text-muted">10 min read</span>
+            </div>
+            <h3 class="text-2xl font-light mb-3 group-hover:text-primary transition-colors leading-snug">The Build vs. Buy Decision Framework</h3>
+            <p class="text-sm opacity-50 leading-relaxed mb-4">When does it make sense to build custom software instead of buying off-the-shelf? After 200+ projects, we've developed a framework that makes the decision clear.</p>
+            <span class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-primary font-medium opacity-0 group-hover:opacity-100 transition-opacity">Read article <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span></span>
+        </a>
+        <a href="mid-market-software-gap.html" class="group reveal reveal-delay-1">
+            <div class="aspect-[16/10] overflow-hidden mb-6">
+                <div class="w-full h-full group-hover:scale-105 transition-transform duration-700" style="background: linear-gradient(135deg, #212121 0%, #07406B 100%)"></div>
+            </div>
+            <div class="flex items-center gap-4 mb-4">
+                <span class="text-xs uppercase tracking-wide-label text-primary">Strategy</span>
+                <span class="text-xs text-muted">8 min read</span>
+            </div>
+            <h3 class="text-2xl font-light mb-3 group-hover:text-primary transition-colors leading-snug">Why Mid-Market Companies Get Stuck on Bad Software</h3>
+            <p class="text-sm opacity-50 leading-relaxed mb-4">Too big for off-the-shelf, too small for enterprise vendors. The mid-market software gap is real, and it's costing companies millions in productivity.</p>
+            <span class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-primary font-medium opacity-0 group-hover:opacity-100 transition-opacity">Read article <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span></span>
+        </a>
     </div>
 </section>
 
-<!-- CTA -->
+<!-- Newsletter CTA -->
 <section class="py-32 px-8 lg:px-16 bg-zinc-950 text-white cta-section" id="cta-section">
-    <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-20 reveal">
-        <div class="lg:w-1/2">
-            <div class="aspect-video overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1617791160505-6f00504e3519?w=800&q=80" alt="3D product render" class="w-full h-full object-cover opacity-80" loading="lazy"/>
+    <div class="max-w-3xl mx-auto text-center reveal">
+        <span class="text-xs uppercase tracking-label text-primary-light mb-6 block cta-label">Newsletter</span>
+        <h2 class="font-light text-5xl md:text-6xl mb-6 leading-tight cta-text">Get our best thinking,<br/>delivered.</h2>
+        <p class="text-lg text-white/50 mb-12 max-w-xl mx-auto cta-muted">Strategy frameworks, engineering insights, and honest lessons from real projects. No fluff. Roughly twice a month.</p>
+        <form class="newsletter-form flex flex-col sm:flex-row gap-4 max-w-md mx-auto" id="newsletter-form" novalidate>
+            <input class="newsletter-input flex-1 bg-white/5 border border-white/10 px-6 py-4 text-sm text-white placeholder:text-white/30 focus:ring-1 focus:ring-primary focus:border-primary transition-colors" placeholder="Your email address" type="email" required id="newsletter-email"/>
+            <button type="submit" class="cta-wipe group flex items-center justify-center gap-2 bg-primary text-white px-8 py-4 text-sm uppercase tracking-cta font-medium hover:bg-primary-dark transition-colors" id="cta-btn">
+                <span class="newsletter-btn-text">Subscribe</span>
+                <svg class="newsletter-btn-spinner hidden animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform duration-300 newsletter-btn-arrow" aria-hidden="true">arrow_forward</span>
+            </button>
+        </form>
+        <div class="newsletter-success hidden max-w-md mx-auto mt-6 transition-opacity duration-500">
+            <div class="flex items-center justify-center gap-3">
+                <span class="material-symbols-outlined text-2xl text-emerald-400">check_circle</span>
+                <span class="text-lg font-medium text-white">You're in. Welcome aboard.</span>
             </div>
+            <p class="text-sm text-white/40 mt-2">Check your inbox for a confirmation email.</p>
         </div>
-        <div class="lg:w-1/2">
-            <span class="text-xs uppercase tracking-label text-primary-light mb-6 block cta-label">Start a Project</span>
-            <h2 class="font-light text-5xl mb-8 leading-tight cta-text">Let your products sell themselves.</h2>
-            <p class="text-lg text-white/50 mb-10 cta-muted">Send us your product catalog or CAD files and we'll show you what a vStudio configurator looks like for your business. No cost, no obligation.</p>
-            <div class="flex flex-col sm:flex-row gap-4">
-                <a href="../contact.html" class="cta-wipe group inline-flex items-center gap-3 border border-white/20 px-8 py-5 text-sm uppercase tracking-cta font-medium" id="cta-btn">
-                    <span>Request a Demo</span>
-                    <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform duration-300" aria-hidden="true">arrow_forward</span>
-                </a>
-            </div>
-        </div>
+        <p class="newsletter-error hidden text-sm text-red-400 mt-3 max-w-md mx-auto">Please enter a valid email address.</p>
+        <p class="newsletter-fine-print text-xs text-white/20 mt-6">No spam. Unsubscribe anytime. We respect your inbox.</p>
     </div>
 </section>
 
@@ -566,6 +544,50 @@ if (ctaBtn && ctaSection) {
             (hp === 'insights.html' && (page === 'insights.html' || dir === 'insights')) ||
             (hp === 'about.html' && page === 'about.html')
         ) a.classList.add('nav-active');
+    });
+})();
+
+// Newsletter form handling
+(function() {
+    var form = document.getElementById('newsletter-form');
+    if (!form) return;
+    var input = document.getElementById('newsletter-email');
+    var btn = form.querySelector('button[type="submit"]');
+    var btnText = btn.querySelector('.newsletter-btn-text');
+    var spinner = btn.querySelector('.newsletter-btn-spinner');
+    var arrow = btn.querySelector('.newsletter-btn-arrow');
+    var success = document.querySelector('.newsletter-success');
+    var error = document.querySelector('.newsletter-error');
+    var fine = document.querySelector('.newsletter-fine-print');
+
+    input.addEventListener('input', function() {
+        error.classList.add('hidden');
+        input.classList.remove('border-red-400');
+    });
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        error.classList.add('hidden');
+        input.classList.remove('border-red-400');
+
+        if (!input.value || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
+            error.classList.remove('hidden');
+            input.classList.add('border-red-400');
+            input.focus();
+            return;
+        }
+
+        btnText.textContent = 'Sending\u2026';
+        spinner.classList.remove('hidden');
+        arrow.classList.add('hidden');
+        btn.disabled = true;
+        btn.classList.add('opacity-70', 'cursor-not-allowed');
+
+        setTimeout(function() {
+            form.classList.add('hidden');
+            fine.classList.add('hidden');
+            success.classList.remove('hidden');
+        }, 1200);
     });
 })();
 </script>

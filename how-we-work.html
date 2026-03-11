@@ -68,22 +68,45 @@
         transition: background-color 0.4s ease, backdrop-filter 0.4s ease;
     }
     nav.nav-scrolled {
-        background-color: rgba(255, 255, 255, 0.9);
+        background-color: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(12px);
-        mix-blend-mode: normal !important;
         color: #212121 !important;
     }
     nav.nav-scrolled a,
     nav.nav-scrolled div {
         color: #212121;
     }
-    nav.nav-scrolled img {
-        filter: none;
-    }
     nav.nav-scrolled .nav-links a:hover {
         color: #1863DC;
         opacity: 1;
     }
+        /* Active nav indicator */
+        .nav-links a {
+            position: relative;
+            transition: opacity 0.3s, color 0.3s;
+        }
+        .nav-links a:not(.nav-active) {
+            opacity: 0.5;
+        }
+        .nav-links a:hover {
+            opacity: 1 !important;
+            color: #1863DC;
+        }
+        .nav-links a.nav-active {
+            opacity: 1;
+            color: #1863DC;
+        }
+        .nav-links a.nav-active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #1863DC;
+        }
     .faq-answer {
         max-height: 0;
         overflow: hidden;
@@ -199,13 +222,14 @@
 <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-white focus:text-text-dark focus:px-4 focus:py-2 focus:text-sm focus:font-medium">Skip to main content</a>
 
 <!-- Navigation -->
-<nav id="main-nav" class="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center mix-blend-difference text-white">
-<a href="index.html"><img src="azularcLogo.png" alt="Azul Arc" class="h-8 brightness-0 invert"/></a>
+<nav id="main-nav" class="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center bg-white/80 backdrop-blur-md text-zinc-900 transition-all duration-300">
+<a href="index.html"><img src="azularcLogo.png" alt="Azul Arc" class="h-8"/></a>
 <div class="hidden md:flex gap-6 text-sm uppercase tracking-widest font-medium items-center nav-links">
 <a class="hover:opacity-60 transition-opacity flex items-center gap-1 cursor-pointer nav-dd-trigger" data-dropdown="industries" href="#industries">Industries <span class="material-symbols-outlined text-sm" aria-hidden="true">expand_more</span></a>
 <a class="hover:opacity-60 transition-opacity flex items-center gap-1 cursor-pointer nav-dd-trigger" data-dropdown="whatwedo" href="#capabilities">What We Do <span class="material-symbols-outlined text-sm" aria-hidden="true">expand_more</span></a>
 <a class="hover:opacity-60 transition-opacity" href="how-we-work.html">How We Work</a>
 <a class="hover:opacity-60 transition-opacity" href="work.html">Work</a>
+<a class="hover:opacity-60 transition-opacity" href="insights.html">Insights</a>
 <a class="hover:opacity-60 transition-opacity" href="about.html">About</a>
 </div>
 <div class="hidden md:block w-28"></div>
@@ -214,6 +238,7 @@
 </button>
 </nav>
 <a href="contact.html" id="nav-cta" class="nav-cta fixed top-[22px] right-8 z-50 hidden md:flex items-center gap-2 bg-primary text-white px-5 py-2 rounded-full text-xs uppercase tracking-widest font-medium hover:bg-primary-dark transition-colors">Let's Talk</a>
+
 
 <!-- Mega menus -->
 <div id="mega-industries" class="mega-menu fixed top-0 left-0 w-full z-40 pt-[72px] opacity-0 invisible translate-y-[-8px] transition-all duration-300 ease-out pointer-events-none">
@@ -281,7 +306,7 @@
             No black boxes.
         </h1>
         <div class="max-w-xl border-t border-black/10 pt-8">
-            <p class="text-xl opacity-60 leading-relaxed font-light">
+            <p class="text-xl text-muted leading-relaxed font-light">
                 A transparent, repeatable process honed over 200+ projects and 20 years. You'll always know what we're building, why we're building it, and exactly where things stand. No vanishing acts. No surprises at the invoice.
             </p>
         </div>
@@ -293,7 +318,7 @@
 <!-- Sticky heading -->
 <div class="sticky top-0 z-40 bg-white px-8 lg:px-16 pt-16 pb-12" style="box-shadow: 0 8px 30px rgba(255,255,255,0.9);">
 <div class="reveal">
-<p class="text-sm uppercase tracking-widest text-primary mb-4">The Process</p>
+<span class="text-xs uppercase tracking-label text-primary mb-4 block">The Process</span>
 <h2 class="font-light text-5xl">Five phases. Zero guesswork.</h2>
 </div>
 </div>
@@ -314,21 +339,21 @@
 <span class="material-symbols-outlined text-xl text-primary" aria-hidden="true">group</span>
 </div>
 <h4 class="text-lg font-medium mb-3">Stakeholder Interviews</h4>
-<p class="text-sm opacity-60 leading-relaxed">We talk to everyone who touches the system. Executives, managers, end users, IT staff. We learn what works, what doesn't, and what everyone wishes existed.</p>
+<p class="text-sm text-muted leading-relaxed">We talk to everyone who touches the system. Executives, managers, end users, IT staff. We learn what works, what doesn't, and what everyone wishes existed.</p>
 </div>
 <div class="border-t border-black/10 pt-6">
 <div class="w-12 h-12 border border-black/10 flex items-center justify-center mb-4">
 <span class="material-symbols-outlined text-xl text-primary" aria-hidden="true">fact_check</span>
 </div>
 <h4 class="text-lg font-medium mb-3">System Audit</h4>
-<p class="text-sm opacity-60 leading-relaxed">A full inventory of your current tech stack, integrations, data flows, and technical debt. We document what you have so we can build on what works and replace what doesn't.</p>
+<p class="text-sm text-muted leading-relaxed">A full inventory of your current tech stack, integrations, data flows, and technical debt. We document what you have so we can build on what works and replace what doesn't.</p>
 </div>
 <div class="border-t border-black/10 pt-6">
 <div class="w-12 h-12 border border-black/10 flex items-center justify-center mb-4">
 <span class="material-symbols-outlined text-xl text-primary" aria-hidden="true">map</span>
 </div>
 <h4 class="text-lg font-medium mb-3">Pain Point Mapping</h4>
-<p class="text-sm opacity-60 leading-relaxed">We quantify every workaround, every bottleneck, every manual process. Each one gets a cost estimate so we can prioritize by business impact, not gut feeling.</p>
+<p class="text-sm text-muted leading-relaxed">We quantify every workaround, every bottleneck, every manual process. Each one gets a cost estimate so we can prioritize by business impact, not gut feeling.</p>
 </div>
 </div>
 </div>
@@ -351,21 +376,21 @@
 <span class="material-symbols-outlined text-xl text-primary" aria-hidden="true">architecture</span>
 </div>
 <h4 class="text-lg font-medium mb-3">Architecture Planning</h4>
-<p class="text-sm opacity-60 leading-relaxed">Technology selection, system design, data modeling, and integration planning. We document the technical decisions and the reasoning behind each one.</p>
+<p class="text-sm text-muted leading-relaxed">Technology selection, system design, data modeling, and integration planning. We document the technical decisions and the reasoning behind each one.</p>
 </div>
 <div class="border-t border-black/10 pt-6">
 <div class="w-12 h-12 border border-black/10 flex items-center justify-center mb-4">
 <span class="material-symbols-outlined text-xl text-primary" aria-hidden="true">target</span>
 </div>
 <h4 class="text-lg font-medium mb-3">Scope Definition</h4>
-<p class="text-sm opacity-60 leading-relaxed">A detailed feature list, prioritized by business impact. Clear boundaries on what's in v1 and what's planned for later phases. No ambiguity about what you're getting.</p>
+<p class="text-sm text-muted leading-relaxed">A detailed feature list, prioritized by business impact. Clear boundaries on what's in v1 and what's planned for later phases. No ambiguity about what you're getting.</p>
 </div>
 <div class="border-t border-black/10 pt-6">
 <div class="w-12 h-12 border border-black/10 flex items-center justify-center mb-4">
 <span class="material-symbols-outlined text-xl text-primary" aria-hidden="true">payments</span>
 </div>
 <h4 class="text-lg font-medium mb-3">Timeline & Budget</h4>
-<p class="text-sm opacity-60 leading-relaxed">A fixed-price estimate broken down by sprint and feature. You'll know exactly what each piece costs and when it will be delivered. No open-ended time-and-materials billing.</p>
+<p class="text-sm text-muted leading-relaxed">A fixed-price estimate broken down by sprint and feature. You'll know exactly what each piece costs and when it will be delivered. No open-ended time-and-materials billing.</p>
 </div>
 </div>
 </div>
@@ -388,21 +413,21 @@
 <span class="material-symbols-outlined text-xl text-primary" aria-hidden="true">sprint</span>
 </div>
 <h4 class="text-lg font-medium mb-3">2-Week Sprints</h4>
-<p class="text-sm opacity-60 leading-relaxed">Each sprint has a defined scope, a clear deliverable, and a demo at the end. You see working software every two weeks, not a big reveal at the end of six months.</p>
+<p class="text-sm text-muted leading-relaxed">Each sprint has a defined scope, a clear deliverable, and a demo at the end. You see working software every two weeks, not a big reveal at the end of six months.</p>
 </div>
 <div class="border-t border-black/10 pt-6">
 <div class="w-12 h-12 border border-black/10 flex items-center justify-center mb-4">
 <span class="material-symbols-outlined text-xl text-primary" aria-hidden="true">tv</span>
 </div>
 <h4 class="text-lg font-medium mb-3">Bi-Weekly Demos</h4>
-<p class="text-sm opacity-60 leading-relaxed">Every other week, we show you what we've built. You test it, give feedback, and we adjust. This isn't a formality. It's how we ensure we're building the right thing.</p>
+<p class="text-sm text-muted leading-relaxed">Every other week, we show you what we've built. You test it, give feedback, and we adjust. This isn't a formality. It's how we ensure we're building the right thing.</p>
 </div>
 <div class="border-t border-black/10 pt-6">
 <div class="w-12 h-12 border border-black/10 flex items-center justify-center mb-4">
 <span class="material-symbols-outlined text-xl text-primary" aria-hidden="true">autorenew</span>
 </div>
 <h4 class="text-lg font-medium mb-3">Iterative Refinement</h4>
-<p class="text-sm opacity-60 leading-relaxed">Requirements evolve. We expect that. Our process is built to absorb changes without blowing up the timeline or budget, as long as we're making informed tradeoffs together.</p>
+<p class="text-sm text-muted leading-relaxed">Requirements evolve. We expect that. Our process is built to absorb changes without blowing up the timeline or budget, as long as we're making informed tradeoffs together.</p>
 </div>
 </div>
 </div>
@@ -425,21 +450,21 @@
 <span class="material-symbols-outlined text-xl text-primary" aria-hidden="true">database</span>
 </div>
 <h4 class="text-lg font-medium mb-3">Data Migration</h4>
-<p class="text-sm opacity-60 leading-relaxed">We move your data from old systems to new with full validation, rollback plans, and zero tolerance for data loss. We've migrated millions of records across dozens of projects.</p>
+<p class="text-sm text-muted leading-relaxed">We move your data from old systems to new with full validation, rollback plans, and zero tolerance for data loss. We've migrated millions of records across dozens of projects.</p>
 </div>
 <div class="border-t border-black/10 pt-6">
 <div class="w-12 h-12 border border-black/10 flex items-center justify-center mb-4">
 <span class="material-symbols-outlined text-xl text-primary" aria-hidden="true">school</span>
 </div>
 <h4 class="text-lg font-medium mb-3">Team Training</h4>
-<p class="text-sm opacity-60 leading-relaxed">Hands-on training sessions for every user group, from front-line staff to administrators. We create documentation, video guides, and reference materials your team can use long after we leave.</p>
+<p class="text-sm text-muted leading-relaxed">Hands-on training sessions for every user group, from front-line staff to administrators. We create documentation, video guides, and reference materials your team can use long after we leave.</p>
 </div>
 <div class="border-t border-black/10 pt-6">
 <div class="w-12 h-12 border border-black/10 flex items-center justify-center mb-4">
 <span class="material-symbols-outlined text-xl text-primary" aria-hidden="true">rocket_launch</span>
 </div>
 <h4 class="text-lg font-medium mb-3">Staged Rollout</h4>
-<p class="text-sm opacity-60 leading-relaxed">No big-bang launches. We roll out department by department, region by region. Each stage is monitored, validated, and stabilized before we move to the next.</p>
+<p class="text-sm text-muted leading-relaxed">No big-bang launches. We roll out department by department, region by region. Each stage is monitored, validated, and stabilized before we move to the next.</p>
 </div>
 </div>
 </div>
@@ -462,21 +487,21 @@
 <span class="material-symbols-outlined text-xl text-primary" aria-hidden="true">monitoring</span>
 </div>
 <h4 class="text-lg font-medium mb-3">Monitoring</h4>
-<p class="text-sm opacity-60 leading-relaxed">Proactive performance monitoring, error tracking, and uptime management. We catch problems before your users do and resolve them before they become business disruptions.</p>
+<p class="text-sm text-muted leading-relaxed">Proactive performance monitoring, error tracking, and uptime management. We catch problems before your users do and resolve them before they become business disruptions.</p>
 </div>
 <div class="border-t border-black/10 pt-6">
 <div class="w-12 h-12 border border-black/10 flex items-center justify-center mb-4">
 <span class="material-symbols-outlined text-xl text-primary" aria-hidden="true">build</span>
 </div>
 <h4 class="text-lg font-medium mb-3">Maintenance</h4>
-<p class="text-sm opacity-60 leading-relaxed">Security patches, dependency updates, infrastructure optimization, and bug fixes. The unglamorous work that keeps your system running smoothly and securely.</p>
+<p class="text-sm text-muted leading-relaxed">Security patches, dependency updates, infrastructure optimization, and bug fixes. The unglamorous work that keeps your system running smoothly and securely.</p>
 </div>
 <div class="border-t border-black/10 pt-6">
 <div class="w-12 h-12 border border-black/10 flex items-center justify-center mb-4">
 <span class="material-symbols-outlined text-xl text-primary" aria-hidden="true">add_circle</span>
 </div>
 <h4 class="text-lg font-medium mb-3">Feature Additions</h4>
-<p class="text-sm opacity-60 leading-relaxed">New capabilities informed by real usage data. We track how your team uses the system and prioritize enhancements based on actual behavior, not hypothetical requirements.</p>
+<p class="text-sm text-muted leading-relaxed">New capabilities informed by real usage data. We track how your team uses the system and prioritize enhancements based on actual behavior, not hypothetical requirements.</p>
 </div>
 </div>
 </div>
@@ -487,7 +512,7 @@
 <!-- Differentiators -->
 <section class="py-32 px-8 lg:px-16 bg-zinc-950 text-white">
 <div class="reveal mb-20">
-<p class="text-sm uppercase tracking-label font-light text-primary mb-6">Why It Works</p>
+<span class="text-xs uppercase tracking-label text-primary mb-6 block">Why It Works</span>
 <h2 class="font-light text-5xl tracking-tight">What makes our<br/>process different.</h2>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -519,7 +544,7 @@
 <section class="py-32 px-8 lg:px-16">
 <div class="max-w-4xl mx-auto">
 <div class="reveal mb-20">
-<p class="text-sm uppercase tracking-widest text-primary mb-4">FAQ</p>
+<span class="text-xs uppercase tracking-label text-primary mb-4 block">FAQ</span>
 <h2 class="font-light text-5xl">Common questions</h2>
 </div>
 <div class="space-y-0">
@@ -529,7 +554,7 @@
 <span class="material-symbols-outlined text-2xl faq-icon transition-transform duration-300 text-primary" aria-hidden="true">add</span>
 </button>
 <div class="faq-answer pb-8" role="region">
-<p class="text-base opacity-60 leading-relaxed max-w-3xl">Most projects run 16 to 24 weeks from discovery to deployment, depending on complexity. Strategy-only engagements are 4 to 6 weeks. We'll give you a specific timeline after the Blueprint phase, and we hold ourselves to it. Our track record for on-time delivery is 94% across 200+ projects.</p>
+<p class="text-base text-muted leading-relaxed max-w-3xl">Most projects run 16 to 24 weeks from discovery to deployment, depending on complexity. Strategy-only engagements are 4 to 6 weeks. We'll give you a specific timeline after the Blueprint phase, and we hold ourselves to it. Our track record for on-time delivery is 94% across 200+ projects.</p>
 </div>
 </div>
 <div class="faq-item border-t border-black/10">
@@ -538,7 +563,7 @@
 <span class="material-symbols-outlined text-2xl faq-icon transition-transform duration-300 text-primary" aria-hidden="true">add</span>
 </button>
 <div class="faq-answer pb-8" role="region">
-<p class="text-base opacity-60 leading-relaxed max-w-3xl">Custom software projects typically range from $150K to $750K depending on scope and complexity. We provide a fixed-price estimate after the Blueprint phase. Strategy engagements start at $25K. We don't do hourly billing for development work because it creates perverse incentives for both sides.</p>
+<p class="text-base text-muted leading-relaxed max-w-3xl">Custom software projects typically range from $150K to $750K depending on scope and complexity. We provide a fixed-price estimate after the Blueprint phase. Strategy engagements start at $25K. We don't do hourly billing for development work because it creates perverse incentives for both sides.</p>
 </div>
 </div>
 <div class="faq-item border-t border-black/10">
@@ -547,7 +572,7 @@
 <span class="material-symbols-outlined text-2xl faq-icon transition-transform duration-300 text-primary" aria-hidden="true">add</span>
 </button>
 <div class="faq-answer pb-8" role="region">
-<p class="text-base opacity-60 leading-relaxed max-w-3xl">Yes, completely. Every line of code we write for you is yours. Full source code, documentation, and deployment scripts. You can take it to another team if you want. We stay because we deliver value, not because we hold your code hostage.</p>
+<p class="text-base text-muted leading-relaxed max-w-3xl">Yes, completely. Every line of code we write for you is yours. Full source code, documentation, and deployment scripts. You can take it to another team if you want. We stay because we deliver value, not because we hold your code hostage.</p>
 </div>
 </div>
 <div class="faq-item border-t border-black/10">
@@ -556,7 +581,7 @@
 <span class="material-symbols-outlined text-2xl faq-icon transition-transform duration-300 text-primary" aria-hidden="true">add</span>
 </button>
 <div class="faq-answer pb-8" role="region">
-<p class="text-base opacity-60 leading-relaxed max-w-3xl">Requirements evolve. We expect it. Our sprint-based process is designed to absorb changes. If a change affects timeline or budget, we'll tell you immediately and make the tradeoff decision together. Nothing gets added to scope without a clear conversation about what it costs and what it replaces.</p>
+<p class="text-base text-muted leading-relaxed max-w-3xl">Requirements evolve. We expect it. Our sprint-based process is designed to absorb changes. If a change affects timeline or budget, we'll tell you immediately and make the tradeoff decision together. Nothing gets added to scope without a clear conversation about what it costs and what it replaces.</p>
 </div>
 </div>
 <div class="faq-item border-t border-black/10 border-b">
@@ -565,7 +590,7 @@
 <span class="material-symbols-outlined text-2xl faq-icon transition-transform duration-300 text-primary" aria-hidden="true">add</span>
 </button>
 <div class="faq-answer pb-8" role="region">
-<p class="text-base opacity-60 leading-relaxed max-w-3xl">Absolutely. We're technology-agnostic. We work with whatever stack makes the most sense for your project, and we integrate with your existing systems rather than replacing everything at once. If your team uses .NET, we build in .NET. If you're a cloud-native shop, so are we. The best technology is the one your team can maintain after we're gone.</p>
+<p class="text-base text-muted leading-relaxed max-w-3xl">Absolutely. We're technology-agnostic. We work with whatever stack makes the most sense for your project, and we integrate with your existing systems rather than replacing everything at once. If your team uses .NET, we build in .NET. If you're a cloud-native shop, so are we. The best technology is the one your team can maintain after we're gone.</p>
 </div>
 </div>
 </div>
@@ -604,14 +629,15 @@
 <li><a class="hover:text-primary" href="about.html">About</a></li>
 <li><a class="hover:text-primary" href="how-we-work.html">How We Work</a></li>
 <li><a class="hover:text-primary" href="work.html">Work</a></li>
+<li><a class="hover:text-primary" href="insights.html">Insights</a></li>
 <li><a class="hover:text-primary" href="contact.html">Contact</a></li>
 </ul>
 </div>
 <div>
 <h6 class="footer-text text-xs uppercase tracking-widest font-bold mb-6" style="transition: color 0.6s ease;">Connect</h6>
 <ul class="footer-text space-y-2 opacity-60 text-sm" style="transition: color 0.6s ease;">
-<li><a class="hover:text-primary" href="#">LinkedIn</a></li>
-<li><a class="hover:text-primary" href="#">Twitter</a></li>
+<li><a class="hover:text-primary" href="https://www.linkedin.com/company/azularc/" target="_blank" rel="noopener">LinkedIn</a></li>
+<li><a class="hover:text-primary" href="https://x.com/azularc" target="_blank" rel="noopener">Twitter</a></li>
 <li><a class="hover:text-primary" href="mailto:hello@azularc.com">Email</a></li>
 </ul>
 </div>
@@ -694,6 +720,24 @@ if (ctaBtn && ctaSection) {
     ctaBtn.addEventListener('mouseenter', () => ctaSection.classList.add('wipe-active'));
     ctaBtn.addEventListener('mouseleave', () => ctaSection.classList.remove('wipe-active'));
 }
+
+// Active nav indicator
+(function() {
+    var p = location.pathname, page = p.split('/').pop() || 'index.html',
+        dir = p.split('/').slice(-2, -1)[0] || '';
+    document.querySelectorAll('.nav-links > a').forEach(function(a) {
+        var dd = a.dataset.dropdown,
+            hp = (a.getAttribute('href') || '').split('/').pop();
+        if (
+            (dd === 'industries' && dir === 'industries') ||
+            (dd === 'whatwedo' && (dir === 'services' || page === 'casehub.html')) ||
+            (hp === 'how-we-work.html' && page === 'how-we-work.html') ||
+            (hp === 'work.html' && (page === 'work.html' || page === 'case-study.html')) ||
+            (hp === 'insights.html' && (page === 'insights.html' || dir === 'insights')) ||
+            (hp === 'about.html' && page === 'about.html')
+        ) a.classList.add('nav-active');
+    });
+})();
 </script>
 </body>
 </html>

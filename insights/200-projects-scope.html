@@ -177,6 +177,84 @@
     .cta-section.wipe-active .cta-label {
         color: rgba(255,255,255,0.6);
     }
+        /* Mobile navigation overlay */
+        .mobile-menu {
+            position: fixed;
+            inset: 0;
+            z-index: 45;
+            background: #212121;
+            display: flex;
+            flex-direction: column;
+            padding: 5rem 2rem 2rem;
+            overflow-y: auto;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .mobile-menu.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .mobile-menu a {
+            color: #EBEBEB;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .mobile-menu a:hover {
+            color: #2AA7DF;
+        }
+        .mobile-menu-section {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 1.25rem 0;
+        }
+        .mobile-menu-section:last-child {
+            border-bottom: none;
+        }
+        .mobile-menu-heading {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: #2AA7DF;
+            margin-bottom: 0.75rem;
+        }
+        .mobile-menu-link {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 300;
+            padding: 0.5rem 0;
+        }
+        .mobile-menu-sublink {
+            display: block;
+            font-size: 1rem;
+            font-weight: 300;
+            padding: 0.35rem 0 0.35rem 0.5rem;
+            color: rgba(235, 235, 235, 0.6) !important;
+        }
+        .mobile-menu-sublink:hover {
+            color: #2AA7DF !important;
+        }
+        .mobile-menu-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            padding: 0.875rem 2rem;
+            background: #1863DC;
+            color: white !important;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 500;
+            border-radius: 9999px;
+            transition: background 0.2s ease;
+        }
+        .mobile-menu-cta:hover {
+            background: #07406B;
+        }
+        /* Hamburger to X animation */
+        .nav-toggle-icon {
+            transition: opacity 0.2s ease;
+        }
     @media (prefers-reduced-motion: reduce) {
         *, *::before, *::after {
             animation-duration: 0.01ms !important;
@@ -203,10 +281,37 @@
 <a class="hover:opacity-60 transition-opacity" href="../about.html">About</a>
 </div>
 <div class="hidden md:block w-28"></div>
-<button class="md:hidden" aria-label="Toggle navigation menu">
-<span class="material-symbols-outlined" aria-hidden="true">menu</span>
+<button class="md:hidden" id="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+<span class="material-symbols-outlined nav-toggle-icon" id="menu-icon-open" aria-hidden="true">menu</span>
+<span class="material-symbols-outlined nav-toggle-icon" id="menu-icon-close" aria-hidden="true" style="display:none;">close</span>
 </button>
 </nav>
+<!-- Mobile navigation menu -->
+<div id="mobile-menu" class="mobile-menu md:hidden" aria-hidden="true" role="dialog" aria-label="Navigation menu">
+<div class="mobile-menu-section">
+<div class="mobile-menu-heading">Industries</div>
+<a href="../industries/courts.html" class="mobile-menu-sublink">Court Systems</a>
+<a href="../industries/manufacturing.html" class="mobile-menu-sublink">Product Manufacturers</a>
+<a href="../industries/growth-stage.html" class="mobile-menu-sublink">Growth-Stage SMBs</a>
+</div>
+<div class="mobile-menu-section">
+<div class="mobile-menu-heading">What We Do</div>
+<a href="../services/digital-product-strategy.html" class="mobile-menu-sublink">Digital Product Strategy</a>
+<a href="../services/web-design-development.html" class="mobile-menu-sublink">Web Design &amp; Development</a>
+<a href="../services/3d-visualization.html" class="mobile-menu-sublink">3D Visualisation</a>
+<a href="../services/case-management.html" class="mobile-menu-sublink">Case Management Systems</a>
+</div>
+<div class="mobile-menu-section">
+<a href="../how-we-work.html" class="mobile-menu-link">How We Work</a>
+<a href="../work.html" class="mobile-menu-link">Work</a>
+<a href="../insights.html" class="mobile-menu-link">Insights</a>
+<a href="../about.html" class="mobile-menu-link">About</a>
+</div>
+<div class="mobile-menu-section">
+<a href="../contact.html" class="mobile-menu-cta">Let's Talk <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span></a>
+</div>
+</div>
+
 <a href="../contact.html" id="nav-cta" class="nav-cta fixed top-[22px] right-8 z-50 hidden md:flex items-center gap-2 bg-primary text-white px-5 py-2 rounded-full text-xs uppercase tracking-widest font-medium hover:bg-primary-dark transition-colors">Let's Talk</a>
 
 
@@ -545,6 +650,61 @@ if (ctaBtn && ctaSection) {
     ctaBtn.addEventListener('mouseenter', () => ctaSection.classList.add('wipe-active'));
     ctaBtn.addEventListener('mouseleave', () => ctaSection.classList.remove('wipe-active'));
 }
+
+// Mobile menu toggle
+(function() {
+    const toggle = document.getElementById('mobile-menu-toggle');
+    const menu = document.getElementById('mobile-menu');
+    const iconOpen = document.getElementById('menu-icon-open');
+    const iconClose = document.getElementById('menu-icon-close');
+    if (!toggle || !menu) return;
+
+    function openMenu() {
+        menu.classList.add('active');
+        menu.setAttribute('aria-hidden', 'false');
+        toggle.setAttribute('aria-expanded', 'true');
+        iconOpen.style.display = 'none';
+        iconClose.style.display = '';
+        document.body.style.overflow = 'hidden';
+        // Focus first link
+        const firstLink = menu.querySelector('a');
+        if (firstLink) firstLink.focus();
+    }
+
+    function closeMenu() {
+        menu.classList.remove('active');
+        menu.setAttribute('aria-hidden', 'true');
+        toggle.setAttribute('aria-expanded', 'false');
+        iconOpen.style.display = '';
+        iconClose.style.display = 'none';
+        document.body.style.overflow = '';
+        toggle.focus();
+    }
+
+    toggle.addEventListener('click', function() {
+        const isOpen = menu.classList.contains('active');
+        if (isOpen) closeMenu(); else openMenu();
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && menu.classList.contains('active')) {
+            closeMenu();
+        }
+    });
+
+    // Close on link click
+    menu.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', closeMenu);
+    });
+
+    // Close if resized to desktop
+    window.addEventListener('resize', function() {
+        if (window.innerWidth >= 768 && menu.classList.contains('active')) {
+            closeMenu();
+        }
+    });
+})();
 
 // Active nav indicator
 (function() {

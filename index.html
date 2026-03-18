@@ -1293,8 +1293,6 @@ Send Message
         const confettiCanvas = document.getElementById('confetti-canvas');
         const cCtx = confettiCanvas.getContext('2d');
         let confettiAnim = null;
-        let fluidTime = 0;
-        let fluidOpacity = 0;
 
         const blobs = [
             { x: 0.3, y: 0.3, r: 0.9, color: '#07406B', sx: 0.7, sy: 0.5 },
@@ -1344,7 +1342,7 @@ Send Message
             cCtx.globalAlpha = 1;
 
             if (gradientProgress < 1 || true) {
-                confettiAnim = requestAnimationFrame(animateConfetti);
+                confettiAnim = requestAnimationFrame(animateFluid);
             }
         }
 

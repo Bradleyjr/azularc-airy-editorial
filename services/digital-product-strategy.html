@@ -179,6 +179,58 @@
         justify-content: center;
         transition: transform 0.1s cubic-bezier(0.17, 0.67, 0.83, 0.67);
     }
+    /* Focus-visible styles for keyboard accessibility (WCAG 2.4.7) */
+    :root { --focus-light: #1863DC; --focus-dark: #2AA7DF; }
+    a:focus-visible,
+    button:focus-visible,
+    [role="button"]:focus-visible,
+    [tabindex]:not([tabindex="-1"]):focus-visible,
+    summary:focus-visible {
+        outline: 2px solid var(--focus-light);
+        outline-offset: 2px;
+    }
+    /* Form elements need higher specificity to override Tailwind Forms plugin */
+    input:focus-visible,
+    textarea:focus-visible,
+    select:focus-visible {
+        outline: 2px solid var(--focus-light) !important;
+        outline-offset: 2px !important;
+    }
+    /* Focus ring on dark backgrounds */
+    [class*="bg-background-dark"] :is(a, button):focus-visible,
+    [class*="bg-[#212121]"] :is(a, button, input):focus-visible,
+    footer :is(a, button, input):focus-visible,
+    .mega-menu :is(a, button):focus-visible {
+        outline-color: var(--focus-dark);
+    }
+    footer input:focus-visible {
+        outline-color: var(--focus-dark) !important;
+    }
+    /* Scrolled nav gets dark outline since bg is white */
+    nav.nav-scrolled :is(a, button):focus-visible {
+        outline-color: var(--focus-light);
+    }
+    /* Rounded pill buttons: outline follows border-radius */
+    .rounded-full:focus-visible,
+    a.rounded-full:focus-visible {
+        outline: 2px solid var(--focus-light);
+        outline-offset: 2px;
+        border-radius: 9999px;
+    }
+    /* Calendar day and time slot focus */
+    .cal-day:focus-visible {
+        outline: 2px solid var(--focus-dark);
+        outline-offset: 1px;
+    }
+    .time-slot:focus-visible {
+        outline: 2px solid var(--focus-dark);
+        outline-offset: 1px;
+    }
+    /* Skip link has its own focus styles — don't double up */
+    .sr-only:focus-visible {
+        outline: none;
+    }
+
     @media (prefers-reduced-motion: reduce) {
         *, *::before, *::after {
             animation-duration: 0.01ms !important;

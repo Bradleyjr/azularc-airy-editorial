@@ -987,7 +987,7 @@ if (ctaBtn && ctaSection) {
             (dd === 'industries' && dir === 'industries') ||
             (dd === 'whatwedo' && (dir === 'services' || page === 'casehub.html')) ||
             (hp === 'how-we-work.html' && page === 'how-we-work.html') ||
-            (hp === 'work.html' && (page === 'work.html' || page === 'case-study.html')) ||
+            (hp === 'work.html' && (page === 'work.html' || page.startsWith('case-study'))) ||
             (hp === 'insights.html' && (page === 'insights.html' || dir === 'insights')) ||
             (hp === 'about.html' && page === 'about.html')
         ) a.classList.add('nav-active');

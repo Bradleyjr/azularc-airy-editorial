@@ -2,17 +2,16 @@
 <html class="scroll-smooth" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta name="description" content="Case studies from 200+ projects. See how Azul Arc replaces broken systems with custom software for courts, manufacturers, and growth-stage companies."/>
-<meta property="og:title" content="Our Work — Azul Arc"/>
-<meta property="og:description" content="Case studies from 200+ projects. See how Azul Arc replaces broken systems with custom software for courts, manufacturers, and growth-stage companies."/>
-<meta property="og:type" content="website"/>
+<meta name="description" content="How Azul Arc redesigned FRENZY's website to match their bold brand identity. A complete website redesign for an Inc 5000, Cannes Lyon-winning B2B agency."/>
+<meta property="og:title" content="FRENZY Case Study — Azul Arc"/>
+<meta property="og:description" content="A bold website redesign for an Inc 5000, Cannes Lyon-winning B2B agency. Their old site looked like every other agency. The new one doesn't."/>
+<meta property="og:type" content="article"/>
 <meta property="og:site_name" content="Azul Arc"/>
-<meta property="og:image" content="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=1200&q=80"/>
+<meta property="og:image" content="frenzy-1.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Our Work — Azul Arc"/>
-<meta name="twitter:description" content="Case studies from 200+ projects. See how Azul Arc replaces broken systems with custom software for courts, manufacturers, and growth-stage companies."/>
-<meta name="twitter:image" content="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=1200&q=80"/>
-<title>Azul Arc — Our Work</title>
+<meta name="twitter:title" content="FRENZY Case Study — Azul Arc"/>
+<meta name="twitter:description" content="A bold website redesign for an Inc 5000, Cannes Lyon-winning B2B agency. Their old site looked like every other agency. The new one doesn't."/>
+<title>Azul Arc — FRENZY Case Study</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&amp;display=swap" rel="stylesheet"/>
@@ -87,7 +86,6 @@
             color: #1863DC;
             opacity: 1;
         }
-        /* Active nav indicator */
         .nav-links a {
             position: relative;
             transition: opacity 0.3s, color 0.3s;
@@ -121,72 +119,30 @@
             pointer-events: auto;
         }
 
-        /* Case study cards */
-        .case-card {
-            position: relative;
-            overflow: hidden;
+        .stat-block {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .stat-block.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .related-card {
             transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-        .case-card:hover {
+        .related-card:hover {
             transform: translateY(-8px);
         }
-        .case-card .card-gradient {
+        .related-card .card-gradient {
             transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.7s ease;
         }
-        .case-card:hover .card-gradient {
+        .related-card:hover .card-gradient {
             transform: scale(1.05);
             filter: brightness(1.25);
         }
-        .case-card .card-arrow {
-            opacity: 0;
-            transform: translateX(-8px);
-            transition: opacity 0.4s ease, transform 0.4s ease;
-        }
-        .case-card:hover .card-arrow {
-            opacity: 1;
-            transform: translateX(0);
-        }
 
-        /* Filter tabs */
-        .filter-tab {
-            position: relative;
-            padding-bottom: 0.75rem;
-            transition: color 0.3s ease;
-        }
-        .filter-tab::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #1863DC;
-            transition: width 0.3s ease;
-        }
-        .filter-tab.active {
-            color: #1863DC;
-        }
-        .filter-tab.active::after {
-            width: 100%;
-        }
-        .filter-tab:hover {
-            color: #1863DC;
-        }
-
-        /* Stagger animation */
-        .case-card {
-            opacity: 0;
-            transform: translateY(24px);
-            animation: fadeInUp 0.6s ease forwards;
-        }
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    
-        /* Scroll reveal animations */
         .reveal {
             opacity: 0;
             transform: translateY(24px);
@@ -200,14 +156,7 @@
         .reveal-delay-2 { transition-delay: 0.2s; }
         .reveal-delay-3 { transition-delay: 0.3s; }
         .reveal-delay-4 { transition-delay: 0.4s; }
-        .magnetic-wrap {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.1s cubic-bezier(0.17, 0.67, 0.83, 0.67);
-        }
 
-        /* CTA section blue wipe */
         .cta-section {
             position: relative;
             overflow: hidden;
@@ -255,7 +204,6 @@
         .cta-section.wipe-active .cta-label {
             color: rgba(255,255,255,0.6);
         }
-        /* Mobile navigation overlay */
         .mobile-menu {
             position: fixed;
             inset: 0;
@@ -329,7 +277,6 @@
         .mobile-menu-cta:hover {
             background: #07406B;
         }
-        /* Hamburger to X animation */
         .nav-toggle-icon {
             transition: opacity 0.2s ease;
         }
@@ -354,7 +301,7 @@
 <a class="hover:opacity-60 transition-opacity flex items-center gap-1 cursor-pointer nav-dd-trigger" data-dropdown="industries" href="#industries">Industries <span class="material-symbols-outlined text-sm" aria-hidden="true">expand_more</span></a>
 <a class="hover:opacity-60 transition-opacity flex items-center gap-1 cursor-pointer nav-dd-trigger" data-dropdown="whatwedo" href="#capabilities">What We Do <span class="material-symbols-outlined text-sm" aria-hidden="true">expand_more</span></a>
 <a class="hover:opacity-60 transition-opacity" href="how-we-work.html">How We Work</a>
-<a class="hover:opacity-60 transition-opacity text-primary" href="work.html">Work</a>
+<a class="hover:opacity-60 transition-opacity" href="work.html">Work</a>
 <a class="hover:opacity-60 transition-opacity" href="insights.html">Insights</a>
 <a class="hover:opacity-60 transition-opacity" href="about.html">About</a>
 </div>
@@ -391,7 +338,6 @@
 </div>
 
 <a href="contact.html" id="nav-cta" class="nav-cta fixed top-[22px] right-8 z-50 hidden md:flex items-center gap-2 bg-primary text-white px-5 py-2 rounded-full text-xs uppercase tracking-widest font-medium hover:bg-primary-dark transition-colors">Let's Talk</a>
-
 
 <!-- Mega menus -->
 <div id="mega-industries" class="mega-menu fixed top-0 left-0 w-full z-40 pt-[72px] opacity-0 invisible translate-y-[-8px] transition-all duration-300 ease-out pointer-events-none">
@@ -452,215 +398,309 @@
 
 <main id="main-content">
 <!-- Hero -->
-<section class="pt-40 pb-24 px-8 lg:px-16 border-b border-black/5">
-    <div class="flex flex-col lg:flex-row justify-between items-end gap-12">
-        <div class="lg:w-2/3">
-            <span class="text-xs uppercase tracking-label text-primary mb-6 block">Case Studies</span>
-            <h1 class="font-semibold text-5xl md:text-7xl lg:text-8xl leading-none tracking-tighter">Systems we've<br/>replaced</h1>
+<section class="relative min-h-[85vh] flex flex-col justify-end overflow-hidden bg-navy text-white">
+    <div class="absolute inset-0 z-0">
+        <img src="frenzy-1.png" alt="FRENZY website homepage on laptop in gallery" class="w-full h-full object-cover opacity-40" loading="eager"/>
+    </div>
+    <div class="absolute inset-0 z-0 bg-gradient-to-t from-navy via-navy/80 to-navy/40"></div>
+    <div class="relative z-10 px-8 lg:px-16 pb-20 pt-48">
+        <a href="work.html" class="inline-flex items-center gap-2 text-xs uppercase tracking-label text-white/50 hover:text-white transition-colors mb-12">
+            <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_back</span>
+            All Case Studies
+        </a>
+        <div class="flex items-center gap-4 mb-6">
+            <span class="text-xs uppercase tracking-label font-medium bg-white/10 backdrop-blur-sm px-4 py-1.5">Web Design & Development</span>
         </div>
-        <div class="lg:w-1/3">
-            <p class="text-lg text-muted leading-relaxed">Every project starts with something broken. Here's what we built instead -- and the results that followed.</p>
+        <h1 class="font-semibold text-5xl md:text-7xl lg:text-8xl tracking-tighter leading-none mb-8">FRENZY</h1>
+        <p class="text-xl md:text-2xl text-white/60 font-light max-w-2xl">A bold website redesign for an Inc 5000, Cannes Lyon-winning B2B agency that works with Verizon, Comcast, and Slack. Their old site looked like every other agency. The new one doesn't.</p>
+    </div>
+</section>
+
+<!-- Overview -->
+<section class="py-16 px-8 lg:px-16 border-b border-black/5 bg-zinc-50">
+    <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16">
+        <div class="lg:w-1/2 grid grid-cols-2 gap-x-12 gap-y-6">
+            <div>
+                <span class="text-xs uppercase tracking-label text-muted block mb-1">Client</span>
+                <span class="text-sm font-medium">FRENZY / Media Frenzy Global</span>
+            </div>
+            <div>
+                <span class="text-xs uppercase tracking-label text-muted block mb-1">Industry</span>
+                <span class="text-sm font-medium">B2B Marketing, PR & Media</span>
+            </div>
+            <div>
+                <span class="text-xs uppercase tracking-label text-muted block mb-1">Scope</span>
+                <span class="text-sm font-medium">Full Website Redesign</span>
+            </div>
+            <div>
+                <span class="text-xs uppercase tracking-label text-muted block mb-1">Timeline</span>
+                <span class="text-sm font-medium">Oct 2025 &ndash; Mar 2026</span>
+            </div>
+            <div>
+                <span class="text-xs uppercase tracking-label text-muted block mb-1">Live Site</span>
+                <span class="text-sm font-medium">frenzy.agency</span>
+            </div>
+        </div>
+        <div class="lg:w-1/2 grid grid-cols-2 gap-8 lg:border-l lg:border-black/5 lg:pl-16">
+            <div class="stat-block" style="transition-delay: 0.1s;">
+                <span class="block text-4xl font-light text-primary mb-1">20+</span>
+                <span class="text-xs uppercase tracking-wide-label text-muted">Years in Business</span>
+            </div>
+            <div class="stat-block" style="transition-delay: 0.2s;">
+                <span class="block text-4xl font-light text-primary mb-1">2</span>
+                <span class="text-xs uppercase tracking-wide-label text-muted">Offices (ATL + London)</span>
+            </div>
+            <div class="stat-block" style="transition-delay: 0.3s;">
+                <span class="block text-3xl font-light text-primary mb-1">Inc 5000</span>
+                <span class="text-xs uppercase tracking-wide-label text-muted">Recognition</span>
+            </div>
+            <div class="stat-block" style="transition-delay: 0.4s;">
+                <span class="block text-3xl font-light text-primary mb-1">Cannes</span>
+                <span class="text-xs uppercase tracking-wide-label text-muted">Lyon Winner</span>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- Filter Bar -->
-<section class="px-8 lg:px-16 py-8 border-b border-black/5 sticky top-0 bg-white/95 backdrop-blur-sm z-30">
-    <div class="max-w-7xl mx-auto flex gap-8 overflow-x-auto hide-scrollbar">
-        <button class="filter-tab active text-xs uppercase tracking-label font-medium whitespace-nowrap cursor-pointer" data-filter="all">All Projects</button>
-        <button class="filter-tab text-xs uppercase tracking-label font-medium text-muted whitespace-nowrap cursor-pointer" data-filter="webdesign">Web Design</button>
-        <button class="filter-tab text-xs uppercase tracking-label font-medium text-muted whitespace-nowrap cursor-pointer" data-filter="government">Government & Courts</button>
-        <button class="filter-tab text-xs uppercase tracking-label font-medium text-muted whitespace-nowrap cursor-pointer" data-filter="manufacturing">Manufacturing</button>
-        <button class="filter-tab text-xs uppercase tracking-label font-medium text-muted whitespace-nowrap cursor-pointer" data-filter="growth">Growth-Stage</button>
-    </div>
-</section>
-
-<!-- Case Study Grid -->
+<!-- The Problem -->
 <section class="py-32 px-8 lg:px-16">
     <div class="max-w-7xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16" id="case-grid">
+        <div class="reveal mb-16">
+            <span class="text-xs uppercase tracking-label text-primary mb-4 block">The Problem</span>
+            <h2 class="font-light text-4xl md:text-5xl">An award-winning agency<br class="hidden md:block"/> with a forgettable website</h2>
+        </div>
+        <div class="flex flex-col lg:flex-row gap-16 items-start">
+            <div class="lg:w-1/2 space-y-6">
+                <p class="text-xl text-muted leading-relaxed">FRENZY is not a typical B2B agency. They've won a Cannes Lyon. They're on the Inc 5000. Their client list includes Verizon, Comcast, Slack, Hootsuite, NCR Voyix, and Ryder. CEO Sarah Tourville built the company from London to Atlanta with zero existing U.S. connections. The team's whole identity is built around being bold, direct, and a little bit fearless.</p>
+                <p class="text-lg text-muted leading-relaxed">Their website was none of those things.</p>
+                <p class="text-lg text-muted leading-relaxed">The existing site looked like every other B2B agency website: safe, templated, and forgettable. It listed services without personality. It showed logos without context. It failed to answer the only question that matters when a VP of Marketing is evaluating agencies: "Why would I pick you over the fifteen other agencies in my inbox?"</p>
+                <div class="pt-8 border-t border-black/5 space-y-4">
+                    <div class="flex items-start gap-4">
+                        <span class="material-symbols-outlined text-primary text-lg mt-0.5" aria-hidden="true">close</span>
+                        <span class="text-base">Safe, templated design that looked like every other B2B agency</span>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <span class="material-symbols-outlined text-primary text-lg mt-0.5" aria-hidden="true">close</span>
+                        <span class="text-base">Services listed without personality or differentiation</span>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <span class="material-symbols-outlined text-primary text-lg mt-0.5" aria-hidden="true">close</span>
+                        <span class="text-base">Client logos shown without context or storytelling</span>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <span class="material-symbols-outlined text-primary text-lg mt-0.5" aria-hidden="true">close</span>
+                        <span class="text-base">Brand identity that no longer reflected who they'd become</span>
+                    </div>
+                </div>
+            </div>
+            <div class="lg:w-1/2">
+                <div class="bg-zinc-100 p-8 rounded-lg">
+                    <p class="text-lg leading-relaxed italic text-zinc-600">FRENZY's Lead Client Strategist Elizabeth Williams put it plainly during kickoff:</p>
+                    <p class="text-xl leading-relaxed italic text-zinc-800 mt-4 font-medium">"The current brand is just very much not who we are anymore."</p>
+                    <p class="text-lg leading-relaxed italic text-zinc-600 mt-4">The site had been built to reflect an earlier version of the company, and the business had outgrown it.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-            <!-- FRENZY -->
-            <a href="case-study-frenzy.html" class="case-card block group" data-category="webdesign" style="animation-delay: 0.05s;">
-                <div class="aspect-[16/10] overflow-hidden rounded-lg mb-6 shadow-lg">
-                    <img src="frenzy-1.png" alt="FRENZY website homepage" class="card-gradient w-full h-full object-cover"/>
+<!-- Our Approach -->
+<section class="py-32 px-8 lg:px-16 border-t border-black/5" style="background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);">
+    <div class="max-w-7xl mx-auto">
+        <div class="reveal mb-20">
+            <span class="text-xs uppercase tracking-label text-primary mb-4 block">Our Approach</span>
+            <h2 class="font-light text-4xl md:text-5xl">Bold by design, not by accident</h2>
+        </div>
+        <div class="max-w-4xl space-y-12">
+
+            <div class="reveal">
+                <h3 class="text-2xl font-medium mb-4">The client set the bar high from day one.</h3>
+                <p class="text-lg text-muted leading-relaxed">At the design kickoff, FRENZY's President Dave McMullen gave the team a clear directive: "If I was you, I would go spicy and more spicy. I doubt you're going to show us something and go, whoa, we could never do something like that." That's rare. Most clients pull a design back toward safe. FRENZY wanted to be pushed.</p>
+            </div>
+
+            <div class="reveal">
+                <h3 class="text-2xl font-medium mb-4">We designed for bold, not safe.</h3>
+                <p class="text-lg text-muted leading-relaxed">The homepage opens with "Start a Frenzy" spanning the full viewport. Most B2B agency sites open with a stock photo of people in a meeting room and a tagline about "driving results." We wanted someone landing on frenzy.agency to actually stop scrolling. Dave described wanting the interplay between "big colors, big energy" and "calm black and white copy," and that dynamic runs through the entire site: high-impact visual moments followed by clean, readable content sections.</p>
+            </div>
+
+            <div class="reveal">
+                <h3 class="text-2xl font-medium mb-4">We answered the buyer's real questions.</h3>
+                <p class="text-lg text-muted leading-relaxed">Every section was designed to address what a B2B marketing leader is actually evaluating: What do you do? Who have you done it for? What makes you different? Can I trust you? We ordered these intentionally to match the way buyers evaluate, not the way agencies like to talk about themselves.</p>
+            </div>
+
+            <div class="reveal">
+                <h3 class="text-2xl font-medium mb-4">The brand was wide open.</h3>
+                <p class="text-lg text-muted leading-relaxed">Unlike many redesigns where you're working within rigid brand guidelines, FRENZY gave us full creative freedom. Elizabeth Williams confirmed there were no brand constraints worth preserving. Dave noted the FRENZY wordmark itself was iconic and trademarked, but everything else -- the colors, typography, photography treatment, visual identity -- was fair game to reimagine.</p>
+            </div>
+
+            <div class="reveal">
+                <h3 class="text-2xl font-medium mb-4">Five months of collaborative iteration.</h3>
+                <p class="text-lg text-muted leading-relaxed">From the October 2025 kickoff through the March 2026 launch, the project moved through homepage concept presentations, internal design reviews, timeline alignment meetings, staging, UAT, and production release. FRENZY's leadership was active throughout. The final product reflects genuine collaboration, not a design imposed on the client. The site was built on WordPress with staging and production environments, plus six months of post-launch hosting and maintenance support.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Full-width Image -->
+<section class="px-8 lg:px-16 py-16">
+    <div class="max-w-7xl mx-auto">
+        <div class="reveal aspect-[16/9] rounded-lg overflow-hidden shadow-2xl">
+            <img src="frenzy-2.png" alt="FRENZY website Start a Frenzy hero" class="w-full h-full object-cover" loading="lazy"/>
+        </div>
+    </div>
+</section>
+
+<!-- Results -->
+<section class="py-32 px-8 lg:px-16 bg-zinc-950 text-white">
+    <div class="max-w-7xl mx-auto">
+        <div class="reveal mb-20">
+            <span class="text-xs uppercase tracking-label text-primary-light mb-4 block">The Results</span>
+            <h2 class="font-light text-4xl md:text-5xl">"You captured the essence of FRENZY<br class="hidden md:block"/> and brought it alive."</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+            <div class="stat-block border-t border-white/10 pt-8" style="transition-delay: 0.1s;">
+                <span class="material-symbols-outlined text-primary-light text-3xl mb-4" aria-hidden="true">palette</span>
+                <h3 class="text-lg font-medium mb-2">Brand Alignment</h3>
+                <p class="text-sm text-white/40 leading-relaxed">Client said the site "captured the essence" of their brand and brought it alive.</p>
+            </div>
+            <div class="stat-block border-t border-white/10 pt-8" style="transition-delay: 0.2s;">
+                <span class="material-symbols-outlined text-primary-light text-3xl mb-4" aria-hidden="true">bolt</span>
+                <h3 class="text-lg font-medium mb-2">Content Activation</h3>
+                <p class="text-sm text-white/40 leading-relaxed">FRENZY began building marketing content around the new site immediately after launch.</p>
+            </div>
+            <div class="stat-block border-t border-white/10 pt-8" style="transition-delay: 0.3s;">
+                <span class="material-symbols-outlined text-primary-light text-3xl mb-4" aria-hidden="true">handshake</span>
+                <h3 class="text-lg font-medium mb-2">Ongoing Relationship</h3>
+                <p class="text-sm text-white/40 leading-relaxed">Six-month support agreement, hosting transition to Azul Arc infrastructure.</p>
+            </div>
+            <div class="stat-block border-t border-white/10 pt-8" style="transition-delay: 0.4s;">
+                <span class="material-symbols-outlined text-primary-light text-3xl mb-4" aria-hidden="true">campaign</span>
+                <h3 class="text-lg font-medium mb-2">Launch Kit</h3>
+                <p class="text-sm text-white/40 leading-relaxed">Branded mockups and voice-matched social captions delivered with the site.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonial -->
+<section class="py-32 px-8 lg:px-16 border-t border-black/5">
+    <div class="max-w-4xl mx-auto text-center">
+        <span class="material-symbols-outlined text-primary text-4xl mb-8 block opacity-30" aria-hidden="true">format_quote</span>
+        <blockquote class="text-3xl md:text-4xl font-light leading-snug mb-10">
+            "A big thank you to you and the Azul Arc team. We absolutely love our new site and you captured the essence of FRENZY and brought it alive."
+        </blockquote>
+        <div>
+            <span class="text-sm font-semibold">Sarah Tourville</span>
+            <span class="text-sm text-muted ml-2">CEO & Founder, FRENZY</span>
+        </div>
+    </div>
+</section>
+
+<!-- What Made This Different -->
+<section class="py-32 px-8 lg:px-16 border-t border-black/5" style="background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);">
+    <div class="max-w-4xl mx-auto">
+        <div class="reveal mb-12">
+            <span class="text-xs uppercase tracking-label text-primary mb-4 block">What Made This Different</span>
+            <h2 class="font-light text-4xl md:text-5xl">We wrote their launch captions.<br class="hidden md:block"/> They didn't change a word.</h2>
+        </div>
+        <div class="space-y-6">
+            <p class="text-lg text-muted leading-relaxed">Two things stood out. First, the client's posture. Most clients hedge. Dave McMullen told us at kickoff to go "spicy and more spicy." That trust gave us the permission to push the full-viewport "Start a Frenzy" hero, a move that could have easily been killed in review but ended up defining the entire site's identity. FRENZY's team pushed the work forward instead of pulling it back, and the result is a site that stands out in a category where almost nothing does.</p>
+            <p class="text-lg text-muted leading-relaxed">Second, the launch kit. We wrote three social media caption options for their launch announcement, each from a different angle, all in FRENZY's voice. For a PR and marketing agency, writing their captions is a high-wire act. If the voice is off, they'll notice immediately. Sarah's team accepted the captions without edits. That told us we'd internalized the brand well enough to speak as them, not for them.</p>
+        </div>
+
+        <!-- Launch Kit Gallery -->
+        <div class="reveal mt-20">
+            <span class="text-xs uppercase tracking-label text-primary mb-6 block">The Launch Kit</span>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <div class="aspect-[4/5] rounded-lg overflow-hidden shadow-lg">
+                    <img src="Frenzy-IG-Mockup-1.png" alt="FRENZY Instagram mockup 1" class="w-full h-full object-cover" loading="lazy"/>
                 </div>
-                <div class="flex items-center gap-3 mb-3">
-                    <span class="text-xs uppercase tracking-label text-primary font-medium bg-primary/5 px-3 py-1">Web Design & Development</span>
+                <div class="aspect-[4/5] rounded-lg overflow-hidden shadow-lg">
+                    <img src="Frenzy-IG-Mockup-2.png" alt="FRENZY Instagram mockup 2" class="w-full h-full object-cover" loading="lazy"/>
                 </div>
-                <h2 class="text-3xl font-light mb-2 group-hover:text-primary transition-colors duration-300">FRENZY</h2>
-                <p class="text-base text-muted leading-relaxed mb-4">A bold website redesign for an Inc 5000, Cannes Lyon-winning B2B agency. Their old site looked like every other agency. The new one doesn't.</p>
-                <div class="flex items-center justify-between">
-                    <span class="text-xs uppercase tracking-label font-medium opacity-50">Brand Alignment</span>
-                    <span class="card-arrow flex items-center gap-2 text-xs text-primary uppercase tracking-label font-medium">
-                        Read the case study <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span>
-                    </span>
+                <div class="aspect-[4/5] rounded-lg overflow-hidden shadow-lg">
+                    <img src="Frenzy-IG-Mockup-3.png" alt="FRENZY Instagram mockup 3" class="w-full h-full object-cover" loading="lazy"/>
                 </div>
+                <div class="aspect-square rounded-lg overflow-hidden shadow-lg">
+                    <img src="Frenzy-Square-Mockup-1.png" alt="FRENZY square mockup 1" class="w-full h-full object-cover" loading="lazy"/>
+                </div>
+                <div class="aspect-square rounded-lg overflow-hidden shadow-lg">
+                    <img src="Frenzy-Square-Mockup-2.png" alt="FRENZY square mockup 2" class="w-full h-full object-cover" loading="lazy"/>
+                </div>
+                <div class="aspect-square rounded-lg overflow-hidden shadow-lg">
+                    <img src="Frenzy-Square-Mockup-3.png" alt="FRENZY square mockup 3" class="w-full h-full object-cover" loading="lazy"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Related Case Studies -->
+<section class="py-32 px-8 lg:px-16 border-t border-black/5">
+    <div class="max-w-7xl mx-auto">
+        <div class="reveal flex justify-between items-end mb-16">
+            <div>
+                <span class="text-xs uppercase tracking-label text-primary mb-4 block">More Work</span>
+                <h2 class="font-light text-4xl">Related case studies</h2>
+            </div>
+            <a href="work.html" class="group hidden md:inline-flex items-center gap-2 text-xs uppercase tracking-label text-primary font-medium hover:text-primary-dark transition-colors">
+                View All
+                <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
             </a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 
             <!-- RF Installations -->
-            <a href="case-study-rfi.html" class="case-card block group" data-category="webdesign" style="animation-delay: 0.1s;">
+            <a href="case-study-rfi.html" class="reveal reveal-delay-1 related-card block group">
                 <div class="aspect-[16/10] overflow-hidden rounded-lg mb-6 shadow-lg">
-                    <img src="rfi-1.png" alt="RF Installations website mockup" class="card-gradient w-full h-full object-cover"/>
+                    <img src="rfi-1.png" alt="RF Installations website" class="card-gradient w-full h-full object-cover"/>
                 </div>
-                <div class="flex items-center gap-3 mb-3">
-                    <span class="text-xs uppercase tracking-label text-primary font-medium bg-primary/5 px-3 py-1">Web Design & Development</span>
+                <div class="flex items-center gap-3 mb-2">
+                    <span class="text-xs uppercase tracking-label text-primary font-medium">Web Design & Development</span>
                 </div>
-                <h2 class="text-3xl font-light mb-2 group-hover:text-primary transition-colors duration-300">RF Installations</h2>
-                <p class="text-base text-muted leading-relaxed mb-4">A complete website redesign for a $70M national installation company with 1,500+ contractors and 400,000+ installations a year.</p>
-                <div class="flex items-center justify-between">
-                    <span class="text-xs uppercase tracking-label font-medium opacity-50">Credibility Upgrade</span>
-                    <span class="card-arrow flex items-center gap-2 text-xs text-primary uppercase tracking-label font-medium">
-                        Read the case study <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span>
-                    </span>
-                </div>
+                <h3 class="text-2xl font-light mb-1 group-hover:text-primary transition-colors duration-300">RF Installations</h3>
+                <p class="text-sm text-muted mb-2">Website redesign for a $70M national installation company.</p>
+                <p class="text-xs uppercase tracking-label opacity-40">Credibility Upgrade</p>
             </a>
 
             <!-- CaseHub -->
-            <a href="case-study.html" class="case-card block group" data-category="government" style="animation-delay: 0.1s;">
+            <a href="case-study.html" class="reveal reveal-delay-2 related-card block group">
                 <div class="aspect-[16/10] overflow-hidden rounded-lg mb-6 shadow-lg">
                     <div class="card-gradient w-full h-full" style="background: linear-gradient(160deg, #212121 0%, #07406B 50%, #1863DC 100%)"></div>
                 </div>
-                <div class="flex items-center gap-3 mb-3">
-                    <span class="text-xs uppercase tracking-label text-primary font-medium bg-primary/5 px-3 py-1">Government & Courts</span>
+                <div class="flex items-center gap-3 mb-2">
+                    <span class="text-xs uppercase tracking-label text-primary font-medium">Government & Courts</span>
                 </div>
-                <h2 class="text-3xl font-light mb-2 group-hover:text-primary transition-colors duration-300">CaseHub</h2>
-                <p class="text-base text-muted leading-relaxed mb-4">Replaced paper filing across 12 counties with a unified digital court management platform.</p>
-                <div class="flex items-center justify-between">
-                    <span class="text-xs uppercase tracking-label font-medium opacity-50">45% Faster Filing Time</span>
-                    <span class="card-arrow flex items-center gap-2 text-xs text-primary uppercase tracking-label font-medium">
-                        Read the case study <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span>
-                    </span>
-                </div>
+                <h3 class="text-2xl font-light mb-1 group-hover:text-primary transition-colors duration-300">CaseHub</h3>
+                <p class="text-sm text-muted mb-2">Replaced paper filing across 12 counties with a unified digital platform.</p>
+                <p class="text-xs uppercase tracking-label opacity-40">45% Faster Filing Time</p>
             </a>
 
             <!-- Azul Arc Internal -->
-            <a href="case-study.html" class="case-card block group" data-category="growth" style="animation-delay: 0.2s;">
+            <a href="case-study.html" class="reveal reveal-delay-3 related-card block group">
                 <div class="aspect-[16/10] overflow-hidden rounded-lg mb-6 shadow-lg">
                     <div class="card-gradient w-full h-full" style="background: linear-gradient(160deg, #212121 0%, #1863DC 50%, #2AA7DF 100%)"></div>
                 </div>
-                <div class="flex items-center gap-3 mb-3">
-                    <span class="text-xs uppercase tracking-label text-primary font-medium bg-primary/5 px-3 py-1">Growth-Stage</span>
+                <div class="flex items-center gap-3 mb-2">
+                    <span class="text-xs uppercase tracking-label text-primary font-medium">Growth-Stage</span>
                 </div>
-                <h2 class="text-3xl font-light mb-2 group-hover:text-primary transition-colors duration-300">Azul Arc Internal</h2>
-                <p class="text-base text-muted leading-relaxed mb-4">Zero-downtime migration to modern cloud infrastructure. We rebuilt our own stack to prove the process works.</p>
-                <div class="flex items-center justify-between">
-                    <span class="text-xs uppercase tracking-label font-medium opacity-50">Zero-Downtime Migration</span>
-                    <span class="card-arrow flex items-center gap-2 text-xs text-primary uppercase tracking-label font-medium">
-                        Read the case study <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span>
-                    </span>
-                </div>
+                <h3 class="text-2xl font-light mb-1 group-hover:text-primary transition-colors duration-300">Azul Arc Internal</h3>
+                <p class="text-sm text-muted mb-2">Zero-downtime migration to modern cloud infrastructure.</p>
+                <p class="text-xs uppercase tracking-label opacity-40">Zero-Downtime Migration</p>
             </a>
 
-            <!-- RenderLab -->
-            <a href="case-study.html" class="case-card block group" data-category="manufacturing" style="animation-delay: 0.3s;">
-                <div class="aspect-[16/10] overflow-hidden rounded-lg mb-6 shadow-lg">
-                    <div class="card-gradient w-full h-full" style="background: linear-gradient(160deg, #212121 0%, #07406B 60%, #212121 100%)"></div>
-                </div>
-                <div class="flex items-center gap-3 mb-3">
-                    <span class="text-xs uppercase tracking-label text-primary font-medium bg-primary/5 px-3 py-1">Manufacturing</span>
-                </div>
-                <h2 class="text-3xl font-light mb-2 group-hover:text-primary transition-colors duration-300">RenderLab</h2>
-                <p class="text-base text-muted leading-relaxed mb-4">Built a 3D rendering pipeline that handles 3x the volume on the same infrastructure.</p>
-                <div class="flex items-center justify-between">
-                    <span class="text-xs uppercase tracking-label font-medium opacity-50">300% Scaling Capacity</span>
-                    <span class="card-arrow flex items-center gap-2 text-xs text-primary uppercase tracking-label font-medium">
-                        Read the case study <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span>
-                    </span>
-                </div>
-            </a>
-
-            <!-- FlowOps -->
-            <a href="case-study.html" class="case-card block group" data-category="manufacturing" style="animation-delay: 0.4s;">
-                <div class="aspect-[16/10] overflow-hidden rounded-lg mb-6 shadow-lg">
-                    <div class="card-gradient w-full h-full" style="background: linear-gradient(160deg, #212121 0%, #2AA7DF 40%, #07406B 100%)"></div>
-                </div>
-                <div class="flex items-center gap-3 mb-3">
-                    <span class="text-xs uppercase tracking-label text-primary font-medium bg-primary/5 px-3 py-1">Manufacturing</span>
-                </div>
-                <h2 class="text-3xl font-light mb-2 group-hover:text-primary transition-colors duration-300">FlowOps</h2>
-                <p class="text-base text-muted leading-relaxed mb-4">Streamlined warehouse operations across 8 facilities, cutting manual processes and redundant workflows.</p>
-                <div class="flex items-center justify-between">
-                    <span class="text-xs uppercase tracking-label font-medium opacity-50">20% Operational Cost Save</span>
-                    <span class="card-arrow flex items-center gap-2 text-xs text-primary uppercase tracking-label font-medium">
-                        Read the case study <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span>
-                    </span>
-                </div>
-            </a>
-
-            <!-- Meridian Connect -->
-            <a href="case-study.html" class="case-card block group" data-category="manufacturing" style="animation-delay: 0.5s;">
-                <div class="aspect-[16/10] overflow-hidden rounded-lg mb-6 shadow-lg">
-                    <div class="card-gradient w-full h-full" style="background: linear-gradient(160deg, #212121 0%, #2AA7DF 50%, #1863DC 100%)"></div>
-                </div>
-                <div class="flex items-center gap-3 mb-3">
-                    <span class="text-xs uppercase tracking-label text-primary font-medium bg-primary/5 px-3 py-1">Manufacturing</span>
-                </div>
-                <h2 class="text-3xl font-light mb-2 group-hover:text-primary transition-colors duration-300">Meridian Connect</h2>
-                <p class="text-base text-muted leading-relaxed mb-4">Connected the factory floor to the front office with a unified sales visibility platform.</p>
-                <div class="flex items-center justify-between">
-                    <span class="text-xs uppercase tracking-label font-medium opacity-50">2x Sales Visibility</span>
-                    <span class="card-arrow flex items-center gap-2 text-xs text-primary uppercase tracking-label font-medium">
-                        Read the case study <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span>
-                    </span>
-                </div>
-            </a>
-
-            <!-- CourtSync -->
-            <a href="case-study.html" class="case-card block group" data-category="government" style="animation-delay: 0.6s;">
-                <div class="aspect-[16/10] overflow-hidden rounded-lg mb-6 shadow-lg">
-                    <div class="card-gradient w-full h-full" style="background: linear-gradient(160deg, #212121 0%, #1863DC 40%, #07406B 100%)"></div>
-                </div>
-                <div class="flex items-center gap-3 mb-3">
-                    <span class="text-xs uppercase tracking-label text-primary font-medium bg-primary/5 px-3 py-1">Government & Courts</span>
-                </div>
-                <h2 class="text-3xl font-light mb-2 group-hover:text-primary transition-colors duration-300">CourtSync</h2>
-                <p class="text-base text-muted leading-relaxed mb-4">Automated 80% of routine filings with intelligent document processing and workflow automation.</p>
-                <div class="flex items-center justify-between">
-                    <span class="text-xs uppercase tracking-label font-medium opacity-50">80% Automation Rate</span>
-                    <span class="card-arrow flex items-center gap-2 text-xs text-primary uppercase tracking-label font-medium">
-                        Read the case study <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span>
-                    </span>
-                </div>
-            </a>
-
-        </div>
-    </div>
-</section>
-
-<!-- Impact Stats -->
-<section class="py-20 px-8 lg:px-16 bg-zinc-950 text-white">
-    <div class="max-w-7xl mx-auto">
-        <div class="flex flex-col md:flex-row items-center justify-between gap-12">
-            <div class="reveal">
-                <span class="text-xs uppercase tracking-label text-primary-light mb-4 block">Aggregate Impact</span>
-                <p class="text-xl font-light text-white/60">The numbers behind our work.</p>
-            </div>
-            <div class="reveal reveal-delay-1 flex gap-16 md:gap-20">
-                <div class="text-center">
-                    <span class="block text-5xl md:text-6xl font-light">200+</span>
-                    <span class="text-xs uppercase tracking-wide-label text-white/40 mt-2 block">Projects Delivered</span>
-                </div>
-                <div class="text-center">
-                    <span class="block text-5xl md:text-6xl font-light">20+</span>
-                    <span class="text-xs uppercase tracking-wide-label text-white/40 mt-2 block">Years in Business</span>
-                </div>
-                <div class="text-center">
-                    <span class="block text-5xl md:text-6xl font-light">6</span>
-                    <span class="text-xs uppercase tracking-wide-label text-white/40 mt-2 block">Industries Served</span>
-                </div>
-            </div>
         </div>
     </div>
 </section>
 
 <!-- CTA -->
-<section class="py-32 px-8 lg:px-16 cta-section" id="cta-section">
+<section class="py-32 px-8 lg:px-16 border-t border-black/5 cta-section" id="cta-section">
     <div class="reveal max-w-4xl mx-auto text-center">
-        <h2 class="font-light text-5xl md:text-6xl mb-8 cta-text">Have a project like this?</h2>
-        <p class="text-xl text-muted mb-12 max-w-2xl mx-auto cta-muted">Tell us what you're working with. We'll tell you what's possible -- and what it would take to get there.</p>
+        <h2 class="font-light text-5xl md:text-6xl mb-8 cta-text">Ready to start a project?</h2>
+        <p class="text-xl text-muted mb-12 max-w-2xl mx-auto cta-muted">We build websites that match the scale and ambition of the companies behind them.</p>
         <a href="contact.html" class="cta-wipe group inline-flex items-center gap-3 border border-black/15 px-8 py-5 text-sm uppercase tracking-cta font-medium" id="cta-btn">
-            <span>Talk About My Project</span>
+            <span>Get in Touch</span>
             <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform duration-300" aria-hidden="true">arrow_forward</span>
         </a>
     </div>
@@ -752,37 +792,19 @@
         });
     })();
 
-    // Filter functionality
+    // Scroll-triggered stat animations
     (function() {
-        const tabs = document.querySelectorAll('.filter-tab');
-        const cards = document.querySelectorAll('.case-card');
-
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                // Update active tab
-                tabs.forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-
-                const filter = tab.dataset.filter;
-
-                // Filter cards with animation
-                cards.forEach((card, i) => {
-                    card.style.animation = 'none';
-                    card.offsetHeight; // Trigger reflow
-
-                    if (filter === 'all' || card.dataset.category === filter) {
-                        card.style.display = 'block';
-                        card.style.animationDelay = (i * 0.1) + 's';
-                        card.style.animation = 'fadeInUp 0.6s ease forwards';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
+        const stats = document.querySelectorAll('.stat-block');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
             });
-        });
+        }, { threshold: 0.2 });
+        stats.forEach(stat => observer.observe(stat));
     })();
 </script>
-
 
 <script>
 // Scroll reveal
@@ -822,7 +844,6 @@ if (ctaBtn && ctaSection) {
         iconOpen.style.display = 'none';
         iconClose.style.display = '';
         document.body.style.overflow = 'hidden';
-        // Focus first link
         const firstLink = menu.querySelector('a');
         if (firstLink) firstLink.focus();
     }
@@ -842,19 +863,16 @@ if (ctaBtn && ctaSection) {
         if (isOpen) closeMenu(); else openMenu();
     });
 
-    // Close on Escape
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && menu.classList.contains('active')) {
             closeMenu();
         }
     });
 
-    // Close on link click
     menu.querySelectorAll('a').forEach(function(link) {
         link.addEventListener('click', closeMenu);
     });
 
-    // Close if resized to desktop
     window.addEventListener('resize', function() {
         if (window.innerWidth >= 768 && menu.classList.contains('active')) {
             closeMenu();

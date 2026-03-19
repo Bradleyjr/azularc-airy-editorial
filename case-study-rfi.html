@@ -2,17 +2,16 @@
 <html class="scroll-smooth" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta name="description" content="Case studies from 200+ projects. See how Azul Arc replaces broken systems with custom software for courts, manufacturers, and growth-stage companies."/>
-<meta property="og:title" content="Our Work — Azul Arc"/>
-<meta property="og:description" content="Case studies from 200+ projects. See how Azul Arc replaces broken systems with custom software for courts, manufacturers, and growth-stage companies."/>
-<meta property="og:type" content="website"/>
+<meta name="description" content="How Azul Arc redesigned RF Installations' website to match their $70M operational scale. A complete website redesign for a national installation company with 1,500+ contractors."/>
+<meta property="og:title" content="RF Installations Case Study — Azul Arc"/>
+<meta property="og:description" content="A complete website redesign for a $70M national installation company. The site wasn't telling their story. Now it does."/>
+<meta property="og:type" content="article"/>
 <meta property="og:site_name" content="Azul Arc"/>
-<meta property="og:image" content="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=1200&q=80"/>
+<meta property="og:image" content="rfi-1.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Our Work — Azul Arc"/>
-<meta name="twitter:description" content="Case studies from 200+ projects. See how Azul Arc replaces broken systems with custom software for courts, manufacturers, and growth-stage companies."/>
-<meta name="twitter:image" content="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=1200&q=80"/>
-<title>Azul Arc — Our Work</title>
+<meta name="twitter:title" content="RF Installations Case Study — Azul Arc"/>
+<meta name="twitter:description" content="A complete website redesign for a $70M national installation company. The site wasn't telling their story. Now it does."/>
+<title>Azul Arc — RF Installations Case Study</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&amp;display=swap" rel="stylesheet"/>
@@ -121,71 +120,32 @@
             pointer-events: auto;
         }
 
-        /* Case study cards */
-        .case-card {
-            position: relative;
-            overflow: hidden;
+        /* Stat counter animation */
+        .stat-block {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .stat-block.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Related card hover */
+        .related-card {
             transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-        .case-card:hover {
+        .related-card:hover {
             transform: translateY(-8px);
         }
-        .case-card .card-gradient {
+        .related-card .card-gradient {
             transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.7s ease;
         }
-        .case-card:hover .card-gradient {
+        .related-card:hover .card-gradient {
             transform: scale(1.05);
             filter: brightness(1.25);
         }
-        .case-card .card-arrow {
-            opacity: 0;
-            transform: translateX(-8px);
-            transition: opacity 0.4s ease, transform 0.4s ease;
-        }
-        .case-card:hover .card-arrow {
-            opacity: 1;
-            transform: translateX(0);
-        }
 
-        /* Filter tabs */
-        .filter-tab {
-            position: relative;
-            padding-bottom: 0.75rem;
-            transition: color 0.3s ease;
-        }
-        .filter-tab::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #1863DC;
-            transition: width 0.3s ease;
-        }
-        .filter-tab.active {
-            color: #1863DC;
-        }
-        .filter-tab.active::after {
-            width: 100%;
-        }
-        .filter-tab:hover {
-            color: #1863DC;
-        }
-
-        /* Stagger animation */
-        .case-card {
-            opacity: 0;
-            transform: translateY(24px);
-            animation: fadeInUp 0.6s ease forwards;
-        }
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    
         /* Scroll reveal animations */
         .reveal {
             opacity: 0;
@@ -200,12 +160,6 @@
         .reveal-delay-2 { transition-delay: 0.2s; }
         .reveal-delay-3 { transition-delay: 0.3s; }
         .reveal-delay-4 { transition-delay: 0.4s; }
-        .magnetic-wrap {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.1s cubic-bezier(0.17, 0.67, 0.83, 0.67);
-        }
 
         /* CTA section blue wipe */
         .cta-section {
@@ -329,7 +283,6 @@
         .mobile-menu-cta:hover {
             background: #07406B;
         }
-        /* Hamburger to X animation */
         .nav-toggle-icon {
             transition: opacity 0.2s ease;
         }
@@ -354,7 +307,7 @@
 <a class="hover:opacity-60 transition-opacity flex items-center gap-1 cursor-pointer nav-dd-trigger" data-dropdown="industries" href="#industries">Industries <span class="material-symbols-outlined text-sm" aria-hidden="true">expand_more</span></a>
 <a class="hover:opacity-60 transition-opacity flex items-center gap-1 cursor-pointer nav-dd-trigger" data-dropdown="whatwedo" href="#capabilities">What We Do <span class="material-symbols-outlined text-sm" aria-hidden="true">expand_more</span></a>
 <a class="hover:opacity-60 transition-opacity" href="how-we-work.html">How We Work</a>
-<a class="hover:opacity-60 transition-opacity text-primary" href="work.html">Work</a>
+<a class="hover:opacity-60 transition-opacity" href="work.html">Work</a>
 <a class="hover:opacity-60 transition-opacity" href="insights.html">Insights</a>
 <a class="hover:opacity-60 transition-opacity" href="about.html">About</a>
 </div>
@@ -452,215 +405,297 @@
 
 <main id="main-content">
 <!-- Hero -->
-<section class="pt-40 pb-24 px-8 lg:px-16 border-b border-black/5">
-    <div class="flex flex-col lg:flex-row justify-between items-end gap-12">
-        <div class="lg:w-2/3">
-            <span class="text-xs uppercase tracking-label text-primary mb-6 block">Case Studies</span>
-            <h1 class="font-semibold text-5xl md:text-7xl lg:text-8xl leading-none tracking-tighter">Systems we've<br/>replaced</h1>
+<section class="relative min-h-[85vh] flex flex-col justify-end overflow-hidden bg-navy text-white">
+    <div class="absolute inset-0 z-0">
+        <img src="rfi-1.png" alt="RF Installations homepage mockup on laptop" class="w-full h-full object-cover opacity-40" loading="eager"/>
+    </div>
+    <div class="absolute inset-0 z-0 bg-gradient-to-t from-navy via-navy/80 to-navy/40"></div>
+    <div class="relative z-10 px-8 lg:px-16 pb-20 pt-48">
+        <a href="work.html" class="inline-flex items-center gap-2 text-xs uppercase tracking-label text-white/50 hover:text-white transition-colors mb-12">
+            <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_back</span>
+            All Case Studies
+        </a>
+        <div class="flex items-center gap-4 mb-6">
+            <span class="text-xs uppercase tracking-label font-medium bg-white/10 backdrop-blur-sm px-4 py-1.5">Web Design & Development</span>
         </div>
-        <div class="lg:w-1/3">
-            <p class="text-lg text-muted leading-relaxed">Every project starts with something broken. Here's what we built instead -- and the results that followed.</p>
+        <h1 class="font-semibold text-5xl md:text-7xl lg:text-8xl tracking-tighter leading-none mb-8">RF Installations</h1>
+        <p class="text-xl md:text-2xl text-white/60 font-light max-w-2xl">A complete website redesign for a $70M national installation company with 27+ years of experience. The site wasn't telling their story. Now it does.</p>
+    </div>
+</section>
+
+<!-- Overview -->
+<section class="py-16 px-8 lg:px-16 border-b border-black/5 bg-zinc-50">
+    <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16">
+        <div class="lg:w-1/2 grid grid-cols-2 gap-x-12 gap-y-6">
+            <div>
+                <span class="text-xs uppercase tracking-label text-muted block mb-1">Client</span>
+                <span class="text-sm font-medium">RF Installations LLC</span>
+            </div>
+            <div>
+                <span class="text-xs uppercase tracking-label text-muted block mb-1">Industry</span>
+                <span class="text-sm font-medium">Home Improvement Services</span>
+            </div>
+            <div>
+                <span class="text-xs uppercase tracking-label text-muted block mb-1">Scope</span>
+                <span class="text-sm font-medium">Full Website Redesign</span>
+            </div>
+            <div>
+                <span class="text-xs uppercase tracking-label text-muted block mb-1">Timeline</span>
+                <span class="text-sm font-medium">Launched March 2026</span>
+            </div>
+            <div>
+                <span class="text-xs uppercase tracking-label text-muted block mb-1">Live Site</span>
+                <span class="text-sm font-medium">rfinstallations.com</span>
+            </div>
+        </div>
+        <div class="lg:w-1/2 grid grid-cols-2 gap-8 lg:border-l lg:border-black/5 lg:pl-16">
+            <div class="stat-block" style="transition-delay: 0.1s;">
+                <span class="block text-4xl font-light text-primary mb-1">27+</span>
+                <span class="text-xs uppercase tracking-wide-label text-muted">Years in Business</span>
+            </div>
+            <div class="stat-block" style="transition-delay: 0.2s;">
+                <span class="block text-4xl font-light text-primary mb-1">1,500+</span>
+                <span class="text-xs uppercase tracking-wide-label text-muted">Contractors</span>
+            </div>
+            <div class="stat-block" style="transition-delay: 0.3s;">
+                <span class="block text-4xl font-light text-primary mb-1">400K+</span>
+                <span class="text-xs uppercase tracking-wide-label text-muted">Annual Installations</span>
+            </div>
+            <div class="stat-block" style="transition-delay: 0.4s;">
+                <span class="block text-4xl font-light text-primary mb-1">40+</span>
+                <span class="text-xs uppercase tracking-wide-label text-muted">States Covered</span>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- Filter Bar -->
-<section class="px-8 lg:px-16 py-8 border-b border-black/5 sticky top-0 bg-white/95 backdrop-blur-sm z-30">
-    <div class="max-w-7xl mx-auto flex gap-8 overflow-x-auto hide-scrollbar">
-        <button class="filter-tab active text-xs uppercase tracking-label font-medium whitespace-nowrap cursor-pointer" data-filter="all">All Projects</button>
-        <button class="filter-tab text-xs uppercase tracking-label font-medium text-muted whitespace-nowrap cursor-pointer" data-filter="webdesign">Web Design</button>
-        <button class="filter-tab text-xs uppercase tracking-label font-medium text-muted whitespace-nowrap cursor-pointer" data-filter="government">Government & Courts</button>
-        <button class="filter-tab text-xs uppercase tracking-label font-medium text-muted whitespace-nowrap cursor-pointer" data-filter="manufacturing">Manufacturing</button>
-        <button class="filter-tab text-xs uppercase tracking-label font-medium text-muted whitespace-nowrap cursor-pointer" data-filter="growth">Growth-Stage</button>
-    </div>
-</section>
-
-<!-- Case Study Grid -->
+<!-- The Problem -->
 <section class="py-32 px-8 lg:px-16">
     <div class="max-w-7xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16" id="case-grid">
+        <div class="reveal mb-16">
+            <span class="text-xs uppercase tracking-label text-primary mb-4 block">The Problem</span>
+            <h2 class="font-light text-4xl md:text-5xl">A $70M company with a website<br class="hidden md:block"/> that undersold them</h2>
+        </div>
+        <div class="flex flex-col lg:flex-row gap-16 items-start">
+            <div class="lg:w-1/2 space-y-6">
+                <p class="text-xl text-muted leading-relaxed">RF Installations coordinates over 400,000 home improvement installations a year across 40 states. They work with major retailers, manage a network of 1,500+ independent contractors, and recently earned #20 on Qualified Remodeler's Top 500 list. By every operational measure, RFI is a serious national company.</p>
+                <p class="text-lg text-muted leading-relaxed">Their website told a different story.</p>
+                <p class="text-lg text-muted leading-relaxed">The existing site was built on a dated design that hadn't kept pace with the company's growth. Service pages read like internal documentation rather than client-facing content. There was no clear path for the three distinct audiences who visit the site: retail partners evaluating RFI as an installation provider, independent contractors looking to join the network, and end consumers checking on their upcoming installation.</p>
+                <div class="pt-8 border-t border-black/5 space-y-4">
+                    <div class="flex items-start gap-4">
+                        <span class="material-symbols-outlined text-primary text-lg mt-0.5" aria-hidden="true">close</span>
+                        <span class="text-base">Dated design that didn't reflect $70M+ scale</span>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <span class="material-symbols-outlined text-primary text-lg mt-0.5" aria-hidden="true">close</span>
+                        <span class="text-base">Service pages read like internal documentation</span>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <span class="material-symbols-outlined text-primary text-lg mt-0.5" aria-hidden="true">close</span>
+                        <span class="text-base">No clear paths for three distinct audiences</span>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <span class="material-symbols-outlined text-primary text-lg mt-0.5" aria-hidden="true">close</span>
+                        <span class="text-base">Years of credibility data buried and invisible</span>
+                    </div>
+                </div>
+            </div>
+            <div class="lg:w-1/2">
+                <div class="bg-zinc-100 p-8 rounded-lg">
+                    <p class="text-lg leading-relaxed italic text-zinc-600">During the initial strategy workshop, RFI's own team called out a telling problem: they had years of credibility data, compliance credentials, and impressive scale numbers -- but none of it was visible on the website.</p>
+                    <p class="text-lg leading-relaxed italic text-zinc-600 mt-4">They had proof and weren't using it.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Our Approach -->
+<section class="py-32 px-8 lg:px-16 border-t border-black/5" style="background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);">
+    <div class="max-w-7xl mx-auto">
+        <div class="reveal mb-20">
+            <span class="text-xs uppercase tracking-label text-primary mb-4 block">Our Approach</span>
+            <h2 class="font-light text-4xl md:text-5xl">Two concepts, audience-first IA,<br class="hidden md:block"/> and proof up front</h2>
+        </div>
+        <div class="max-w-4xl space-y-12">
+
+            <div class="reveal">
+                <h3 class="text-2xl font-medium mb-4">We started with two distinct homepage concepts.</h3>
+                <p class="text-lg text-muted leading-relaxed">The first leaned into a grid and blueprint-style layout with animated scrolling sections, noise textures, and schematic illustrations tying into the construction world. The second took a more structured, blocky approach with tabbed content, neutral backgrounds, and a slab serif typeface that communicated stability without being boring. Both were designed as conversation tools, not final designs, to gauge where the client's comfort level landed and which direction resonated.</p>
+            </div>
+
+            <div class="reveal">
+                <h3 class="text-2xl font-medium mb-4">We restructured the IA around audiences, not departments.</h3>
+                <p class="text-lg text-muted leading-relaxed">Retail partners need to see scale, compliance credentials, and geographic reach. Contractors need to understand the benefits of joining the network and how to apply. Consumers need reassurance that their installation will go smoothly. Each audience now has a clear entry point and a tailored content path. The services section stays on a single page rather than splitting into separate solution pages, since all services funnel to the same offering.</p>
+            </div>
+
+            <div class="reveal">
+                <h3 class="text-2xl font-medium mb-4">We led with proof, not promises.</h3>
+                <p class="text-lg text-muted leading-relaxed">The homepage was rebuilt to lead with the numbers that matter: 27+ years, 1,500+ contractors, 400,000+ annual installations, 40+ states. These aren't buried in body copy -- they're the first thing a visitor sees. This decision came directly from the strategy workshop where the client acknowledged they had the credibility but weren't showcasing it. We also introduced a "Transforming Spaces, Delivering Results" project carousel to visually demonstrate installation quality across product categories.</p>
+            </div>
+
+            <div class="reveal">
+                <h3 class="text-2xl font-medium mb-4">We explored a brand identity refresh.</h3>
+                <p class="text-lg text-muted leading-relaxed">In addition to the website, we experimented with a modernized logo concept and opened a conversation about whether the company should position itself as "RFI" or "RF Installations" going forward. This wasn't in the original scope, but it was the kind of added value that strengthened the relationship and helped the client think bigger about their brand.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Full-width Image -->
+<section class="px-8 lg:px-16 py-16">
+    <div class="max-w-7xl mx-auto">
+        <div class="reveal aspect-[16/9] rounded-lg overflow-hidden shadow-2xl">
+            <img src="rfi-2.png" alt="RF Installations website mockup" class="w-full h-full object-cover" loading="lazy"/>
+        </div>
+    </div>
+</section>
+
+<!-- Results -->
+<section class="py-32 px-8 lg:px-16 bg-zinc-950 text-white">
+    <div class="max-w-7xl mx-auto">
+        <div class="reveal mb-20">
+            <span class="text-xs uppercase tracking-label text-primary-light mb-4 block">The Results</span>
+            <h2 class="font-light text-4xl md:text-5xl">A site that finally matches<br class="hidden md:block"/> the company behind it</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+            <div class="stat-block border-t border-white/10 pt-8" style="transition-delay: 0.1s;">
+                <span class="material-symbols-outlined text-primary-light text-3xl mb-4" aria-hidden="true">verified</span>
+                <h3 class="text-lg font-medium mb-2">Credibility Upgrade</h3>
+                <p class="text-sm text-white/40 leading-relaxed">The site now matches the company's $70M+ operational scale. Numbers lead, not promises.</p>
+            </div>
+            <div class="stat-block border-t border-white/10 pt-8" style="transition-delay: 0.2s;">
+                <span class="material-symbols-outlined text-primary-light text-3xl mb-4" aria-hidden="true">people</span>
+                <h3 class="text-lg font-medium mb-2">Audience Clarity</h3>
+                <p class="text-sm text-white/40 leading-relaxed">Three distinct user paths replace a single generic experience for partners, contractors, and consumers.</p>
+            </div>
+            <div class="stat-block border-t border-white/10 pt-8" style="transition-delay: 0.3s;">
+                <span class="material-symbols-outlined text-primary-light text-3xl mb-4" aria-hidden="true">trending_up</span>
+                <h3 class="text-lg font-medium mb-2">Sales Enablement</h3>
+                <p class="text-sm text-white/40 leading-relaxed">The site reinforces sales conversations instead of undercutting them.</p>
+            </div>
+            <div class="stat-block border-t border-white/10 pt-8" style="transition-delay: 0.4s;">
+                <span class="material-symbols-outlined text-primary-light text-3xl mb-4" aria-hidden="true">campaign</span>
+                <h3 class="text-lg font-medium mb-2">Launch Kit</h3>
+                <p class="text-sm text-white/40 leading-relaxed">Branded mockups and social captions delivered alongside the site for a turnkey announcement.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonial -->
+<section class="py-32 px-8 lg:px-16 border-t border-black/5">
+    <div class="max-w-4xl mx-auto text-center">
+        <span class="material-symbols-outlined text-primary text-4xl mb-8 block opacity-30" aria-hidden="true">format_quote</span>
+        <blockquote class="text-3xl md:text-4xl font-light leading-snug mb-10">
+            "Thanks the entire team for their patience with us. We finally made it to launch!!"
+        </blockquote>
+        <div>
+            <span class="text-sm font-semibold">Gary Ford</span>
+            <span class="text-sm text-muted ml-2">VP Strategy & Technology, RF Installations</span>
+        </div>
+    </div>
+</section>
+
+<!-- What Made This Different -->
+<section class="py-32 px-8 lg:px-16 border-t border-black/5" style="background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);">
+    <div class="max-w-4xl mx-auto">
+        <div class="reveal mb-12">
+            <span class="text-xs uppercase tracking-label text-primary mb-4 block">What Made This Different</span>
+            <h2 class="font-light text-4xl md:text-5xl">The launch kit, plus a brand conversation they didn't expect</h2>
+        </div>
+        <div class="space-y-6">
+            <p class="text-lg text-muted leading-relaxed">Most agencies hand over a URL and move on. We delivered a complete launch package: branded mockup images styled for social, three caption options written in RFI's brand voice, and a feedback form. This turned the launch from a quiet go-live into a marketing moment the client could actually use.</p>
+            <p class="text-lg text-muted leading-relaxed">We also went beyond the original scope by exploring a modernized logo concept and opening a conversation about brand positioning (RFI vs. RF Installations). None of that was in the contract. But for a company going through a major web presence upgrade, it was the right moment to ask the bigger question about who they want to be. That kind of added value is what turns a project into a relationship.</p>
+        </div>
+
+        <!-- Launch Kit Gallery -->
+        <div class="reveal mt-20">
+            <span class="text-xs uppercase tracking-label text-primary mb-6 block">The Launch Kit</span>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="aspect-[4/5] rounded-lg overflow-hidden shadow-lg">
+                    <img src="rfi-Instagram-format.png" alt="RFI Instagram mockup" class="w-full h-full object-cover" loading="lazy"/>
+                </div>
+                <div class="aspect-[4/5] rounded-lg overflow-hidden shadow-lg">
+                    <img src="rfi-Instagram-format_2.png" alt="RFI Instagram mockup alternate" class="w-full h-full object-cover" loading="lazy"/>
+                </div>
+                <div class="aspect-[4/5] rounded-lg overflow-hidden shadow-lg">
+                    <img src="rfi-square-format.png" alt="RFI square social mockup" class="w-full h-full object-cover" loading="lazy"/>
+                </div>
+                <div class="aspect-[4/5] rounded-lg overflow-hidden shadow-lg">
+                    <img src="rfi-square-format_2.png" alt="RFI square social mockup alternate" class="w-full h-full object-cover" loading="lazy"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Related Case Studies -->
+<section class="py-32 px-8 lg:px-16 border-t border-black/5">
+    <div class="max-w-7xl mx-auto">
+        <div class="reveal flex justify-between items-end mb-16">
+            <div>
+                <span class="text-xs uppercase tracking-label text-primary mb-4 block">More Work</span>
+                <h2 class="font-light text-4xl">Related case studies</h2>
+            </div>
+            <a href="work.html" class="group hidden md:inline-flex items-center gap-2 text-xs uppercase tracking-label text-primary font-medium hover:text-primary-dark transition-colors">
+                View All
+                <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
+            </a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 
             <!-- FRENZY -->
-            <a href="case-study-frenzy.html" class="case-card block group" data-category="webdesign" style="animation-delay: 0.05s;">
+            <a href="case-study-frenzy.html" class="reveal reveal-delay-1 related-card block group">
                 <div class="aspect-[16/10] overflow-hidden rounded-lg mb-6 shadow-lg">
                     <img src="frenzy-1.png" alt="FRENZY website homepage" class="card-gradient w-full h-full object-cover"/>
                 </div>
-                <div class="flex items-center gap-3 mb-3">
-                    <span class="text-xs uppercase tracking-label text-primary font-medium bg-primary/5 px-3 py-1">Web Design & Development</span>
+                <div class="flex items-center gap-3 mb-2">
+                    <span class="text-xs uppercase tracking-label text-primary font-medium">Web Design & Development</span>
                 </div>
-                <h2 class="text-3xl font-light mb-2 group-hover:text-primary transition-colors duration-300">FRENZY</h2>
-                <p class="text-base text-muted leading-relaxed mb-4">A bold website redesign for an Inc 5000, Cannes Lyon-winning B2B agency. Their old site looked like every other agency. The new one doesn't.</p>
-                <div class="flex items-center justify-between">
-                    <span class="text-xs uppercase tracking-label font-medium opacity-50">Brand Alignment</span>
-                    <span class="card-arrow flex items-center gap-2 text-xs text-primary uppercase tracking-label font-medium">
-                        Read the case study <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span>
-                    </span>
-                </div>
-            </a>
-
-            <!-- RF Installations -->
-            <a href="case-study-rfi.html" class="case-card block group" data-category="webdesign" style="animation-delay: 0.1s;">
-                <div class="aspect-[16/10] overflow-hidden rounded-lg mb-6 shadow-lg">
-                    <img src="rfi-1.png" alt="RF Installations website mockup" class="card-gradient w-full h-full object-cover"/>
-                </div>
-                <div class="flex items-center gap-3 mb-3">
-                    <span class="text-xs uppercase tracking-label text-primary font-medium bg-primary/5 px-3 py-1">Web Design & Development</span>
-                </div>
-                <h2 class="text-3xl font-light mb-2 group-hover:text-primary transition-colors duration-300">RF Installations</h2>
-                <p class="text-base text-muted leading-relaxed mb-4">A complete website redesign for a $70M national installation company with 1,500+ contractors and 400,000+ installations a year.</p>
-                <div class="flex items-center justify-between">
-                    <span class="text-xs uppercase tracking-label font-medium opacity-50">Credibility Upgrade</span>
-                    <span class="card-arrow flex items-center gap-2 text-xs text-primary uppercase tracking-label font-medium">
-                        Read the case study <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span>
-                    </span>
-                </div>
+                <h3 class="text-2xl font-light mb-1 group-hover:text-primary transition-colors duration-300">FRENZY</h3>
+                <p class="text-sm text-muted mb-2">Bold website redesign for an Inc 5000, Cannes Lyon-winning B2B agency.</p>
+                <p class="text-xs uppercase tracking-label opacity-40">Brand Alignment</p>
             </a>
 
             <!-- CaseHub -->
-            <a href="case-study.html" class="case-card block group" data-category="government" style="animation-delay: 0.1s;">
+            <a href="case-study.html" class="reveal reveal-delay-2 related-card block group">
                 <div class="aspect-[16/10] overflow-hidden rounded-lg mb-6 shadow-lg">
                     <div class="card-gradient w-full h-full" style="background: linear-gradient(160deg, #212121 0%, #07406B 50%, #1863DC 100%)"></div>
                 </div>
-                <div class="flex items-center gap-3 mb-3">
-                    <span class="text-xs uppercase tracking-label text-primary font-medium bg-primary/5 px-3 py-1">Government & Courts</span>
+                <div class="flex items-center gap-3 mb-2">
+                    <span class="text-xs uppercase tracking-label text-primary font-medium">Government & Courts</span>
                 </div>
-                <h2 class="text-3xl font-light mb-2 group-hover:text-primary transition-colors duration-300">CaseHub</h2>
-                <p class="text-base text-muted leading-relaxed mb-4">Replaced paper filing across 12 counties with a unified digital court management platform.</p>
-                <div class="flex items-center justify-between">
-                    <span class="text-xs uppercase tracking-label font-medium opacity-50">45% Faster Filing Time</span>
-                    <span class="card-arrow flex items-center gap-2 text-xs text-primary uppercase tracking-label font-medium">
-                        Read the case study <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span>
-                    </span>
-                </div>
+                <h3 class="text-2xl font-light mb-1 group-hover:text-primary transition-colors duration-300">CaseHub</h3>
+                <p class="text-sm text-muted mb-2">Replaced paper filing across 12 counties with a unified digital platform.</p>
+                <p class="text-xs uppercase tracking-label opacity-40">45% Faster Filing Time</p>
             </a>
 
             <!-- Azul Arc Internal -->
-            <a href="case-study.html" class="case-card block group" data-category="growth" style="animation-delay: 0.2s;">
+            <a href="case-study.html" class="reveal reveal-delay-3 related-card block group">
                 <div class="aspect-[16/10] overflow-hidden rounded-lg mb-6 shadow-lg">
                     <div class="card-gradient w-full h-full" style="background: linear-gradient(160deg, #212121 0%, #1863DC 50%, #2AA7DF 100%)"></div>
                 </div>
-                <div class="flex items-center gap-3 mb-3">
-                    <span class="text-xs uppercase tracking-label text-primary font-medium bg-primary/5 px-3 py-1">Growth-Stage</span>
+                <div class="flex items-center gap-3 mb-2">
+                    <span class="text-xs uppercase tracking-label text-primary font-medium">Growth-Stage</span>
                 </div>
-                <h2 class="text-3xl font-light mb-2 group-hover:text-primary transition-colors duration-300">Azul Arc Internal</h2>
-                <p class="text-base text-muted leading-relaxed mb-4">Zero-downtime migration to modern cloud infrastructure. We rebuilt our own stack to prove the process works.</p>
-                <div class="flex items-center justify-between">
-                    <span class="text-xs uppercase tracking-label font-medium opacity-50">Zero-Downtime Migration</span>
-                    <span class="card-arrow flex items-center gap-2 text-xs text-primary uppercase tracking-label font-medium">
-                        Read the case study <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span>
-                    </span>
-                </div>
+                <h3 class="text-2xl font-light mb-1 group-hover:text-primary transition-colors duration-300">Azul Arc Internal</h3>
+                <p class="text-sm text-muted mb-2">Zero-downtime migration to modern cloud infrastructure.</p>
+                <p class="text-xs uppercase tracking-label opacity-40">Zero-Downtime Migration</p>
             </a>
 
-            <!-- RenderLab -->
-            <a href="case-study.html" class="case-card block group" data-category="manufacturing" style="animation-delay: 0.3s;">
-                <div class="aspect-[16/10] overflow-hidden rounded-lg mb-6 shadow-lg">
-                    <div class="card-gradient w-full h-full" style="background: linear-gradient(160deg, #212121 0%, #07406B 60%, #212121 100%)"></div>
-                </div>
-                <div class="flex items-center gap-3 mb-3">
-                    <span class="text-xs uppercase tracking-label text-primary font-medium bg-primary/5 px-3 py-1">Manufacturing</span>
-                </div>
-                <h2 class="text-3xl font-light mb-2 group-hover:text-primary transition-colors duration-300">RenderLab</h2>
-                <p class="text-base text-muted leading-relaxed mb-4">Built a 3D rendering pipeline that handles 3x the volume on the same infrastructure.</p>
-                <div class="flex items-center justify-between">
-                    <span class="text-xs uppercase tracking-label font-medium opacity-50">300% Scaling Capacity</span>
-                    <span class="card-arrow flex items-center gap-2 text-xs text-primary uppercase tracking-label font-medium">
-                        Read the case study <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span>
-                    </span>
-                </div>
-            </a>
-
-            <!-- FlowOps -->
-            <a href="case-study.html" class="case-card block group" data-category="manufacturing" style="animation-delay: 0.4s;">
-                <div class="aspect-[16/10] overflow-hidden rounded-lg mb-6 shadow-lg">
-                    <div class="card-gradient w-full h-full" style="background: linear-gradient(160deg, #212121 0%, #2AA7DF 40%, #07406B 100%)"></div>
-                </div>
-                <div class="flex items-center gap-3 mb-3">
-                    <span class="text-xs uppercase tracking-label text-primary font-medium bg-primary/5 px-3 py-1">Manufacturing</span>
-                </div>
-                <h2 class="text-3xl font-light mb-2 group-hover:text-primary transition-colors duration-300">FlowOps</h2>
-                <p class="text-base text-muted leading-relaxed mb-4">Streamlined warehouse operations across 8 facilities, cutting manual processes and redundant workflows.</p>
-                <div class="flex items-center justify-between">
-                    <span class="text-xs uppercase tracking-label font-medium opacity-50">20% Operational Cost Save</span>
-                    <span class="card-arrow flex items-center gap-2 text-xs text-primary uppercase tracking-label font-medium">
-                        Read the case study <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span>
-                    </span>
-                </div>
-            </a>
-
-            <!-- Meridian Connect -->
-            <a href="case-study.html" class="case-card block group" data-category="manufacturing" style="animation-delay: 0.5s;">
-                <div class="aspect-[16/10] overflow-hidden rounded-lg mb-6 shadow-lg">
-                    <div class="card-gradient w-full h-full" style="background: linear-gradient(160deg, #212121 0%, #2AA7DF 50%, #1863DC 100%)"></div>
-                </div>
-                <div class="flex items-center gap-3 mb-3">
-                    <span class="text-xs uppercase tracking-label text-primary font-medium bg-primary/5 px-3 py-1">Manufacturing</span>
-                </div>
-                <h2 class="text-3xl font-light mb-2 group-hover:text-primary transition-colors duration-300">Meridian Connect</h2>
-                <p class="text-base text-muted leading-relaxed mb-4">Connected the factory floor to the front office with a unified sales visibility platform.</p>
-                <div class="flex items-center justify-between">
-                    <span class="text-xs uppercase tracking-label font-medium opacity-50">2x Sales Visibility</span>
-                    <span class="card-arrow flex items-center gap-2 text-xs text-primary uppercase tracking-label font-medium">
-                        Read the case study <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span>
-                    </span>
-                </div>
-            </a>
-
-            <!-- CourtSync -->
-            <a href="case-study.html" class="case-card block group" data-category="government" style="animation-delay: 0.6s;">
-                <div class="aspect-[16/10] overflow-hidden rounded-lg mb-6 shadow-lg">
-                    <div class="card-gradient w-full h-full" style="background: linear-gradient(160deg, #212121 0%, #1863DC 40%, #07406B 100%)"></div>
-                </div>
-                <div class="flex items-center gap-3 mb-3">
-                    <span class="text-xs uppercase tracking-label text-primary font-medium bg-primary/5 px-3 py-1">Government & Courts</span>
-                </div>
-                <h2 class="text-3xl font-light mb-2 group-hover:text-primary transition-colors duration-300">CourtSync</h2>
-                <p class="text-base text-muted leading-relaxed mb-4">Automated 80% of routine filings with intelligent document processing and workflow automation.</p>
-                <div class="flex items-center justify-between">
-                    <span class="text-xs uppercase tracking-label font-medium opacity-50">80% Automation Rate</span>
-                    <span class="card-arrow flex items-center gap-2 text-xs text-primary uppercase tracking-label font-medium">
-                        Read the case study <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span>
-                    </span>
-                </div>
-            </a>
-
-        </div>
-    </div>
-</section>
-
-<!-- Impact Stats -->
-<section class="py-20 px-8 lg:px-16 bg-zinc-950 text-white">
-    <div class="max-w-7xl mx-auto">
-        <div class="flex flex-col md:flex-row items-center justify-between gap-12">
-            <div class="reveal">
-                <span class="text-xs uppercase tracking-label text-primary-light mb-4 block">Aggregate Impact</span>
-                <p class="text-xl font-light text-white/60">The numbers behind our work.</p>
-            </div>
-            <div class="reveal reveal-delay-1 flex gap-16 md:gap-20">
-                <div class="text-center">
-                    <span class="block text-5xl md:text-6xl font-light">200+</span>
-                    <span class="text-xs uppercase tracking-wide-label text-white/40 mt-2 block">Projects Delivered</span>
-                </div>
-                <div class="text-center">
-                    <span class="block text-5xl md:text-6xl font-light">20+</span>
-                    <span class="text-xs uppercase tracking-wide-label text-white/40 mt-2 block">Years in Business</span>
-                </div>
-                <div class="text-center">
-                    <span class="block text-5xl md:text-6xl font-light">6</span>
-                    <span class="text-xs uppercase tracking-wide-label text-white/40 mt-2 block">Industries Served</span>
-                </div>
-            </div>
         </div>
     </div>
 </section>
 
 <!-- CTA -->
-<section class="py-32 px-8 lg:px-16 cta-section" id="cta-section">
+<section class="py-32 px-8 lg:px-16 border-t border-black/5 cta-section" id="cta-section">
     <div class="reveal max-w-4xl mx-auto text-center">
-        <h2 class="font-light text-5xl md:text-6xl mb-8 cta-text">Have a project like this?</h2>
-        <p class="text-xl text-muted mb-12 max-w-2xl mx-auto cta-muted">Tell us what you're working with. We'll tell you what's possible -- and what it would take to get there.</p>
+        <h2 class="font-light text-5xl md:text-6xl mb-8 cta-text">Ready to start a project?</h2>
+        <p class="text-xl text-muted mb-12 max-w-2xl mx-auto cta-muted">We build websites that match the scale and ambition of the companies behind them.</p>
         <a href="contact.html" class="cta-wipe group inline-flex items-center gap-3 border border-black/15 px-8 py-5 text-sm uppercase tracking-cta font-medium" id="cta-btn">
-            <span>Talk About My Project</span>
+            <span>Get in Touch</span>
             <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform duration-300" aria-hidden="true">arrow_forward</span>
         </a>
     </div>
@@ -752,37 +787,19 @@
         });
     })();
 
-    // Filter functionality
+    // Scroll-triggered stat animations
     (function() {
-        const tabs = document.querySelectorAll('.filter-tab');
-        const cards = document.querySelectorAll('.case-card');
-
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                // Update active tab
-                tabs.forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-
-                const filter = tab.dataset.filter;
-
-                // Filter cards with animation
-                cards.forEach((card, i) => {
-                    card.style.animation = 'none';
-                    card.offsetHeight; // Trigger reflow
-
-                    if (filter === 'all' || card.dataset.category === filter) {
-                        card.style.display = 'block';
-                        card.style.animationDelay = (i * 0.1) + 's';
-                        card.style.animation = 'fadeInUp 0.6s ease forwards';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
+        const stats = document.querySelectorAll('.stat-block');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
             });
-        });
+        }, { threshold: 0.2 });
+        stats.forEach(stat => observer.observe(stat));
     })();
 </script>
-
 
 <script>
 // Scroll reveal
@@ -822,7 +839,6 @@ if (ctaBtn && ctaSection) {
         iconOpen.style.display = 'none';
         iconClose.style.display = '';
         document.body.style.overflow = 'hidden';
-        // Focus first link
         const firstLink = menu.querySelector('a');
         if (firstLink) firstLink.focus();
     }
@@ -842,19 +858,16 @@ if (ctaBtn && ctaSection) {
         if (isOpen) closeMenu(); else openMenu();
     });
 
-    // Close on Escape
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && menu.classList.contains('active')) {
             closeMenu();
         }
     });
 
-    // Close on link click
     menu.querySelectorAll('a').forEach(function(link) {
         link.addEventListener('click', closeMenu);
     });
 
-    // Close if resized to desktop
     window.addEventListener('resize', function() {
         if (window.innerWidth >= 768 && menu.classList.contains('active')) {
             closeMenu();

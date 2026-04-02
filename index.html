@@ -464,6 +464,7 @@
 <div class="hidden md:flex gap-6 text-sm uppercase tracking-widest font-medium items-center nav-links">
 <a class="hover:opacity-60 transition-opacity flex items-center gap-1 cursor-pointer nav-dd-trigger" data-dropdown="industries" href="#industries">Industries <span class="material-symbols-outlined text-sm" aria-hidden="true">expand_more</span></a>
 <a class="hover:opacity-60 transition-opacity flex items-center gap-1 cursor-pointer nav-dd-trigger" data-dropdown="whatwedo" href="#capabilities">What We Do <span class="material-symbols-outlined text-sm" aria-hidden="true">expand_more</span></a>
+<a class="hover:opacity-60 transition-opacity flex items-center gap-1 cursor-pointer nav-dd-trigger" data-dropdown="products" href="#products">Products <span class="material-symbols-outlined text-sm" aria-hidden="true">expand_more</span></a>
 <a class="hover:opacity-60 transition-opacity" href="how-we-work.html">How We Work</a>
 <a class="hover:opacity-60 transition-opacity" href="work.html">Work</a>
 <a class="hover:opacity-60 transition-opacity" href="insights.html">Insights</a>
@@ -489,6 +490,11 @@
 <a href="services/web-design-development.html" class="mobile-menu-sublink">Web Design &amp; Development</a>
 <a href="services/3d-visualization.html" class="mobile-menu-sublink">3D Visualisation</a>
 <a href="services/case-management.html" class="mobile-menu-sublink">Case Management Systems</a>
+</div>
+<div class="mobile-menu-section">
+<div class="mobile-menu-heading">Products</div>
+<a href="casehub.html" class="mobile-menu-sublink">CaseHub</a>
+<a href="renderlab.html" class="mobile-menu-sublink">Renderlab</a>
 </div>
 <div class="mobile-menu-section">
 <a href="how-we-work.html" class="mobile-menu-link">How We Work</a>
@@ -553,6 +559,28 @@
 <a href="services/case-management.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
 <span class="text-xs text-white/20 font-mono w-6">04</span>
 <div class="flex-1"><div class="text-menu font-medium text-white group-hover/item:text-primary-light transition-colors">Case Management Systems</div><div class="text-xs text-white/40 mt-1">Track every case, automate the rest</div></div>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div id="mega-products" class="mega-menu fixed top-0 left-0 w-full z-40 pt-[72px] opacity-0 invisible translate-y-[-8px] transition-all duration-300 ease-out pointer-events-none">
+<div class="mx-8 bg-text-dark backdrop-blur-xl rounded-xl pointer-events-auto overflow-hidden">
+<div class="flex">
+<div class="w-64 shrink-0 p-8 border-r border-white/10 flex flex-col justify-center">
+<span class="text-xs uppercase tracking-label text-primary-light mb-2">Products</span>
+<p class="text-sm text-white/40 leading-relaxed">Software built for specific industries and use cases.</p>
+</div>
+<div class="flex-1 p-4">
+<a href="casehub.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<span class="text-xs text-white/20 font-mono w-6">01</span>
+<div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">CaseHub</div><div class="text-xs text-white/40 mt-1">Modern case management for courts &amp; agencies</div></div>
+<span class="material-symbols-outlined text-white/20 text-base group-hover/item:text-primary-light group-hover/item:translate-x-1 transition-all" aria-hidden="true">arrow_forward</span>
+</a>
+<a href="renderlab.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<span class="text-xs text-white/20 font-mono w-6">02</span>
+<div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">Renderlab</div><div class="text-xs text-white/40 mt-1">3D product visualization and configuration</div></div>
+<span class="material-symbols-outlined text-white/20 text-base group-hover/item:text-primary-light group-hover/item:translate-x-1 transition-all" aria-hidden="true">arrow_forward</span>
 </a>
 </div>
 </div>
@@ -1839,7 +1867,8 @@ Back to Calendar
             hp = (a.getAttribute('href') || '').split('/').pop();
         if (
             (dd === 'industries' && dir === 'industries') ||
-            (dd === 'whatwedo' && (dir === 'services' || page === 'casehub.html')) ||
+            (dd === 'whatwedo' && dir === 'services') ||
+            (dd === 'products' && (page === 'casehub.html' || page === 'renderlab.html')) ||
             (hp === 'how-we-work.html' && page === 'how-we-work.html') ||
             (hp === 'work.html' && (page === 'work.html' || page === 'case-study.html')) ||
             (hp === 'insights.html' && (page === 'insights.html' || dir === 'insights')) ||

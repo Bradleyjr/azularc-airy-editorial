@@ -316,6 +316,45 @@
         }
         .reveal { opacity: 1; transform: none; }
     }
+    /* Hero parallax — CSS scroll-driven, graceful fallback */
+    @keyframes hero-parallax {
+        from { transform: translateY(0); }
+        to   { transform: translateY(120px); }
+    }
+    .hero-bg {
+        animation: hero-parallax linear;
+        animation-timeline: scroll(root);
+        animation-range: 0 50vh;
+    }
+    /* Chapter progress dots */
+    .chapter-dot {
+        width: 6px; height: 6px; border-radius: 50%;
+        background: rgba(0,0,0,0.15);
+        transition: all 0.4s ease;
+        border: none; padding: 0; cursor: pointer;
+        display: block;
+    }
+    .chapter-dot.active { background: #1863DC; transform: scale(1.5); }
+    #chapter-nav.nav-light .chapter-dot { background: rgba(255,255,255,0.3); }
+    #chapter-nav.nav-light .chapter-dot.active { background: white; }
+    /* Scroll hint */
+    @keyframes scroll-hint-bounce {
+        0%, 100% { transform: translateY(0); opacity: 0.35; }
+        50% { transform: translateY(8px); opacity: 0.6; }
+    }
+    .scroll-hint { animation: scroll-hint-bounce 2s ease-in-out infinite; transition: opacity 0.5s ease; }
+    /* Client marquee */
+    @keyframes marquee-left {
+        from { transform: translateX(0); }
+        to   { transform: translateX(-50%); }
+    }
+    .marquee-track {
+        animation: marquee-left 35s linear infinite;
+        display: flex; width: max-content;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    /* Stat counter tabular nums */
+    .stat-counter { font-variant-numeric: tabular-nums; }
     </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-text-dark dark:text-text-light font-sans selection:bg-primary selection:text-white">
@@ -425,128 +464,118 @@
 </div>
 
 <main id="main-content">
+<!-- Chapter progress navigation -->
+<nav id="chapter-nav" class="fixed left-6 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col gap-3" aria-label="Page chapters">
+<button class="chapter-dot" data-target-chapter="origin" aria-label="The Origin"></button>
+<button class="chapter-dot" data-target-chapter="numbers" aria-label="By the Numbers"></button>
+<button class="chapter-dot" data-target-chapter="values" aria-label="What We Believe"></button>
+<button class="chapter-dot" data-target-chapter="team" aria-label="The Team"></button>
+<button class="chapter-dot" data-target-chapter="proof" aria-label="Who Trusts Us"></button>
+</nav>
 <!-- ===== HERO ===== -->
-<section class="relative min-h-[85vh] flex flex-col justify-end overflow-hidden bg-navy text-white">
-<div class="absolute inset-0 z-0">
+<section class="relative min-h-screen flex flex-col justify-end overflow-hidden bg-navy text-white">
+<div class="absolute inset-0 z-0 hero-bg">
 <img alt="AzulArc team at work" class="w-full h-full object-cover opacity-25" src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80"/>
-<div class="absolute inset-0 bg-gradient-to-t from-navy via-navy/70 to-navy/40"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-navy via-navy/70 to-navy/30"></div>
 </div>
-<div class="relative z-10 px-8 lg:px-16 pb-20 pt-48">
-<h1 class="font-semibold text-5xl md:text-7xl lg:text-8xl leading-none tracking-tighter mb-16">
-            Two decades of solving<br/>problems that matter.
-        </h1>
-<div class="flex flex-col md:flex-row gap-16 items-start md:items-end justify-between border-t border-white/15 pt-10">
-<div class="max-w-xl">
-<p class="text-lg text-white/60 leading-relaxed">
-                    We're an Atlanta-based product development and design company. Since 2003, we've helped mid-market companies replace the systems holding them back with software that actually fits how they work.
-                </p>
-</div>
-<div class="flex items-center gap-12">
-<div class="flex gap-10">
-<div>
-<span class="block text-3xl font-semibold">2003</span>
-<span class="text-xs uppercase tracking-wide-label text-white/40">Founded</span>
-</div>
-<div>
-<span class="block text-3xl font-semibold">ATL</span>
-<span class="text-xs uppercase tracking-wide-label text-white/40">Headquartered</span>
-</div>
-</div>
+<div class="relative z-10 px-8 lg:px-16 pb-24 pt-48">
+<h1 class="font-light text-6xl md:text-8xl lg:text-9xl leading-[0.9] tracking-tighter mb-12">
+    Two decades of solving<br/>problems that matter.
+</h1>
+<div class="border-t border-white/15 pt-10 flex flex-col md:flex-row items-start md:items-end gap-8 justify-between">
+<p class="text-lg text-white/60 leading-relaxed max-w-xl">Atlanta-based product development since 2003. We build custom software for mid-market companies ready to replace the systems holding them back.</p>
+<div class="flex flex-col items-center gap-2 scroll-hint" id="scroll-hint" aria-hidden="true">
+<span class="text-xs uppercase tracking-label text-white/30">Scroll</span>
+<span class="material-symbols-outlined text-white/30 text-sm">arrow_downward</span>
 </div>
 </div>
 </div>
 </section>
 
-<!-- ===== OUR STORY ===== -->
-<section class="py-32 px-8 lg:px-16">
+<!-- ===== THE ORIGIN ===== -->
+<section class="py-40 px-8 lg:px-16" id="chapter-origin" data-chapter="origin">
 <div class="max-w-7xl mx-auto">
-<div class="flex flex-col lg:flex-row gap-20">
-<!-- Left: Editorial text -->
-<div class="lg:w-3/5 reveal">
-<span class="text-xs uppercase tracking-label text-primary mb-6 block">Our Story</span>
-<h2 class="font-light text-4xl md:text-5xl leading-tight mb-10">We started because mid-market companies deserved better.</h2>
-<div class="space-y-6 text-lg text-text-dark/70 leading-relaxed">
-<p>
-                        In 2003, our founders saw a gap that nobody was filling. Enterprise software vendors built bloated, expensive platforms for Fortune 500 companies. Freelancers and small agencies built websites and basic apps. But mid-market companies -- the ones doing $10M to $500M in revenue, with real operational complexity -- had nowhere to turn for the kind of custom software that could actually transform how they worked.
-                    </p>
-<p>
-                        So we built a company to serve them. We started with two developers, a project manager, and a simple philosophy: treat every client's problem like it was our own problem, understand their business before writing a single line of code, and never disappear after launch.
-                    </p>
-<p>
-                        Over two decades, that philosophy has turned into 200+ shipped projects across government courts, manufacturing floors, and growing companies that needed systems as ambitious as their plans. Our team has grown, our technology has evolved, but the core commitment hasn't changed: we build software that works as hard as the people who use it.
-                    </p>
-<p>
-                        Today, we're a team of designers, engineers, and strategists headquartered in Atlanta, with collaborators across the country. Our clients come to us because they've outgrown what got them here. They stay because we stick around long after go-live.
-                    </p>
-</div>
-</div>
-<!-- Right: Stats -->
-<div class="lg:w-2/5 reveal" style="transition-delay: 0.15s;">
-<div class="sticky top-32 space-y-12">
-<div class="border-b border-black/10 pb-10">
-<span class="block text-7xl font-semibold tracking-tighter">20+</span>
-<span class="text-sm uppercase tracking-wide-label text-muted mt-2 block">Years in Business</span>
-<p class="text-base text-text-dark/60 mt-4 leading-relaxed">Building custom software since 2003. Through three recessions, two technology paradigm shifts, and one pandemic.</p>
-</div>
-<div class="border-b border-black/10 pb-10">
-<span class="block text-7xl font-semibold tracking-tighter">200+</span>
-<span class="text-sm uppercase tracking-wide-label text-muted mt-2 block">Projects Shipped</span>
-<p class="text-base text-text-dark/60 mt-4 leading-relaxed">From court case management systems processing millions of filings to 3D product configurators driving eight-figure sales pipelines.</p>
-</div>
-<div class="border-b border-black/10 pb-10">
-<span class="block text-7xl font-semibold tracking-tighter">92%</span>
-<span class="text-sm uppercase tracking-wide-label text-muted mt-2 block">Client Retention</span>
-<p class="text-base text-text-dark/60 mt-4 leading-relaxed">Our average client relationship is 4+ years. Most never leave. That's not a contract lock-in -- it's earned trust.</p>
-</div>
-<div>
-<span class="block text-7xl font-semibold tracking-tighter">3</span>
-<span class="text-sm uppercase tracking-wide-label text-muted mt-2 block">Core Industries</span>
-<p class="text-base text-text-dark/60 mt-4 leading-relaxed">Government courts, product manufacturers, and growth-stage companies. Deep domain expertise in each.</p>
-</div>
-</div>
+<div class="reveal">
+<span class="text-xs uppercase tracking-label text-primary mb-8 block">01 — The Origin</span>
+<h2 class="font-light text-5xl md:text-6xl leading-tight mb-16 max-w-3xl">We started because mid-market companies deserved better.</h2>
+<div class="space-y-8 text-xl text-text-dark/70 leading-relaxed max-w-3xl">
+<p>In 2003, our founders saw a gap nobody was filling. Enterprise vendors built bloated platforms for Fortune 500s. Freelancers built basic websites. Mid-market companies — the ones doing $10M to $500M in revenue with real operational complexity — had nowhere to turn for software that could actually transform how they worked.</p>
+<p>We built Azul Arc to serve them. Two developers, one project manager, and a simple philosophy: treat every client's problem as our own, understand the business before writing a single line of code, and never disappear after launch. Two decades and 200+ shipped projects later, that philosophy hasn't changed.</p>
 </div>
 </div>
 </div>
 </section>
 
-<!-- ===== VALUES ===== -->
-<section class="py-32 px-8 lg:px-16 border-t border-black/5" style="background: linear-gradient(160deg, #dceefb 0%, #e8f4fd 50%, #f0f8ff 100%);">
+<!-- ===== BY THE NUMBERS ===== -->
+<section class="py-40 px-8 lg:px-16 bg-navy text-white" id="chapter-numbers" data-chapter="numbers">
+<div class="max-w-7xl mx-auto">
+<span class="text-xs uppercase tracking-label text-primary-light mb-20 block reveal">02 — By the Numbers</span>
+<div class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/10">
+<div class="py-12 md:py-0 md:pr-16 reveal">
+<span class="stat-counter block text-8xl md:text-9xl font-light tracking-tighter mb-3" data-target="20" data-suffix="+">20+</span>
+<span class="text-sm uppercase tracking-wide-label text-white/40 block mb-4">Years in Business</span>
+<p class="text-base text-white/40 leading-relaxed">Building custom software since 2003. Through three recessions, two technology paradigm shifts, and one pandemic.</p>
+</div>
+<div class="py-12 md:py-0 md:px-16 reveal" style="transition-delay: 0.15s;">
+<span class="stat-counter block text-8xl md:text-9xl font-light tracking-tighter mb-3" data-target="200" data-suffix="+">200+</span>
+<span class="text-sm uppercase tracking-wide-label text-white/40 block mb-4">Projects Shipped</span>
+<p class="text-base text-white/40 leading-relaxed">From court case management systems processing millions of filings to 3D product configurators driving eight-figure sales pipelines.</p>
+</div>
+<div class="py-12 md:py-0 md:pl-16 reveal" style="transition-delay: 0.3s;">
+<span class="stat-counter block text-8xl md:text-9xl font-light tracking-tighter mb-3" data-target="92" data-suffix="%">92%</span>
+<span class="text-sm uppercase tracking-wide-label text-white/40 block mb-4">Client Retention</span>
+<p class="text-base text-white/40 leading-relaxed">Our average client relationship is 4+ years. Most never leave. That's not a contract lock-in — it's earned trust.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ===== WHAT WE BELIEVE ===== -->
+<section class="py-40 px-8 lg:px-16" id="chapter-values" data-chapter="values">
 <div class="max-w-7xl mx-auto">
 <div class="mb-20 reveal">
-<span class="text-xs uppercase tracking-label text-zinc-900/60 mb-4 block">What We Believe</span>
-<h2 class="font-light text-5xl text-zinc-900">The principles that<br/>guide every project.</h2>
+<span class="text-xs uppercase tracking-label text-primary mb-8 block">03 — What We Believe</span>
+<h2 class="font-light text-5xl">The principles behind<br/>every project.</h2>
 </div>
-<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-<div class="value-card bg-white p-10 reveal">
-<span class="material-symbols-outlined text-4xl text-muted value-icon mb-8 block" aria-hidden="true">handshake</span>
-<h3 class="text-xl font-medium mb-4 text-zinc-900">We treat your problems like our own</h3>
-<p class="text-base text-zinc-900/60 leading-relaxed">We don't just execute a spec. We immerse ourselves in your operations, understand the pain, and own the outcome alongside you.</p>
+<div class="divide-y divide-black/10">
+<div class="flex items-start gap-12 py-16 group reveal">
+<span class="material-symbols-outlined text-5xl text-muted/40 group-hover:text-primary/50 transition-colors mt-1 shrink-0" aria-hidden="true">handshake</span>
+<div>
+<h3 class="text-2xl font-medium mb-3">We treat your problems like our own</h3>
+<p class="text-lg text-text-dark/60 max-w-2xl">We don't execute specs. We immerse in your operations, understand the pain, and own the outcome alongside you.</p>
 </div>
-<div class="value-card bg-white p-10 reveal" style="transition-delay: 0.1s;">
-<span class="material-symbols-outlined text-4xl text-muted value-icon mb-8 block" aria-hidden="true">visibility</span>
-<h3 class="text-xl font-medium mb-4 text-zinc-900">No black boxes</h3>
-<p class="text-base text-zinc-900/60 leading-relaxed">You see working software every two weeks. You know where we are, what's next, and exactly how the budget is tracking. Always.</p>
 </div>
-<div class="value-card bg-white p-10 reveal" style="transition-delay: 0.2s;">
-<span class="material-symbols-outlined text-4xl text-muted value-icon mb-8 block" aria-hidden="true">group</span>
-<h3 class="text-xl font-medium mb-4 text-zinc-900">Relationships, not transactions</h3>
-<p class="text-base text-zinc-900/60 leading-relaxed">We don't build software and walk away. We build partnerships that last years -- sticking around to maintain, evolve, and support.</p>
+<div class="flex items-start gap-12 py-16 group reveal">
+<span class="material-symbols-outlined text-5xl text-muted/40 group-hover:text-primary/50 transition-colors mt-1 shrink-0" aria-hidden="true">visibility</span>
+<div>
+<h3 class="text-2xl font-medium mb-3">No black boxes</h3>
+<p class="text-lg text-text-dark/60 max-w-2xl">You see working software every two weeks. You know where we are, what's next, and how the budget is tracking. Always.</p>
 </div>
-<div class="value-card bg-white p-10 reveal" style="transition-delay: 0.3s;">
-<span class="material-symbols-outlined text-4xl text-muted value-icon mb-8 block" aria-hidden="true">rocket_launch</span>
-<h3 class="text-xl font-medium mb-4 text-zinc-900">Ship working software every two weeks</h3>
-<p class="text-base text-zinc-900/60 leading-relaxed">No six-month reveals. No surprises. We deliver in short cycles so you can course-correct early and see real progress continuously.</p>
+</div>
+<div class="flex items-start gap-12 py-16 group reveal">
+<span class="material-symbols-outlined text-5xl text-muted/40 group-hover:text-primary/50 transition-colors mt-1 shrink-0" aria-hidden="true">group</span>
+<div>
+<h3 class="text-2xl font-medium mb-3">Relationships, not transactions</h3>
+<p class="text-lg text-text-dark/60 max-w-2xl">We don't build software and walk away. We build partnerships that last years — maintaining, evolving, and supporting long after launch.</p>
+</div>
+</div>
+<div class="flex items-start gap-12 py-16 group reveal">
+<span class="material-symbols-outlined text-5xl text-muted/40 group-hover:text-primary/50 transition-colors mt-1 shrink-0" aria-hidden="true">rocket_launch</span>
+<div>
+<h3 class="text-2xl font-medium mb-3">Ship working software every two weeks</h3>
+<p class="text-lg text-text-dark/60 max-w-2xl">No six-month reveals. Short cycles, real progress, early course-correction.</p>
+</div>
 </div>
 </div>
 </div>
 </section>
 
 <!-- ===== TEAM ===== -->
-<section class="py-32 px-8 lg:px-16">
+<section class="py-32 px-8 lg:px-16" id="chapter-team" data-chapter="team">
 <div class="max-w-7xl mx-auto">
 <div class="mb-20 flex flex-col md:flex-row justify-between items-start md:items-end gap-8 reveal">
 <div>
-<span class="text-xs uppercase tracking-label text-primary mb-4 block">Our Team</span>
+<span class="text-xs uppercase tracking-label text-primary mb-4 block">04 — The Team</span>
 <h2 class="font-light text-5xl">The people behind<br/>the platforms.</h2>
 </div>
 <p class="text-lg text-text-dark/60 max-w-md leading-relaxed">Headquartered in Atlanta, with collaborators across the globe. Designers, engineers, and strategists who've been doing this for a while.</p>
@@ -765,7 +794,7 @@
 </div>
 <!-- Toggle button -->
 <div class="text-center mt-16">
-<button id="team-toggle" onclick="document.getElementById('team-expanded').style.display = document.getElementById('team-expanded').style.display === 'none' ? 'grid' : 'none'; this.querySelector('span:first-child').textContent = document.getElementById('team-expanded').style.display === 'none' ? 'Meet the full team' : 'Show less'; this.querySelector('.material-symbols-outlined').textContent = document.getElementById('team-expanded').style.display === 'none' ? 'expand_more' : 'expand_less';" class="group inline-flex items-center gap-3 border border-black/10 px-8 py-4 text-sm uppercase tracking-cta font-medium hover:bg-zinc-900 hover:text-white transition-all duration-300">
+<button id="team-toggle" onclick="toggleTeam(this)" class="group inline-flex items-center gap-3 border border-black/10 px-8 py-4 text-sm uppercase tracking-cta font-medium hover:bg-zinc-900 hover:text-white transition-all duration-300">
 <span>Meet the full team</span>
 <span class="material-symbols-outlined text-base group-hover:translate-y-0.5 transition-transform" aria-hidden="true">expand_more</span>
 </button>
@@ -773,46 +802,51 @@
 </div>
 </section>
 
-<!-- ===== CLIENTS & RECOGNITION ===== -->
-<section class="py-40 px-8 lg:px-16 border-t border-black/5 border-b border-black/5">
-<div class="max-w-7xl mx-auto">
-<div class="text-center mb-16 reveal">
-<span class="text-xs uppercase tracking-label text-primary mb-4 block">Clients &amp; Recognition</span>
+<!-- ===== WHO TRUSTS US ===== -->
+<section class="py-40 px-8 lg:px-16 overflow-hidden border-t border-black/5" id="chapter-proof" data-chapter="proof">
+<div class="max-w-7xl mx-auto mb-16 reveal">
+<span class="text-xs uppercase tracking-label text-primary mb-4 block">05 — Who Trusts Us</span>
 <h2 class="font-light text-4xl">Trusted by teams building the future.</h2>
 </div>
-<div class="flex flex-wrap items-center justify-center gap-16 mb-16 reveal">
-<span class="text-2xl font-semibold tracking-tight opacity-20 hover:opacity-50 transition-opacity">Georgia Courts</span>
-<span class="text-2xl font-semibold tracking-tight opacity-20 hover:opacity-50 transition-opacity">Meridian Mfg</span>
-<span class="text-2xl font-semibold tracking-tight opacity-20 hover:opacity-50 transition-opacity">CaseHub</span>
-<span class="text-2xl font-semibold tracking-tight opacity-20 hover:opacity-50 transition-opacity">Polaris Group</span>
-<span class="text-2xl font-semibold tracking-tight opacity-20 hover:opacity-50 transition-opacity">RenderLab</span>
+<div class="overflow-hidden mb-20">
+<div class="marquee-track">
+<span class="text-2xl font-semibold tracking-tight opacity-20 mr-20">Georgia Courts</span>
+<span class="text-2xl font-semibold tracking-tight opacity-20 mr-20">Meridian Mfg</span>
+<span class="text-2xl font-semibold tracking-tight opacity-20 mr-20">CaseHub</span>
+<span class="text-2xl font-semibold tracking-tight opacity-20 mr-20">Polaris Group</span>
+<span class="text-2xl font-semibold tracking-tight opacity-20 mr-20">RenderLab</span>
+<span class="text-2xl font-semibold tracking-tight opacity-20 mr-20">Georgia Courts</span>
+<span class="text-2xl font-semibold tracking-tight opacity-20 mr-20">Meridian Mfg</span>
+<span class="text-2xl font-semibold tracking-tight opacity-20 mr-20">CaseHub</span>
+<span class="text-2xl font-semibold tracking-tight opacity-20 mr-20">Polaris Group</span>
+<span class="text-2xl font-semibold tracking-tight opacity-20 mr-20">RenderLab</span>
 </div>
-<div class="flex flex-col md:flex-row items-center justify-center gap-12 text-center reveal">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-primary" aria-hidden="true">emoji_events</span>
-<span class="text-sm text-text-dark/60">TAG Technology Leadership Award, 2022</span>
 </div>
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-primary" aria-hidden="true">workspace_premium</span>
-<span class="text-sm text-text-dark/60">Inc. 5000 Fastest-Growing, 2019 & 2021</span>
+<div class="max-w-3xl mx-auto reveal">
+<div class="border-t border-black/10 py-5 flex items-center justify-between">
+<span class="text-xs font-mono text-muted">2022</span>
+<span class="text-sm text-text-dark/70">TAG Technology Leadership Award</span>
 </div>
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-primary" aria-hidden="true">star</span>
-<span class="text-sm text-text-dark/60">Georgia Top 40 Innovative Companies</span>
+<div class="border-t border-black/10 py-5 flex items-center justify-between">
+<span class="text-xs font-mono text-muted">2019, 2021</span>
+<span class="text-sm text-text-dark/70">Inc. 5000 Fastest-Growing Company</span>
 </div>
+<div class="border-t border-b border-black/10 py-5 flex items-center justify-between">
+<span class="text-xs font-mono text-muted">—</span>
+<span class="text-sm text-text-dark/70">Georgia Top 40 Innovative Companies</span>
 </div>
 </div>
 </section>
 
 <!-- ===== TESTIMONIAL ===== -->
-<section class="py-40 px-8 lg:px-16 bg-zinc-50">
+<section class="py-40 px-8 lg:px-16 bg-zinc-950 text-white">
 <div class="max-w-4xl mx-auto text-center reveal">
-<blockquote class="text-3xl md:text-4xl font-light leading-snug mb-8">
-            "They didn't just build what we asked for -- they figured out what we actually needed. We've been working together for six years now."
-        </blockquote>
+<blockquote class="text-4xl md:text-5xl font-light leading-snug mb-12">
+    "They didn't just build what we asked for — they figured out what we actually needed. We've been working together for six years now."
+</blockquote>
 <div>
-<span class="text-sm font-semibold">James Whitfield</span>
-<span class="text-sm opacity-40 ml-2">Director of Operations, Meridian Manufacturing</span>
+<span class="text-sm font-semibold text-white">James Whitfield</span>
+<span class="text-sm text-white/40 ml-2">Director of Operations, Meridian Manufacturing</span>
 </div>
 </div>
 </section>
@@ -1014,6 +1048,84 @@ if (ctaBtn && ctaSection) {
         ) a.classList.add('nav-active');
     });
 })();
+</script>
+<script>
+// Chapter progress dots
+(function() {
+  var nav = document.getElementById('chapter-nav');
+  if (!nav) return;
+  var chapterObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (!entry.isIntersecting) return;
+      var ch = entry.target.dataset.chapter;
+      nav.querySelectorAll('.chapter-dot').forEach(function(d) { d.classList.remove('active'); });
+      var dot = nav.querySelector('[data-target-chapter="' + ch + '"]');
+      if (dot) dot.classList.add('active');
+      var isDark = entry.target.classList.contains('bg-navy') || entry.target.classList.contains('bg-zinc-950');
+      nav.classList.toggle('nav-light', isDark);
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('[data-chapter]').forEach(function(el) { chapterObs.observe(el); });
+  nav.querySelectorAll('.chapter-dot').forEach(function(dot) {
+    dot.addEventListener('click', function() {
+      var t = document.getElementById('chapter-' + dot.dataset.targetChapter);
+      if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+})();
+
+// Stat counter animation
+(function() {
+  function animateCounter(el) {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      el.textContent = el.dataset.target + (el.dataset.suffix || ''); return;
+    }
+    var target = parseFloat(el.dataset.target), suffix = el.dataset.suffix || '';
+    var duration = 1800, start = performance.now();
+    function step(now) {
+      var t = Math.min((now - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - t, 3);
+      el.textContent = Math.round(eased * target) + suffix;
+      if (t < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  var cObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (!entry.isIntersecting) return;
+      animateCounter(entry.target);
+      cObs.unobserve(entry.target);
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.stat-counter').forEach(function(el) { cObs.observe(el); });
+})();
+
+// Scroll hint fade
+(function() {
+  var hint = document.getElementById('scroll-hint');
+  if (!hint) return;
+  window.addEventListener('scroll', function() { if (window.scrollY > 100) hint.style.opacity = '0'; }, { once: true });
+})();
+
+// Team expand with reveal animation
+function toggleTeam(btn) {
+  var expanded = document.getElementById('team-expanded');
+  if (!expanded) return;
+  var isHidden = expanded.style.display === 'none' || expanded.style.display === '';
+  if (isHidden) {
+    expanded.style.display = 'grid';
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    expanded.querySelectorAll('.team-card').forEach(function(c) { c.classList.add('reveal'); obs.observe(c); });
+    btn.querySelector('span:first-child').textContent = 'Show less';
+    btn.querySelector('.material-symbols-outlined').textContent = 'expand_less';
+  } else {
+    expanded.style.display = 'none';
+    btn.querySelector('span:first-child').textContent = 'Meet the full team';
+    btn.querySelector('.material-symbols-outlined').textContent = 'expand_more';
+  }
+}
 </script>
 <script>
 // Safari smooth-scroll polyfill

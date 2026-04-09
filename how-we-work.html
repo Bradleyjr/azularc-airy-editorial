@@ -33,6 +33,8 @@
                     "text-light": "#EBEBEB",
                     "muted": "#808285",
                     "navy": "#0B1A2F",
+                    "surface-dark": "#09090b",
+                    "surface": "#FAFAFA",
                 },
                 fontFamily: {
                     display: ["Inter", "sans-serif"],
@@ -47,15 +49,15 @@
                     'label': '0.3em',
                     'cta': '0.15em',
                     'wide-label': '0.2em',
-                    'extra': '0.4em',
                 },
                 fontSize: {
                     'menu': '15px',
                 },
                 transitionDuration: {
-                    'fast': '150ms',
+                    'fast': '200ms',
                     'base': '300ms',
                     'slow': '500ms',
+                    'slower': '700ms',
                 },
             },
         },
@@ -312,7 +314,7 @@
 <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-white focus:text-text-dark focus:px-4 focus:py-2 focus:text-sm focus:font-medium">Skip to main content</a>
 
 <!-- Navigation -->
-<nav id="main-nav" class="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center bg-white/80 backdrop-blur-md text-zinc-900 transition-all duration-300">
+<nav id="main-nav" class="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center bg-white/80 backdrop-blur-md text-text-dark transition-all duration-base">
 <a href="index.html"><img src="azularcLogo.png" alt="Azul Arc" class="h-8"/></a>
 <div class="hidden md:flex gap-6 text-sm uppercase tracking-widest font-medium items-center nav-links">
 <a class="hover:opacity-60 transition-opacity flex items-center gap-1 cursor-pointer nav-dd-trigger" data-dropdown="industries" href="#industries">Industries <span class="material-symbols-outlined text-sm" aria-hidden="true">expand_more</span></a>
@@ -364,7 +366,7 @@
 
 
 <!-- Mega menus -->
-<div id="mega-industries" class="mega-menu fixed top-0 left-0 w-full z-40 pt-[72px] opacity-0 invisible translate-y-[-8px] transition-all duration-300 ease-out pointer-events-none">
+<div id="mega-industries" class="mega-menu fixed top-0 left-0 w-full z-40 pt-[72px] opacity-0 invisible translate-y-[-8px] transition-all duration-base ease-out pointer-events-none">
 <div class="mx-8 bg-text-dark backdrop-blur-xl rounded-xl pointer-events-auto overflow-hidden">
 <div class="flex">
 <div class="w-64 shrink-0 p-8 border-r border-white/10 flex flex-col justify-center">
@@ -372,17 +374,17 @@
 <p class="text-sm text-white/40 leading-relaxed">The industries where we do our best work.</p>
 </div>
 <div class="flex-1 p-4">
-<a href="industries/courts.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<a href="industries/courts.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-fast">
 <span class="text-xs text-white/20 font-mono w-6">01</span>
 <div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">Court Systems</div><div class="text-xs text-white/40 mt-1">Courts, clerks & public agencies</div></div>
 <span class="material-symbols-outlined text-white/20 text-base group-hover/item:text-primary-light group-hover/item:translate-x-1 transition-all" aria-hidden="true">arrow_forward</span>
 </a>
-<a href="industries/manufacturing.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<a href="industries/manufacturing.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-fast">
 <span class="text-xs text-white/20 font-mono w-6">02</span>
 <div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">Product Manufacturers</div><div class="text-xs text-white/40 mt-1">Sales tools & commercial platforms</div></div>
 <span class="material-symbols-outlined text-white/20 text-base group-hover/item:text-primary-light group-hover/item:translate-x-1 transition-all" aria-hidden="true">arrow_forward</span>
 </a>
-<a href="industries/growth-stage.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<a href="industries/growth-stage.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-fast">
 <span class="text-xs text-white/20 font-mono w-6">03</span>
 <div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">Growth-Stage SMBs</div><div class="text-xs text-white/40 mt-1">Scaling operations & legacy replacement</div></div>
 <span class="material-symbols-outlined text-white/20 text-base group-hover/item:text-primary-light group-hover/item:translate-x-1 transition-all" aria-hidden="true">arrow_forward</span>
@@ -391,7 +393,7 @@
 </div>
 </div>
 </div>
-<div id="mega-whatwedo" class="mega-menu fixed top-0 left-0 w-full z-40 pt-[72px] opacity-0 invisible translate-y-[-8px] transition-all duration-300 ease-out pointer-events-none">
+<div id="mega-whatwedo" class="mega-menu fixed top-0 left-0 w-full z-40 pt-[72px] opacity-0 invisible translate-y-[-8px] transition-all duration-base ease-out pointer-events-none">
 <div class="mx-8 bg-text-dark backdrop-blur-xl rounded-xl pointer-events-auto overflow-hidden">
 <div class="flex">
 <div class="w-64 shrink-0 p-8 border-r border-white/10 flex flex-col justify-center">
@@ -399,19 +401,19 @@
 <p class="text-sm text-white/40 leading-relaxed">From strategy to launch and beyond.</p>
 </div>
 <div class="flex-1 p-4 grid grid-cols-2">
-<a href="services/digital-product-strategy.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<a href="services/digital-product-strategy.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-fast">
 <span class="text-xs text-white/20 font-mono w-6">01</span>
 <div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">Digital Product Strategy</div><div class="text-xs text-white/40 mt-1">Figure out what to build first</div></div>
 </a>
-<a href="services/web-design-development.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<a href="services/web-design-development.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-fast">
 <span class="text-xs text-white/20 font-mono w-6">02</span>
 <div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">Web Design & Development</div><div class="text-xs text-white/40 mt-1">Sites & apps that actually convert</div></div>
 </a>
-<a href="services/3d-visualization.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<a href="services/3d-visualization.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-fast">
 <span class="text-xs text-white/20 font-mono w-6">03</span>
 <div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">3D Visualisation</div><div class="text-xs text-white/40 mt-1">Product visuals that sell themselves</div></div>
 </a>
-<a href="services/case-management.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<a href="services/case-management.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-fast">
 <span class="text-xs text-white/20 font-mono w-6">04</span>
 <div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">Case Management Systems</div><div class="text-xs text-white/40 mt-1">Track every case, automate the rest</div></div>
 </a>
@@ -420,7 +422,7 @@
 </div>
 </div>
 
-<div id="mega-products" class="mega-menu fixed top-0 left-0 w-full z-40 pt-[72px] opacity-0 invisible translate-y-[-8px] transition-all duration-300 ease-out pointer-events-none">
+<div id="mega-products" class="mega-menu fixed top-0 left-0 w-full z-40 pt-[72px] opacity-0 invisible translate-y-[-8px] transition-all duration-base ease-out pointer-events-none">
 <div class="mx-8 bg-text-dark backdrop-blur-xl rounded-xl pointer-events-auto overflow-hidden">
 <div class="flex">
 <div class="w-64 shrink-0 p-8 border-r border-white/10 flex flex-col justify-center">
@@ -428,12 +430,12 @@
 <p class="text-sm text-white/40 leading-relaxed">Software built for specific industries and use cases.</p>
 </div>
 <div class="flex-1 p-4">
-<a href="casehub.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<a href="casehub.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-fast">
 <span class="text-xs text-white/20 font-mono w-6">01</span>
 <div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">CaseHub</div><div class="text-xs text-white/40 mt-1">Modern case management for courts &amp; agencies</div></div>
 <span class="material-symbols-outlined text-white/20 text-base group-hover/item:text-primary-light group-hover/item:translate-x-1 transition-all" aria-hidden="true">arrow_forward</span>
 </a>
-<a href="renderlab.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<a href="renderlab.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-fast">
 <span class="text-xs text-white/20 font-mono w-6">02</span>
 <div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">Renderlab</div><div class="text-xs text-white/40 mt-1">3D product visualization and configuration</div></div>
 <span class="material-symbols-outlined text-white/20 text-base group-hover/item:text-primary-light group-hover/item:translate-x-1 transition-all" aria-hidden="true">arrow_forward</span>
@@ -466,15 +468,17 @@
 <section class="pt-32 pb-0 px-0">
 <!-- Sticky heading -->
 <div class="sticky top-0 z-40 bg-white px-8 lg:px-16 pt-16 pb-12" style="box-shadow: 0 8px 30px rgba(255,255,255,0.9);">
+<div class="max-w-7xl mx-auto">
 <div class="reveal">
-<span class="text-xs uppercase tracking-label text-primary mb-4 block">The Process</span>
+<span class="text-xs uppercase tracking-label text-primary mb-6 block">The Process</span>
 <h2 class="font-light text-5xl">Five phases. Zero guesswork.</h2>
+</div>
 </div>
 </div>
 
 <!-- Phase 1: Discovery -->
 <div class="phase-card relative px-8 lg:px-16 py-16 min-h-[70vh] flex items-start" style="top: 10rem; z-index: 1;">
-<div class="flex flex-col lg:flex-row gap-16 items-start w-full">
+<div class="flex flex-col lg:flex-row gap-16 items-start w-full max-w-7xl mx-auto">
 <div class="lg:w-4/12">
 <span class="text-8xl font-light text-primary/10 block leading-none">01</span>
 <h3 class="text-3xl font-light mt-4 mb-2">Discovery</h3>
@@ -511,7 +515,7 @@
 
 <!-- Phase 2: Blueprint -->
 <div class="phase-card relative px-8 lg:px-16 py-16 min-h-[70vh] flex items-start" style="top: 10rem; z-index: 2;">
-<div class="flex flex-col lg:flex-row gap-16 items-start w-full">
+<div class="flex flex-col lg:flex-row gap-16 items-start w-full max-w-7xl mx-auto">
 <div class="lg:w-4/12">
 <span class="text-8xl font-light text-primary/10 block leading-none">02</span>
 <h3 class="text-3xl font-light mt-4 mb-2">Blueprint</h3>
@@ -548,7 +552,7 @@
 
 <!-- Phase 3: Design & Build -->
 <div class="phase-card relative px-8 lg:px-16 py-16 min-h-[70vh] flex items-start" style="top: 10rem; z-index: 3;">
-<div class="flex flex-col lg:flex-row gap-16 items-start w-full">
+<div class="flex flex-col lg:flex-row gap-16 items-start w-full max-w-7xl mx-auto">
 <div class="lg:w-4/12">
 <span class="text-8xl font-light text-primary/10 block leading-none">03</span>
 <h3 class="text-3xl font-light mt-4 mb-2">Design & Build</h3>
@@ -585,7 +589,7 @@
 
 <!-- Phase 4: Deploy -->
 <div class="phase-card relative px-8 lg:px-16 py-16 min-h-[70vh] flex items-start" style="top: 10rem; z-index: 4;">
-<div class="flex flex-col lg:flex-row gap-16 items-start w-full">
+<div class="flex flex-col lg:flex-row gap-16 items-start w-full max-w-7xl mx-auto">
 <div class="lg:w-4/12">
 <span class="text-8xl font-light text-primary/10 block leading-none">04</span>
 <h3 class="text-3xl font-light mt-4 mb-2">Deploy</h3>
@@ -622,7 +626,7 @@
 
 <!-- Phase 5: Evolve -->
 <div class="phase-card relative px-8 lg:px-16 py-16 min-h-[70vh] flex items-start" style="top: 10rem; z-index: 5;">
-<div class="flex flex-col lg:flex-row gap-16 items-start w-full">
+<div class="flex flex-col lg:flex-row gap-16 items-start w-full max-w-7xl mx-auto">
 <div class="lg:w-4/12">
 <span class="text-8xl font-light text-primary/10 block leading-none">05</span>
 <h3 class="text-3xl font-light mt-4 mb-2">Evolve</h3>
@@ -659,48 +663,50 @@
 </section>
 
 <!-- Differentiators -->
-<section class="py-32 px-8 lg:px-16 bg-zinc-950 text-white">
+<section class="py-32 px-8 lg:px-16 bg-surface-dark text-white">
+<div class="max-w-7xl mx-auto">
 <div class="reveal mb-20">
 <span class="text-xs uppercase tracking-label text-primary mb-6 block">Why It Works</span>
 <h2 class="font-light text-5xl tracking-tight">What makes our<br/>process different.</h2>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
 <div class="group border-t border-white/10 pt-10 reveal">
-<div class="w-16 h-16 border border-white/10 flex items-center justify-center mb-8 group-hover:border-primary group-hover:bg-primary/10 transition-all duration-300">
+<div class="w-16 h-16 border border-white/10 flex items-center justify-center mb-8 group-hover:border-primary group-hover:bg-primary/10 transition-all duration-base">
 <span class="material-symbols-outlined text-2xl text-white/40 group-hover:text-primary transition-colors" aria-hidden="true">code</span>
 </div>
 <h3 class="text-2xl font-light mb-4 tracking-tight">Working software every 2 weeks</h3>
 <p class="text-base text-white/50 leading-relaxed">You never go more than two weeks without seeing real, working software. Not mockups. Not slide decks. Functional code that you can click through, test, and give feedback on. If something is heading in the wrong direction, we catch it early.</p>
 </div>
 <div class="group border-t border-white/10 pt-10 reveal reveal-delay-1">
-<div class="w-16 h-16 border border-white/10 flex items-center justify-center mb-8 group-hover:border-primary group-hover:bg-primary/10 transition-all duration-300">
+<div class="w-16 h-16 border border-white/10 flex items-center justify-center mb-8 group-hover:border-primary group-hover:bg-primary/10 transition-all duration-base">
 <span class="material-symbols-outlined text-2xl text-white/40 group-hover:text-primary transition-colors" aria-hidden="true">group</span>
 </div>
 <h3 class="text-2xl font-light mb-4 tracking-tight">Same team start to finish</h3>
 <p class="text-base text-white/50 leading-relaxed">The people who run your discovery are the same people who write the code and deploy the system. No handoffs between "strategy teams" and "delivery teams." No re-explaining your business to a new group of developers every few months.</p>
 </div>
 <div class="group border-t border-white/10 pt-10 reveal reveal-delay-2">
-<div class="w-16 h-16 border border-white/10 flex items-center justify-center mb-8 group-hover:border-primary group-hover:bg-primary/10 transition-all duration-300">
+<div class="w-16 h-16 border border-white/10 flex items-center justify-center mb-8 group-hover:border-primary group-hover:bg-primary/10 transition-all duration-base">
 <span class="material-symbols-outlined text-2xl text-white/40 group-hover:text-primary transition-colors" aria-hidden="true">favorite</span>
 </div>
 <h3 class="text-2xl font-light mb-4 tracking-tight">We stick around after launch</h3>
 <p class="text-base text-white/50 leading-relaxed">Most agencies ship the project and disappear. We stay on for monitoring, maintenance, and evolution. Your system gets better over time, informed by real usage data and your evolving business needs. We're a partner, not a vendor.</p>
 </div>
 </div>
+</div>
 </section>
 
 <!-- FAQ -->
 <section class="py-32 px-8 lg:px-16">
-<div class="max-w-4xl mx-auto">
+<div class="max-w-7xl mx-auto">
 <div class="reveal mb-20">
-<span class="text-xs uppercase tracking-label text-primary mb-4 block">FAQ</span>
+<span class="text-xs uppercase tracking-label text-primary mb-6 block">FAQ</span>
 <h2 class="font-light text-5xl">Common questions</h2>
 </div>
 <div class="space-y-0">
 <div class="faq-item border-t border-black/10">
 <button type="button" aria-expanded="false" class="w-full text-left flex items-center justify-between py-6 cursor-pointer" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'); this.closest('.faq-item').classList.toggle('open')">
 <h3 class="text-xl font-light pr-8">How long does a typical project take?</h3>
-<span class="material-symbols-outlined text-2xl faq-icon transition-transform duration-300 text-primary" aria-hidden="true">add</span>
+<span class="material-symbols-outlined text-2xl faq-icon transition-transform duration-base text-primary" aria-hidden="true">add</span>
 </button>
 <div class="faq-answer pb-8" role="region">
 <p class="text-base text-muted leading-relaxed max-w-3xl">Most projects run 16 to 24 weeks from discovery to deployment, depending on complexity. Strategy-only engagements are 4 to 6 weeks. We'll give you a specific timeline after the Blueprint phase, and we hold ourselves to it. Our track record for on-time delivery is 94% across 200+ projects.</p>
@@ -709,7 +715,7 @@
 <div class="faq-item border-t border-black/10">
 <button type="button" aria-expanded="false" class="w-full text-left flex items-center justify-between py-6 cursor-pointer" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'); this.closest('.faq-item').classList.toggle('open')">
 <h3 class="text-xl font-light pr-8">What does a project typically cost?</h3>
-<span class="material-symbols-outlined text-2xl faq-icon transition-transform duration-300 text-primary" aria-hidden="true">add</span>
+<span class="material-symbols-outlined text-2xl faq-icon transition-transform duration-base text-primary" aria-hidden="true">add</span>
 </button>
 <div class="faq-answer pb-8" role="region">
 <p class="text-base text-muted leading-relaxed max-w-3xl">Custom software projects typically range from $150K to $750K depending on scope and complexity. We provide a fixed-price estimate after the Blueprint phase. Strategy engagements start at $25K. We don't do hourly billing for development work because it creates perverse incentives for both sides.</p>
@@ -718,7 +724,7 @@
 <div class="faq-item border-t border-black/10">
 <button type="button" aria-expanded="false" class="w-full text-left flex items-center justify-between py-6 cursor-pointer" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'); this.closest('.faq-item').classList.toggle('open')">
 <h3 class="text-xl font-light pr-8">Do we own the code you write?</h3>
-<span class="material-symbols-outlined text-2xl faq-icon transition-transform duration-300 text-primary" aria-hidden="true">add</span>
+<span class="material-symbols-outlined text-2xl faq-icon transition-transform duration-base text-primary" aria-hidden="true">add</span>
 </button>
 <div class="faq-answer pb-8" role="region">
 <p class="text-base text-muted leading-relaxed max-w-3xl">Yes, completely. Every line of code we write for you is yours. Full source code, documentation, and deployment scripts. You can take it to another team if you want. We stay because we deliver value, not because we hold your code hostage.</p>
@@ -727,7 +733,7 @@
 <div class="faq-item border-t border-black/10">
 <button type="button" aria-expanded="false" class="w-full text-left flex items-center justify-between py-6 cursor-pointer" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'); this.closest('.faq-item').classList.toggle('open')">
 <h3 class="text-xl font-light pr-8">What if we need to change scope mid-project?</h3>
-<span class="material-symbols-outlined text-2xl faq-icon transition-transform duration-300 text-primary" aria-hidden="true">add</span>
+<span class="material-symbols-outlined text-2xl faq-icon transition-transform duration-base text-primary" aria-hidden="true">add</span>
 </button>
 <div class="faq-answer pb-8" role="region">
 <p class="text-base text-muted leading-relaxed max-w-3xl">Requirements evolve. We expect it. Our sprint-based process is designed to absorb changes. If a change affects timeline or budget, we'll tell you immediately and make the tradeoff decision together. Nothing gets added to scope without a clear conversation about what it costs and what it replaces.</p>
@@ -736,7 +742,7 @@
 <div class="faq-item border-t border-black/10 border-b">
 <button type="button" aria-expanded="false" class="w-full text-left flex items-center justify-between py-6 cursor-pointer" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'); this.closest('.faq-item').classList.toggle('open')">
 <h3 class="text-xl font-light pr-8">Can you work with our existing tech stack?</h3>
-<span class="material-symbols-outlined text-2xl faq-icon transition-transform duration-300 text-primary" aria-hidden="true">add</span>
+<span class="material-symbols-outlined text-2xl faq-icon transition-transform duration-base text-primary" aria-hidden="true">add</span>
 </button>
 <div class="faq-answer pb-8" role="region">
 <p class="text-base text-muted leading-relaxed max-w-3xl">Absolutely. We're technology-agnostic. We work with whatever stack makes the most sense for your project, and we integrate with your existing systems rather than replacing everything at once. If your team uses .NET, we build in .NET. If you're a cloud-native shop, so are we. The best technology is the one your team can maintain after we're gone.</p>
@@ -747,14 +753,14 @@
 </section>
 
 <!-- CTA -->
-<section class="py-32 px-8 lg:px-16 bg-zinc-950 text-white cta-section" id="cta-section">
+<section class="py-32 px-8 lg:px-16 bg-surface-dark text-white cta-section" id="cta-section">
 <div class="reveal max-w-4xl mx-auto text-center">
 <span class="text-xs uppercase tracking-label text-primary-light mb-6 block cta-label">Get Started</span>
 <h2 class="font-light text-5xl md:text-6xl mb-8 leading-tight cta-text">Ready to start<br/>with discovery?</h2>
 <p class="text-lg text-white/50 mb-12 max-w-2xl mx-auto cta-muted">A 30-minute conversation about your project. No sales pitch. We'll talk about your challenges, your goals, and whether we're the right fit. If we're not, we'll tell you.</p>
 <a href="contact.html" class="cta-wipe group inline-flex items-center gap-3 border border-white/20 px-10 py-5 text-sm uppercase tracking-cta font-medium" id="cta-btn">
     <span>Start a Conversation</span>
-    <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform duration-300" aria-hidden="true">arrow_forward</span>
+    <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform duration-base" aria-hidden="true">arrow_forward</span>
 </a>
 </div>
 </section>
@@ -767,7 +773,7 @@
 </div>
 <div class="footer-grid relative z-10 grid grid-cols-2 md:grid-cols-4 gap-12 pt-16 border-t border-black/10" style="transition: border-color 0.6s ease;">
 <div>
-<h6 class="footer-text text-xs uppercase tracking-widest font-bold mb-6" style="transition: color 0.6s ease;">What We Do</h6>
+<h6 class="text-xs uppercase tracking-widest font-bold mb-6 footer-text" style="transition: color 0.6s ease;">What We Do</h6>
 <ul class="space-y-2 text-muted text-sm footer-text" style="transition: color 0.6s ease;">
 <li><a class="hover:text-primary" href="services/digital-product-strategy.html">Digital Product Strategy</a></li>
 <li><a class="hover:text-primary" href="services/web-design-development.html">Web Design & Development</a></li>
@@ -776,7 +782,7 @@
 </ul>
 </div>
 <div>
-<h6 class="footer-text text-xs uppercase tracking-widest font-bold mb-6" style="transition: color 0.6s ease;">Company</h6>
+<h6 class="text-xs uppercase tracking-widest font-bold mb-6 footer-text" style="transition: color 0.6s ease;">Company</h6>
 <ul class="space-y-2 text-muted text-sm footer-text" style="transition: color 0.6s ease;">
 <li><a class="hover:text-primary" href="about.html">About</a></li>
 <li><a class="hover:text-primary" href="how-we-work.html">How We Work</a></li>
@@ -786,7 +792,7 @@
 </ul>
 </div>
 <div>
-<h6 class="footer-text text-xs uppercase tracking-widest font-bold mb-6" style="transition: color 0.6s ease;">Connect</h6>
+<h6 class="text-xs uppercase tracking-widest font-bold mb-6 footer-text" style="transition: color 0.6s ease;">Connect</h6>
 <ul class="flex items-center gap-5 footer-text" style="transition: color 0.6s ease;">
 <li><a class="hover:text-primary transition-colors" href="https://www.linkedin.com/company/azularc/" target="_blank" rel="noopener" aria-label="Azul Arc on LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></li>
 <li><a class="hover:text-primary transition-colors" href="https://x.com/azularc" target="_blank" rel="noopener" aria-label="Azul Arc on X"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.739l7.73-8.835L1.254 2.25H8.08l4.013 5.305zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a></li>
@@ -795,9 +801,9 @@
 </div>
 <div class="flex flex-col justify-between">
 <div>
-<h6 class="footer-text text-xs uppercase tracking-widest font-bold mb-6" style="transition: color 0.6s ease;">Insights</h6>
-<div class="footer-border flex border-b border-black/10 pb-2" style="transition: border-color 0.6s ease;">
-<input class="footer-text bg-transparent border-none focus:ring-0 p-0 text-sm w-full" style="transition: color 0.6s ease;" placeholder="Email" type="email"/>
+<h6 class="text-xs uppercase tracking-widest font-bold mb-6 footer-text" style="transition: color 0.6s ease;">Insights</h6>
+<div class="flex border-b border-black/10 pb-2 footer-border" style="transition: border-color 0.6s ease;">
+<input class="footer-text bg-transparent border-none focus:ring-0 focus-visible:ring-1 focus-visible:ring-primary focus-visible:border-primary p-0 text-sm w-full" style="transition: color 0.6s ease;" placeholder="Email" type="email"/>
 <span class="footer-text material-symbols-outlined opacity-40" style="transition: color 0.6s ease;" aria-hidden="true">arrow_forward</span>
 </div>
 </div>

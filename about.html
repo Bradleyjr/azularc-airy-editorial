@@ -19,38 +19,49 @@
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
 <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        primary: "#1863DC",
-                        "primary-dark": "#07406B",
-                        "primary-light": "#2AA7DF",
-                        "background-light": "#FFFFFF",
-                        "background-dark": "#212121",
-                        "text-dark": "#212121",
-                        "text-light": "#EBEBEB",
-                        "muted": "#808285",
-                        "navy": "#0B1A2F",
-                    },
-                    fontFamily: {
-                        display: ["Inter", "sans-serif"],
-                        sans: ["Inter", "sans-serif"],
-                    },
-                    borderRadius: {
-                        DEFAULT: "0px",
-                        'lg': "4px",
-                    },
-                    letterSpacing: {
-                        'label': '0.3em',
-                        'cta': '0.15em',
-                        'wide-label': '0.2em',
-                        'extra': '0.4em',
-                    },
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    primary: "#1863DC",
+                    "primary-dark": "#07406B",
+                    "primary-light": "#2AA7DF",
+                    "background-light": "#FFFFFF",
+                    "background-dark": "#212121",
+                    "text-dark": "#212121",
+                    "text-light": "#EBEBEB",
+                    "muted": "#808285",
+                    "navy": "#0B1A2F",
+                    "surface-dark": "#09090b",
+                    "surface": "#FAFAFA",
+                },
+                fontFamily: {
+                    display: ["Inter", "sans-serif"],
+                    sans: ["Inter", "sans-serif"],
+                },
+                borderRadius: {
+                    DEFAULT: "0px",
+                    'lg': "4px",
+                    'xl': "12px",
+                },
+                letterSpacing: {
+                    'label': '0.3em',
+                    'cta': '0.15em',
+                    'wide-label': '0.2em',
+                },
+                fontSize: {
+                    'menu': '15px',
+                },
+                transitionDuration: {
+                    'fast': '200ms',
+                    'base': '300ms',
+                    'slow': '500ms',
+                    'slower': '700ms',
                 },
             },
-        };
+        },
+    };
     </script>
 <style type="text/tailwindcss">
         * { text-wrap: pretty; }
@@ -209,13 +220,17 @@
         /* Scroll reveal */
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: translateY(24px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
         .reveal.visible {
             opacity: 1;
             transform: translateY(0);
         }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
         .magnetic-wrap {
             display: inline-flex;
             align-items: center;
@@ -326,17 +341,6 @@
         animation-timeline: scroll(root);
         animation-range: 0 50vh;
     }
-    /* Chapter progress dots */
-    .chapter-dot {
-        width: 6px; height: 6px; border-radius: 50%;
-        background: rgba(0,0,0,0.15);
-        transition: all 0.4s ease;
-        border: none; padding: 0; cursor: pointer;
-        display: block;
-    }
-    .chapter-dot.active { background: #1863DC; transform: scale(1.5); }
-    #chapter-nav.nav-light .chapter-dot { background: rgba(255,255,255,0.3); }
-    #chapter-nav.nav-light .chapter-dot.active { background: white; }
     /* Scroll hint */
     @keyframes scroll-hint-bounce {
         0%, 100% { transform: translateY(0); opacity: 0.35; }
@@ -355,17 +359,25 @@
     .marquee-track:hover { animation-play-state: paused; }
     /* Stat counter tabular nums */
     .stat-counter { font-variant-numeric: tabular-nums; }
+    /* Origin scrollytelling */
+    @media (min-width: 1024px) {
+      #chapter-origin { height: 300vh; }
+      #origin-scrolly { height: 100%; }
+      .origin-sticky { position: sticky; top: 0; height: 100vh; }
+      .origin-step { transition: opacity 0.6s ease, transform 0.6s ease; }
+      .origin-step:not(:first-child) { opacity: 0; transform: translateY(20px); }
+    }
     </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-text-dark dark:text-text-light font-sans selection:bg-primary selection:text-white">
 <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-white focus:text-text-dark focus:px-4 focus:py-2 focus:text-sm focus:font-medium">Skip to main content</a>
 
 <!-- Nav -->
-<nav id="main-nav" class="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center bg-white/80 backdrop-blur-md text-zinc-900 transition-all duration-300">
+<nav id="main-nav" class="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center bg-white/80 backdrop-blur-md text-text-dark transition-all duration-base">
 <a href="index.html"><img src="azularcLogo.png" alt="Azul Arc" class="h-8"/></a>
 <div class="hidden md:flex gap-6 text-sm uppercase tracking-widest font-medium items-center nav-links">
-<a class="hover:opacity-60 transition-opacity flex items-center gap-1 cursor-pointer nav-dd-trigger" data-dropdown="industries" href="#">Industries <span class="material-symbols-outlined text-sm" aria-hidden="true">expand_more</span></a>
-<a class="hover:opacity-60 transition-opacity flex items-center gap-1 cursor-pointer nav-dd-trigger" data-dropdown="whatwedo" href="#">What We Do <span class="material-symbols-outlined text-sm" aria-hidden="true">expand_more</span></a>
+<a class="hover:opacity-60 transition-opacity flex items-center gap-1 cursor-pointer nav-dd-trigger" data-dropdown="industries" href="#industries">Industries <span class="material-symbols-outlined text-sm" aria-hidden="true">expand_more</span></a>
+<a class="hover:opacity-60 transition-opacity flex items-center gap-1 cursor-pointer nav-dd-trigger" data-dropdown="whatwedo" href="#capabilities">What We Do <span class="material-symbols-outlined text-sm" aria-hidden="true">expand_more</span></a>
 <a class="hover:opacity-60 transition-opacity flex items-center gap-1 cursor-pointer nav-dd-trigger" data-dropdown="products" href="#products">Products <span class="material-symbols-outlined text-sm" aria-hidden="true">expand_more</span></a>
 <a class="hover:opacity-60 transition-opacity" href="how-we-work.html">How We Work</a>
 <a class="hover:opacity-60 transition-opacity" href="work.html">Work</a>
@@ -413,7 +425,7 @@
 
 
 <!-- Mega menus -->
-<div id="mega-industries" class="mega-menu fixed top-0 left-0 w-full z-40 pt-[72px] opacity-0 invisible translate-y-[-8px] transition-all duration-300 ease-out pointer-events-none">
+<div id="mega-industries" class="mega-menu fixed top-0 left-0 w-full z-40 pt-[72px] opacity-0 invisible translate-y-[-8px] transition-all duration-base ease-out pointer-events-none">
 <div class="mx-8 bg-text-dark backdrop-blur-xl rounded-xl pointer-events-auto overflow-hidden">
 <div class="flex">
 <div class="w-64 shrink-0 p-8 border-r border-white/10 flex flex-col justify-center">
@@ -421,17 +433,17 @@
 <p class="text-sm text-white/40 leading-relaxed">The industries where we do our best work.</p>
 </div>
 <div class="flex-1 p-4">
-<a href="industries/courts.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<a href="industries/courts.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-fast">
 <span class="text-xs text-white/20 font-mono w-6">01</span>
 <div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">Court Systems</div><div class="text-xs text-white/40 mt-1">Courts, clerks & public agencies</div></div>
 <span class="material-symbols-outlined text-white/20 text-base group-hover/item:text-primary-light group-hover/item:translate-x-1 transition-all" aria-hidden="true">arrow_forward</span>
 </a>
-<a href="industries/manufacturing.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<a href="industries/manufacturing.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-fast">
 <span class="text-xs text-white/20 font-mono w-6">02</span>
 <div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">Product Manufacturers</div><div class="text-xs text-white/40 mt-1">Sales tools & commercial platforms</div></div>
 <span class="material-symbols-outlined text-white/20 text-base group-hover/item:text-primary-light group-hover/item:translate-x-1 transition-all" aria-hidden="true">arrow_forward</span>
 </a>
-<a href="industries/growth-stage.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<a href="industries/growth-stage.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-fast">
 <span class="text-xs text-white/20 font-mono w-6">03</span>
 <div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">Growth-Stage SMBs</div><div class="text-xs text-white/40 mt-1">Scaling operations & legacy replacement</div></div>
 <span class="material-symbols-outlined text-white/20 text-base group-hover/item:text-primary-light group-hover/item:translate-x-1 transition-all" aria-hidden="true">arrow_forward</span>
@@ -440,7 +452,7 @@
 </div>
 </div>
 </div>
-<div id="mega-whatwedo" class="mega-menu fixed top-0 left-0 w-full z-40 pt-[72px] opacity-0 invisible translate-y-[-8px] transition-all duration-300 ease-out pointer-events-none">
+<div id="mega-whatwedo" class="mega-menu fixed top-0 left-0 w-full z-40 pt-[72px] opacity-0 invisible translate-y-[-8px] transition-all duration-base ease-out pointer-events-none">
 <div class="mx-8 bg-text-dark backdrop-blur-xl rounded-xl pointer-events-auto overflow-hidden">
 <div class="flex">
 <div class="w-64 shrink-0 p-8 border-r border-white/10 flex flex-col justify-center">
@@ -448,19 +460,19 @@
 <p class="text-sm text-white/40 leading-relaxed">From strategy to launch and beyond.</p>
 </div>
 <div class="flex-1 p-4 grid grid-cols-2">
-<a href="services/digital-product-strategy.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<a href="services/digital-product-strategy.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-fast">
 <span class="text-xs text-white/20 font-mono w-6">01</span>
 <div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">Digital Product Strategy</div><div class="text-xs text-white/40 mt-1">Figure out what to build first</div></div>
 </a>
-<a href="services/web-design-development.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<a href="services/web-design-development.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-fast">
 <span class="text-xs text-white/20 font-mono w-6">02</span>
 <div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">Web Design & Development</div><div class="text-xs text-white/40 mt-1">Sites & apps that actually convert</div></div>
 </a>
-<a href="services/3d-visualization.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<a href="services/3d-visualization.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-fast">
 <span class="text-xs text-white/20 font-mono w-6">03</span>
 <div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">3D Visualisation</div><div class="text-xs text-white/40 mt-1">Product visuals that sell themselves</div></div>
 </a>
-<a href="services/case-management.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<a href="services/case-management.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-fast">
 <span class="text-xs text-white/20 font-mono w-6">04</span>
 <div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">Case Management Systems</div><div class="text-xs text-white/40 mt-1">Track every case, automate the rest</div></div>
 </a>
@@ -469,7 +481,7 @@
 </div>
 </div>
 
-<div id="mega-products" class="mega-menu fixed top-0 left-0 w-full z-40 pt-[72px] opacity-0 invisible translate-y-[-8px] transition-all duration-300 ease-out pointer-events-none">
+<div id="mega-products" class="mega-menu fixed top-0 left-0 w-full z-40 pt-[72px] opacity-0 invisible translate-y-[-8px] transition-all duration-base ease-out pointer-events-none">
 <div class="mx-8 bg-text-dark backdrop-blur-xl rounded-xl pointer-events-auto overflow-hidden">
 <div class="flex">
 <div class="w-64 shrink-0 p-8 border-r border-white/10 flex flex-col justify-center">
@@ -477,12 +489,12 @@
 <p class="text-sm text-white/40 leading-relaxed">Software built for specific industries and use cases.</p>
 </div>
 <div class="flex-1 p-4">
-<a href="casehub.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<a href="casehub.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-fast">
 <span class="text-xs text-white/20 font-mono w-6">01</span>
 <div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">CaseHub</div><div class="text-xs text-white/40 mt-1">Modern case management for courts &amp; agencies</div></div>
 <span class="material-symbols-outlined text-white/20 text-base group-hover/item:text-primary-light group-hover/item:translate-x-1 transition-all" aria-hidden="true">arrow_forward</span>
 </a>
-<a href="renderlab.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<a href="renderlab.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-fast">
 <span class="text-xs text-white/20 font-mono w-6">02</span>
 <div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">Renderlab</div><div class="text-xs text-white/40 mt-1">3D product visualization and configuration</div></div>
 <span class="material-symbols-outlined text-white/20 text-base group-hover/item:text-primary-light group-hover/item:translate-x-1 transition-all" aria-hidden="true">arrow_forward</span>
@@ -492,14 +504,6 @@
 </div>
 </div>
 <main id="main-content">
-<!-- Chapter progress navigation -->
-<nav id="chapter-nav" class="fixed left-6 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col gap-3" aria-label="Page chapters">
-<button class="chapter-dot" data-target-chapter="origin" aria-label="The Origin"></button>
-<button class="chapter-dot" data-target-chapter="numbers" aria-label="By the Numbers"></button>
-<button class="chapter-dot" data-target-chapter="values" aria-label="What We Believe"></button>
-<button class="chapter-dot" data-target-chapter="team" aria-label="The Team"></button>
-<button class="chapter-dot" data-target-chapter="proof" aria-label="Who Trusts Us"></button>
-</nav>
 <!-- ===== HERO ===== -->
 <section class="relative min-h-screen flex flex-col justify-end overflow-hidden bg-navy text-white">
 <div class="absolute inset-0 z-0 hero-bg">
@@ -521,17 +525,53 @@
 </section>
 
 <!-- ===== THE ORIGIN ===== -->
-<section class="py-40 px-8 lg:px-16" id="chapter-origin" data-chapter="origin">
-<div class="max-w-7xl mx-auto">
-<div class="reveal">
-<span class="text-xs uppercase tracking-label text-primary mb-8 block">01 — The Origin</span>
-<h2 class="font-light text-5xl md:text-6xl leading-tight mb-16 max-w-3xl">We started because mid-market companies deserved better.</h2>
-<div class="space-y-8 text-xl text-text-dark/70 leading-relaxed max-w-3xl">
-<p>In 2003, our founders saw a gap nobody was filling. Enterprise vendors built bloated platforms for Fortune 500s. Freelancers built basic websites. Mid-market companies — the ones doing $10M to $500M in revenue with real operational complexity — had nowhere to turn for software that could actually transform how they worked.</p>
-<p>We built Azul Arc to serve them. Two developers, one project manager, and a simple philosophy: treat every client's problem as our own, understand the business before writing a single line of code, and never disappear after launch. Two decades and 200+ shipped projects later, that philosophy hasn't changed.</p>
-</div>
-</div>
-</div>
+<section class="relative" id="chapter-origin" data-chapter="origin">
+  <div id="origin-scrolly">
+    <div class="origin-sticky overflow-hidden flex flex-col lg:flex-row">
+
+      <!-- Left: scrolling copy -->
+      <div class="w-full lg:w-1/2 flex items-start lg:items-center px-8 lg:pl-16 lg:pr-16 py-20 lg:py-0 lg:h-screen">
+        <div class="w-full relative" style="height: auto;">
+          <div class="lg:relative" style="height: auto;" id="origin-steps-wrap">
+
+            <div class="origin-step mb-16 lg:mb-0 lg:absolute lg:inset-0 lg:flex lg:flex-col lg:justify-center">
+              <span class="text-xs uppercase tracking-label text-primary mb-8 block">01 — The Origin</span>
+              <h2 class="font-light text-5xl md:text-6xl leading-tight">We started because mid-market companies deserved better.</h2>
+            </div>
+
+            <div class="origin-step mb-16 lg:mb-0 lg:absolute lg:inset-0 lg:flex lg:flex-col lg:justify-center">
+              <span class="text-xs uppercase tracking-label text-primary mb-8 block">2003</span>
+              <h3 class="font-light text-4xl leading-tight mb-8">A gap nobody was filling.</h3>
+              <p class="text-xl text-text-dark/70 leading-relaxed">Enterprise vendors built bloated platforms for Fortune 500s. Freelancers built basic websites. Mid-market companies — doing $10M to $500M with real operational complexity — had nowhere to turn for software that could actually transform how they worked.</p>
+            </div>
+
+            <div class="origin-step mb-0 lg:absolute lg:inset-0 lg:flex lg:flex-col lg:justify-center">
+              <span class="text-xs uppercase tracking-label text-primary mb-8 block">Then &amp; Now</span>
+              <h3 class="font-light text-4xl leading-tight mb-8">Two developers. One philosophy. 200+ projects.</h3>
+              <p class="text-xl text-text-dark/70 leading-relaxed">Treat every client's problem as our own. Understand the business before writing a single line of code. Never disappear after launch. Two decades later, that hasn't changed.</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: contained image stack (desktop only) -->
+      <div class="hidden lg:flex lg:w-1/2 items-center py-12 pr-16 pl-4">
+        <div class="relative w-full overflow-hidden" style="height: 74vh; border-radius: 2px;" id="origin-image-wrap">
+          <div class="origin-image absolute inset-0" style="will-change:transform;">
+            <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=900&q=80" alt="" class="w-full h-full object-cover" loading="lazy"/>
+          </div>
+          <div class="origin-image absolute inset-0" style="will-change:transform;">
+            <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=900&q=80" alt="" class="w-full h-full object-cover" loading="lazy"/>
+          </div>
+          <div class="origin-image absolute inset-0" style="will-change:transform;">
+            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=900&q=80" alt="" class="w-full h-full object-cover" loading="lazy"/>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </section>
 
 <!-- ===== BY THE NUMBERS ===== -->
@@ -541,17 +581,17 @@
 <div class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/10">
 <div class="py-12 md:py-0 md:pr-16 reveal">
 <span class="stat-counter block text-8xl md:text-9xl font-light tracking-tighter mb-3" data-target="20" data-suffix="+">20+</span>
-<span class="text-sm uppercase tracking-wide-label text-white/40 block mb-4">Years in Business</span>
+<span class="text-sm uppercase tracking-wide-label text-white/40 block mb-6">Years in Business</span>
 <p class="text-base text-white/40 leading-relaxed">Building custom software since 2003. Through three recessions, two technology paradigm shifts, and one pandemic.</p>
 </div>
 <div class="py-12 md:py-0 md:px-16 reveal" style="transition-delay: 0.15s;">
 <span class="stat-counter block text-8xl md:text-9xl font-light tracking-tighter mb-3" data-target="200" data-suffix="+">200+</span>
-<span class="text-sm uppercase tracking-wide-label text-white/40 block mb-4">Projects Shipped</span>
+<span class="text-sm uppercase tracking-wide-label text-white/40 block mb-6">Projects Shipped</span>
 <p class="text-base text-white/40 leading-relaxed">From court case management systems processing millions of filings to 3D product configurators driving eight-figure sales pipelines.</p>
 </div>
 <div class="py-12 md:py-0 md:pl-16 reveal" style="transition-delay: 0.3s;">
 <span class="stat-counter block text-8xl md:text-9xl font-light tracking-tighter mb-3" data-target="92" data-suffix="%">92%</span>
-<span class="text-sm uppercase tracking-wide-label text-white/40 block mb-4">Client Retention</span>
+<span class="text-sm uppercase tracking-wide-label text-white/40 block mb-6">Client Retention</span>
 <p class="text-base text-white/40 leading-relaxed">Our average client relationship is 4+ years. Most never leave. That's not a contract lock-in — it's earned trust.</p>
 </div>
 </div>
@@ -562,33 +602,33 @@
 <section class="py-40 px-8 lg:px-16" id="chapter-values" data-chapter="values">
 <div class="max-w-7xl mx-auto">
 <div class="mb-20 reveal">
-<span class="text-xs uppercase tracking-label text-primary mb-8 block">03 — What We Believe</span>
+<span class="text-xs uppercase tracking-label text-primary mb-6 block">03 — What We Believe</span>
 <h2 class="font-light text-5xl">The principles behind<br/>every project.</h2>
 </div>
 <div class="divide-y divide-black/10">
 <div class="flex items-start gap-12 py-16 group reveal">
-<span class="material-symbols-outlined text-5xl text-muted/40 group-hover:text-primary/50 transition-colors mt-1 shrink-0" aria-hidden="true">handshake</span>
+<span class="material-symbols-outlined text-5xl text-muted/40 group-hover:text-primary/50 transition-colors mt-1 shrink-0" style="font-variation-settings:'FILL' 0,'wght' 300" aria-hidden="true">handshake</span>
 <div>
 <h3 class="text-2xl font-medium mb-3">We treat your problems like our own</h3>
 <p class="text-lg text-text-dark/60 max-w-2xl">We don't execute specs. We immerse in your operations, understand the pain, and own the outcome alongside you.</p>
 </div>
 </div>
 <div class="flex items-start gap-12 py-16 group reveal">
-<span class="material-symbols-outlined text-5xl text-muted/40 group-hover:text-primary/50 transition-colors mt-1 shrink-0" aria-hidden="true">visibility</span>
+<span class="material-symbols-outlined text-5xl text-muted/40 group-hover:text-primary/50 transition-colors mt-1 shrink-0" style="font-variation-settings:'FILL' 0,'wght' 300" aria-hidden="true">visibility</span>
 <div>
 <h3 class="text-2xl font-medium mb-3">No black boxes</h3>
 <p class="text-lg text-text-dark/60 max-w-2xl">You see working software every two weeks. You know where we are, what's next, and how the budget is tracking. Always.</p>
 </div>
 </div>
 <div class="flex items-start gap-12 py-16 group reveal">
-<span class="material-symbols-outlined text-5xl text-muted/40 group-hover:text-primary/50 transition-colors mt-1 shrink-0" aria-hidden="true">group</span>
+<span class="material-symbols-outlined text-5xl text-muted/40 group-hover:text-primary/50 transition-colors mt-1 shrink-0" style="font-variation-settings:'FILL' 0,'wght' 300" aria-hidden="true">group</span>
 <div>
 <h3 class="text-2xl font-medium mb-3">Relationships, not transactions</h3>
 <p class="text-lg text-text-dark/60 max-w-2xl">We don't build software and walk away. We build partnerships that last years — maintaining, evolving, and supporting long after launch.</p>
 </div>
 </div>
 <div class="flex items-start gap-12 py-16 group reveal">
-<span class="material-symbols-outlined text-5xl text-muted/40 group-hover:text-primary/50 transition-colors mt-1 shrink-0" aria-hidden="true">rocket_launch</span>
+<span class="material-symbols-outlined text-5xl text-muted/40 group-hover:text-primary/50 transition-colors mt-1 shrink-0" style="font-variation-settings:'FILL' 0,'wght' 300" aria-hidden="true">rocket_launch</span>
 <div>
 <h3 class="text-2xl font-medium mb-3">Ship working software every two weeks</h3>
 <p class="text-lg text-text-dark/60 max-w-2xl">No six-month reveals. Short cycles, real progress, early course-correction.</p>
@@ -603,7 +643,7 @@
 <div class="max-w-7xl mx-auto">
 <div class="mb-20 flex flex-col md:flex-row justify-between items-start md:items-end gap-8 reveal">
 <div>
-<span class="text-xs uppercase tracking-label text-primary mb-4 block">04 — The Team</span>
+<span class="text-xs uppercase tracking-label text-primary mb-6 block">04 — The Team</span>
 <h2 class="font-light text-5xl">The people behind<br/>the platforms.</h2>
 </div>
 <p class="text-lg text-text-dark/60 max-w-md leading-relaxed">Headquartered in Atlanta, with collaborators across the globe. Designers, engineers, and strategists who've been doing this for a while.</p>
@@ -639,7 +679,7 @@
 <!-- Trevor Roberts -->
 <div class="team-card group reveal" style="transition-delay: 0.24s;">
 <div class="relative overflow-hidden mb-5 aspect-[446/800]">
-<div class="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center"><span class="text-4xl font-light text-white/40">TR</span></div>
+<div class="w-full h-full bg-surface-dark flex items-center justify-center"><span class="text-4xl font-light text-white/40">TR</span></div>
 <div class="team-bio-overlay"><p class="text-white text-sm leading-relaxed">Translates complex business requirements into interfaces people actually want to use.</p></div>
 </div>
 <h3 class="text-lg font-medium">Trevor Roberts</h3>
@@ -648,7 +688,7 @@
 <!-- Karina Hange -->
 <div class="team-card group reveal">
 <div class="relative overflow-hidden mb-5 aspect-[446/800]">
-<div class="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center"><span class="text-4xl font-light text-white/40">KH</span></div>
+<div class="w-full h-full bg-surface-dark flex items-center justify-center"><span class="text-4xl font-light text-white/40">KH</span></div>
 <div class="team-bio-overlay"><p class="text-white text-sm leading-relaxed">Crafts pixel-perfect interfaces grounded in user research and design systems thinking.</p></div>
 </div>
 <h3 class="text-lg font-medium">Karina Hange</h3>
@@ -657,7 +697,7 @@
 <!-- Bradley Young -->
 <div class="team-card group reveal" style="transition-delay: 0.08s;">
 <div class="relative overflow-hidden mb-5 aspect-[446/800]">
-<div class="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center"><span class="text-4xl font-light text-white/40">BY</span></div>
+<div class="w-full h-full bg-surface-dark flex items-center justify-center"><span class="text-4xl font-light text-white/40">BY</span></div>
 <div class="team-bio-overlay"><p class="text-white text-sm leading-relaxed">Bridges the gap between design vision and technical implementation across every project.</p></div>
 </div>
 <h3 class="text-lg font-medium">Bradley Young</h3>
@@ -666,7 +706,7 @@
 <!-- Shir Avidan -->
 <div class="team-card group reveal" style="transition-delay: 0.16s;">
 <div class="relative overflow-hidden mb-5 aspect-[446/800]">
-<div class="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center"><span class="text-4xl font-light text-white/40">SA</span></div>
+<div class="w-full h-full bg-surface-dark flex items-center justify-center"><span class="text-4xl font-light text-white/40">SA</span></div>
 <div class="team-bio-overlay"><p class="text-white text-sm leading-relaxed">Shapes product strategy and roadmaps that align business goals with user needs.</p></div>
 </div>
 <h3 class="text-lg font-medium">Shir Avidan</h3>
@@ -675,7 +715,7 @@
 <!-- Sarah Minella -->
 <div class="team-card group reveal" style="transition-delay: 0.24s;">
 <div class="relative overflow-hidden mb-5 aspect-[446/800]">
-<div class="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center"><span class="text-4xl font-light text-white/40">SM</span></div>
+<div class="w-full h-full bg-surface-dark flex items-center justify-center"><span class="text-4xl font-light text-white/40">SM</span></div>
 <div class="team-bio-overlay"><p class="text-white text-sm leading-relaxed">Drives cross-functional teams to deliver complex features on aggressive timelines.</p></div>
 </div>
 <h3 class="text-lg font-medium">Sarah Minella</h3>
@@ -687,7 +727,7 @@
 <!-- Corin Yaish -->
 <div class="team-card group">
 <div class="relative overflow-hidden mb-5 aspect-[446/800]">
-<div class="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center"><span class="text-4xl font-light text-white/40">CY</span></div>
+<div class="w-full h-full bg-surface-dark flex items-center justify-center"><span class="text-4xl font-light text-white/40">CY</span></div>
 <div class="team-bio-overlay"><p class="text-white text-sm leading-relaxed">Specializes in discovery and requirements for court and government platforms.</p></div>
 </div>
 <h3 class="text-lg font-medium">Corin Yaish</h3>
@@ -696,7 +736,7 @@
 <!-- Apurva Ballal -->
 <div class="team-card group">
 <div class="relative overflow-hidden mb-5 aspect-[446/800]">
-<div class="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center"><span class="text-4xl font-light text-white/40">AB</span></div>
+<div class="w-full h-full bg-surface-dark flex items-center justify-center"><span class="text-4xl font-light text-white/40">AB</span></div>
 <div class="team-bio-overlay"><p class="text-white text-sm leading-relaxed">Manages product lifecycles from concept through launch and iteration.</p></div>
 </div>
 <h3 class="text-lg font-medium">Apurva Ballal</h3>
@@ -705,7 +745,7 @@
 <!-- Vaishnavi Aswale -->
 <div class="team-card group">
 <div class="relative overflow-hidden mb-5 aspect-[446/800]">
-<div class="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center"><span class="text-4xl font-light text-white/40">VA</span></div>
+<div class="w-full h-full bg-surface-dark flex items-center justify-center"><span class="text-4xl font-light text-white/40">VA</span></div>
 <div class="team-bio-overlay"><p class="text-white text-sm leading-relaxed">Builds robust, scalable applications across the entire technology stack.</p></div>
 </div>
 <h3 class="text-lg font-medium">Vaishnavi Aswale</h3>
@@ -714,7 +754,7 @@
 <!-- Ally Nezar -->
 <div class="team-card group">
 <div class="relative overflow-hidden mb-5 aspect-[446/800]">
-<div class="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center"><span class="text-4xl font-light text-white/40">AN</span></div>
+<div class="w-full h-full bg-surface-dark flex items-center justify-center"><span class="text-4xl font-light text-white/40">AN</span></div>
 <div class="team-bio-overlay"><p class="text-white text-sm leading-relaxed">Drives brand strategy and demand generation across all channels.</p></div>
 </div>
 <h3 class="text-lg font-medium">Ally Nezar</h3>
@@ -723,7 +763,7 @@
 <!-- Todd Bone -->
 <div class="team-card group">
 <div class="relative overflow-hidden mb-5 aspect-[446/800]">
-<div class="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center"><span class="text-4xl font-light text-white/40">TB</span></div>
+<div class="w-full h-full bg-surface-dark flex items-center justify-center"><span class="text-4xl font-light text-white/40">TB</span></div>
 <div class="team-bio-overlay"><p class="text-white text-sm leading-relaxed">Identifies and cultivates partnerships that fuel Azul Arc's growth.</p></div>
 </div>
 <h3 class="text-lg font-medium">Todd Bone</h3>
@@ -732,7 +772,7 @@
 <!-- Heitor Roriz -->
 <div class="team-card group">
 <div class="relative overflow-hidden mb-5 aspect-[446/800]">
-<div class="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center"><span class="text-4xl font-light text-white/40">HR</span></div>
+<div class="w-full h-full bg-surface-dark flex items-center justify-center"><span class="text-4xl font-light text-white/40">HR</span></div>
 <div class="team-bio-overlay"><p class="text-white text-sm leading-relaxed">Builds team capability through structured training and mentorship programs.</p></div>
 </div>
 <h3 class="text-lg font-medium">Heitor Roriz</h3>
@@ -741,7 +781,7 @@
 <!-- Philipp Koller -->
 <div class="team-card group">
 <div class="relative overflow-hidden mb-5 aspect-[446/800]">
-<div class="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center"><span class="text-4xl font-light text-white/40">PK</span></div>
+<div class="w-full h-full bg-surface-dark flex items-center justify-center"><span class="text-4xl font-light text-white/40">PK</span></div>
 <div class="team-bio-overlay"><p class="text-white text-sm leading-relaxed">Leads European operations and strategic client partnerships from Zurich.</p></div>
 </div>
 <h3 class="text-lg font-medium">Philipp Koller</h3>
@@ -750,7 +790,7 @@
 <!-- Rohini Kukreja -->
 <div class="team-card group">
 <div class="relative overflow-hidden mb-5 aspect-[446/800]">
-<div class="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center"><span class="text-4xl font-light text-white/40">RK</span></div>
+<div class="w-full h-full bg-surface-dark flex items-center justify-center"><span class="text-4xl font-light text-white/40">RK</span></div>
 <div class="team-bio-overlay"><p class="text-white text-sm leading-relaxed">Oversees financial operations and ensures fiscal health across all projects.</p></div>
 </div>
 <h3 class="text-lg font-medium">Rohini Kukreja</h3>
@@ -759,7 +799,7 @@
 <!-- Parvaiz Patel -->
 <div class="team-card group">
 <div class="relative overflow-hidden mb-5 aspect-[446/800]">
-<div class="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center"><span class="text-4xl font-light text-white/40">PP</span></div>
+<div class="w-full h-full bg-surface-dark flex items-center justify-center"><span class="text-4xl font-light text-white/40">PP</span></div>
 <div class="team-bio-overlay"><p class="text-white text-sm leading-relaxed">Manages our India-based engineering and design teams across multiple time zones.</p></div>
 </div>
 <h3 class="text-lg font-medium">Parvaiz Patel</h3>
@@ -768,7 +808,7 @@
 <!-- Prithvi Shetty -->
 <div class="team-card group">
 <div class="relative overflow-hidden mb-5 aspect-[446/800]">
-<div class="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center"><span class="text-4xl font-light text-white/40">PS</span></div>
+<div class="w-full h-full bg-surface-dark flex items-center justify-center"><span class="text-4xl font-light text-white/40">PS</span></div>
 <div class="team-bio-overlay"><p class="text-white text-sm leading-relaxed">Coordinates design output and maintains quality standards across projects.</p></div>
 </div>
 <h3 class="text-lg font-medium">Prithvi Shetty</h3>
@@ -777,7 +817,7 @@
 <!-- Zarrar Palekar -->
 <div class="team-card group">
 <div class="relative overflow-hidden mb-5 aspect-[446/800]">
-<div class="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center"><span class="text-4xl font-light text-white/40">ZP</span></div>
+<div class="w-full h-full bg-surface-dark flex items-center justify-center"><span class="text-4xl font-light text-white/40">ZP</span></div>
 <div class="team-bio-overlay"><p class="text-white text-sm leading-relaxed">Leads development squads delivering enterprise-grade software solutions.</p></div>
 </div>
 <h3 class="text-lg font-medium">Zarrar Palekar</h3>
@@ -786,7 +826,7 @@
 <!-- Faisal Shaikh -->
 <div class="team-card group">
 <div class="relative overflow-hidden mb-5 aspect-[446/800]">
-<div class="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center"><span class="text-4xl font-light text-white/40">FS</span></div>
+<div class="w-full h-full bg-surface-dark flex items-center justify-center"><span class="text-4xl font-light text-white/40">FS</span></div>
 <div class="team-bio-overlay"><p class="text-white text-sm leading-relaxed">Drives engineering excellence and mentors junior developers on the team.</p></div>
 </div>
 <h3 class="text-lg font-medium">Faisal Shaikh</h3>
@@ -795,7 +835,7 @@
 <!-- Krupali Parmar -->
 <div class="team-card group">
 <div class="relative overflow-hidden mb-5 aspect-[446/800]">
-<div class="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center"><span class="text-4xl font-light text-white/40">KP</span></div>
+<div class="w-full h-full bg-surface-dark flex items-center justify-center"><span class="text-4xl font-light text-white/40">KP</span></div>
 <div class="team-bio-overlay"><p class="text-white text-sm leading-relaxed">Cultivates company culture and manages talent acquisition globally.</p></div>
 </div>
 <h3 class="text-lg font-medium">Krupali Parmar</h3>
@@ -804,7 +844,7 @@
 <!-- Nikita Saldanha -->
 <div class="team-card group">
 <div class="relative overflow-hidden mb-5 aspect-[446/800]">
-<div class="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center"><span class="text-4xl font-light text-white/40">NS</span></div>
+<div class="w-full h-full bg-surface-dark flex items-center justify-center"><span class="text-4xl font-light text-white/40">NS</span></div>
 <div class="team-bio-overlay"><p class="text-white text-sm leading-relaxed">Manages financial reporting and accounts receivable operations.</p></div>
 </div>
 <h3 class="text-lg font-medium">Nikita Saldanha</h3>
@@ -813,7 +853,7 @@
 <!-- Megha Chauhan -->
 <div class="team-card group">
 <div class="relative overflow-hidden mb-5 aspect-[446/800]">
-<div class="w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center"><span class="text-4xl font-light text-white/40">MC</span></div>
+<div class="w-full h-full bg-surface-dark flex items-center justify-center"><span class="text-4xl font-light text-white/40">MC</span></div>
 <div class="team-bio-overlay"><p class="text-white text-sm leading-relaxed">Builds client relationships and identifies new business opportunities.</p></div>
 </div>
 <h3 class="text-lg font-medium">Megha Chauhan</h3>
@@ -822,7 +862,7 @@
 </div>
 <!-- Toggle button -->
 <div class="text-center mt-16">
-<button id="team-toggle" onclick="toggleTeam(this)" class="group inline-flex items-center gap-3 border border-black/10 px-8 py-4 text-sm uppercase tracking-cta font-medium hover:bg-zinc-900 hover:text-white transition-all duration-300">
+<button id="team-toggle" onclick="toggleTeam(this)" class="group inline-flex items-center gap-3 border border-black/10 px-8 py-4 text-sm uppercase tracking-cta font-medium hover:bg-surface-dark hover:text-white transition-all duration-base">
 <span>Meet the full team</span>
 <span class="material-symbols-outlined text-base group-hover:translate-y-0.5 transition-transform" aria-hidden="true">expand_more</span>
 </button>
@@ -833,7 +873,7 @@
 <!-- ===== WHO TRUSTS US ===== -->
 <section class="py-40 px-8 lg:px-16 overflow-hidden border-t border-black/5" id="chapter-proof" data-chapter="proof">
 <div class="max-w-7xl mx-auto mb-16 reveal">
-<span class="text-xs uppercase tracking-label text-primary mb-4 block">05 — Who Trusts Us</span>
+<span class="text-xs uppercase tracking-label text-primary mb-6 block">05 — Who Trusts Us</span>
 <h2 class="font-light text-4xl">Trusted by teams building the future.</h2>
 </div>
 <div class="overflow-hidden mb-20">
@@ -850,7 +890,7 @@
 <span class="text-2xl font-semibold tracking-tight opacity-20 mr-20">RenderLab</span>
 </div>
 </div>
-<div class="max-w-3xl mx-auto reveal">
+<div class="max-w-7xl mx-auto reveal">
 <div class="border-t border-black/10 py-5 flex items-center justify-between">
 <span class="text-xs font-mono text-muted">2022</span>
 <span class="text-sm text-text-dark/70">TAG Technology Leadership Award</span>
@@ -867,28 +907,35 @@
 </section>
 
 <!-- ===== TESTIMONIAL ===== -->
-<section class="py-40 px-8 lg:px-16 bg-zinc-950 text-white">
-<div class="max-w-4xl mx-auto text-center reveal">
-<blockquote class="text-4xl md:text-5xl font-light leading-snug mb-12">
-    "They didn't just build what we asked for — they figured out what we actually needed. We've been working together for six years now."
-</blockquote>
-<div>
-<span class="text-sm font-semibold text-white">James Whitfield</span>
-<span class="text-sm text-white/40 ml-2">Director of Operations, Meridian Manufacturing</span>
-</div>
+<section class="py-32 px-8 lg:px-16 bg-surface-dark text-white">
+<div class="max-w-7xl mx-auto reveal">
+  <div class="flex flex-col lg:flex-row gap-12 lg:gap-24 items-start">
+    <!-- Attribution column -->
+    <div class="flex-shrink-0 lg:w-64 lg:pt-2">
+      <div class="w-6 h-px bg-primary mb-8"></div>
+      <span class="block text-sm font-semibold text-white mb-1">James Whitfield</span>
+      <span class="block text-xs text-white/40 leading-relaxed">Director of Operations<br/>Meridian Manufacturing</span>
+    </div>
+    <!-- Quote column -->
+    <div class="flex-1">
+      <blockquote class="text-4xl md:text-5xl lg:text-6xl font-light leading-snug text-white">
+        "They didn't just build what we asked for — they figured out what we actually needed. We've been working together for six years now."
+      </blockquote>
+    </div>
+  </div>
 </div>
 </section>
 
 </main>
 <!-- CTA -->
-<section class="py-32 px-8 lg:px-16 bg-zinc-950 text-white cta-section" id="cta-section">
+<section class="py-32 px-8 lg:px-16 bg-surface-dark text-white cta-section" id="cta-section">
     <div class="reveal max-w-4xl mx-auto text-center">
         <span class="text-xs uppercase tracking-label text-primary-light mb-6 block cta-label">Work With Us</span>
         <h2 class="font-light text-5xl md:text-6xl mb-8 leading-tight cta-text">Ready to replace what's<br/>holding you back?</h2>
         <p class="text-lg text-white/50 mb-12 max-w-2xl mx-auto cta-muted">A 30-minute conversation about your project. No sales pitch. We'll talk about your challenges, your goals, and whether we're the right fit.</p>
         <a href="contact.html" class="cta-wipe group inline-flex items-center gap-3 border border-white/20 px-10 py-5 text-sm uppercase tracking-cta font-medium" id="cta-btn">
             <span>Start a Conversation</span>
-            <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform duration-300" aria-hidden="true">arrow_forward</span>
+            <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform duration-base" aria-hidden="true">arrow_forward</span>
         </a>
     </div>
 </section>
@@ -900,7 +947,7 @@
 </div>
 <div class="footer-grid relative z-10 grid grid-cols-2 md:grid-cols-4 gap-12 pt-16 border-t border-black/10" style="transition: border-color 0.6s ease;">
 <div>
-<h6 class="footer-text text-xs uppercase tracking-widest font-bold mb-6" style="transition: color 0.6s ease;">What We Do</h6>
+<h6 class="text-xs uppercase tracking-widest font-bold mb-6 footer-text" style="transition: color 0.6s ease;">What We Do</h6>
 <ul class="space-y-2 text-muted text-sm footer-text" style="transition: color 0.6s ease;">
 <li><a class="hover:text-primary" href="services/digital-product-strategy.html">Digital Product Strategy</a></li>
 <li><a class="hover:text-primary" href="services/web-design-development.html">Web Design & Development</a></li>
@@ -909,7 +956,7 @@
 </ul>
 </div>
 <div>
-<h6 class="footer-text text-xs uppercase tracking-widest font-bold mb-6" style="transition: color 0.6s ease;">Company</h6>
+<h6 class="text-xs uppercase tracking-widest font-bold mb-6 footer-text" style="transition: color 0.6s ease;">Company</h6>
 <ul class="space-y-2 text-muted text-sm footer-text" style="transition: color 0.6s ease;">
 <li><a class="hover:text-primary" href="about.html">About</a></li>
 <li><a class="hover:text-primary" href="how-we-work.html">How We Work</a></li>
@@ -919,7 +966,7 @@
 </ul>
 </div>
 <div>
-<h6 class="footer-text text-xs uppercase tracking-widest font-bold mb-6" style="transition: color 0.6s ease;">Connect</h6>
+<h6 class="text-xs uppercase tracking-widest font-bold mb-6 footer-text" style="transition: color 0.6s ease;">Connect</h6>
 <ul class="flex items-center gap-5 footer-text" style="transition: color 0.6s ease;">
 <li><a class="hover:text-primary transition-colors" href="https://www.linkedin.com/company/azularc/" target="_blank" rel="noopener" aria-label="Azul Arc on LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></li>
 <li><a class="hover:text-primary transition-colors" href="https://x.com/azularc" target="_blank" rel="noopener" aria-label="Azul Arc on X"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.739l7.73-8.835L1.254 2.25H8.08l4.013 5.305zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a></li>
@@ -928,9 +975,9 @@
 </div>
 <div class="flex flex-col justify-between">
 <div>
-<h6 class="footer-text text-xs uppercase tracking-widest font-bold mb-6" style="transition: color 0.6s ease;">Insights</h6>
-<div class="footer-border flex border-b border-black/10 pb-2" style="transition: border-color 0.6s ease;">
-<input class="footer-text bg-transparent border-none focus:ring-0 p-0 text-sm w-full" style="transition: color 0.6s ease;" placeholder="Email" type="email"/>
+<h6 class="text-xs uppercase tracking-widest font-bold mb-6 footer-text" style="transition: color 0.6s ease;">Insights</h6>
+<div class="flex border-b border-black/10 pb-2 footer-border" style="transition: border-color 0.6s ease;">
+<input class="footer-text bg-transparent border-none focus:ring-0 focus-visible:ring-1 focus-visible:ring-primary focus-visible:border-primary p-0 text-sm w-full" style="transition: color 0.6s ease;" placeholder="Email" type="email"/>
 <span class="footer-text material-symbols-outlined opacity-40" style="transition: color 0.6s ease;" aria-hidden="true">arrow_forward</span>
 </div>
 </div>
@@ -1079,30 +1126,6 @@ if (ctaBtn && ctaSection) {
 })();
 </script>
 <script>
-// Chapter progress dots
-(function() {
-  var nav = document.getElementById('chapter-nav');
-  if (!nav) return;
-  var chapterObs = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (!entry.isIntersecting) return;
-      var ch = entry.target.dataset.chapter;
-      nav.querySelectorAll('.chapter-dot').forEach(function(d) { d.classList.remove('active'); });
-      var dot = nav.querySelector('[data-target-chapter="' + ch + '"]');
-      if (dot) dot.classList.add('active');
-      var isDark = entry.target.classList.contains('bg-navy') || entry.target.classList.contains('bg-zinc-950');
-      nav.classList.toggle('nav-light', isDark);
-    });
-  }, { threshold: 0.3 });
-  document.querySelectorAll('[data-chapter]').forEach(function(el) { chapterObs.observe(el); });
-  nav.querySelectorAll('.chapter-dot').forEach(function(dot) {
-    dot.addEventListener('click', function() {
-      var t = document.getElementById('chapter-' + dot.dataset.targetChapter);
-      if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-  });
-})();
-
 // Stat counter animation
 (function() {
   function animateCounter(el) {
@@ -1157,6 +1180,62 @@ function toggleTeam(btn) {
 }
 </script>
 <script>
+// Origin scrollytelling
+(function() {
+  if (window.innerWidth < 1024) return;
+  var section = document.getElementById('chapter-origin');
+  if (!section) return;
+  var stepsWrap = document.getElementById('origin-steps-wrap');
+  var steps = section.querySelectorAll('.origin-step');
+  var images = section.querySelectorAll('.origin-image');
+  var N = steps.length;
+  var lastStep = -1;
+  var ticking = false;
+
+  // Size the step wrapper to the tallest step so absolute children have a defined container
+  var maxH = 0;
+  steps.forEach(function(el) {
+    el.style.position = 'static';
+    var h = el.offsetHeight;
+    if (h > maxH) maxH = h;
+    el.style.position = '';
+  });
+  stepsWrap.style.height = maxH + 'px';
+
+  // Initial image positions: stack below the visible area
+  images.forEach(function(el, i) {
+    el.style.transform = 'translateY(' + (i * 100) + '%)';
+  });
+
+  function paint() {
+    var rect = section.getBoundingClientRect();
+    var scrollable = section.offsetHeight - window.innerHeight;
+    var progress = scrollable > 0 ? Math.max(0, Math.min(1, -rect.top / scrollable)) : 0;
+    var step = Math.min(Math.round(progress * (N - 1)), N - 1);
+
+    if (step !== lastStep) {
+      lastStep = step;
+      steps.forEach(function(el, i) {
+        el.style.opacity = i === step ? '1' : '0';
+        el.style.transform = i === step ? 'translateY(0)' : (i < step ? 'translateY(-16px)' : 'translateY(16px)');
+      });
+    }
+
+    // Continuous upward scroll through the image box
+    images.forEach(function(el, i) {
+      el.style.transform = 'translateY(' + ((i - progress * (N - 1)) * 100) + '%)';
+    });
+
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', function() {
+    if (!ticking) { requestAnimationFrame(paint); ticking = true; }
+  }, { passive: true });
+
+  paint();
+})();
+
 // Safari smooth-scroll polyfill
 (function() {
   document.querySelectorAll('a[href^="#"]').forEach(function(a) {

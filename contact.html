@@ -19,47 +19,49 @@
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
 <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        primary: "#1863DC",
-                        "primary-dark": "#07406B",
-                        "primary-light": "#2AA7DF",
-                        "background-light": "#FFFFFF",
-                        "background-dark": "#212121",
-                        "text-dark": "#212121",
-                        "text-light": "#EBEBEB",
-                        "muted": "#808285",
-                        "navy": "#0B1A2F",
-                    },
-                    fontFamily: {
-                        display: ["Inter", "sans-serif"],
-                        sans: ["Inter", "sans-serif"],
-                    },
-                    borderRadius: {
-                        DEFAULT: "0px",
-                        'lg': "4px",
-                        'xl': "12px",
-                    },
-                    letterSpacing: {
-                        'label': '0.3em',
-                        'cta': '0.15em',
-                        'wide-label': '0.2em',
-                        'extra': '0.4em',
-                    },
-                    fontSize: {
-                        'menu': '15px',
-                    },
-                    transitionDuration: {
-                        'fast': '150ms',
-                        'base': '300ms',
-                        'slow': '500ms',
-                    },
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    primary: "#1863DC",
+                    "primary-dark": "#07406B",
+                    "primary-light": "#2AA7DF",
+                    "background-light": "#FFFFFF",
+                    "background-dark": "#212121",
+                    "text-dark": "#212121",
+                    "text-light": "#EBEBEB",
+                    "muted": "#808285",
+                    "navy": "#0B1A2F",
+                    "surface-dark": "#09090b",
+                    "surface": "#FAFAFA",
+                },
+                fontFamily: {
+                    display: ["Inter", "sans-serif"],
+                    sans: ["Inter", "sans-serif"],
+                },
+                borderRadius: {
+                    DEFAULT: "0px",
+                    'lg': "4px",
+                    'xl': "12px",
+                },
+                letterSpacing: {
+                    'label': '0.3em',
+                    'cta': '0.15em',
+                    'wide-label': '0.2em',
+                },
+                fontSize: {
+                    'menu': '15px',
+                },
+                transitionDuration: {
+                    'fast': '200ms',
+                    'base': '300ms',
+                    'slow': '500ms',
+                    'slower': '700ms',
                 },
             },
-        };
+        },
+    };
     </script>
 <style type="text/tailwindcss">
         * { text-wrap: pretty; }
@@ -362,11 +364,11 @@
 <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-white focus:text-text-dark focus:px-4 focus:py-2 focus:text-sm focus:font-medium">Skip to main content</a>
 
 <!-- Navigation -->
-<nav id="main-nav" class="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center bg-white/80 backdrop-blur-md text-zinc-900 transition-all duration-300">
+<nav id="main-nav" class="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center bg-white/80 backdrop-blur-md text-text-dark transition-all duration-base">
 <a href="index.html"><img src="azularcLogo.png" alt="Azul Arc" class="h-8"/></a>
 <div class="hidden md:flex gap-6 text-sm uppercase tracking-widest font-medium items-center nav-links">
-<a class="hover:opacity-60 transition-opacity flex items-center gap-1 cursor-pointer nav-dd-trigger" data-dropdown="industries" href="#">Industries <span class="material-symbols-outlined text-sm" aria-hidden="true">expand_more</span></a>
-<a class="hover:opacity-60 transition-opacity flex items-center gap-1 cursor-pointer nav-dd-trigger" data-dropdown="whatwedo" href="#">What We Do <span class="material-symbols-outlined text-sm" aria-hidden="true">expand_more</span></a>
+<a class="hover:opacity-60 transition-opacity flex items-center gap-1 cursor-pointer nav-dd-trigger" data-dropdown="industries" href="#industries">Industries <span class="material-symbols-outlined text-sm" aria-hidden="true">expand_more</span></a>
+<a class="hover:opacity-60 transition-opacity flex items-center gap-1 cursor-pointer nav-dd-trigger" data-dropdown="whatwedo" href="#capabilities">What We Do <span class="material-symbols-outlined text-sm" aria-hidden="true">expand_more</span></a>
 <a class="hover:opacity-60 transition-opacity flex items-center gap-1 cursor-pointer nav-dd-trigger" data-dropdown="products" href="#products">Products <span class="material-symbols-outlined text-sm" aria-hidden="true">expand_more</span></a>
 <a class="hover:opacity-60 transition-opacity" href="how-we-work.html">How We Work</a>
 <a class="hover:opacity-60 transition-opacity" href="work.html">Work</a>
@@ -414,7 +416,7 @@
 
 
 <!-- Mega menus -->
-<div id="mega-industries" class="mega-menu fixed top-0 left-0 w-full z-40 pt-[72px] opacity-0 invisible translate-y-[-8px] transition-all duration-300 ease-out pointer-events-none">
+<div id="mega-industries" class="mega-menu fixed top-0 left-0 w-full z-40 pt-[72px] opacity-0 invisible translate-y-[-8px] transition-all duration-base ease-out pointer-events-none">
 <div class="mx-8 bg-text-dark backdrop-blur-xl rounded-xl pointer-events-auto overflow-hidden">
 <div class="flex">
 <div class="w-64 shrink-0 p-8 border-r border-white/10 flex flex-col justify-center">
@@ -422,17 +424,17 @@
 <p class="text-sm text-white/40 leading-relaxed">The industries where we do our best work.</p>
 </div>
 <div class="flex-1 p-4">
-<a href="industries/courts.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<a href="industries/courts.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-fast">
 <span class="text-xs text-white/20 font-mono w-6">01</span>
 <div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">Court Systems</div><div class="text-xs text-white/40 mt-1">Courts, clerks & public agencies</div></div>
 <span class="material-symbols-outlined text-white/20 text-base group-hover/item:text-primary-light group-hover/item:translate-x-1 transition-all" aria-hidden="true">arrow_forward</span>
 </a>
-<a href="industries/manufacturing.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<a href="industries/manufacturing.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-fast">
 <span class="text-xs text-white/20 font-mono w-6">02</span>
 <div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">Product Manufacturers</div><div class="text-xs text-white/40 mt-1">Sales tools & commercial platforms</div></div>
 <span class="material-symbols-outlined text-white/20 text-base group-hover/item:text-primary-light group-hover/item:translate-x-1 transition-all" aria-hidden="true">arrow_forward</span>
 </a>
-<a href="industries/growth-stage.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<a href="industries/growth-stage.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-fast">
 <span class="text-xs text-white/20 font-mono w-6">03</span>
 <div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">Growth-Stage SMBs</div><div class="text-xs text-white/40 mt-1">Scaling operations & legacy replacement</div></div>
 <span class="material-symbols-outlined text-white/20 text-base group-hover/item:text-primary-light group-hover/item:translate-x-1 transition-all" aria-hidden="true">arrow_forward</span>
@@ -441,7 +443,7 @@
 </div>
 </div>
 </div>
-<div id="mega-whatwedo" class="mega-menu fixed top-0 left-0 w-full z-40 pt-[72px] opacity-0 invisible translate-y-[-8px] transition-all duration-300 ease-out pointer-events-none">
+<div id="mega-whatwedo" class="mega-menu fixed top-0 left-0 w-full z-40 pt-[72px] opacity-0 invisible translate-y-[-8px] transition-all duration-base ease-out pointer-events-none">
 <div class="mx-8 bg-text-dark backdrop-blur-xl rounded-xl pointer-events-auto overflow-hidden">
 <div class="flex">
 <div class="w-64 shrink-0 p-8 border-r border-white/10 flex flex-col justify-center">
@@ -449,19 +451,19 @@
 <p class="text-sm text-white/40 leading-relaxed">From strategy to launch and beyond.</p>
 </div>
 <div class="flex-1 p-4 grid grid-cols-2">
-<a href="services/digital-product-strategy.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<a href="services/digital-product-strategy.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-fast">
 <span class="text-xs text-white/20 font-mono w-6">01</span>
 <div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">Digital Product Strategy</div><div class="text-xs text-white/40 mt-1">Figure out what to build first</div></div>
 </a>
-<a href="services/web-design-development.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<a href="services/web-design-development.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-fast">
 <span class="text-xs text-white/20 font-mono w-6">02</span>
 <div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">Web Design & Development</div><div class="text-xs text-white/40 mt-1">Sites & apps that actually convert</div></div>
 </a>
-<a href="services/3d-visualization.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<a href="services/3d-visualization.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-fast">
 <span class="text-xs text-white/20 font-mono w-6">03</span>
 <div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">3D Visualisation</div><div class="text-xs text-white/40 mt-1">Product visuals that sell themselves</div></div>
 </a>
-<a href="services/case-management.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<a href="services/case-management.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-fast">
 <span class="text-xs text-white/20 font-mono w-6">04</span>
 <div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">Case Management Systems</div><div class="text-xs text-white/40 mt-1">Track every case, automate the rest</div></div>
 </a>
@@ -470,7 +472,7 @@
 </div>
 </div>
 
-<div id="mega-products" class="mega-menu fixed top-0 left-0 w-full z-40 pt-[72px] opacity-0 invisible translate-y-[-8px] transition-all duration-300 ease-out pointer-events-none">
+<div id="mega-products" class="mega-menu fixed top-0 left-0 w-full z-40 pt-[72px] opacity-0 invisible translate-y-[-8px] transition-all duration-base ease-out pointer-events-none">
 <div class="mx-8 bg-text-dark backdrop-blur-xl rounded-xl pointer-events-auto overflow-hidden">
 <div class="flex">
 <div class="w-64 shrink-0 p-8 border-r border-white/10 flex flex-col justify-center">
@@ -478,12 +480,12 @@
 <p class="text-sm text-white/40 leading-relaxed">Software built for specific industries and use cases.</p>
 </div>
 <div class="flex-1 p-4">
-<a href="casehub.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<a href="casehub.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-fast">
 <span class="text-xs text-white/20 font-mono w-6">01</span>
 <div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">CaseHub</div><div class="text-xs text-white/40 mt-1">Modern case management for courts &amp; agencies</div></div>
 <span class="material-symbols-outlined text-white/20 text-base group-hover/item:text-primary-light group-hover/item:translate-x-1 transition-all" aria-hidden="true">arrow_forward</span>
 </a>
-<a href="renderlab.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<a href="renderlab.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-fast">
 <span class="text-xs text-white/20 font-mono w-6">02</span>
 <div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">Renderlab</div><div class="text-xs text-white/40 mt-1">3D product visualization and configuration</div></div>
 <span class="material-symbols-outlined text-white/20 text-base group-hover/item:text-primary-light group-hover/item:translate-x-1 transition-all" aria-hidden="true">arrow_forward</span>
@@ -551,7 +553,7 @@
 <label for="project-details" class="block text-xs uppercase tracking-wide-label text-muted mb-3 font-medium">Tell Us About Your Project</label>
 <textarea id="project-details" class="form-input-line" placeholder="What systems are you running today? What's broken? What would success look like?"></textarea>
 </div>
-<button type="submit" class="w-full bg-primary text-white py-4 text-xs uppercase tracking-wide-label font-semibold hover:bg-primary-dark transition-colors duration-300">
+<button type="submit" class="w-full bg-primary text-white py-4 text-xs uppercase tracking-wide-label font-semibold hover:bg-primary-dark transition-colors duration-base">
 Send My Project Brief
 </button>
 </form>
@@ -561,7 +563,7 @@ Send My Project Brief
 <div class="lg:w-5/12">
 <!-- Value Props -->
 <div class="mb-16">
-<p class="reveal text-xs uppercase tracking-wide-label text-primary mb-8 font-medium">What You'll Get</p>
+<p class="reveal text-xs uppercase tracking-wide-label text-primary mb-6 font-medium">What You'll Get</p>
 <div class="space-y-5">
 <div class="flex items-start gap-4">
 <span class="material-symbols-outlined text-primary mt-0.5" aria-hidden="true">check_circle</span>
@@ -580,7 +582,7 @@ Send My Project Brief
 
 <!-- Contact Details -->
 <div class="reveal border-t border-black/10 pt-12 mb-16">
-<p class="text-xs uppercase tracking-wide-label text-primary mb-8 font-medium">Get In Touch</p>
+<p class="text-xs uppercase tracking-wide-label text-primary mb-6 font-medium">Get In Touch</p>
 <div class="space-y-6">
 <div>
 <span class="block text-xs uppercase tracking-wide-label text-muted mb-1">Email</span>
@@ -598,7 +600,7 @@ Send My Project Brief
 </div>
 
 <!-- Office Image / Map Placeholder -->
-<div class="reveal aspect-[4/3] bg-zinc-100 overflow-hidden rounded-lg relative">
+<div class="reveal aspect-[4/3] bg-surface overflow-hidden rounded-lg relative">
 <div class="absolute inset-0" style="background: linear-gradient(160deg, #e8f0fe 0%, #dceefb 50%, #cde4f7 100%);"></div>
 <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-8">
 <span class="material-symbols-outlined text-primary text-4xl mb-4" aria-hidden="true">location_on</span>
@@ -611,7 +613,7 @@ Send My Project Brief
 </section>
 
 <!-- Alternative CTA: Book a Call -->
-<section class="py-32 px-8 lg:px-16 bg-zinc-950 text-white">
+<section class="py-32 px-8 lg:px-16 bg-surface-dark text-white">
 <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-center">
 <div class="lg:w-1/2">
 <h2 class="reveal font-light text-4xl md:text-5xl mb-6 leading-tight">Prefer to book a<br/>call directly?</h2>
@@ -665,12 +667,12 @@ Send My Project Brief
 <!-- Summary -->
 <div id="cal-summary" class="mb-3 text-xs text-white/60 text-center" style="min-height:1.25rem;"></div>
 <!-- CTA -->
-<button id="cal-book-btn" class="w-full bg-primary text-white py-3 uppercase text-xs font-bold tracking-wide-label hover:bg-white hover:text-primary transition-all duration-300 rounded-lg opacity-40 pointer-events-none">
+<button id="cal-book-btn" class="w-full bg-primary text-white py-3 uppercase text-xs font-bold tracking-wide-label hover:bg-white hover:text-primary transition-all duration-base rounded-lg opacity-40 pointer-events-none">
 Lock In My Free Consult
 </button>
 <canvas id="confetti-canvas" class="absolute inset-0 w-full h-full pointer-events-none rounded-lg" style="z-index:11;"></canvas>
 <!-- Confirmation overlay -->
-<div id="cal-confirm" class="absolute inset-0 rounded-lg flex flex-col items-center justify-center text-center p-8 opacity-0 pointer-events-none transition-all duration-500" style="background: #212121; z-index: 10;">
+<div id="cal-confirm" class="absolute inset-0 rounded-lg flex flex-col items-center justify-center text-center p-8 opacity-0 pointer-events-none transition-all duration-slow" style="background: #212121; z-index: 10;">
 <div class="w-14 h-14 rounded-full border-2 border-primary flex items-center justify-center mb-6" id="cal-check-circle">
 <span class="material-symbols-outlined text-primary text-2xl" aria-hidden="true" id="cal-check-icon" style="opacity:0; transform:scale(0.5); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s;">check</span>
 </div>
@@ -688,9 +690,9 @@ Back to Calendar
 
 <!-- FAQ Section -->
 <section class="py-32 px-8 lg:px-16">
-<div class="max-w-3xl mx-auto">
+<div class="max-w-7xl mx-auto">
 <div class="reveal">
-<p class="text-xs uppercase tracking-wide-label text-primary mb-4 font-medium">Frequently Asked</p>
+<p class="text-xs uppercase tracking-wide-label text-primary mb-6 font-medium">Frequently Asked</p>
 <h2 class="font-light text-4xl md:text-5xl mb-16">Common questions</h2>
 </div>
 
@@ -698,7 +700,7 @@ Back to Calendar
 <div class="faq-item">
 <button type="button" aria-expanded="false" class="w-full text-left flex items-center justify-between py-6 cursor-pointer" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'); this.closest('.faq-item').classList.toggle('open')">
 <h3 class="text-lg font-medium pr-8">What happens after I submit?</h3>
-<span class="material-symbols-outlined text-xl text-muted faq-icon transition-transform duration-300" aria-hidden="true">add</span>
+<span class="material-symbols-outlined text-xl text-muted faq-icon transition-transform duration-base" aria-hidden="true">add</span>
 </button>
 <div class="faq-answer" role="region">
 <p class="text-base text-muted pt-4 pb-2 leading-relaxed">Within one business day, someone from our team will review your brief and reach out to schedule a 30-minute discovery call. No bots, no auto-responders. A real person who's read what you wrote and comes prepared with initial thoughts.</p>
@@ -708,7 +710,7 @@ Back to Calendar
 <div class="faq-item">
 <button type="button" aria-expanded="false" class="w-full text-left flex items-center justify-between py-6 cursor-pointer" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'); this.closest('.faq-item').classList.toggle('open')">
 <h3 class="text-lg font-medium pr-8">How quickly will you respond?</h3>
-<span class="material-symbols-outlined text-xl text-muted faq-icon transition-transform duration-300" aria-hidden="true">add</span>
+<span class="material-symbols-outlined text-xl text-muted faq-icon transition-transform duration-base" aria-hidden="true">add</span>
 </button>
 <div class="faq-answer" role="region">
 <p class="text-base text-muted pt-4 pb-2 leading-relaxed">Most submissions get a response within 4-8 business hours. We don't sit on leads. If you reach out on a Friday afternoon, expect to hear from us Monday morning at the latest.</p>
@@ -718,7 +720,7 @@ Back to Calendar
 <div class="faq-item">
 <button type="button" aria-expanded="false" class="w-full text-left flex items-center justify-between py-6 cursor-pointer" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'); this.closest('.faq-item').classList.toggle('open')">
 <h3 class="text-lg font-medium pr-8">What's the minimum project size?</h3>
-<span class="material-symbols-outlined text-xl text-muted faq-icon transition-transform duration-300" aria-hidden="true">add</span>
+<span class="material-symbols-outlined text-xl text-muted faq-icon transition-transform duration-base" aria-hidden="true">add</span>
 </button>
 <div class="faq-answer" role="region">
 <p class="text-base text-muted pt-4 pb-2 leading-relaxed">Most of our engagements start around $50K, but it depends on scope. We've done smaller discovery projects and much larger platform builds. If you're not sure, that's fine — the discovery call will help us figure out the right size together.</p>
@@ -728,7 +730,7 @@ Back to Calendar
 <div class="faq-item">
 <button type="button" aria-expanded="false" class="w-full text-left flex items-center justify-between py-6 cursor-pointer" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'); this.closest('.faq-item').classList.toggle('open')">
 <h3 class="text-lg font-medium pr-8">Do you work with startups?</h3>
-<span class="material-symbols-outlined text-xl text-muted faq-icon transition-transform duration-300" aria-hidden="true">add</span>
+<span class="material-symbols-outlined text-xl text-muted faq-icon transition-transform duration-base" aria-hidden="true">add</span>
 </button>
 <div class="faq-answer" role="region">
 <p class="text-base text-muted pt-4 pb-2 leading-relaxed">We work best with companies that have an established business and real users who need better tools. Early-stage startups building their first MVP aren't usually the right fit, but growth-stage companies scaling past their initial systems are exactly our sweet spot.</p>
@@ -738,7 +740,7 @@ Back to Calendar
 <div class="faq-item">
 <button type="button" aria-expanded="false" class="w-full text-left flex items-center justify-between py-6 cursor-pointer" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'); this.closest('.faq-item').classList.toggle('open')">
 <h3 class="text-lg font-medium pr-8">Can I just get a consultation?</h3>
-<span class="material-symbols-outlined text-xl text-muted faq-icon transition-transform duration-300" aria-hidden="true">add</span>
+<span class="material-symbols-outlined text-xl text-muted faq-icon transition-transform duration-base" aria-hidden="true">add</span>
 </button>
 <div class="faq-answer" role="region">
 <p class="text-base text-muted pt-4 pb-2 leading-relaxed">Absolutely. The discovery call is free and comes with zero obligation. If you want a deeper audit of your current systems before committing to a build, we offer paid discovery engagements that give you a complete technical assessment and roadmap you can take to any team.</p>
@@ -750,18 +752,18 @@ Back to Calendar
 
 <!-- Footer -->
 </main>
-<footer id="footer-section" class="relative pt-16 pb-16 px-8 lg:px-16 border-t border-black/5 dark:border-white/5">
+<footer id="footer-section" class="relative pt-16 pb-16 px-8 lg:px-16 border-t border-black/5 dark:border-white/5" style="overflow: clip;">
 <div class="relative z-10 mb-10 flex items-center">
 <img src="azularcLogo.png" alt="Azul Arc" class="h-7 opacity-70 footer-logo" style="transition: opacity 0.6s ease;" />
 </div>
-<div class="footer-grid relative z-10 grid grid-cols-2 md:grid-cols-4 gap-12" style="transition: border-color 0.6s ease;">
+<div class="footer-grid relative z-10 grid grid-cols-2 md:grid-cols-4 gap-12 pt-16 border-t border-black/10" style="transition: border-color 0.6s ease;">
 <div>
 <h6 class="text-xs uppercase tracking-widest font-bold mb-6 footer-text" style="transition: color 0.6s ease;">What We Do</h6>
 <ul class="space-y-2 text-muted text-sm footer-text" style="transition: color 0.6s ease;">
-<li><a class="hover:text-primary" href="services/digital-product-strategy.html">Custom Software</a></li>
+<li><a class="hover:text-primary" href="services/digital-product-strategy.html">Digital Product Strategy</a></li>
 <li><a class="hover:text-primary" href="services/web-design-development.html">Web Design & Development</a></li>
 <li><a class="hover:text-primary" href="services/3d-visualization.html">3D Visualization</a></li>
-<li><a class="hover:text-primary" href="services/case-management.html">Integrations & Data</a></li>
+<li><a class="hover:text-primary" href="services/case-management.html">Case Management</a></li>
 </ul>
 </div>
 <div>
@@ -786,7 +788,7 @@ Back to Calendar
 <div>
 <h6 class="text-xs uppercase tracking-widest font-bold mb-6 footer-text" style="transition: color 0.6s ease;">Insights</h6>
 <div class="flex border-b border-black/10 pb-2 footer-border" style="transition: border-color 0.6s ease;">
-<input class="bg-transparent border-none focus:ring-0 p-0 text-sm w-full footer-text" style="transition: color 0.6s ease;" placeholder="Email" type="email"/>
+<input class="bg-transparent border-none focus:ring-0 focus-visible:ring-1 focus-visible:ring-primary focus-visible:border-primary p-0 text-sm w-full footer-text" style="transition: color 0.6s ease;" placeholder="Email" type="email"/>
 <span class="material-symbols-outlined opacity-40 footer-text" aria-hidden="true" style="transition: color 0.6s ease;">arrow_forward</span>
 </div>
 </div>

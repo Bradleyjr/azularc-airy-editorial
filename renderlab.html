@@ -33,6 +33,8 @@
                     "text-light": "#EBEBEB",
                     "muted": "#808285",
                     "navy": "#0B1A2F",
+                    "surface-dark": "#09090b",
+                    "surface": "#FAFAFA",
                 },
                 fontFamily: {
                     display: ["Inter", "sans-serif"],
@@ -47,15 +49,15 @@
                     'label': '0.3em',
                     'cta': '0.15em',
                     'wide-label': '0.2em',
-                    'extra': '0.4em',
                 },
                 fontSize: {
                     'menu': '15px',
                 },
                 transitionDuration: {
-                    'fast': '150ms',
+                    'fast': '200ms',
                     'base': '300ms',
                     'slow': '500ms',
+                    'slower': '700ms',
                 },
             },
         },
@@ -354,7 +356,7 @@
 <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-white focus:text-text-dark focus:px-4 focus:py-2 focus:text-sm focus:font-medium">Skip to main content</a>
 
 <!-- Navigation -->
-<nav id="main-nav" class="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center bg-white/80 backdrop-blur-md text-zinc-900 transition-all duration-300">
+<nav id="main-nav" class="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center bg-white/80 backdrop-blur-md text-text-dark transition-all duration-base">
 <a href="index.html"><img src="azularcLogo.png" alt="Azul Arc" class="h-8"/></a>
 <div class="hidden md:flex gap-6 text-sm uppercase tracking-widest font-medium items-center nav-links">
 <a class="hover:opacity-60 transition-opacity flex items-center gap-1 cursor-pointer nav-dd-trigger" data-dropdown="industries" href="#industries">Industries <span class="material-symbols-outlined text-sm" aria-hidden="true">expand_more</span></a>
@@ -406,7 +408,7 @@
 
 
 <!-- Mega menus -->
-<div id="mega-industries" class="mega-menu fixed top-0 left-0 w-full z-40 pt-[72px] opacity-0 invisible translate-y-[-8px] transition-all duration-300 ease-out pointer-events-none">
+<div id="mega-industries" class="mega-menu fixed top-0 left-0 w-full z-40 pt-[72px] opacity-0 invisible translate-y-[-8px] transition-all duration-base ease-out pointer-events-none">
 <div class="mx-8 bg-text-dark backdrop-blur-xl rounded-xl pointer-events-auto overflow-hidden">
 <div class="flex">
 <div class="w-64 shrink-0 p-8 border-r border-white/10 flex flex-col justify-center">
@@ -414,17 +416,17 @@
 <p class="text-sm text-white/40 leading-relaxed">The industries where we do our best work.</p>
 </div>
 <div class="flex-1 p-4">
-<a href="industries/courts.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<a href="industries/courts.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-fast">
 <span class="text-xs text-white/20 font-mono w-6">01</span>
 <div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">Court Systems</div><div class="text-xs text-white/40 mt-1">Courts, clerks &amp; public agencies</div></div>
 <span class="material-symbols-outlined text-white/20 text-base group-hover/item:text-primary-light group-hover/item:translate-x-1 transition-all" aria-hidden="true">arrow_forward</span>
 </a>
-<a href="industries/manufacturing.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<a href="industries/manufacturing.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-fast">
 <span class="text-xs text-white/20 font-mono w-6">02</span>
 <div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">Product Manufacturers</div><div class="text-xs text-white/40 mt-1">Sales tools &amp; commercial platforms</div></div>
 <span class="material-symbols-outlined text-white/20 text-base group-hover/item:text-primary-light group-hover/item:translate-x-1 transition-all" aria-hidden="true">arrow_forward</span>
 </a>
-<a href="industries/growth-stage.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<a href="industries/growth-stage.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-fast">
 <span class="text-xs text-white/20 font-mono w-6">03</span>
 <div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">Growth-Stage SMBs</div><div class="text-xs text-white/40 mt-1">Scaling operations &amp; legacy replacement</div></div>
 <span class="material-symbols-outlined text-white/20 text-base group-hover/item:text-primary-light group-hover/item:translate-x-1 transition-all" aria-hidden="true">arrow_forward</span>
@@ -433,7 +435,7 @@
 </div>
 </div>
 </div>
-<div id="mega-whatwedo" class="mega-menu fixed top-0 left-0 w-full z-40 pt-[72px] opacity-0 invisible translate-y-[-8px] transition-all duration-300 ease-out pointer-events-none">
+<div id="mega-whatwedo" class="mega-menu fixed top-0 left-0 w-full z-40 pt-[72px] opacity-0 invisible translate-y-[-8px] transition-all duration-base ease-out pointer-events-none">
 <div class="mx-8 bg-text-dark backdrop-blur-xl rounded-xl pointer-events-auto overflow-hidden">
 <div class="flex">
 <div class="w-64 shrink-0 p-8 border-r border-white/10 flex flex-col justify-center">
@@ -441,19 +443,19 @@
 <p class="text-sm text-white/40 leading-relaxed">From strategy to launch and beyond.</p>
 </div>
 <div class="flex-1 p-4 grid grid-cols-2">
-<a href="services/digital-product-strategy.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<a href="services/digital-product-strategy.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-fast">
 <span class="text-xs text-white/20 font-mono w-6">01</span>
 <div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">Digital Product Strategy</div><div class="text-xs text-white/40 mt-1">Figure out what to build first</div></div>
 </a>
-<a href="services/web-design-development.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<a href="services/web-design-development.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-fast">
 <span class="text-xs text-white/20 font-mono w-6">02</span>
 <div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">Web Design &amp; Development</div><div class="text-xs text-white/40 mt-1">Sites &amp; apps that actually convert</div></div>
 </a>
-<a href="services/3d-visualization.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<a href="services/3d-visualization.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-fast">
 <span class="text-xs text-white/20 font-mono w-6">03</span>
 <div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">3D Visualisation</div><div class="text-xs text-white/40 mt-1">Product visuals that sell themselves</div></div>
 </a>
-<a href="services/case-management.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<a href="services/case-management.html" class="group/item flex items-center gap-5 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-fast">
 <span class="text-xs text-white/20 font-mono w-6">04</span>
 <div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">Case Management Systems</div><div class="text-xs text-white/40 mt-1">Track every case, automate the rest</div></div>
 </a>
@@ -462,7 +464,7 @@
 </div>
 </div>
 
-<div id="mega-products" class="mega-menu fixed top-0 left-0 w-full z-40 pt-[72px] opacity-0 invisible translate-y-[-8px] transition-all duration-300 ease-out pointer-events-none">
+<div id="mega-products" class="mega-menu fixed top-0 left-0 w-full z-40 pt-[72px] opacity-0 invisible translate-y-[-8px] transition-all duration-base ease-out pointer-events-none">
 <div class="mx-8 bg-text-dark backdrop-blur-xl rounded-xl pointer-events-auto overflow-hidden">
 <div class="flex">
 <div class="w-64 shrink-0 p-8 border-r border-white/10 flex flex-col justify-center">
@@ -470,12 +472,12 @@
 <p class="text-sm text-white/40 leading-relaxed">Software built for specific industries and use cases.</p>
 </div>
 <div class="flex-1 p-4">
-<a href="casehub.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<a href="casehub.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-fast">
 <span class="text-xs text-white/20 font-mono w-6">01</span>
 <div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">CaseHub</div><div class="text-xs text-white/40 mt-1">Modern case management for courts &amp; agencies</div></div>
 <span class="material-symbols-outlined text-white/20 text-base group-hover/item:text-primary-light group-hover/item:translate-x-1 transition-all" aria-hidden="true">arrow_forward</span>
 </a>
-<a href="renderlab.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-200">
+<a href="renderlab.html" class="group/item flex items-center gap-6 px-6 py-5 rounded-lg hover:bg-white/5 transition-all duration-fast">
 <span class="text-xs text-white/20 font-mono w-6">02</span>
 <div class="flex-1"><div class="text-sm font-medium text-white group-hover/item:text-primary-light transition-colors">Renderlab</div><div class="text-xs text-white/40 mt-1">3D product visualization and configuration</div></div>
 <span class="material-symbols-outlined text-white/20 text-base group-hover/item:text-primary-light group-hover/item:translate-x-1 transition-all" aria-hidden="true">arrow_forward</span>
@@ -494,15 +496,15 @@
     </div>
     <div class="relative z-10 px-8 lg:px-16 py-48 w-full">
         <div class="max-w-4xl">
-            <span class="text-xs uppercase tracking-label text-primary-light mb-8 block reveal">Product</span>
-            <h1 class="font-semibold text-5xl md:text-7xl lg:text-[5.5rem] leading-[0.95] tracking-tighter mb-10 reveal reveal-delay-1">
+            <span class="text-xs uppercase tracking-label text-primary-light mb-6 block reveal">Product</span>
+            <h1 class="font-semibold text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tighter mb-10 reveal reveal-delay-1">
                 Product visuals that<br/>configure, not just<br/>impress.
             </h1>
             <div class="max-w-xl reveal reveal-delay-2">
                 <p class="text-xl text-white/50 leading-relaxed font-light mb-12">
                     Renderlab gives manufacturers photorealistic product renders, real-time 3D configurators, and embeddable views — no 3D expertise required.
                 </p>
-                <a href="contact.html" class="inline-flex items-center gap-3 bg-primary text-white px-8 py-5 text-sm uppercase tracking-cta font-medium hover:bg-primary-dark transition-colors">
+                <a href="contact.html" class="inline-flex items-center gap-3 bg-primary text-white px-10 py-5 text-sm uppercase tracking-cta font-medium hover:bg-primary-dark transition-colors">
                     <span>Request a Demo</span>
                     <span class="material-symbols-outlined text-base" aria-hidden="true">arrow_forward</span>
                 </a>
@@ -531,9 +533,10 @@
 
 <!-- Why Renderlab -->
 <section class="py-32 px-8 lg:px-16" id="why">
+    <div class="max-w-7xl mx-auto">
     <div class="flex flex-col lg:flex-row gap-20 items-start">
         <div class="lg:w-5/12 reveal">
-            <span class="text-xs uppercase tracking-label text-primary mb-4 block">Why Renderlab</span>
+            <span class="text-xs uppercase tracking-label text-primary mb-6 block">Why Renderlab</span>
             <h2 class="font-light text-4xl md:text-5xl leading-tight">Because static photography can't keep up with product complexity.</h2>
         </div>
         <div class="lg:w-7/12 lg:pt-16">
@@ -550,12 +553,14 @@
             </div>
         </div>
     </div>
+    </div>
 </section>
 
 <!-- Features -->
-<section class="py-32 px-8 lg:px-16 bg-zinc-950 text-white" id="features">
+<section class="py-32 px-8 lg:px-16 bg-surface-dark text-white" id="features">
+    <div class="max-w-7xl mx-auto">
     <div class="mb-20 reveal">
-        <span class="text-xs uppercase tracking-label text-primary-light mb-4 block">Core Features</span>
+        <span class="text-xs uppercase tracking-label text-primary-light mb-6 block">Core Features</span>
         <h2 class="font-light text-5xl">Everything you need,<br/>nothing you don't.</h2>
     </div>
     <div class="flex flex-col lg:flex-row gap-16 lg:gap-24">
@@ -580,7 +585,7 @@
         </div>
         <!-- Feature visual -->
         <div class="lg:w-7/12 reveal">
-            <div class="aspect-[4/3] bg-white/[0.03] border border-white/[0.06] relative overflow-hidden">
+            <div class="aspect-[4/3] bg-white/5 border border-white/5 relative overflow-hidden">
 
                 <!-- Renders: render output preview -->
                 <div class="feature-panel active absolute inset-0 flex flex-col p-8" data-feature="renders">
@@ -590,29 +595,29 @@
                     </div>
                     <div class="flex-1 flex gap-4">
                         <!-- Main render frame -->
-                        <div class="flex-1 bg-white/[0.04] border border-white/[0.06] flex flex-col overflow-hidden">
+                        <div class="flex-1 bg-white/5 border border-white/5 flex flex-col overflow-hidden">
                             <div class="flex-1 flex items-center justify-center relative">
                                 <!-- Simulated render preview with gradient shapes -->
                                 <div class="absolute inset-0" style="background: radial-gradient(ellipse 60% 50% at 50% 55%, rgba(42,167,223,0.08), transparent), radial-gradient(ellipse 40% 40% at 40% 40%, rgba(24,99,220,0.06), transparent);"></div>
                                 <div class="relative flex flex-col items-center gap-3">
-                                    <div class="w-24 h-16 border border-white/10 bg-white/[0.03] flex items-center justify-center">
+                                    <div class="w-24 h-16 border border-white/10 bg-white/5 flex items-center justify-center">
                                         <span class="material-symbols-outlined text-3xl text-white/20">view_in_ar</span>
                                     </div>
                                     <div class="flex gap-1">
                                         <div class="w-3 h-3 bg-primary/30 border border-primary/20"></div>
-                                        <div class="w-3 h-3 bg-white/10 border border-white/[0.06]"></div>
-                                        <div class="w-3 h-3 bg-white/10 border border-white/[0.06]"></div>
+                                        <div class="w-3 h-3 bg-white/10 border border-white/5"></div>
+                                        <div class="w-3 h-3 bg-white/10 border border-white/5"></div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="px-3 py-2 border-t border-white/[0.06] flex items-center justify-between">
+                            <div class="px-3 py-2 border-t border-white/5 flex items-center justify-between">
                                 <span class="text-[9px] text-white/20 uppercase tracking-widest">4096 × 4096 px</span>
                                 <span class="text-[9px] text-green-400/60 uppercase tracking-widest">Ready</span>
                             </div>
                         </div>
                         <!-- Render controls sidebar -->
                         <div class="w-28 flex flex-col gap-2 shrink-0">
-                            <div class="bg-white/[0.04] border border-white/[0.06] p-2">
+                            <div class="bg-white/5 border border-white/5 p-2">
                                 <div class="text-[8px] uppercase tracking-widest text-white/20 mb-1.5">Lighting</div>
                                 <div class="flex gap-1 mb-1">
                                     <div class="h-1.5 flex-1 bg-primary/40"></div>
@@ -620,7 +625,7 @@
                                 </div>
                                 <div class="text-[8px] text-white/30">Studio 3pt</div>
                             </div>
-                            <div class="bg-white/[0.04] border border-white/[0.06] p-2">
+                            <div class="bg-white/5 border border-white/5 p-2">
                                 <div class="text-[8px] uppercase tracking-widest text-white/20 mb-1.5">Shadow</div>
                                 <div class="flex gap-1 mb-1">
                                     <div class="h-1.5 w-2/3 bg-primary/30"></div>
@@ -628,7 +633,7 @@
                                 </div>
                                 <div class="text-[8px] text-white/30">Soft 0.8</div>
                             </div>
-                            <div class="bg-white/[0.04] border border-white/[0.06] p-2">
+                            <div class="bg-white/5 border border-white/5 p-2">
                                 <div class="text-[8px] uppercase tracking-widest text-white/20 mb-1.5">Depth of Field</div>
                                 <div class="flex gap-1 mb-1">
                                     <div class="h-1.5 w-1/2 bg-primary/20"></div>
@@ -651,10 +656,10 @@
                     </div>
                     <div class="flex-1 flex gap-6">
                         <!-- Preview frame -->
-                        <div class="flex-1 bg-white/[0.04] border border-white/[0.06] flex items-center justify-center relative">
+                        <div class="flex-1 bg-white/5 border border-white/5 flex items-center justify-center relative">
                             <div class="absolute inset-0" style="background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(42,167,223,0.06), transparent);"></div>
                             <div class="relative flex flex-col items-center gap-2">
-                                <div class="w-28 h-20 border border-white/10 bg-white/[0.03] flex items-center justify-center">
+                                <div class="w-28 h-20 border border-white/10 bg-white/5 flex items-center justify-center">
                                     <span class="material-symbols-outlined text-4xl text-white/15">category</span>
                                 </div>
                                 <span class="text-[9px] text-white/20 uppercase tracking-widest">Updating…</span>
@@ -666,22 +671,22 @@
                                 <div class="text-[8px] uppercase tracking-widest text-white/20 mb-2">Material</div>
                                 <div class="flex flex-wrap gap-1.5">
                                     <div class="w-5 h-5 bg-white/80 border-2 border-primary-light"></div>
-                                    <div class="w-5 h-5 bg-zinc-700 border border-white/10"></div>
+                                    <div class="w-5 h-5 bg-surface-dark border border-white/10"></div>
                                     <div class="w-5 h-5 bg-amber-800 border border-white/10"></div>
                                     <div class="w-5 h-5 bg-primary border border-white/10"></div>
-                                    <div class="w-5 h-5 bg-zinc-950 border border-white/10"></div>
+                                    <div class="w-5 h-5 bg-surface-dark border border-white/10"></div>
                                 </div>
                             </div>
                             <div>
                                 <div class="text-[8px] uppercase tracking-widest text-white/20 mb-2">Finish</div>
-                                <div class="bg-white/[0.04] border border-white/[0.06] px-2 py-1.5 flex items-center justify-between">
+                                <div class="bg-white/5 border border-white/5 px-2 py-1.5 flex items-center justify-between">
                                     <span class="text-[9px] text-white/50">Matte</span>
                                     <span class="material-symbols-outlined text-xs text-white/20">unfold_more</span>
                                 </div>
                             </div>
                             <div>
                                 <div class="text-[8px] uppercase tracking-widest text-white/20 mb-2">Hardware</div>
-                                <div class="bg-white/[0.04] border border-white/[0.06] px-2 py-1.5 flex items-center justify-between">
+                                <div class="bg-white/5 border border-white/5 px-2 py-1.5 flex items-center justify-between">
                                     <span class="text-[9px] text-white/50">Brushed Steel</span>
                                     <span class="material-symbols-outlined text-xs text-white/20">unfold_more</span>
                                 </div>
@@ -690,8 +695,8 @@
                                 <div class="text-[8px] uppercase tracking-widest text-white/20 mb-2">Size</div>
                                 <div class="flex gap-1">
                                     <div class="flex-1 bg-primary/20 border border-primary/30 py-1 text-center text-[8px] text-primary-light uppercase tracking-widest">SM</div>
-                                    <div class="flex-1 bg-white/[0.04] border border-white/[0.06] py-1 text-center text-[8px] text-white/30 uppercase tracking-widest">MD</div>
-                                    <div class="flex-1 bg-white/[0.04] border border-white/[0.06] py-1 text-center text-[8px] text-white/30 uppercase tracking-widest">LG</div>
+                                    <div class="flex-1 bg-white/5 border border-white/5 py-1 text-center text-[8px] text-white/30 uppercase tracking-widest">MD</div>
+                                    <div class="flex-1 bg-white/5 border border-white/5 py-1 text-center text-[8px] text-white/30 uppercase tracking-widest">LG</div>
                                 </div>
                             </div>
                             <div class="mt-auto bg-primary/10 border border-primary/20 p-2 text-center">
@@ -709,7 +714,7 @@
                     </div>
                     <div class="flex-1 flex flex-col gap-5">
                         <!-- Code snippet -->
-                        <div class="bg-black/40 border border-white/[0.06] p-5 font-mono">
+                        <div class="bg-black/40 border border-white/5 p-5 font-mono">
                             <div class="text-[9px] text-white/20 uppercase tracking-widest mb-3">HTML</div>
                             <div class="space-y-1">
                                 <div class="text-[11px]"><span class="text-primary-light/60">&lt;script</span> <span class="text-amber-400/60">src</span><span class="text-white/30">=</span><span class="text-green-400/60">"https://cdn.renderlab.io/v1/viewer.js"</span><span class="text-primary-light/60">&gt;&lt;/script&gt;</span></div>
@@ -722,13 +727,13 @@
                         </div>
                         <!-- iframe outline mockup -->
                         <div class="flex-1 border border-dashed border-white/10 flex flex-col">
-                            <div class="px-4 py-2 border-b border-white/[0.06] flex items-center gap-2">
+                            <div class="px-4 py-2 border-b border-white/5 flex items-center gap-2">
                                 <div class="flex gap-1">
                                     <div class="w-2 h-2 rounded-full bg-white/10"></div>
                                     <div class="w-2 h-2 rounded-full bg-white/10"></div>
                                     <div class="w-2 h-2 rounded-full bg-white/10"></div>
                                 </div>
-                                <div class="flex-1 bg-white/[0.04] border border-white/[0.06] px-2 py-0.5">
+                                <div class="flex-1 bg-white/5 border border-white/5 px-2 py-0.5">
                                     <span class="text-[8px] text-white/20 font-mono">yoursite.com/product-page</span>
                                 </div>
                             </div>
@@ -738,7 +743,7 @@
                                     <span class="text-[9px] text-white/15 uppercase tracking-widest">Renderlab Viewer</span>
                                 </div>
                             </div>
-                            <div class="flex items-center justify-between px-4 py-2 border-t border-white/[0.06]">
+                            <div class="flex items-center justify-between px-4 py-2 border-t border-white/5">
                                 <span class="text-[8px] text-white/15 uppercase tracking-widest">Works on Shopify · Webflow · Custom</span>
                                 <span class="text-[8px] text-primary-light/40 uppercase tracking-widest">Renderlab</span>
                             </div>
@@ -753,7 +758,7 @@
                         <span class="text-[10px] uppercase tracking-widest text-white/30">Export Center — Product_v3</span>
                     </div>
                     <div class="flex-1 flex flex-col gap-3">
-                        <div class="bg-white/[0.04] border border-white/[0.06] p-4 flex items-center gap-4">
+                        <div class="bg-white/5 border border-white/5 p-4 flex items-center gap-4">
                             <span class="material-symbols-outlined text-base text-primary-light/60">image</span>
                             <div class="flex-1">
                                 <div class="text-xs text-white/70 mb-0.5">Hero render — Front angle</div>
@@ -762,7 +767,7 @@
                             <span class="text-[9px] uppercase tracking-widest text-primary-light/60 bg-primary/10 px-2 py-1">WebP</span>
                             <span class="material-symbols-outlined text-sm text-white/20 hover:text-white/60 cursor-pointer transition-colors">download</span>
                         </div>
-                        <div class="bg-white/[0.04] border border-white/[0.06] p-4 flex items-center gap-4">
+                        <div class="bg-white/5 border border-white/5 p-4 flex items-center gap-4">
                             <span class="material-symbols-outlined text-base text-amber-400/60">image</span>
                             <div class="flex-1">
                                 <div class="text-xs text-white/70 mb-0.5">Variant sheet — All colorways</div>
@@ -771,7 +776,7 @@
                             <span class="text-[9px] uppercase tracking-widest text-amber-400/60 bg-amber-400/10 px-2 py-1">PNG</span>
                             <span class="material-symbols-outlined text-sm text-white/20 hover:text-white/60 cursor-pointer transition-colors">download</span>
                         </div>
-                        <div class="bg-white/[0.04] border border-white/[0.06] p-4 flex items-center gap-4">
+                        <div class="bg-white/5 border border-white/5 p-4 flex items-center gap-4">
                             <span class="material-symbols-outlined text-base text-green-400/60">view_in_ar</span>
                             <div class="flex-1">
                                 <div class="text-xs text-white/70 mb-0.5">3D Scene — Web viewer</div>
@@ -780,7 +785,7 @@
                             <span class="text-[9px] uppercase tracking-widest text-green-400/60 bg-green-400/10 px-2 py-1">GLTF</span>
                             <span class="material-symbols-outlined text-sm text-white/20 hover:text-white/60 cursor-pointer transition-colors">download</span>
                         </div>
-                        <div class="bg-white/[0.04] border border-white/[0.06] p-4 flex items-center gap-4">
+                        <div class="bg-white/5 border border-white/5 p-4 flex items-center gap-4">
                             <span class="material-symbols-outlined text-base text-primary/60">view_in_ar</span>
                             <div class="flex-1">
                                 <div class="text-xs text-white/70 mb-0.5">AR Scene — iOS Quick Look</div>
@@ -789,7 +794,7 @@
                             <span class="text-[9px] uppercase tracking-widest text-primary-light/60 bg-primary/10 px-2 py-1">USDZ</span>
                             <span class="material-symbols-outlined text-sm text-white/20 hover:text-white/60 cursor-pointer transition-colors">download</span>
                         </div>
-                        <div class="bg-white/[0.04] border border-white/[0.06] p-4 flex items-center gap-4 opacity-60">
+                        <div class="bg-white/5 border border-white/5 p-4 flex items-center gap-4 opacity-60">
                             <span class="material-symbols-outlined text-base text-white/30">link</span>
                             <div class="flex-1">
                                 <div class="text-xs text-white/50 mb-0.5">Hosted configurator URL</div>
@@ -804,12 +809,13 @@
             </div>
         </div>
     </div>
+    </div>
 </section>
 
 <!-- Testimonials -->
-<section class="py-32 bg-zinc-50 overflow-hidden">
+<section class="py-32 bg-surface overflow-hidden">
     <div class="px-8 lg:px-16 mb-16 reveal">
-        <span class="text-xs uppercase tracking-label text-primary mb-4 block">Testimonials</span>
+        <span class="text-xs uppercase tracking-label text-primary mb-6 block">Testimonials</span>
         <h2 class="font-light text-5xl">What our clients say.</h2>
     </div>
 
@@ -822,7 +828,7 @@
                 <div class="flex items-center gap-4">
                     <div class="w-8 h-[1px] bg-primary"></div>
                     <div>
-                        <span class="text-xs uppercase tracking-label text-zinc-900 font-medium block">Product Marketing Lead</span>
+                        <span class="text-xs uppercase tracking-label text-text-dark font-medium block">Product Marketing Lead</span>
                         <span class="text-[11px] text-muted">Consumer Goods Co.</span>
                     </div>
                 </div>
@@ -832,7 +838,7 @@
                 <div class="flex items-center gap-4">
                     <div class="w-8 h-[1px] bg-primary"></div>
                     <div>
-                        <span class="text-xs uppercase tracking-label text-zinc-900 font-medium block">VP of Sales</span>
+                        <span class="text-xs uppercase tracking-label text-text-dark font-medium block">VP of Sales</span>
                         <span class="text-[11px] text-muted">Industrial Equipment Manufacturer</span>
                     </div>
                 </div>
@@ -842,7 +848,7 @@
                 <div class="flex items-center gap-4">
                     <div class="w-8 h-[1px] bg-primary"></div>
                     <div>
-                        <span class="text-xs uppercase tracking-label text-zinc-900 font-medium block">E-Commerce Director</span>
+                        <span class="text-xs uppercase tracking-label text-text-dark font-medium block">E-Commerce Director</span>
                         <span class="text-[11px] text-muted">Home Furnishings Brand</span>
                     </div>
                 </div>
@@ -852,7 +858,7 @@
                 <div class="flex items-center gap-4">
                     <div class="w-8 h-[1px] bg-primary"></div>
                     <div>
-                        <span class="text-xs uppercase tracking-label text-zinc-900 font-medium block">Director of Digital</span>
+                        <span class="text-xs uppercase tracking-label text-text-dark font-medium block">Director of Digital</span>
                         <span class="text-[11px] text-muted">Specialty Manufacturer</span>
                     </div>
                 </div>
@@ -863,7 +869,7 @@
                 <div class="flex items-center gap-4">
                     <div class="w-8 h-[1px] bg-primary"></div>
                     <div>
-                        <span class="text-xs uppercase tracking-label text-zinc-900 font-medium block">Product Marketing Lead</span>
+                        <span class="text-xs uppercase tracking-label text-text-dark font-medium block">Product Marketing Lead</span>
                         <span class="text-[11px] text-muted">Consumer Goods Co.</span>
                     </div>
                 </div>
@@ -873,7 +879,7 @@
                 <div class="flex items-center gap-4">
                     <div class="w-8 h-[1px] bg-primary"></div>
                     <div>
-                        <span class="text-xs uppercase tracking-label text-zinc-900 font-medium block">VP of Sales</span>
+                        <span class="text-xs uppercase tracking-label text-text-dark font-medium block">VP of Sales</span>
                         <span class="text-[11px] text-muted">Industrial Equipment Manufacturer</span>
                     </div>
                 </div>
@@ -883,7 +889,7 @@
                 <div class="flex items-center gap-4">
                     <div class="w-8 h-[1px] bg-primary"></div>
                     <div>
-                        <span class="text-xs uppercase tracking-label text-zinc-900 font-medium block">E-Commerce Director</span>
+                        <span class="text-xs uppercase tracking-label text-text-dark font-medium block">E-Commerce Director</span>
                         <span class="text-[11px] text-muted">Home Furnishings Brand</span>
                     </div>
                 </div>
@@ -893,7 +899,7 @@
                 <div class="flex items-center gap-4">
                     <div class="w-8 h-[1px] bg-primary"></div>
                     <div>
-                        <span class="text-xs uppercase tracking-label text-zinc-900 font-medium block">Director of Digital</span>
+                        <span class="text-xs uppercase tracking-label text-text-dark font-medium block">Director of Digital</span>
                         <span class="text-[11px] text-muted">Specialty Manufacturer</span>
                     </div>
                 </div>
@@ -910,7 +916,7 @@
                 <div class="flex items-center gap-4">
                     <div class="w-8 h-[1px] bg-primary"></div>
                     <div>
-                        <span class="text-xs uppercase tracking-label text-zinc-900 font-medium block">Director of Partnerships</span>
+                        <span class="text-xs uppercase tracking-label text-text-dark font-medium block">Director of Partnerships</span>
                         <span class="text-[11px] text-muted">Consumer Tech Brand</span>
                     </div>
                 </div>
@@ -920,7 +926,7 @@
                 <div class="flex items-center gap-4">
                     <div class="w-8 h-[1px] bg-primary"></div>
                     <div>
-                        <span class="text-xs uppercase tracking-label text-zinc-900 font-medium block">Web Lead</span>
+                        <span class="text-xs uppercase tracking-label text-text-dark font-medium block">Web Lead</span>
                         <span class="text-[11px] text-muted">Outdoor Gear Company</span>
                     </div>
                 </div>
@@ -930,7 +936,7 @@
                 <div class="flex items-center gap-4">
                     <div class="w-8 h-[1px] bg-primary"></div>
                     <div>
-                        <span class="text-xs uppercase tracking-label text-zinc-900 font-medium block">Creative Director</span>
+                        <span class="text-xs uppercase tracking-label text-text-dark font-medium block">Creative Director</span>
                         <span class="text-[11px] text-muted">Apparel Manufacturer</span>
                     </div>
                 </div>
@@ -940,7 +946,7 @@
                 <div class="flex items-center gap-4">
                     <div class="w-8 h-[1px] bg-primary"></div>
                     <div>
-                        <span class="text-xs uppercase tracking-label text-zinc-900 font-medium block">CMO</span>
+                        <span class="text-xs uppercase tracking-label text-text-dark font-medium block">CMO</span>
                         <span class="text-[11px] text-muted">Building Materials Co.</span>
                     </div>
                 </div>
@@ -951,7 +957,7 @@
                 <div class="flex items-center gap-4">
                     <div class="w-8 h-[1px] bg-primary"></div>
                     <div>
-                        <span class="text-xs uppercase tracking-label text-zinc-900 font-medium block">Director of Partnerships</span>
+                        <span class="text-xs uppercase tracking-label text-text-dark font-medium block">Director of Partnerships</span>
                         <span class="text-[11px] text-muted">Consumer Tech Brand</span>
                     </div>
                 </div>
@@ -961,7 +967,7 @@
                 <div class="flex items-center gap-4">
                     <div class="w-8 h-[1px] bg-primary"></div>
                     <div>
-                        <span class="text-xs uppercase tracking-label text-zinc-900 font-medium block">Web Lead</span>
+                        <span class="text-xs uppercase tracking-label text-text-dark font-medium block">Web Lead</span>
                         <span class="text-[11px] text-muted">Outdoor Gear Company</span>
                     </div>
                 </div>
@@ -971,7 +977,7 @@
                 <div class="flex items-center gap-4">
                     <div class="w-8 h-[1px] bg-primary"></div>
                     <div>
-                        <span class="text-xs uppercase tracking-label text-zinc-900 font-medium block">Creative Director</span>
+                        <span class="text-xs uppercase tracking-label text-text-dark font-medium block">Creative Director</span>
                         <span class="text-[11px] text-muted">Apparel Manufacturer</span>
                     </div>
                 </div>
@@ -981,7 +987,7 @@
                 <div class="flex items-center gap-4">
                     <div class="w-8 h-[1px] bg-primary"></div>
                     <div>
-                        <span class="text-xs uppercase tracking-label text-zinc-900 font-medium block">CMO</span>
+                        <span class="text-xs uppercase tracking-label text-text-dark font-medium block">CMO</span>
                         <span class="text-[11px] text-muted">Building Materials Co.</span>
                     </div>
                 </div>
@@ -991,14 +997,14 @@
 </section>
 
 <!-- CTA -->
-<section class="py-32 px-8 lg:px-16 bg-zinc-950 text-white cta-section" id="cta-section">
+<section class="py-32 px-8 lg:px-16 bg-surface-dark text-white cta-section" id="cta-section">
     <div class="max-w-4xl mx-auto text-center reveal">
         <span class="text-xs uppercase tracking-label text-primary-light mb-6 block cta-label">Get Started</span>
         <h2 class="font-light text-5xl md:text-6xl mb-8 leading-tight cta-text">See Renderlab in action.</h2>
         <p class="text-lg text-white/50 mb-12 max-w-2xl mx-auto cta-muted">Schedule a personalized demo and discover how Renderlab can transform your product presentation. 30 minutes with our team — we'll walk through the platform and answer every question.</p>
-        <a href="contact.html" class="cta-wipe group inline-flex items-center gap-3 border border-white/20 px-8 py-5 text-sm uppercase tracking-cta font-medium" id="cta-btn">
+        <a href="contact.html" class="cta-wipe group inline-flex items-center gap-3 border border-white/20 px-10 py-5 text-sm uppercase tracking-cta font-medium" id="cta-btn">
             <span>Request a Demo</span>
-            <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform duration-300" aria-hidden="true">arrow_forward</span>
+            <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform duration-base" aria-hidden="true">arrow_forward</span>
         </a>
     </div>
 </section>
@@ -1012,7 +1018,7 @@
 </div>
 <div class="footer-grid relative z-10 grid grid-cols-2 md:grid-cols-4 gap-12 pt-16 border-t border-black/10" style="transition: border-color 0.6s ease;">
 <div>
-<h6 class="footer-text text-xs uppercase tracking-widest font-bold mb-6" style="transition: color 0.6s ease;">What We Do</h6>
+<h6 class="text-xs uppercase tracking-widest font-bold mb-6 footer-text" style="transition: color 0.6s ease;">What We Do</h6>
 <ul class="space-y-2 text-muted text-sm footer-text" style="transition: color 0.6s ease;">
 <li><a class="hover:text-primary" href="services/digital-product-strategy.html">Digital Product Strategy</a></li>
 <li><a class="hover:text-primary" href="services/web-design-development.html">Web Design &amp; Development</a></li>
@@ -1021,7 +1027,7 @@
 </ul>
 </div>
 <div>
-<h6 class="footer-text text-xs uppercase tracking-widest font-bold mb-6" style="transition: color 0.6s ease;">Company</h6>
+<h6 class="text-xs uppercase tracking-widest font-bold mb-6 footer-text" style="transition: color 0.6s ease;">Company</h6>
 <ul class="space-y-2 text-muted text-sm footer-text" style="transition: color 0.6s ease;">
 <li><a class="hover:text-primary" href="about.html">About</a></li>
 <li><a class="hover:text-primary" href="how-we-work.html">How We Work</a></li>
@@ -1031,7 +1037,7 @@
 </ul>
 </div>
 <div>
-<h6 class="footer-text text-xs uppercase tracking-widest font-bold mb-6" style="transition: color 0.6s ease;">Connect</h6>
+<h6 class="text-xs uppercase tracking-widest font-bold mb-6 footer-text" style="transition: color 0.6s ease;">Connect</h6>
 <ul class="flex items-center gap-5 footer-text" style="transition: color 0.6s ease;">
 <li><a class="hover:text-primary transition-colors" href="https://www.linkedin.com/company/azularc/" target="_blank" rel="noopener" aria-label="Azul Arc on LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></li>
 <li><a class="hover:text-primary transition-colors" href="https://x.com/azularc" target="_blank" rel="noopener" aria-label="Azul Arc on X"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.739l7.73-8.835L1.254 2.25H8.08l4.013 5.305zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a></li>
@@ -1040,9 +1046,9 @@
 </div>
 <div class="flex flex-col justify-between">
 <div>
-<h6 class="footer-text text-xs uppercase tracking-widest font-bold mb-6" style="transition: color 0.6s ease;">Insights</h6>
-<div class="footer-border flex border-b border-black/10 pb-2" style="transition: border-color 0.6s ease;">
-<input class="footer-text bg-transparent border-none focus:ring-0 p-0 text-sm w-full" style="transition: color 0.6s ease;" placeholder="Email" type="email"/>
+<h6 class="text-xs uppercase tracking-widest font-bold mb-6 footer-text" style="transition: color 0.6s ease;">Insights</h6>
+<div class="flex border-b border-black/10 pb-2 footer-border" style="transition: border-color 0.6s ease;">
+<input class="footer-text bg-transparent border-none focus:ring-0 focus-visible:ring-1 focus-visible:ring-primary focus-visible:border-primary p-0 text-sm w-full" style="transition: color 0.6s ease;" placeholder="Email" type="email"/>
 <span class="footer-text material-symbols-outlined opacity-40" style="transition: color 0.6s ease;" aria-hidden="true">arrow_forward</span>
 </div>
 </div>
